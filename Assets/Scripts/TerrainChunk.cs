@@ -9,6 +9,7 @@ public class TerrainChunk : MonoBehaviour {
     public int chunkSize;
     public float max_height;
     public float perlin_scale;
+
     private int[,] grid;
     private Vector3[] vertices;
     private Mesh mesh;
@@ -16,7 +17,7 @@ public class TerrainChunk : MonoBehaviour {
     private void Awake()
     {
         Generate_Grid();
-        StartCoroutine(Generate_Mesh());
+        Generate_Mesh();
     }
 
     private void Generate_Grid()
@@ -33,9 +34,8 @@ public class TerrainChunk : MonoBehaviour {
         }
     }
 
-    private IEnumerator Generate_Mesh()
+    private void Generate_Mesh()
     {
-        WaitForSeconds wait = new WaitForSeconds(0.05f);
         float z;
         GetComponent<MeshFilter>().mesh = mesh = new Mesh();
         mesh.name = "Procedural Grid";
@@ -68,11 +68,10 @@ public class TerrainChunk : MonoBehaviour {
                     triangles[ti + 4] = triangles[ti + 2] = vi + chunkSize + 2;
                     triangles[ti + 5] = vi + 1;
                 }
-                mesh.triangles = triangles;
-                mesh.RecalculateNormals();
-                yield return wait;
             }
         }
+        mesh.triangles = triangles;
+        mesh.RecalculateNormals();
     }
 
     private void OnDrawGizmos()
