@@ -5,4 +5,6 @@ using UnityEngine;
 public class SquareCell : MonoBehaviour {
     public GridCoordinates coordinates;
     public Color color;
+    public int centreElevation;
+    public GridElevations vertexElevations;
 }

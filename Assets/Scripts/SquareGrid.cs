@@ -6,8 +6,6 @@ public class SquareGrid : MonoBehaviour
 
     public int width = 6;
     public int height = 6;
-    public Color defaultColor = Color.white;
-    public Color touchedColor = Color.magenta;
     public SquareCell cellPrefab;
     public Text cellLabelPrefab;
 
@@ -44,16 +42,13 @@ public class SquareGrid : MonoBehaviour
         position.z = z;
 
         SquareCell cell = cells[i] = Instantiate<SquareCell>(cellPrefab);
+        Text label = Instantiate<Text>(cellLabelPrefab);
         cell.transform.SetParent(transform, false);
         cell.transform.localPosition = position;
         cell.coordinates = GridCoordinates.FromOffsetCoordinates(x, z);
-        cell.color = defaultColor;
-        CreateCellText(x, z);
-    }
-
-    void CreateCellText(int x, int z)
-    {
-        Text label = Instantiate<Text>(cellLabelPrefab);
+        cell.centreElevation = GridElevations.GetTerrainHeight(new Vector3(x, 0, z));
+        cell.vertexElevations = GridElevations.GetVertexHeights(new Vector3(x, 0, z));
+        cell.color = Color.magenta;
         label.rectTransform.SetParent(gridCanvas.transform, false);
         label.rectTransform.anchoredPosition = new Vector2(x, z);
         label.text = x.ToString() + ", " + z.ToString();

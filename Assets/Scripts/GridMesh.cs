@@ -43,11 +43,17 @@ public class GridMesh : MonoBehaviour
 
     void Triangulate(SquareCell cell)
     {
-        Vector3 edge = cell.transform.localPosition - new Vector3(0.5f, 0, 0.5f);
-        AddTriangle(edge, edge + new Vector3(0f, 0f, 1f), edge + new Vector3(1f, 0f));
+        Vector3 v0 = GridMetrics.GetBottomLeftVertex(cell.transform.localPosition);
+        Vector3 v1 = GridMetrics.GetTopLeftVertex(cell.transform.localPosition);
+        Vector3 v2 = GridMetrics.GetTopRightVertex(cell.transform.localPosition);
+        Vector3 v3 = GridMetrics.GetBottomRightVertex(cell.transform.localPosition);
+        v0 = v0 + Vector3.up * (cell.centreElevation + cell.vertexElevations.Y0) * GridMetrics.elevationStep;
+        v1 = v1 + Vector3.up * (cell.centreElevation + cell.vertexElevations.Y1) * GridMetrics.elevationStep;
+        v2 = v2 + Vector3.up * (cell.centreElevation + cell.vertexElevations.Y2) * GridMetrics.elevationStep;
+        v3 = v3 + Vector3.up * (cell.centreElevation + cell.vertexElevations.Y3) * GridMetrics.elevationStep;
+        AddTriangle(v0, v1, v3);
         AddTriangleColor(cell.color);
-        edge = cell.transform.localPosition + new Vector3(0.5f, 0, 0.5f);
-        AddTriangle(edge, edge - new Vector3(0f, 0f, 1f), edge - new Vector3(1f, 0f));
+        AddTriangle(v2, v3, v1);
         AddTriangleColor(cell.color);
     }
 
