@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class SquareGrid : MonoBehaviour
 {
@@ -64,22 +65,53 @@ public class SquareGrid : MonoBehaviour
             cell.SetNeighbor(GridDirection.SE, cells[i - width + 1]);
         }
         cell.coordinates = GridCoordinates.FromOffsetCoordinates(x, z);
-        cell.centreElevation = GridElevations.GetTerrainHeight(position);
-        cell.vertexElevations = GridElevations.GetVertexHeights(position);
-        cell.color = gridColors[(int)((cell.centreElevation / (float)GridElevations.maxHeight) * gridColors.Length)];
+        cell.GridElevations = GridElevations.GetVertexHeights(position);
+        cell.color = gridColors[(int)((cell.CentreElevation / (float)GridElevations.maxHeight) * gridColors.Length)];
         label.rectTransform.SetParent(gridCanvas.transform, false);
         label.rectTransform.anchoredPosition = new Vector2(x, z);
         label.text = x.ToString() + ", " + z.ToString();
     }
 
 
-    public void ColorCell(Vector3 position, Color color)
+    public SquareCell GetCell(Vector3 position)
     {
         position = transform.InverseTransformPoint(position);
         GridCoordinates coordinates = GridCoordinates.FromPosition(position);
         int index = coordinates.X + coordinates.Z * width;
-        SquareCell cell = cells[index];
-        cell.color = color;
+        return cells[index];
+    }
+
+
+    public GridDirection GetVertex(Vector3 position)
+    {
+        position = transform.InverseTransformPoint(position);
+        float fracX = position.x - Mathf.Floor(position.x);
+        float fracZ = position.z - Mathf.Floor(position.z);
+        if (fracX < 0.5f && fracZ < 0.5f)
+        {
+            return GridDirection.NE;
+        }
+        else if(fracX < 0.5f && fracZ >= 0.5f)
+        {
+            return GridDirection.SE;
+        }
+        else if (fracX >= 0.5f && fracZ >= 0.5f)
+        {
+            return GridDirection.SW;
+        }
+        else if (fracX >= 0.5f && fracZ < 0.5f)
+        {
+            return GridDirection.NW;
+        }
+        else
+        {
+            Debug.Log(string.Format("invalid result {0} {1}", fracX, fracZ));
+            throw new Exception("Can't determin vertex");
+        }
+    }
+
+    public void Refresh()
+    {
         gridMesh.Triangulate(cells);
     }
 }

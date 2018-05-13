@@ -13,18 +13,70 @@ public struct GridElevations
     public int Y0
     {
         get { return y0; }
+        set { y0 = value; }
     }
     public int Y1
     {
         get { return y1; }
+        set { y1 = value; }
     }
     public int Y2
     {
         get { return y2; }
+        set { y2 = value; }
     }
     public int Y3
     {
         get { return y3; }
+        set { y3 = value; }
+    }
+    public int? this[int i]
+    {
+        get
+        {
+            switch (i){
+                case 0: return y0;
+                case 1: return y1;
+                case 2: return y2;
+                case 3: return y3;
+                default: return null;
+            }
+        }
+        set {
+            switch (i)
+            {
+                case 0: y0 = (int)value; break;
+                case 1: y1 = (int)value; break;
+                case 2: y2 = (int)value; break;
+                case 3: y3 = (int)value; break;
+                default: break;
+            }
+        }
+    }
+    public int? this[GridDirection i]
+    {
+        get
+        {
+            switch (i)
+            {
+                case GridDirection.SW: return y0;
+                case GridDirection.NW: return y1;
+                case GridDirection.NE: return y2;
+                case GridDirection.SE: return y3;
+                default: return null;
+            }
+        }
+        set
+        {
+            switch (i)
+            {
+                case GridDirection.SW: y0 = (int)value; break;
+                case GridDirection.NW: y1 = (int)value; break;
+                case GridDirection.NE: y2 = (int)value; break;
+                case GridDirection.SE: y3 = (int)value; break;
+                default: break;
+            }
+        }
     }
 
     public GridElevations(int y0, int y1, int y2, int y3)

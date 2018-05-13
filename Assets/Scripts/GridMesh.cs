@@ -48,10 +48,10 @@ public class GridMesh : MonoBehaviour
         Vector3 vs1 = centre + GridMetrics.GetSolidEdge(GridDirection.NW);
         Vector3 vs2 = centre + GridMetrics.GetSolidEdge(GridDirection.NE);
         Vector3 vs3 = centre + GridMetrics.GetSolidEdge(GridDirection.SE);
-        vs0 = vs0 + Vector3.up * (cell.vertexElevations.Y0) * GridMetrics.elevationStep;
-        vs1 = vs1 + Vector3.up * (cell.vertexElevations.Y1) * GridMetrics.elevationStep;
-        vs2 = vs2 + Vector3.up * (cell.vertexElevations.Y2) * GridMetrics.elevationStep;
-        vs3 = vs3 + Vector3.up * (cell.vertexElevations.Y3) * GridMetrics.elevationStep;
+        vs0 = vs0 + Vector3.up * (cell.GridElevations.Y0) * GridMetrics.elevationStep;
+        vs1 = vs1 + Vector3.up * (cell.GridElevations.Y1) * GridMetrics.elevationStep;
+        vs2 = vs2 + Vector3.up * (cell.GridElevations.Y2) * GridMetrics.elevationStep;
+        vs3 = vs3 + Vector3.up * (cell.GridElevations.Y3) * GridMetrics.elevationStep;
 
         Vector3 vb0 = centre + GridMetrics.GetEdge(GridDirection.SW);
         Vector3 bridgeW = GridMetrics.GetBridge(GridDirection.W);
@@ -61,10 +61,10 @@ public class GridMesh : MonoBehaviour
         Vector3 bridgeE = GridMetrics.GetBridge(GridDirection.E);
         Vector3 vb3 = centre + GridMetrics.GetEdge(GridDirection.SE);
         Vector3 bridgeS = GridMetrics.GetBridge(GridDirection.S);
-        vb0 = vb0 + Vector3.up * (cell.vertexElevations.Y0) * GridMetrics.elevationStep;
-        vb1 = vb1 + Vector3.up * (cell.vertexElevations.Y1) * GridMetrics.elevationStep;
-        vb2 = vb2 + Vector3.up * (cell.vertexElevations.Y2) * GridMetrics.elevationStep;
-        vb3 = vb3 + Vector3.up * (cell.vertexElevations.Y3) * GridMetrics.elevationStep;
+        vb0 = vb0 + Vector3.up * (cell.GridElevations.Y0) * GridMetrics.elevationStep;
+        vb1 = vb1 + Vector3.up * (cell.GridElevations.Y1) * GridMetrics.elevationStep;
+        vb2 = vb2 + Vector3.up * (cell.GridElevations.Y2) * GridMetrics.elevationStep;
+        vb3 = vb3 + Vector3.up * (cell.GridElevations.Y3) * GridMetrics.elevationStep;
         if (vs0.y == vs2.y)  // sets direction of the triangle pairs in the quad
         {
             AddTriangle(vs0, vs1, vs2);

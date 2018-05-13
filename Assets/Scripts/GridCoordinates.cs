@@ -38,6 +38,12 @@ public struct GridCoordinates
     }
 
 
+    public static Vector3 ToPosition(GridCoordinates coords)
+    {
+        return new Vector3(coords.x, 0, coords.z);
+    }
+
+
     public override string ToString()
     {
         return string.Format("({0}, {1})", x.ToString(), z.ToString());
