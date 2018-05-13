@@ -41,106 +41,94 @@ public class GridMesh : MonoBehaviour
     }
 
 
+    Vector3 GetSolidElevation(GridElevations el, GridDirection direction)
+    {
+        float oppositeHeight = (float)el[direction.Opposite()];
+        float fractionalHeight = GridMetrics.solidFactor * ((float)el[direction] - oppositeHeight);
+        return Vector3.up * (fractionalHeight + oppositeHeight) * GridMetrics.elevationStep;
+    }
+
+
+    Vector3 GetBridgeElevation(GridElevations el, GridDirection vertexDirection, GridDirection bridgeDirection)
+    {
+        float delta = ((float)el[bridgeDirection.Previous()] - (float)el[bridgeDirection.Next()]) * GridMetrics.blendFactor;
+        return Vector3.up * ((float)el[vertexDirection] - delta) * GridMetrics.elevationStep;
+    }
+
+
     void Triangulate(SquareCell cell)
     {
         Vector3 centre = cell.transform.localPosition;
-        Vector3 vs0 = centre + GridMetrics.GetSolidEdge(GridDirection.SW);
-        Vector3 vs1 = centre + GridMetrics.GetSolidEdge(GridDirection.NW);
-        Vector3 vs2 = centre + GridMetrics.GetSolidEdge(GridDirection.NE);
-        Vector3 vs3 = centre + GridMetrics.GetSolidEdge(GridDirection.SE);
-        vs0 = vs0 + Vector3.up * (cell.GridElevations.Y0) * GridMetrics.elevationStep;
-        vs1 = vs1 + Vector3.up * (cell.GridElevations.Y1) * GridMetrics.elevationStep;
-        vs2 = vs2 + Vector3.up * (cell.GridElevations.Y2) * GridMetrics.elevationStep;
-        vs3 = vs3 + Vector3.up * (cell.GridElevations.Y3) * GridMetrics.elevationStep;
 
         Vector3 vb0 = centre + GridMetrics.GetEdge(GridDirection.SW);
-        Vector3 bridgeW = GridMetrics.GetBridge(GridDirection.W);
         Vector3 vb1 = centre + GridMetrics.GetEdge(GridDirection.NW);
-        Vector3 bridgeN = GridMetrics.GetBridge(GridDirection.N);
         Vector3 vb2 = centre + GridMetrics.GetEdge(GridDirection.NE);
-        Vector3 bridgeE = GridMetrics.GetBridge(GridDirection.E);
         Vector3 vb3 = centre + GridMetrics.GetEdge(GridDirection.SE);
-        Vector3 bridgeS = GridMetrics.GetBridge(GridDirection.S);
         vb0 = vb0 + Vector3.up * (cell.GridElevations.Y0) * GridMetrics.elevationStep;
         vb1 = vb1 + Vector3.up * (cell.GridElevations.Y1) * GridMetrics.elevationStep;
         vb2 = vb2 + Vector3.up * (cell.GridElevations.Y2) * GridMetrics.elevationStep;
         vb3 = vb3 + Vector3.up * (cell.GridElevations.Y3) * GridMetrics.elevationStep;
+
+        Vector3 vs0 = centre + GridMetrics.GetSolidEdge(GridDirection.SW);
+        Vector3 vs1 = centre + GridMetrics.GetSolidEdge(GridDirection.NW);
+        Vector3 vs2 = centre + GridMetrics.GetSolidEdge(GridDirection.NE);
+        Vector3 vs3 = centre + GridMetrics.GetSolidEdge(GridDirection.SE);
+
+
+        Vector3 bridgeW = GridMetrics.GetBridge(GridDirection.W);
+        Vector3 bridgeN = GridMetrics.GetBridge(GridDirection.N);
+        Vector3 bridgeE = GridMetrics.GetBridge(GridDirection.E);
+        Vector3 bridgeS = GridMetrics.GetBridge(GridDirection.S);
+
+        Vector3 vS0 = vs0 + bridgeS + GetBridgeElevation(cell.GridElevations, GridDirection.SW, GridDirection.S);
+        Vector3 vW0 = vs0 + bridgeW + GetBridgeElevation(cell.GridElevations, GridDirection.SW, GridDirection.W);
+        Vector3 vN1 = vs1 + bridgeN + GetBridgeElevation(cell.GridElevations, GridDirection.NW, GridDirection.N);
+        Vector3 vW1 = vs1 + bridgeW + GetBridgeElevation(cell.GridElevations, GridDirection.NW, GridDirection.W);
+        Vector3 vN2 = vs2 + bridgeN + GetBridgeElevation(cell.GridElevations, GridDirection.NE, GridDirection.N);
+        Vector3 vE2 = vs2 + bridgeE + GetBridgeElevation(cell.GridElevations, GridDirection.NE, GridDirection.E);
+        Vector3 vE3 = vs3 + bridgeE + GetBridgeElevation(cell.GridElevations, GridDirection.SE, GridDirection.E);
+        Vector3 vS3 = vs3 + bridgeS + GetBridgeElevation(cell.GridElevations, GridDirection.SE, GridDirection.S);
+
+        vs0 = vs0 + GetSolidElevation(cell.GridElevations, GridDirection.SW);
+        vs1 = vs1 + GetSolidElevation(cell.GridElevations, GridDirection.NW);
+        vs2 = vs2 + GetSolidElevation(cell.GridElevations, GridDirection.NE);
+        vs3 = vs3 + GetSolidElevation(cell.GridElevations, GridDirection.SE);
         if (vs0.y == vs2.y)  // sets direction of the triangle pairs in the quad
         {
             AddTriangle(vs0, vs1, vs2);
-            if(cell.GetNeighbor(GridDirection.N))
-            {
-                AddQuad(vs1, vs1 + 2 * bridgeN, vs2 + 2 * bridgeN, vs2);
-            }
-            else  // only draw to edge of cell
-            {
-                AddQuad(vs1, vs1 + bridgeN, vs2 + bridgeN, vs2);
-            }
-            if(cell.GetNeighbor(GridDirection.W) == null) // only draw if no neighbouring cell
-            {
-                AddQuad(vs1, vs0, vs0 + bridgeW, vs1 + bridgeW);
-            }
-            AddQuad(vs1, vs1 + bridgeW, vb1, vs1 + bridgeN); // NW Corner
-            AddQuad(vs2, vs2 + bridgeN, vb2, vs2 + bridgeE); // NE Corner
-            AddColors(cell, GridDirection.NW, true, cell.GetNeighbor(GridDirection.W) == null);
+            AddQuad(vs1, vN1, vN2, vs2);
+            AddQuad(vs1, vs0, vW0, vW1);
+            AddQuad(vs1, vW1, vb1, vN1); // NW Corner
+            AddQuad(vs2, vN2, vb2, vE2); // NE Corner
+            AddColors(cell, GridDirection.NW);
 
             AddTriangle(vs0, vs2, vs3);
-            if(cell.GetNeighbor(GridDirection.S) == null)
-            {
-                AddQuad(vs3, vs3 + bridgeS, vs0 + bridgeS, vs0);
-            }
-            if (cell.GetNeighbor(GridDirection.E))
-            {
-                AddQuad(vs3, vs2, vs2 + 2 * bridgeE, vs3 + 2 * bridgeE);
-            }
-            else
-            {
-                AddQuad(vs3, vs2, vs2 + bridgeE, vs3 + bridgeE);
-            }
-            AddQuad(vs3, vs3 + bridgeE, vb3, vs3 + bridgeS); // SE Corner
-            AddQuad(vs0, vs0 + bridgeS, vb0, vs0 + bridgeW); // SW Corner
-            AddColors(cell, GridDirection.SE, cell.GetNeighbor(GridDirection.S) == null, true);
+            AddQuad(vs3, vS3, vS0, vs0);
+            AddQuad(vs3, vs2, vE2, vE3);
+            AddQuad(vs3, vE3, vb3, vS3); // SE Corner
+            AddQuad(vs0, vS0, vb0, vW0); // SW Corner
+            AddColors(cell, GridDirection.SE);
         }
         else
         {
             AddTriangle(vs0, vs1, vs3);
-            if(cell.GetNeighbor(GridDirection.W) == null)
-            {
-                AddQuad(vs0, vs0 + bridgeW, vs1 + bridgeW, vs1);
-            }
-            if(cell.GetNeighbor(GridDirection.S) == null)
-            {
-                AddQuad(vs0, vs3, vs3 + bridgeS, vs0 + bridgeS);
-            }
-            AddQuad(vs0, vs0 + bridgeS, vb0, vs0 + bridgeW); // SW Corner
-            AddQuad(vs1, vs1 + bridgeW, vb1, vs1 + bridgeN); // NW Corner
-            AddColors(cell, GridDirection.SW, cell.GetNeighbor(GridDirection.W) == null, cell.GetNeighbor(GridDirection.S) == null);
+            AddQuad(vs0, vW0, vW1, vs1);
+            AddQuad(vs0, vs3, vS3, vS0);
+            AddQuad(vs0, vS0, vb0, vW0); // SW Corner
+            AddQuad(vs1, vW1, vb1, vN1); // NW Corner
+            AddColors(cell, GridDirection.SW);
 
             AddTriangle(vs2, vs3, vs1);
-            if (cell.GetNeighbor(GridDirection.E))
-            {
-                AddQuad(vs2, vs2 + 2 * bridgeE, vs3 + 2 * bridgeE, vs3);
-            }
-            else
-            {
-                AddQuad(vs2, vs2 + bridgeE, vs3 + bridgeE, vs3);
-            }
-            if (cell.GetNeighbor(GridDirection.N))
-            {
-                AddQuad(vs2, vs1, vs1 + 2 * bridgeN, vs2 + 2 * bridgeN);
-            }
-            else
-            {
-                AddQuad(vs2, vs1, vs1 + bridgeN, vs2 + bridgeN);
-            }
-            AddQuad(vs2, vs2 + bridgeN, vb2, vs2 + bridgeE); // NE Corner
-            AddQuad(vs3, vs3 + bridgeE, vb3, vs3 + bridgeS); // SE Corner
-            AddColors(cell, GridDirection.NE, true, true);
+            AddQuad(vs2, vE2, vE3, vs3);
+            AddQuad(vs2, vs1, vN1, vN2);
+            AddQuad(vs2, vN2, vb2, vE2); // NE Corner
+            AddQuad(vs3, vE3, vb3, vS3); // SE Corner
+            AddColors(cell, GridDirection.NE);
         }
 
     }
 
-    void AddColors(SquareCell cell, GridDirection direction, bool nextEdge, bool prevEdge)
+    void AddColors(SquareCell cell, GridDirection direction)
     {
         SquareCell prevNeighbor = cell.GetNeighbor(direction.Previous()) ?? cell;
         SquareCell neighbor = cell.GetNeighbor(direction) ?? cell;
@@ -154,8 +142,8 @@ public class GridMesh : MonoBehaviour
         Color nextNeighborMix = (nextNeighbor.color + cell.color + next2Neighbor.color + next3Neighbor.color) / 4f;
         Color next2Mix = (next3Neighbor.color + cell.color) / 2f;
         AddTriangleColor(cell.color);
-        if (nextEdge) AddQuadColor(cell.color, nextNeighbor.color, nextNeighbor.color, cell.color); // next Edge
-        if (prevEdge) AddQuadColor(cell.color, cell.color, prevNeighbor.color, prevNeighbor.color);  // previous Edge
+        AddQuadColor(cell.color, nextNeighbor.color, nextNeighbor.color, cell.color); // next Edge
+        AddQuadColor(cell.color, cell.color, prevNeighbor.color, prevNeighbor.color);  // previous Edge
         AddQuadColor(cell.color, previousMix, neighborMix, nextMix);  // direction Corner
         AddQuadColor(cell.color, nextMix, nextNeighborMix, next2Mix);  // next Corner
     }
