@@ -5,6 +5,8 @@ using UnityEngine;
 public class SquareCell : MonoBehaviour {
     public GridCoordinates coordinates;
     public Color color;
+    public RectTransform uiRect;
+
     int centreElevation = 0;
     GridElevations vertexElevations;
 
@@ -15,6 +17,9 @@ public class SquareCell : MonoBehaviour {
     private void UpdateCentreElevation()
     {
         centreElevation = (vertexElevations.Y0 + vertexElevations.Y1 + vertexElevations.Y2 + vertexElevations.Y3) / 4;
+        Vector3 uiPosition = uiRect.localPosition;
+        uiPosition.z = centreElevation * -GridMetrics.elevationStep;
+        uiRect.localPosition = uiPosition;
         Debug.Log(string.Format("Update Elevation {0}", centreElevation));
     }
 
@@ -27,6 +32,7 @@ public class SquareCell : MonoBehaviour {
     public void ChangeVertexElevation(GridDirection vertex, int value)
     {
         vertexElevations[vertex] += value;
+        UpdateCentreElevation();
     }
 
 

@@ -46,6 +46,7 @@ public class SquareGrid : MonoBehaviour
 
         SquareCell cell = cells[i] = Instantiate<SquareCell>(cellPrefab);
         Text label = Instantiate<Text>(cellLabelPrefab);
+        cell.uiRect = label.rectTransform;
         cell.transform.SetParent(transform, false);
         cell.transform.localPosition = position;
         if (x > 0)

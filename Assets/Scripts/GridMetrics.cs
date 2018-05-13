@@ -3,7 +3,7 @@
 [System.Serializable]
 public struct GridMetrics
 {
-    public const float elevationStep = 1f / 2f;
+    public const float elevationStep = 1f / 3f;
     public const float gridSize = 1f;
     public const float halfSize = gridSize / 2;
     public const float solidFactor = 0.8f;
