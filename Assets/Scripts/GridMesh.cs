@@ -51,10 +51,21 @@ public class GridMesh : MonoBehaviour
         v1 = v1 + Vector3.up * (cell.centreElevation + cell.vertexElevations.Y1) * GridMetrics.elevationStep;
         v2 = v2 + Vector3.up * (cell.centreElevation + cell.vertexElevations.Y2) * GridMetrics.elevationStep;
         v3 = v3 + Vector3.up * (cell.centreElevation + cell.vertexElevations.Y3) * GridMetrics.elevationStep;
-        AddTriangle(v0, v1, v3);
-        AddTriangleColor(cell.color);
-        AddTriangle(v2, v3, v1);
-        AddTriangleColor(cell.color);
+        if (v0.y == v2.y)  // sets direction of the triangle pairs in the quad
+        {
+            AddTriangle(v0, v1, v2);
+            AddTriangleColor(cell.color);
+            AddTriangle(v0, v2, v3);
+            AddTriangleColor(cell.color);
+        }
+        else
+        {
+            AddTriangle(v0, v1, v3);
+            AddTriangleColor(cell.color);
+            AddTriangle(v2, v3, v1);
+            AddTriangleColor(cell.color);
+        }
+
     }
 
 

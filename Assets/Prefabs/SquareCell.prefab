@@ -55,3 +55,18 @@ MonoBehaviour:
     x: 0
     z: 0
   color: {r: 0, g: 0, b: 0, a: 0}
+  centreElevation: 0
+  vertexElevations:
+    y0: 0
+    y1: 0
+    y2: 0
+    y3: 0
+  neighbors:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

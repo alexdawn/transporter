@@ -6,9 +6,9 @@ public struct GridElevations
     [SerializeField]
     private int y0, y1, y2, y3;
 
-    const int maxHeight = 10;
-    const int chunkSize = 16;
-    const float perlinScale = 1f;
+    public const int maxHeight = 10;
+    public const int chunkSize = 16;
+    public const float perlinScale = 1f;
 
     public int Y0
     {
