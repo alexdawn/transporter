@@ -46,11 +46,10 @@ public struct GridElevations
 
     public static GridElevations GetVertexHeights(Vector3 position)
     {
-        int heightCentre = GetTerrainHeight(position);
-        int v0 = GetTerrainHeight(GridMetrics.GetBottomLeftVertex(position)) - heightCentre;
-        int v1 = GetTerrainHeight(GridMetrics.GetTopLeftVertex(position)) - heightCentre;
-        int v2 = GetTerrainHeight(GridMetrics.GetTopRightVertex(position)) - heightCentre;
-        int v3 = GetTerrainHeight(GridMetrics.GetBottomRightVertex(position)) - heightCentre;
+        int v0 = GetTerrainHeight(position + GridMetrics.GetEdge(GridDirection.SW));
+        int v1 = GetTerrainHeight(position + GridMetrics.GetEdge(GridDirection.NW));
+        int v2 = GetTerrainHeight(position + GridMetrics.GetEdge(GridDirection.NE));
+        int v3 = GetTerrainHeight(position + GridMetrics.GetEdge(GridDirection.SE));
         return new GridElevations(v0, v1, v2, v3);
     }
 

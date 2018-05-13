@@ -64,8 +64,8 @@ public class SquareGrid : MonoBehaviour
             cell.SetNeighbor(GridDirection.SE, cells[i - width + 1]);
         }
         cell.coordinates = GridCoordinates.FromOffsetCoordinates(x, z);
-        cell.centreElevation = GridElevations.GetTerrainHeight(new Vector3(x, 0, z));
-        cell.vertexElevations = GridElevations.GetVertexHeights(new Vector3(x, 0, z));
+        cell.centreElevation = GridElevations.GetTerrainHeight(position);
+        cell.vertexElevations = GridElevations.GetVertexHeights(position);
         cell.color = gridColors[(int)((cell.centreElevation / (float)GridElevations.maxHeight) * gridColors.Length)];
         label.rectTransform.SetParent(gridCanvas.transform, false);
         label.rectTransform.anchoredPosition = new Vector2(x, z);

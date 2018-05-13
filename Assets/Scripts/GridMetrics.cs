@@ -6,8 +6,11 @@ public struct GridMetrics
     public const float elevationStep = 1f / 2f;
     public const float gridSize = 1f;
     public const float halfSize = gridSize / 2;
+    public const float solidFactor = 0.8f;
+    public const float blendFactor = 1f - solidFactor;
 
-    static Vector3[] directions = {
+
+    static readonly Vector3[] directions = {
         new Vector3(0, 0, halfSize),
         new Vector3(halfSize, 0, halfSize),
         new Vector3(halfSize, 0, 0),
@@ -18,31 +21,21 @@ public struct GridMetrics
         new Vector3(-halfSize, 0, halfSize),
     };
 
+
     public static Vector3 GetEdge(GridDirection direction)
     {
         return directions[(int)direction];
     }
 
-    public static Vector3 GetBottomLeftVertex(Vector3 centre)
+
+    public static Vector3 GetSolidEdge(GridDirection direction)
     {
-        return centre + GetEdge(GridDirection.SW);
+        return directions[(int)direction] * solidFactor;
     }
 
 
-    public static Vector3 GetTopLeftVertex(Vector3 centre)
+    public static Vector3 GetBridge(GridDirection direction)
     {
-        return centre + GetEdge(GridDirection.NW);
-    }
-
-
-    public static Vector3 GetTopRightVertex(Vector3 centre)
-    {
-        return centre + GetEdge(GridDirection.NE);
-    }
-
-
-    public static Vector3 GetBottomRightVertex(Vector3 centre)
-    {
-        return centre + GetEdge(GridDirection.SE);
+        return directions[(int)direction] * blendFactor;
     }
 }

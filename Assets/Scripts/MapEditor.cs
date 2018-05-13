@@ -37,7 +37,6 @@ public class MapEditor : MonoBehaviour {
 
     public void SelectColor (int index)
     {
-        Debug.Log("selects " + index);
         activteColor = colors[index];
     }
 }
