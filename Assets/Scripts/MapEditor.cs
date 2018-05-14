@@ -107,7 +107,7 @@ public class MapEditor : MonoBehaviour {
     {
         if(activeMode == EditMode.color)
         {
-            cell.color = activeColor;
+            cell.Color = activeColor;
         }
         if(activeMode == EditMode.elevation)
         {
@@ -132,6 +132,5 @@ public class MapEditor : MonoBehaviour {
                 }
             }
         }
-        squareGrid.Refresh();
     }
 }

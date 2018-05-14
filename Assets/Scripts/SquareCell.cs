@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SquareCell : MonoBehaviour {
+    public SquareGridChunk parentChunk;
     public GridCoordinates coordinates;
-    public Color color;
     public RectTransform uiRect;
 
     int centreElevation = 0;
     GridElevations vertexElevations;
+    Color color;
 
     [SerializeField]
     SquareCell[] neighbors;
@@ -20,7 +21,7 @@ public class SquareCell : MonoBehaviour {
         Vector3 uiPosition = uiRect.localPosition;
         uiPosition.z = centreElevation * -GridMetrics.elevationStep;
         uiRect.localPosition = uiPosition;
-        Debug.Log(string.Format("Update Elevation {0}", centreElevation));
+        Refresh();
     }
 
     public int CentreElevation
@@ -47,6 +48,21 @@ public class SquareCell : MonoBehaviour {
     }
 
 
+    public Color Color
+    {
+        get { return color; }
+        set
+        {
+            if (color == value)
+            {
+                return;
+            }
+            color = value;
+            Refresh();
+        }
+    }
+
+
     public SquareCell GetNeighbor(GridDirection direction)
     {
         return neighbors[(int)direction];
@@ -57,5 +73,22 @@ public class SquareCell : MonoBehaviour {
     {
         neighbors[(int)direction] = cell;
         cell.neighbors[(int)direction.Opposite()] = this;
+    }
+
+
+    void Refresh()
+    {
+        if (parentChunk)
+        {
+            parentChunk.Refresh();
+            for (int i = 0; i < neighbors.Length; i++)
+            {
+                SquareCell neighbor = neighbors[i];
+                if (neighbor != null && neighbor.parentChunk != parentChunk)
+                {
+                    neighbor.parentChunk.Refresh();
+                }
+            }
+        }
     }
 }

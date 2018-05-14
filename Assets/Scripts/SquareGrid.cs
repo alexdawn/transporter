@@ -5,35 +5,51 @@ using System;
 public class SquareGrid : MonoBehaviour
 {
 
-    public int width = 6;
-    public int height = 6;
+    public int chunkCountX = 4, chunkCountZ = 3;
+    int cellCountX, cellCountZ;
     public SquareCell cellPrefab;
+    public SquareGridChunk chunkPrefab;
     public Text cellLabelPrefab;
 
+    SquareGridChunk[] chunks;
     SquareCell[] cells;
-    Canvas gridCanvas;
-    GridMesh gridMesh;
     Color[] gridColors;
 
     private void Awake()
     {
-        gridCanvas = GetComponentInChildren<Canvas>();
-        gridMesh = GetComponentInChildren<GridMesh>();
         gridColors = GameObject.Find("EditorCanvas").GetComponent<MapEditor>().colors;
-        cells = new SquareCell[height * width];
-        for (int z = 0, i = 0; z < height; z++)
+        cellCountX = chunkCountX * GridMetrics.chunkSizeX;
+        cellCountZ = chunkCountZ * GridMetrics.chunkSizeZ;
+        
+        CreateChunks();
+        CreateCells();
+    }
+
+
+    void CreateChunks()
+    {
+        chunks = new SquareGridChunk[chunkCountX * chunkCountZ];
+
+        for (int z=0, i=0; z< chunkCountZ; z++)
         {
-            for (int x = 0; x < width; x++)
+            for(int x=0; x<chunkCountX; x++)
             {
-                CreateCell(x, z, i++);
+                SquareGridChunk chunk = chunks[i++] = Instantiate(chunkPrefab);
+                chunk.transform.SetParent(transform);
             }
         }
     }
 
-
-    void Start()
+    void CreateCells()
     {
-        gridMesh.Triangulate(cells);
+        cells = new SquareCell[cellCountZ * cellCountX];
+        for (int z = 0, i = 0; z < cellCountZ; z++)
+        {
+            for (int x = 0; x < cellCountX; x++)
+            {
+                CreateCell(x, z, i++);
+            }
+        }
     }
 
 
@@ -47,7 +63,6 @@ public class SquareGrid : MonoBehaviour
         SquareCell cell = cells[i] = Instantiate<SquareCell>(cellPrefab);
         Text label = Instantiate<Text>(cellLabelPrefab);
         cell.uiRect = label.rectTransform;
-        cell.transform.SetParent(transform, false);
         cell.transform.localPosition = position;
         if (x > 0)
         {
@@ -55,22 +70,35 @@ public class SquareGrid : MonoBehaviour
         }
         if (z > 0)
         {
-            cell.SetNeighbor(GridDirection.S, cells[i - width]);
+            cell.SetNeighbor(GridDirection.S, cells[i - cellCountX]);
         }
         if (z > 0 && x > 0)
         {
-            cell.SetNeighbor(GridDirection.SW, cells[i - width - 1]);
+            cell.SetNeighbor(GridDirection.SW, cells[i - cellCountX - 1]);
         }
-        if (z > 0 && x < width - 1)
+        if (z > 0 && x < cellCountX - 1)
         {
-            cell.SetNeighbor(GridDirection.SE, cells[i - width + 1]);
+            cell.SetNeighbor(GridDirection.SE, cells[i - cellCountX + 1]);
         }
         cell.coordinates = GridCoordinates.FromOffsetCoordinates(x, z);
         cell.GridElevations = GridElevations.GetVertexHeights(position);
-        cell.color = gridColors[(int)((cell.CentreElevation / (float)GridElevations.maxHeight) * gridColors.Length)];
-        label.rectTransform.SetParent(gridCanvas.transform, false);
+        cell.Color = gridColors[(int)((cell.CentreElevation / (float)GridElevations.maxHeight) * gridColors.Length)];
         label.rectTransform.anchoredPosition = new Vector2(x, z);
         label.text = x.ToString() + ", " + z.ToString();
+
+        AddCellToChunk(x, z, cell);
+    }
+
+
+    void AddCellToChunk(int x, int z, SquareCell cell)
+    {
+        int chunkX = x / GridMetrics.chunkSizeX;
+        int chunkZ = z / GridMetrics.chunkSizeZ;
+        SquareGridChunk chunk = chunks[chunkX + chunkZ * chunkCountX];
+
+        int localX = x - chunkX * GridMetrics.chunkSizeX;
+        int localZ = z - chunkZ * GridMetrics.chunkSizeZ;
+        chunk.AddCell(localX + localZ * GridMetrics.chunkSizeX, cell);
     }
 
 
@@ -78,7 +106,7 @@ public class SquareGrid : MonoBehaviour
     {
         position = transform.InverseTransformPoint(position);
         GridCoordinates coordinates = GridCoordinates.FromPosition(position);
-        int index = coordinates.X + coordinates.Z * width;
+        int index = coordinates.X + coordinates.Z * cellCountX;
         return cells[index];
     }
 
@@ -109,10 +137,5 @@ public class SquareGrid : MonoBehaviour
             Debug.Log(string.Format("invalid result {0} {1}", fracX, fracZ));
             throw new Exception("Can't determin vertex");
         }
-    }
-
-    public void Refresh()
-    {
-        gridMesh.Triangulate(cells);
     }
 }

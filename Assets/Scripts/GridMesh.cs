@@ -7,9 +7,9 @@ public class GridMesh : MonoBehaviour
 
     Mesh gridMesh;
     MeshCollider meshCollider;
-    List<Vector3> vertices;
-    List<int> triangles;
-    List<Color> colors;
+    static List<Vector3> vertices = new List<Vector3>();
+    static List<int> triangles = new List<int>();
+    static List<Color> colors = new List<Color>();
 
 
     void Awake()
@@ -17,9 +17,6 @@ public class GridMesh : MonoBehaviour
         GetComponent<MeshFilter>().mesh = gridMesh = new Mesh();
         meshCollider = gameObject.AddComponent<MeshCollider>();
         gridMesh.name = "Grid Mesh";
-        vertices = new List<Vector3>();
-        colors = new List<Color>();
-        triangles = new List<int>();
     }
 
 
@@ -136,16 +133,16 @@ public class GridMesh : MonoBehaviour
         SquareCell next2Neighbor = cell.GetNeighbor(direction.Next2()) ?? cell;
         SquareCell next3Neighbor = cell.GetNeighbor(direction.Next3()) ?? cell;
 
-        Color previousMix = (prevNeighbor.color + cell.color) / 2f;
-        Color neighborMix = (neighbor.color + cell.color + prevNeighbor.color + nextNeighbor.color) / 4f;
-        Color nextMix = (nextNeighbor.color + cell.color) / 2f;
-        Color nextNeighborMix = (nextNeighbor.color + cell.color + next2Neighbor.color + next3Neighbor.color) / 4f;
-        Color next2Mix = (next3Neighbor.color + cell.color) / 2f;
-        AddTriangleColor(cell.color);
-        AddQuadColor(cell.color, nextNeighbor.color, nextNeighbor.color, cell.color); // next Edge
-        AddQuadColor(cell.color, cell.color, prevNeighbor.color, prevNeighbor.color);  // previous Edge
-        AddQuadColor(cell.color, previousMix, neighborMix, nextMix);  // direction Corner
-        AddQuadColor(cell.color, nextMix, nextNeighborMix, next2Mix);  // next Corner
+        Color previousMix = (prevNeighbor.Color + cell.Color) / 2f;
+        Color neighborMix = (neighbor.Color + cell.Color + prevNeighbor.Color + nextNeighbor.Color) / 4f;
+        Color nextMix = (nextNeighbor.Color + cell.Color) / 2f;
+        Color nextNeighborMix = (nextNeighbor.Color + cell.Color + next2Neighbor.Color + next3Neighbor.Color) / 4f;
+        Color next2Mix = (next3Neighbor.Color + cell.Color) / 2f;
+        AddTriangleColor(cell.Color);
+        AddQuadColor(cell.Color, nextNeighbor.Color, nextNeighbor.Color, cell.Color); // next Edge
+        AddQuadColor(cell.Color, cell.Color, prevNeighbor.Color, prevNeighbor.Color);  // previous Edge
+        AddQuadColor(cell.Color, previousMix, neighborMix, nextMix);  // direction Corner
+        AddQuadColor(cell.Color, nextMix, nextNeighborMix, next2Mix);  // next Corner
     }
 
 
