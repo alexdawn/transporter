@@ -65,7 +65,6 @@ public class GridMesh : MonoBehaviour
     void Triangulate(SquareCell cell)
     {
         Vector3 centre = cell.transform.localPosition;
-        Debug.Log(centre);
         Vector3 vb0 = centre + GridMetrics.GetEdge(GridDirection.SW);
         Vector3 vb1 = centre + GridMetrics.GetEdge(GridDirection.NW);
         Vector3 vb2 = centre + GridMetrics.GetEdge(GridDirection.NE);
@@ -102,14 +101,21 @@ public class GridMesh : MonoBehaviour
             vs2 += Vector3.up * (cell.GridElevations.Y2) * GridMetrics.elevationStep;
             vs3 += GetDoubleVertexBlendElevation(cell.GridElevations, GridDirection.SE);
         }
-        else
+        else if (cell.GridElevations.Y1 == cell.GridElevations.Y3)
         {
             vs0 += GetDoubleVertexBlendElevation(cell.GridElevations, GridDirection.SW);
             vs1 += Vector3.up * (cell.GridElevations.Y1) * GridMetrics.elevationStep;
             vs2 += GetDoubleVertexBlendElevation(cell.GridElevations, GridDirection.NE);
             vs3 += Vector3.up * (cell.GridElevations.Y3) * GridMetrics.elevationStep;
         }
-        if (cell.GridElevations.Y0 == cell.GridElevations.Y2)  // sets direction of the triangle pairs in the quad
+        else
+        {
+            vs0 += GetDoubleVertexBlendElevation(cell.GridElevations, GridDirection.SW);
+            vs1 += GetDoubleVertexBlendElevation(cell.GridElevations, GridDirection.NW);
+            vs2 += GetDoubleVertexBlendElevation(cell.GridElevations, GridDirection.NE);
+            vs3 += GetDoubleVertexBlendElevation(cell.GridElevations, GridDirection.SE);
+        }
+        if (cell.GridElevations.Y0 == cell.GridElevations.Y2 || Mathf.Abs(cell.GridElevations.Y0 - cell.GridElevations.Y2) < Mathf.Abs(cell.GridElevations.Y1 - cell.GridElevations.Y3))  // sets direction of the triangle pairs in the quad
         {
             AddTriangle(vs0, vs1, vs2);
             AddQuad(vs1, vN1, vN2, vs2); // N Edge

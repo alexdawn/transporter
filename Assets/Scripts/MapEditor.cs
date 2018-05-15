@@ -16,6 +16,7 @@ public class MapEditor : MonoBehaviour {
     private EditMode activeMode;
     private bool allowCliffs = false;
     private Vector3 pointerLocation;
+    private int pointerSize;
 
 
     void Awake()
@@ -40,7 +41,7 @@ public class MapEditor : MonoBehaviour {
         RaycastHit hit;
         if (Physics.Raycast(inputRay, out hit))
         {
-            EditCell(squareGrid.GetCell(hit.point), squareGrid.GetVertex(hit.point));
+            EditCells(squareGrid.GetCell(hit.point), squareGrid.GetVertex(hit.point));
         }
     }
 
@@ -67,9 +68,15 @@ public class MapEditor : MonoBehaviour {
     }
 
 
-    public void toggleCliffs()
+    public void ToggleCliffs()
     {
         allowCliffs = !allowCliffs;
+    }
+
+
+    public void SetPointerSize(int i)
+    {
+        pointerSize = i;
     }
 
 
@@ -91,13 +98,35 @@ public class MapEditor : MonoBehaviour {
         if(pointerLocation != null)
         {
             Gizmos.color = Color.white;
-            if (activeMode == EditMode.elevation)
+            for (int x = 0; x < pointerSize; x++)
             {
-                Gizmos.DrawSphere(pointerLocation, 0.1f);
+                for (int z = 0; z < pointerSize; z++)
+                {
+                    Vector3 offPos = pointerLocation + new Vector3(x, 0, z);
+                    if (activeMode == EditMode.elevation)
+                    {
+                        Gizmos.DrawSphere(offPos, 0.1f);
+                    }
+                    if (activeMode == EditMode.color)
+                    {
+                        Gizmos.DrawWireCube(offPos, new Vector3(1, 0, 1));
+                    }
+                }
             }
-            if (activeMode == EditMode.color)
+
+        }
+    }
+
+
+    void EditCells(SquareCell cell, GridDirection vertex)
+    {
+        for(int x=0; x < pointerSize; x++)
+        {
+            for(int z=0; z<pointerSize; z++)
             {
-                Gizmos.DrawWireCube(pointerLocation, new Vector3(1, 0, 1));
+                Vector3 offPos = new Vector3(cell.coordinates.X + x, 0, cell.coordinates.Z + z);
+                SquareCell offCell = squareGrid.GetCell(offPos);
+                EditCell(offCell, vertex);
             }
         }
     }
