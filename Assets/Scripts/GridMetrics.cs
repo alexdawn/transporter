@@ -23,6 +23,12 @@ public struct GridMetrics
     };
 
 
+    public static float DiagSize()
+    {
+        return Mathf.Sqrt(2);
+    }
+        
+
     public static Vector3 GetEdge(GridDirection direction)
     {
         return directions[(int)direction];

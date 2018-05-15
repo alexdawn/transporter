@@ -140,8 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 161c7cfdc5087824ea12ef6554798ac0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunkCountX: 20
-  chunkCountZ: 20
+  chunkCountX: 5
+  chunkCountZ: 5
   cellPrefab: {fileID: 114674814309831850, guid: 6eaa513af5abec04ba5a9d57e3cc8e7a,
     type: 2}
   chunkPrefab: {fileID: 114014414051205848, guid: ce28644f870dc644c88729f1f080876a,

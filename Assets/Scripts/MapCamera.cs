@@ -18,6 +18,7 @@ public class MapCamera : MonoBehaviour {
     {
         swivel = transform.GetChild(0);
         stick = swivel.GetChild(0);
+        AdjustZoom(0);
     }
 
 
@@ -53,7 +54,6 @@ public class MapCamera : MonoBehaviour {
 
         Vector3 position = transform.localPosition;
         position += direction * distance;
-        Debug.Log(string.Format("{0} {1}", direction, distance));
         transform.localPosition = ClampPosition(position);
     }
 
