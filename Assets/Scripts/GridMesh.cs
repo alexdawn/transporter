@@ -29,6 +29,7 @@ public class GridMesh : MonoBehaviour
         for (int i = 0; i < cells.Length; i++)
         {
             Triangulate(cells[i]);
+            AddCliffEdges(cells[i]);
         }
         gridMesh.vertices = vertices.ToArray();
         gridMesh.colors = colors.ToArray();
@@ -61,6 +62,56 @@ public class GridMesh : MonoBehaviour
         return (float)el[direction.Previous()] - (float)el[direction.Next()];
     }
 
+
+    void AddCliffEdges(SquareCell cell)
+    {
+        //for(int i=0; i < 3; i+=2)
+        //{
+        AddCliffEdge(cell, GridDirection.N);
+        AddCliffEdge(cell, GridDirection.E);
+        //}
+    }
+
+
+    void AddCliffEdge(SquareCell cell, GridDirection direction)
+    {
+        GridDirection prev = direction.Previous();
+        GridDirection next = direction.Next();
+        GridDirection prevN = prev.Previous2();
+        GridDirection nextN = next.Next2();
+        SquareCell neighbor = cell.GetNeighbor(direction);
+        if (neighbor != null)
+        {
+            Vector3 c0 = new Vector3(cell.coordinates.X, 0, cell.coordinates.Z) + GridMetrics.GetEdge(prev) + Vector3.up * (int)cell.GridElevations[prev] * GridMetrics.elevationStep;
+            Vector3 c1 = new Vector3(cell.coordinates.X, 0, cell.coordinates.Z) + GridMetrics.GetEdge(next) + Vector3.up * (int)cell.GridElevations[next] * GridMetrics.elevationStep;
+            Vector3 n0 = new Vector3(neighbor.coordinates.X, 0, neighbor.coordinates.Z) + GridMetrics.GetEdge(prevN) + Vector3.up * (int)neighbor.GridElevations[prevN] * GridMetrics.elevationStep;
+            Vector3 n1 = new Vector3(neighbor.coordinates.X, 0, neighbor.coordinates.Z) + GridMetrics.GetEdge(nextN) + Vector3.up * (int)neighbor.GridElevations[nextN] * GridMetrics.elevationStep;
+            if (c0 != n0 && c1 != n1)
+            {
+                Debug.Log(string.Format("square"));
+                Debug.Log(string.Format("{0} {1}", c0, c1));
+                Debug.Log(string.Format("{0} {1}", n0, n1));
+                AddQuad(c0, n0, n1, c1);
+                AddQuadColor(Color.gray);
+            }
+            else if (c0 != n0)
+            {
+                Debug.Log(string.Format("tri 0"));
+                Debug.Log(string.Format("{0} {1}", c0, c1));
+                Debug.Log(string.Format("{0} {1}", n0, n1));
+                AddTriangle(c1, c0, n0);
+                AddTriangleColor(Color.gray);
+            }
+            else if (c1 != n1)
+            {
+                Debug.Log(string.Format("tri 1"));
+                Debug.Log(string.Format("{0} {1}", c0, c1));
+                Debug.Log(string.Format("{0} {1}", n0, n1));
+                AddTriangle(c0, n1, c1);
+                AddTriangleColor(Color.gray);
+            }
+        }
+    }
 
     void Triangulate(SquareCell cell)
     {

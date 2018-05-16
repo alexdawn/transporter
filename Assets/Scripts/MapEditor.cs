@@ -16,7 +16,7 @@ public class MapEditor : MonoBehaviour {
     private EditMode activeMode;
     private bool allowCliffs = false;
     private Vector3 pointerLocation;
-    private int pointerSize;
+    public int pointerSize = 1;
 
 
     void Awake()
@@ -73,12 +73,10 @@ public class MapEditor : MonoBehaviour {
         allowCliffs = !allowCliffs;
     }
 
-
-    public void SetPointerSize(int i)
+    public void SetBrushSize(float i)
     {
-        pointerSize = i;
+        pointerSize = (int)i;
     }
-
 
     void MoveEditorPointer(SquareCell cell, GridDirection vertex)
     {

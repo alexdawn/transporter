@@ -30,29 +30,7 @@ public struct GridElevations
         get { return y3; }
         set { y3 = value; }
     }
-    public int? this[int i]
-    {
-        get
-        {
-            switch (i){
-                case 0: return y0;
-                case 1: return y1;
-                case 2: return y2;
-                case 3: return y3;
-                default: return null;
-            }
-        }
-        set {
-            switch (i)
-            {
-                case 0: y0 = (int)value; break;
-                case 1: y1 = (int)value; break;
-                case 2: y2 = (int)value; break;
-                case 3: y3 = (int)value; break;
-                default: break;
-            }
-        }
-    }
+
     public int? this[GridDirection i]
     {
         get
