@@ -9,6 +9,7 @@ public struct GridMetrics
     public const int chunkSizeX = 5, chunkSizeZ = 5;
     public const float solidFactor = 0.8f;
     public const float blendFactor = 1f - solidFactor;
+    public const float streamBedElevationOffset = -1f;
 
 
     static readonly Vector3[] directions = {

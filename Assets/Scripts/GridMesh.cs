@@ -28,7 +28,7 @@ public class GridMesh : MonoBehaviour
         triangles.Clear();
         for (int i = 0; i < cells.Length; i++)
         {
-            Triangulate(cells[i]);
+            AddMeshForSquare(cells[i]);
             AddCliffEdges(cells[i]);
         }
         gridMesh.vertices = vertices.ToArray();
@@ -42,7 +42,7 @@ public class GridMesh : MonoBehaviour
     Vector3 GetVertexBlendElevation(GridElevations el, GridDirection direction, GridDirection edge)
     {
         float delta = GetStraightGrad(el, edge) * GridMetrics.blendFactor / 2;
-        if (edge == direction.Next())
+        if (edge == direction.Next()) //fix clockwise direction
         {
             delta *= -1;
         }
@@ -65,11 +65,9 @@ public class GridMesh : MonoBehaviour
 
     void AddCliffEdges(SquareCell cell)
     {
-        //for(int i=0; i < 3; i+=2)
-        //{
+        // only need to add on north and east sides to prevent dupes
         AddCliffEdge(cell, GridDirection.N);
         AddCliffEdge(cell, GridDirection.E);
-        //}
     }
 
 
@@ -88,32 +86,32 @@ public class GridMesh : MonoBehaviour
             Vector3 n1 = new Vector3(neighbor.coordinates.X, 0, neighbor.coordinates.Z) + GridMetrics.GetEdge(nextN) + Vector3.up * (int)neighbor.GridElevations[nextN] * GridMetrics.elevationStep;
             if (c0 != n0 && c1 != n1)
             {
-                Debug.Log(string.Format("square"));
-                Debug.Log(string.Format("{0} {1}", c0, c1));
-                Debug.Log(string.Format("{0} {1}", n0, n1));
+                //Debug.Log(string.Format("square"));
+                //Debug.Log(string.Format("{0} {1}", c0, c1));
+                //Debug.Log(string.Format("{0} {1}", n0, n1));
                 AddQuad(c0, n0, n1, c1);
                 AddQuadColor(Color.gray);
             }
             else if (c0 != n0)
             {
-                Debug.Log(string.Format("tri 0"));
-                Debug.Log(string.Format("{0} {1}", c0, c1));
-                Debug.Log(string.Format("{0} {1}", n0, n1));
+                //Debug.Log(string.Format("tri 0"));
+                //Debug.Log(string.Format("{0} {1}", c0, c1));
+                //Debug.Log(string.Format("{0} {1}", n0, n1));
                 AddTriangle(c1, c0, n0);
                 AddTriangleColor(Color.gray);
             }
             else if (c1 != n1)
             {
-                Debug.Log(string.Format("tri 1"));
-                Debug.Log(string.Format("{0} {1}", c0, c1));
-                Debug.Log(string.Format("{0} {1}", n0, n1));
+                //Debug.Log(string.Format("tri 1"));
+                //Debug.Log(string.Format("{0} {1}", c0, c1));
+                //Debug.Log(string.Format("{0} {1}", n0, n1));
                 AddTriangle(c0, n1, c1);
                 AddTriangleColor(Color.gray);
             }
         }
     }
 
-    void Triangulate(SquareCell cell)
+    void AddMeshForSquare(SquareCell cell)
     {
         Vector3 centre = cell.transform.localPosition;
         Vector3 vb0 = centre + GridMetrics.GetEdge(GridDirection.SW);
@@ -166,39 +164,29 @@ public class GridMesh : MonoBehaviour
             vs2 += GetDoubleVertexBlendElevation(cell.GridElevations, GridDirection.NE);
             vs3 += GetDoubleVertexBlendElevation(cell.GridElevations, GridDirection.SE);
         }
+
+        // Work out which diagonal to add
         if (cell.GridElevations.Y0 == cell.GridElevations.Y2 || Mathf.Abs(cell.GridElevations.Y0 - cell.GridElevations.Y2) < Mathf.Abs(cell.GridElevations.Y1 - cell.GridElevations.Y3))  // sets direction of the triangle pairs in the quad
         {
-            AddTriangle(vs0, vs1, vs2);
-            AddQuad(vs1, vN1, vN2, vs2); // N Edge
-            AddQuad(vs1, vs0, vW0, vW1); // W Edge
-            AddQuad(vs1, vW1, vb1, vN1); // NW Corner
-            AddQuad(vs2, vN2, vb2, vE2); // NE Corner
-            AddColors(cell, GridDirection.NW);
-
-            AddTriangle(vs0, vs2, vs3);
-            AddQuad(vs3, vS3, vS0, vs0); // S Edge
-            AddQuad(vs3, vs2, vE2, vE3); // E Edge
-            AddQuad(vs3, vE3, vb3, vS3); // SE Corner
-            AddQuad(vs0, vS0, vb0, vW0); // SW Corner
-            AddColors(cell, GridDirection.SE);
+            AddHalfCell(cell, GridDirection.NW, vs0, vs1, vs2, vN1, vN2, vW0, vW1, vb1, vb2, vE2);
+            AddHalfCell(cell, GridDirection.SE, vs2, vs3, vs0, vS3, vS0, vE2, vE3, vb3, vb0, vW0);
         }
         else
         {
-            AddTriangle(vs0, vs1, vs3);
-            AddQuad(vs0, vW0, vW1, vs1); // W Edge
-            AddQuad(vs0, vs3, vS3, vS0); // S Edge
-            AddQuad(vs0, vS0, vb0, vW0); // SW Corner
-            AddQuad(vs1, vW1, vb1, vN1); // NW Corner
-            AddColors(cell, GridDirection.SW);
-
-            AddTriangle(vs2, vs3, vs1);
-            AddQuad(vs2, vE2, vE3, vs3); // E Edge
-            AddQuad(vs2, vs1, vN1, vN2); // N Edge
-            AddQuad(vs2, vN2, vb2, vE2); // NE Corner
-            AddQuad(vs3, vE3, vb3, vS3); // SE Corner
-            AddColors(cell, GridDirection.NE);
+            AddHalfCell(cell, GridDirection.SW, vs3, vs0, vs1, vW0, vW1, vS3, vS0, vb0, vb1, vN1);
+            AddHalfCell(cell, GridDirection.NE, vs1, vs2, vs3, vE2, vE3, vN1, vN2, vb2, vb3, vS3);
         }
 
+    }
+
+    void AddHalfCell(SquareCell cell, GridDirection direction, Vector3 v0, Vector3 v1, Vector3 v2, Vector3 va, Vector3 vb, Vector3 vc, Vector3 vd, Vector3 vx, Vector3 vy, Vector3 vz)
+    {
+        AddTriangle(v0, v1, v2);
+        AddQuad(v1, va, vb, v2); // top Edge
+        AddQuad(v1, v0, vc, vd); // left Edge
+        AddQuad(v1, vd, vx, va); // NW Corner
+        AddQuad(v2, vb, vy, vz); // NE Corner
+        AddColors(cell, direction);
     }
 
     void AddColors(SquareCell cell, GridDirection direction)
