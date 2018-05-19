@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 33694474150802598}
   - component: {fileID: 23491074729835848}
   m_Layer: 0
-  m_Name: GridMesh
+  m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1276a1a7e4f0a0445984c7f9bad62166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  terrain: {fileID: 114800114109930004}
 --- !u!114 &114301613730407690
 MonoBehaviour:
   m_ObjectHideFlags: 1
