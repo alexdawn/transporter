@@ -168,24 +168,67 @@ public class GridMesh : MonoBehaviour
         // Work out which diagonal to add
         if (cell.GridElevations.Y0 == cell.GridElevations.Y2 || Mathf.Abs(cell.GridElevations.Y0 - cell.GridElevations.Y2) < Mathf.Abs(cell.GridElevations.Y1 - cell.GridElevations.Y3))  // sets direction of the triangle pairs in the quad
         {
-            AddHalfCell(cell, GridDirection.NW, vs0, vs1, vs2, vN1, vN2, vW0, vW1, vb1, vb2, vE2);
-            AddHalfCell(cell, GridDirection.SE, vs2, vs3, vs0, vS3, vS0, vE2, vE3, vb3, vb0, vW0);
+            AddHalfCell(cell, GridDirection.NW, centre, vs0, vs1, vs2, vN1, vN2, vW0, vW1, vb1, vb2, vE2);
+            AddHalfCell(cell, GridDirection.SE, centre, vs2, vs3, vs0, vS3, vS0, vE2, vE3, vb3, vb0, vW0);
         }
         else
         {
-            AddHalfCell(cell, GridDirection.SW, vs3, vs0, vs1, vW0, vW1, vS3, vS0, vb0, vb1, vN1);
-            AddHalfCell(cell, GridDirection.NE, vs1, vs2, vs3, vE2, vE3, vN1, vN2, vb2, vb3, vS3);
+            AddHalfCell(cell, GridDirection.SW, centre, vs3, vs0, vs1, vW0, vW1, vS3, vS0, vb0, vb1, vN1);
+            AddHalfCell(cell, GridDirection.NE, centre, vs1, vs2, vs3, vE2, vE3, vN1, vN2, vb2, vb3, vS3);
         }
 
     }
 
-    void AddHalfCell(SquareCell cell, GridDirection direction, Vector3 v0, Vector3 v1, Vector3 v2, Vector3 va, Vector3 vb, Vector3 vc, Vector3 vd, Vector3 vx, Vector3 vy, Vector3 vz)
+    void AddHalfCell(SquareCell cell, GridDirection direction, Vector3 centre, Vector3 v0, Vector3 v1, Vector3 v2, Vector3 va, Vector3 vb, Vector3 vc, Vector3 vd, Vector3 vx, Vector3 vy, Vector3 vz)
     {
-        AddTriangle(v0, v1, v2);
-        AddQuad(v1, va, vb, v2); // top Edge
-        AddQuad(v1, v0, vc, vd); // left Edge
-        AddQuad(v1, vd, vx, va); // NW Corner
-        AddQuad(v2, vb, vy, vz); // NE Corner
+        Vector3 riverbed = centre + Vector3.up * (cell.CentreElevation + GridMetrics.streamBedElevationOffset) * GridMetrics.elevationStep;
+        Vector3 midSolidEdgePrev = centre + GridMetrics.GetSolidEdge(direction.Previous()) + Vector3.up * (cell.CentreElevation + GridMetrics.streamBedElevationOffset) * GridMetrics.elevationStep;
+        Vector3 midSolidEdgeNext = centre + GridMetrics.GetSolidEdge(direction.Next()) + Vector3.up * (cell.CentreElevation + GridMetrics.streamBedElevationOffset) * GridMetrics.elevationStep;
+        Vector3 midEdgePrev = centre + GridMetrics.GetEdge(direction.Previous()) + Vector3.up * (cell.CentreElevation + GridMetrics.streamBedElevationOffset) * GridMetrics.elevationStep;
+        Vector3 midEdgeNext = centre + GridMetrics.GetEdge(direction.Next()) + Vector3.up * (cell.CentreElevation + GridMetrics.streamBedElevationOffset) * GridMetrics.elevationStep;
+        if (cell.HasRiver)
+        {
+            if (cell.HasRiverThroughEdge(direction.Previous()))
+            {
+                AddTriangle(v0, midSolidEdgePrev, riverbed);
+                AddTriangle(midSolidEdgePrev, v1, riverbed);
+            }
+            else
+            { AddTriangle(v0, v1, riverbed); }
+            if (cell.HasRiverThroughEdge(direction.Next()))
+            {
+                AddTriangle(v1, midSolidEdgeNext, riverbed);
+                AddTriangle(midSolidEdgeNext, v2, riverbed);
+            }
+            else
+            { AddTriangle(v1, v2, riverbed); }
+        }
+        else
+            { AddTriangle(v0, v1, v2); }
+        if (cell.HasRiverThroughEdge(direction.Next()))
+        {
+            AddQuad(v1, va, midEdgeNext, midSolidEdgeNext);
+            AddQuad(midSolidEdgeNext, midEdgeNext, vb, v2);
+        }
+        else
+            { AddQuad(v1, va, vb, v2); } // top Edge
+        if (cell.HasRiverThroughEdge(direction.Previous()))
+        {
+            AddQuad(v1, midSolidEdgePrev, midEdgePrev, vd);
+            AddQuad(midSolidEdgePrev, v0, vc, midEdgePrev);
+        }
+        else
+            { AddQuad(v1, v0, vc, vd); }  // left Edge
+        if (cell.HasRiverThroughEdge(direction))
+        {
+        }
+        else
+            { AddQuad(v1, vd, vx, va); } // direction edge 
+        if (cell.HasRiverThroughEdge(direction.Next2()))
+        {
+        }
+        else
+            { AddQuad(v2, vb, vy, vz); }// clockwise edge
         AddColors(cell, direction);
     }
 
@@ -202,11 +245,41 @@ public class GridMesh : MonoBehaviour
         Color nextMix = (nextNeighbor.Color + cell.Color) / 2f;
         Color nextNeighborMix = (nextNeighbor.Color + cell.Color + next2Neighbor.Color + next3Neighbor.Color) / 4f;
         Color next2Mix = (next3Neighbor.Color + cell.Color) / 2f;
-        AddTriangleColor(cell.Color);
-        AddQuadColor(cell.Color, nextMix, nextMix, cell.Color); // next Edge
-        AddQuadColor(cell.Color, cell.Color, previousMix, previousMix);  // previous Edge
-        AddQuadColor(cell.Color, previousMix, neighborMix, nextMix);  // direction Corner
-        AddQuadColor(cell.Color, nextMix, nextNeighborMix, next2Mix);  // next Corner
+        if(cell.HasRiver)
+        {
+            if (cell.HasRiverThroughEdge(direction.Previous()))
+            { AddTriangleColor(cell.Color); }
+            if (cell.HasRiverThroughEdge(direction.Next()))
+            { AddTriangleColor(cell.Color); }
+            AddTriangleColor(cell.Color);
+            AddTriangleColor(cell.Color);
+        }
+        else
+        {
+            AddTriangleColor(cell.Color);
+        }
+        if (cell.HasRiverThroughEdge(direction.Next()))
+        {
+            AddQuadColor(cell.Color, nextMix, nextMix, cell.Color);
+            AddQuadColor(cell.Color, nextMix, nextMix, cell.Color);
+        }
+        else
+            { AddQuadColor(cell.Color, nextMix, nextMix, cell.Color); } // next Edge
+        if (cell.HasRiverThroughEdge(direction.Previous()))
+        {
+            AddQuadColor(cell.Color, cell.Color, previousMix, previousMix);
+            AddQuadColor(cell.Color, cell.Color, previousMix, previousMix);
+        }
+        else
+            { AddQuadColor(cell.Color, cell.Color, previousMix, previousMix); }  // previous Edge
+        if (cell.HasRiverThroughEdge(direction))
+            { }
+        else
+            { AddQuadColor(cell.Color, previousMix, neighborMix, nextMix); } // direction Corner
+        if (cell.HasRiverThroughEdge(direction.Next2()))
+            { }
+        else
+            { AddQuadColor(cell.Color, nextMix, nextNeighborMix, next2Mix); }// next Corner
     }
 
 

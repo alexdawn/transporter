@@ -16,8 +16,8 @@ public class SquareCell : MonoBehaviour {
     [SerializeField]
     SquareCell[] neighbors;
 
-    private bool[] hasIncomingRivers = new bool[7];
-    private bool[] hasOutgoingRivers = new bool[7];
+    private bool[] hasIncomingRivers = new bool[8];
+    private bool[] hasOutgoingRivers = new bool[8];
 
 
     public bool[] HasIncomingRiver
@@ -72,7 +72,7 @@ public class SquareCell : MonoBehaviour {
     {
         get
         {
-            return hasIncomingRivers.Any() || hasOutgoingRivers.Any();
+            return hasIncomingRivers.Any(item => item == true) || hasOutgoingRivers.Any(item => item == true);
         }
     }
 
@@ -80,14 +80,15 @@ public class SquareCell : MonoBehaviour {
     {
         get
         {
-            return hasIncomingRivers.Any() != hasOutgoingRivers.Any();
+            return hasIncomingRivers.Any(item => item == true) != hasOutgoingRivers.Any(item => item == true);
         }
     }
 
     public bool HasRiverThroughEdge(GridDirection direction)
     {
-        return
-            hasIncomingRivers[(int) direction] || hasOutgoingRivers[(int)direction];
+        if ((int)direction >= hasIncomingRivers.Length)
+        { Debug.Log((int)direction); }
+        return hasIncomingRivers[(int)direction] || hasOutgoingRivers[(int)direction];
     }
 
     public void RemoveOutgoingRivers()
