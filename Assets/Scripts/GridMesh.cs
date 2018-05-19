@@ -1,39 +1,65 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class GridMesh : MonoBehaviour
 {
-
+    public bool useCollider, useColors, useUVCoordinates;
     Mesh gridMesh;
     MeshCollider meshCollider;
-    static List<Vector3> vertices = new List<Vector3>();
-    static List<int> triangles = new List<int>();
-    static List<Color> colors = new List<Color>();
+    [NonSerialized] List<Vector3> vertices;
+    [NonSerialized] List<int> triangles;
+    [NonSerialized] List<Color> colors;
+    [NonSerialized] List<Vector2> uvs;
 
 
     void Awake()
     {
         GetComponent<MeshFilter>().mesh = gridMesh = new Mesh();
-        meshCollider = gameObject.AddComponent<MeshCollider>();
+        if (useCollider)
+        {
+            meshCollider = gameObject.AddComponent<MeshCollider>();
+        }
         gridMesh.name = "Grid Mesh";
     }
 
     public void Clear()
     {
         gridMesh.Clear();
-        vertices.Clear();
-        colors.Clear();
-        triangles.Clear();
+        vertices = ListPool<Vector3>.Get();
+        if (useColors)
+        {
+            colors = ListPool<Color>.Get();
+        }
+        if (useUVCoordinates)
+        {
+            uvs = ListPool<Vector2>.Get();
+        }
+        triangles = ListPool<int>.Get();
     }
 
     public void Apply()
     {
         gridMesh.SetVertices(vertices);
-        gridMesh.SetColors(colors);
+        ListPool<Vector3>.Add(vertices);
+        if (useColors)
+        {
+            gridMesh.SetColors(colors);
+            ListPool<Color>.Add(colors);
+        }
+        if (useUVCoordinates)
+        {
+            gridMesh.SetUVs(0, uvs);
+            ListPool<Vector2>.Add(uvs);
+        }
         gridMesh.SetTriangles(triangles, 0);
+        ListPool<int>.Add(triangles);
         gridMesh.RecalculateNormals();
-        meshCollider.sharedMesh = gridMesh;
+        if (useCollider)
+        {
+            meshCollider.sharedMesh = gridMesh;
+        }
     }
 
     public void AddTriangle(Vector3 v1, Vector3 v2, Vector3 v3)
@@ -54,6 +80,19 @@ public class GridMesh : MonoBehaviour
         colors.Add(color);
     }
 
+    public void AddTriangleUV(Vector2 uv1, Vector2 uv2, Vector3 uv3)
+    {
+        uvs.Add(uv1);
+        uvs.Add(uv2);
+        uvs.Add(uv3);
+    }
+
+    public void AddTriangleUV(float uMin, float uMax, float vMin, float vMax)
+    {
+        uvs.Add(new Vector2(uMin, vMin));
+        uvs.Add(new Vector2(uMax, vMin));
+        uvs.Add(new Vector2(uMin, vMax));
+    }
 
     public void AddTriangleColor(Color c1, Color c2, Color c3)
     {
@@ -87,6 +126,21 @@ public class GridMesh : MonoBehaviour
         colors.Add(color);
     }
 
+    public void AddQuadUV(Vector2 uv1, Vector2 uv2, Vector3 uv3, Vector3 uv4)
+    {
+        uvs.Add(uv1);
+        uvs.Add(uv2);
+        uvs.Add(uv3);
+        uvs.Add(uv4);
+    }
+
+    public void AddQuadUV(float uMin, float uMax, float vMin, float vMax)
+    {
+        uvs.Add(new Vector2(uMin, vMin));
+        uvs.Add(new Vector2(uMax, vMin));
+        uvs.Add(new Vector2(uMin, vMax));
+        uvs.Add(new Vector2(uMax, vMax));
+    }
 
     public void AddQuadColor(Color c1, Color c2, Color c3, Color c4)
     {

@@ -10,6 +10,7 @@ public struct GridMetrics
     public const float solidFactor = 0.8f;
     public const float blendFactor = 1f - solidFactor;
     public const float streamBedElevationOffset = -1f;
+    public const float riverSurfaceElevationOffset = -0.5f;
 
 
     static readonly Vector3[] directions = {

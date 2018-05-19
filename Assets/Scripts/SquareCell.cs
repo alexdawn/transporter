@@ -19,6 +19,14 @@ public class SquareCell : MonoBehaviour {
     private bool[] hasIncomingRivers = new bool[8];
     private bool[] hasOutgoingRivers = new bool[8];
 
+    public float RiverSurfaceY
+    {
+        get
+        {
+            return
+                (centreElevation + GridMetrics.riverSurfaceElevationOffset) * GridMetrics.elevationStep;
+        }
+    }
 
     public bool[] HasIncomingRiver
     {
@@ -41,7 +49,7 @@ public class SquareCell : MonoBehaviour {
         get
         {
             List<GridDirection> directions = new List<GridDirection>();
-            for (int i = 0; i <= 8; i++)
+            for (int i = 0; i < 8; i++)
             {
                 if (hasIncomingRivers[i])
                 {
@@ -57,7 +65,7 @@ public class SquareCell : MonoBehaviour {
         get
         {
             List<GridDirection> directions = new List<GridDirection>();
-            for (int i = 0; i <= 8; i++)
+            for (int i = 0; i < 8; i++)
             {
                 if (hasOutgoingRivers[i])
                 {
