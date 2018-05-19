@@ -5,7 +5,7 @@ using System;
 public class SquareGrid : MonoBehaviour
 {
 
-    public int chunkCountX = 4, chunkCountZ = 3;
+    public int chunkCountX = 3, chunkCountZ = 3;
     int cellCountX, cellCountZ;
     public SquareCell cellPrefab;
     public SquareGridChunk chunkPrefab;
