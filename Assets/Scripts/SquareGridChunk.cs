@@ -59,8 +59,8 @@ public class SquareGridChunk : MonoBehaviour {
         Vector3 v4, Vector3 v5, Vector3 v6
     )
     {
-        roads.AddQuad(v1, v4, v5, v2);
-        roads.AddQuad(v2, v5, v6, v3);
+        roads.AddQuad(v4, v5, v2, v1);
+        roads.AddQuad(v3, v2, v5, v6);
         roads.AddQuadUV(0f, 1f, 0f, 0f);
         roads.AddQuadUV(1f, 0f, 0f, 0f);
     }
@@ -253,7 +253,7 @@ public class SquareGridChunk : MonoBehaviour {
         if (cell.RoadCount > 1)
         {
             roads.AddQuad(vs0, vs1, vs2, vs3);
-            roads.AddQuadUV(0f, 1f, 0f, 1f);
+            roads.AddQuadUV(1f, 1f, 0f, 1f);
         }
         if (cell.HasRiver)
         {
