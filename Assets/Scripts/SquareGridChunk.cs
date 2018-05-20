@@ -62,7 +62,7 @@ public class SquareGridChunk : MonoBehaviour {
         roads.AddQuad(v4, v5, v2, v1);
         roads.AddQuad(v3, v2, v5, v6);
         roads.AddQuadUV(0f, 1f, 0f, 0f);
-        roads.AddQuadUV(1f, 0f, 0f, 0f);
+        roads.AddQuadUV(0f, 1f, 0f, 0f);
     }
 
     void TriangulateRiverTri(Vector3 v1, Vector3 v2, Vector3 v3, float y, bool reversed, GridDirection direction, GridDirection flowDirection)
