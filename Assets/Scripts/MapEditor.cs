@@ -33,7 +33,7 @@ public class MapEditor : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetMouseButton(0) || Input.GetMouseButton(1) && !EventSystem.current.IsPointerOverGameObject())
+        if ((Input.GetMouseButton(0) || Input.GetMouseButton(1)) && !EventSystem.current.IsPointerOverGameObject())
         {
             HandleInput();
         }
