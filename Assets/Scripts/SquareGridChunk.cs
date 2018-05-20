@@ -52,21 +52,29 @@ public class SquareGridChunk : MonoBehaviour {
         rivers.Apply();
     }
 
-    Vector2 ReduceDimension(Vector3 vector)
-    {
-        return new Vector2(vector.x, vector.z);
-    }
-
-    void TriangulateRiverTri(Vector3 v1, Vector3 v2, Vector3 v3, float y, bool reversed, GridDirection direction)
+    void TriangulateRiverTri(Vector3 v1, Vector3 v2, Vector3 v3, float y, bool reversed, GridDirection direction, GridDirection flowDirection)
     {
         v1.y = v2.y = v3.y = y;
         rivers.AddTriangle(v1, v2, v3);
         Vector2 centre = new Vector2(0.5f, 0.5f);
-        Vector2 edgePrevious = new Vector2(0.8f, 0.8f);// * ReduceDimension(GridMetrics.GetSolidEdge(direction.Previous()));
-        Vector2 edgeNext = new Vector2(0f, 0.8f);// * ReduceDimension(GridMetrics.GetSolidEdge(direction.Next()));
-        Debug.Log(direction);
-        Debug.Log(edgePrevious);
-        Debug.Log(edgeNext);
+        Vector2 edgePrevious, edgeNext;
+        if (direction == flowDirection || direction == flowDirection.Opposite())
+        {
+            edgePrevious = new Vector2(0.9f, 0.9f);
+            edgeNext = new Vector2(0.1f, 0.9f);
+        } else
+        {
+            if (flowDirection == direction.Next2())
+            {
+                edgePrevious = new Vector2(0.9f, 0.1f);
+                edgeNext = new Vector2(0.9f, 0.9f);
+            }
+            else
+            {
+                edgePrevious = new Vector2(0.1f, 0.9f);
+                edgeNext = new Vector2(0.1f, 0.1f);
+            }
+        }
         if (reversed)
         {
             rivers.AddTriangleUV(centre, new Vector2(1f, 1f) - edgePrevious, new Vector2(1f, 1f) - edgeNext);
@@ -84,11 +92,11 @@ public class SquareGridChunk : MonoBehaviour {
         rivers.AddQuad(v1, v2, v3, v4);
         if (reversed)
         {
-            rivers.AddQuadUV(0.8f, 0f, 0.1f, 0f);
+            rivers.AddQuadUV(0.9f, 0.1f, 0.1f, 0f);
         }
         else
         {
-            rivers.AddQuadUV(0f, 0.8f, 0.9f, 1f);
+            rivers.AddQuadUV(0.1f, 0.9f, 0.9f, 1f);
         }
     }
 
@@ -233,11 +241,19 @@ public class SquareGridChunk : MonoBehaviour {
         {
             if (cell.HasRiverThroughEdge(GridDirection.N))
             { TriangulateWithRiver(GridDirection.N, cell, centre, vs1, vb1, vb2, vs2, 0f); }
+            else
+            { TriangulateWithRiver(GridDirection.N, cell, centre, vs1, vb1, vb2, vs2, 0f); }
             if (cell.HasRiverThroughEdge(GridDirection.E))
+            { TriangulateWithRiver(GridDirection.E, cell, centre, vs2, vb2, vb3, vs3, 0.5f); }
+            else
             { TriangulateWithRiver(GridDirection.E, cell, centre, vs2, vb2, vb3, vs3, 0.5f); }
             if (cell.HasRiverThroughEdge(GridDirection.S))
             { TriangulateWithRiver(GridDirection.S, cell, centre, vs3, vb3, vb0, vs0, 1f); }
+            else
+            { TriangulateWithRiver(GridDirection.S, cell, centre, vs3, vb3, vb0, vs0, 1f); }
             if (cell.HasRiverThroughEdge(GridDirection.W))
+            { TriangulateWithRiver(GridDirection.W, cell, centre, vs0, vb0, vb1, vs1, 0.5f); }
+            else
             { TriangulateWithRiver(GridDirection.W, cell, centre, vs0, vb0, vb1, vs1, 0.5f); }
         }
 
@@ -248,27 +264,30 @@ public class SquareGridChunk : MonoBehaviour {
         Vector3 riverbed = centre + Vector3.up * (cell.CentreElevation + GridMetrics.streamBedElevationOffset) * GridMetrics.elevationStep;
         Vector3 midSolidEdgePrev = centre + GridMetrics.GetSolidEdge(direction.Previous()) + Vector3.up * (cell.CentreElevation + GridMetrics.streamBedElevationOffset) * GridMetrics.elevationStep;
         Vector3 midSolidEdgeNext = centre + GridMetrics.GetSolidEdge(direction.Next()) + Vector3.up * (cell.CentreElevation + GridMetrics.streamBedElevationOffset) * GridMetrics.elevationStep;
-        Vector3 midEdgePrev = centre + GridMetrics.GetEdge(direction.Previous()) + Vector3.up * (cell.CentreElevation + GridMetrics.streamBedElevationOffset) * GridMetrics.elevationStep;
-        Vector3 midEdgeNext = centre + GridMetrics.GetEdge(direction.Next()) + Vector3.up * (cell.CentreElevation + GridMetrics.streamBedElevationOffset) * GridMetrics.elevationStep;
+        SquareCell neighborPrev = cell.GetNeighbor(direction.Previous()) ?? cell;
+        SquareCell neighborNext = cell.GetNeighbor(direction.Next()) ?? cell;
+        Vector3 midEdgePrev = centre + GridMetrics.GetEdge(direction.Previous()) + Vector3.up * ((cell.CentreElevation + neighborPrev.CentreElevation) /2 + GridMetrics.streamBedElevationOffset) * GridMetrics.elevationStep;
+        Vector3 midEdgeNext = centre + GridMetrics.GetEdge(direction.Next()) + Vector3.up * ((cell.CentreElevation + neighborNext.CentreElevation) / 2 + GridMetrics.streamBedElevationOffset) * GridMetrics.elevationStep;
         if (cell.HasRiver)
         {
             if (cell.HasRiverThroughEdge(direction.Previous()))
             {
-                terrain.AddTriangle(v0, midSolidEdgePrev, riverbed);
+                terrain.AddTriangle(v0, midSolidEdgePrev, riverbed); // split tri into two tris
                 terrain.AddTriangle(midSolidEdgePrev, v1, riverbed);
             }
             else
-            { terrain.AddTriangle(v0, v1, riverbed); }
+            { terrain.AddTriangle(v0, v1, riverbed); } // edge with no river
             if (cell.HasRiverThroughEdge(direction.Next()))
             {
-                terrain.AddTriangle(v1, midSolidEdgeNext, riverbed);
+                terrain.AddTriangle(v1, midSolidEdgeNext, riverbed); // split tri into two tris
                 terrain.AddTriangle(midSolidEdgeNext, v2, riverbed);
             }
             else
-            { terrain.AddTriangle(v1, v2, riverbed); }
+            { terrain.AddTriangle(v1, v2, riverbed); } // edge with no river
         }
         else
         { terrain.AddTriangle(v0, v1, v2); }
+
         if (cell.HasRiverThroughEdge(direction.Next()))
         {
             terrain.AddQuad(v1, va, midEdgeNext, midSolidEdgeNext);
@@ -300,10 +319,29 @@ public class SquareGridChunk : MonoBehaviour {
     GridDirection direction, SquareCell cell, Vector3 centre, Vector3 v0, Vector3 v1, Vector3 v2, Vector3 v3, float v
 )
     {
+        GridDirection flowDirection;
         bool reversed = cell.HasIncomingRiver[(int)direction];
-        TriangulateRiverTri(centre, v0, v3, cell.RiverSurfaceY, reversed, direction);
-        SquareCell neighbor = cell.GetNeighbor(direction) ?? cell;
-        TriangulateRiverQuad(v3, v0, v1, v2, cell.RiverSurfaceY, neighbor.RiverSurfaceY, 0.8f, reversed);
+        if(cell.HasOutgoingRiver[(int)direction])
+        {
+            flowDirection = direction;
+        }
+        else if (reversed)
+        {
+            flowDirection = direction.Opposite();
+        }
+        else
+        {
+            if(cell.HasIncomingRiver[(int)direction.Next2()] && cell.HasOutgoingRiver[(int)direction.Previous2()])
+            { flowDirection = direction.Previous2(); }
+            else if (cell.HasOutgoingRiver[(int)direction.Next2()] && cell.HasIncomingRiver[(int)direction.Previous2()])
+            { flowDirection = direction.Next2(); }
+            else
+            { flowDirection = direction.Opposite(); }
+        }
+        TriangulateRiverTri(centre, v0, v3, cell.RiverSurfaceY, reversed, direction, flowDirection);
+        SquareCell neighbor = cell.GetNeighbor(direction);
+        if (neighbor && cell.HasRiverThroughEdge(direction))
+            { TriangulateRiverQuad(v3, v0, v1, v2, cell.RiverSurfaceY, neighbor.RiverSurfaceY, 0.8f, reversed); }
     }
 
     void AddColors(SquareCell cell, GridDirection direction)
