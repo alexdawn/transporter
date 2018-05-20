@@ -142,21 +142,24 @@ public class SquareGrid : MonoBehaviour
     public GridDirection GetEdge(Vector3 position)
     {
         position = transform.InverseTransformPoint(position);
+        position.x -= 0.5f;
+        position.z -= 0.5f;
         float fracX = position.x - Mathf.Floor(position.x);
         float fracZ = position.z - Mathf.Floor(position.z);
-        if (fracZ < 0.5f && fracZ < fracX)
+        Debug.Log(fracX + ", " + fracZ);
+        if (fracZ >= 0.5f && Mathf.Abs(fracZ - 0.5f) > Mathf.Abs(fracX - 0.5f))
         {
             return GridDirection.N;
         }
-        else if (fracX < 0.5f && fracX < fracZ)
+        else if (fracX >= 0.5f && Mathf.Abs(fracZ - 0.5f) < Mathf.Abs(fracX - 0.5f))
         {
             return GridDirection.E;
         }
-        else if (fracZ >= 0.5f && fracZ > fracX)
+        else if (fracZ < 0.5f && Mathf.Abs(fracZ - 0.5f) > Mathf.Abs(fracX - 0.5f))
         {
             return GridDirection.S;
         }
-        else if (fracX >= 0.5f)
+        else if (fracX < 0.5f && Mathf.Abs(fracZ - 0.5f) < Mathf.Abs(fracX - 0.5f))
         {
             return GridDirection.W;
         }
