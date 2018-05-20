@@ -8,7 +8,8 @@ public enum EditMode
 {
     color,
     elevation,
-    rivers
+    rivers,
+    roads
 }
 
 public class MapEditor : MonoBehaviour {
@@ -68,7 +69,7 @@ public class MapEditor : MonoBehaviour {
             {
                 isDrag = false;
             }
-            EditCells(currentCell, squareGrid.GetVertex(hit.point));
+            EditCells(currentCell, hit.point);
             previousCell = currentCell;
         }
         else
@@ -128,7 +129,7 @@ public class MapEditor : MonoBehaviour {
 
     void MoveEditorPointer(SquareCell cell, GridDirection vertex)
     {
-        if (activeMode == EditMode.color || activeMode == EditMode.rivers)
+        if (activeMode == EditMode.color || activeMode == EditMode.rivers || activeMode == EditMode.roads)
         {
             pointerLocation = GridCoordinates.ToPosition(cell.coordinates) + Vector3.up * cell.CentreElevation * GridMetrics.elevationStep;
         }
@@ -153,7 +154,7 @@ public class MapEditor : MonoBehaviour {
                     {
                         Gizmos.DrawSphere(offPos, 0.1f);
                     }
-                    if (activeMode == EditMode.color || activeMode == EditMode.rivers)
+                    if (activeMode == EditMode.color || activeMode == EditMode.rivers || activeMode == EditMode.roads)
                     {
                         Gizmos.DrawWireCube(offPos, new Vector3(1, 0, 1));
                     }
@@ -164,7 +165,7 @@ public class MapEditor : MonoBehaviour {
     }
 
 
-    void EditCells(SquareCell cell, GridDirection vertex)
+    void EditCells(SquareCell cell, Vector3 hitpoint)
     {
         for(int x=0; x < pointerSize; x++)
         {
@@ -172,13 +173,13 @@ public class MapEditor : MonoBehaviour {
             {
                 Vector3 offPos = new Vector3(cell.coordinates.X + x, 0, cell.coordinates.Z + z);
                 SquareCell offCell = squareGrid.GetCell(offPos);
-                EditCell(offCell, vertex);
+                EditCell(offCell, hitpoint);
             }
         }
     }
 
 
-    void EditCell(SquareCell cell, GridDirection vertex)
+    void EditCell(SquareCell cell, Vector3 hitpoint)
     {
         if(activeMode == EditMode.color)
         {
@@ -186,6 +187,7 @@ public class MapEditor : MonoBehaviour {
         }
         else if(activeMode == EditMode.elevation)
         {
+            GridDirection vertex = squareGrid.GetVertex(hitpoint);
             if (Input.GetMouseButton(0) && (stopWatch.ElapsedMilliseconds > 500f || freshClick)) 
             {
                 cell.ChangeVertexElevation(vertex, 1);
@@ -219,12 +221,24 @@ public class MapEditor : MonoBehaviour {
             }
             else if(isDrag)
             {
-                UnityEngine.Debug.Log("is Drag");
                 SquareCell otherCell = cell.GetNeighbor(dragDirection.Opposite()); // work with brushes
                 if (otherCell)
                 {
                     otherCell.SetOutgoingRiver(dragDirection);
                 }
+            }
+        }
+        else if(activeMode == EditMode.roads)
+        {
+            GridDirection edge = squareGrid.GetEdge(hitpoint);
+            UnityEngine.Debug.Log("nearest edge" + edge);
+            if (Input.GetMouseButton(1))
+            {
+                cell.RemoveRoad(edge);
+            }
+            else
+            {
+                cell.AddRoad(edge);
             }
         }
     }

@@ -138,4 +138,32 @@ public class SquareGrid : MonoBehaviour
             throw new Exception("Can't determin vertex");
         }
     }
+
+    public GridDirection GetEdge(Vector3 position)
+    {
+        position = transform.InverseTransformPoint(position);
+        float fracX = position.x - Mathf.Floor(position.x);
+        float fracZ = position.z - Mathf.Floor(position.z);
+        if (fracZ < 0.5f && fracZ < fracX)
+        {
+            return GridDirection.N;
+        }
+        else if (fracX < 0.5f && fracX < fracZ)
+        {
+            return GridDirection.E;
+        }
+        else if (fracZ >= 0.5f && fracZ > fracX)
+        {
+            return GridDirection.S;
+        }
+        else if (fracX >= 0.5f)
+        {
+            return GridDirection.W;
+        }
+        else
+        {
+            Debug.Log(string.Format("invalid result {0} {1}", fracX, fracZ));
+            throw new Exception("Can't determin vertex");
+        }
+    }
 }

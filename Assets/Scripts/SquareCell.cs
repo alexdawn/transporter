@@ -16,8 +16,99 @@ public class SquareCell : MonoBehaviour {
     [SerializeField]
     SquareCell[] neighbors;
 
+    [SerializeField]
     private bool[] hasIncomingRivers = new bool[8];
+    [SerializeField]
     private bool[] hasOutgoingRivers = new bool[8];
+    [SerializeField]
+    bool[] roads = new bool[8]; // includes diagonals
+
+
+    public bool HasRoadThroughEdge(GridDirection direction)
+    {
+        return roads[(int)direction];
+    }
+
+
+    public bool HasRoads
+    {
+        get
+        {
+            for (int i = 0; i < roads.Length; i++)
+            {
+                if (roads[i])
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    public int RoadCount
+    {
+        get
+        {
+            int counter = 0;
+            for (int i = 0; i < roads.Length; i++)
+            {
+                if (roads[i])
+                {
+                    counter++;
+                }
+            }
+            return counter;
+        }
+    }
+
+    public void AddRoad(GridDirection direction)
+    {
+        if (!roads[(int)direction] && !HasRiver && !HasCliff(direction) && GetElevationDifference(direction) <= 3)
+        {
+            SetRoad((int)direction, true);
+        }
+        else
+        {
+            Debug.Log("Could not add road");
+        }
+    }
+
+    public void RemoveRoad(GridDirection direction)
+    {
+        if (roads[(int)direction] == true)
+        { SetRoad((int)direction, false); }
+    }
+
+    void SetRoad(int direction, bool state)
+    {
+        roads[direction] = state;
+        RefreshSelfOnly();
+    }
+
+    public int GetElevationDifference(GridDirection direction)
+    {
+        int differencePrev = (int)vertexElevations[direction.Previous()] - (int)vertexElevations[direction.Opposite().Next()];
+        int differenceNext = (int)vertexElevations[direction.Next()] - (int)vertexElevations[direction.Opposite().Previous()];
+        int result = Mathf.Max(differencePrev, differenceNext);
+        Debug.Log("elevation test" + result);
+        return result;
+    }
+
+    public bool HasCliff(GridDirection direction)
+    {
+        SquareCell neighbor = GetNeighbor(direction);
+        if (neighbor)
+        {
+            bool noCliff = (int)vertexElevations[direction.Previous()] == (int)neighbor.vertexElevations[direction.Opposite().Next()] && (int)vertexElevations[direction.Next()] == (int)neighbor.vertexElevations[direction.Opposite().Previous()];
+            Debug.Log("cliff test" + !noCliff);
+            return !noCliff;
+        }
+        else
+        {
+            Debug.Log("No neighbor to test for cliff");
+            return false;
+        }
+    }
 
     public float RiverSurfaceY
     {
@@ -170,13 +261,15 @@ public class SquareCell : MonoBehaviour {
 
     public void SetOutgoingRiver(GridDirection direction)
     {
-        if (hasOutgoingRivers[(int)direction])
+        if (hasOutgoingRivers[(int)direction] || HasRoads)
         {
+            Debug.Log("Could not add river");
             return;
         }
         SquareCell neighbor = GetNeighbor(direction);
         if (!neighbor || centreElevation < neighbor.centreElevation)
         {
+            Debug.Log("Could not add river uphill");
             return;
         }
         if (hasIncomingRivers[(int)direction])
@@ -194,13 +287,15 @@ public class SquareCell : MonoBehaviour {
 
     public void SetIncomingRiver(GridDirection direction)
     {
-        if (hasOutgoingRivers[(int)direction])
+        if (hasOutgoingRivers[(int)direction] || HasRoads)
         {
+            Debug.Log("Could not add river");
             return;
         }
         SquareCell neighbor = GetNeighbor(direction);
         if (!neighbor || centreElevation < neighbor.centreElevation)
         {
+            Debug.Log("Could not add river uphill");
             return;
         }
         if (hasIncomingRivers[(int)direction])
@@ -212,8 +307,9 @@ public class SquareCell : MonoBehaviour {
     private void UpdateCentreElevation()
     {
         centreElevation = (vertexElevations.Y0 + vertexElevations.Y1 + vertexElevations.Y2 + vertexElevations.Y3) / 4;
+        int maxElevation = Mathf.Max(vertexElevations.Y0, vertexElevations.Y1, vertexElevations.Y2, vertexElevations.Y3);
         Vector3 uiPosition = uiRect.localPosition;
-        uiPosition.z = centreElevation * -GridMetrics.elevationStep;
+        uiPosition.z = -(maxElevation * GridMetrics.elevationStep + 0.001f);
         uiRect.localPosition = uiPosition;
         for (GridDirection i = GridDirection.N; i < GridDirection.NW; i++)
         {
@@ -238,7 +334,17 @@ public class SquareCell : MonoBehaviour {
     public void ChangeVertexElevation(GridDirection vertex, int value)
     {
         vertexElevations[vertex] += value;
-        UpdateCentreElevation();
+        if ((HasRoadThroughEdge(vertex.Next()) && (GetElevationDifference(vertex.Next()) > 3 || HasCliff(vertex.Next()))) ||
+            (HasRoadThroughEdge(vertex.Previous()) && (GetElevationDifference(vertex.Previous()) > 3 || HasCliff(vertex.Previous())))
+            )
+        {
+            Debug.Log("Could not change elevation");
+            vertexElevations[vertex] -= value; // revert change
+        }
+        else
+        {
+            UpdateCentreElevation();
+        }
     }
 
 

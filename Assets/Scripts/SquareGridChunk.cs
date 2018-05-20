@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class SquareGridChunk : MonoBehaviour {
     SquareCell[] cells;
 
-    public GridMesh terrain, rivers;
+    public GridMesh terrain, rivers, roads;
     Canvas gridCanvas;
 
 
@@ -43,6 +43,7 @@ public class SquareGridChunk : MonoBehaviour {
     {
         terrain.Clear();
         rivers.Clear();
+        roads.Clear();
         for (int i = 0; i < cells.Length; i++)
         {
             AddMeshForSquare(cells[i]);
@@ -50,6 +51,18 @@ public class SquareGridChunk : MonoBehaviour {
         }
         terrain.Apply();
         rivers.Apply();
+        roads.Apply();
+    }
+
+    void TriangulateRoadSegment(
+        Vector3 v1, Vector3 v2, Vector3 v3,
+        Vector3 v4, Vector3 v5, Vector3 v6
+    )
+    {
+        roads.AddQuad(v1, v4, v5, v2);
+        roads.AddQuad(v2, v5, v6, v3);
+        roads.AddQuadUV(0f, 1f, 0f, 0f);
+        roads.AddQuadUV(1f, 0f, 0f, 0f);
     }
 
     void TriangulateRiverTri(Vector3 v1, Vector3 v2, Vector3 v3, float y, bool reversed, GridDirection direction, GridDirection flowDirection)
@@ -237,6 +250,11 @@ public class SquareGridChunk : MonoBehaviour {
             AddHalfCell(cell, GridDirection.SW, centre, vs3, vs0, vs1, vW0, vW1, vS3, vS0, vb0, vb1, vN1);
             AddHalfCell(cell, GridDirection.NE, centre, vs1, vs2, vs3, vE2, vE3, vN1, vN2, vb2, vb3, vS3);
         }
+        if (cell.RoadCount > 1)
+        {
+            roads.AddQuad(vs0, vs1, vs2, vs3);
+            roads.AddQuadUV(0f, 1f, 0f, 1f);
+        }
         if (cell.HasRiver)
         {
             if (cell.HasRiverThroughEdge(GridDirection.N))
@@ -313,6 +331,19 @@ public class SquareGridChunk : MonoBehaviour {
         else
         { terrain.AddQuad(v2, vb, vy, vz); }// clockwise edge
         AddColors(cell, direction);
+
+        if(cell.HasRoadThroughEdge(direction.Next()))
+        {
+            midEdgeNext = centre + GridMetrics.GetEdge(direction.Next()) + Vector3.up * ((int)cell.GridElevations[direction] + (int)cell.GridElevations[direction.Next2()]) / 2 * GridMetrics.elevationStep;
+            midSolidEdgeNext = centre + GridMetrics.GetSolidEdge(direction.Next()) + Vector3.up * ((int)cell.GridElevations[direction] + (int)cell.GridElevations[direction.Next2()]) / 2 * GridMetrics.elevationStep;
+            TriangulateRoadSegment(v1, midSolidEdgeNext, v2, va, midEdgeNext, vb);
+        }
+        if (cell.HasRoadThroughEdge(direction.Previous()))
+        {
+            midEdgePrev = centre + GridMetrics.GetEdge(direction.Previous()) + Vector3.up * ((int)cell.GridElevations[direction] + (int)cell.GridElevations[direction.Previous2()]) / 2 * GridMetrics.elevationStep;
+            midSolidEdgePrev = centre + GridMetrics.GetSolidEdge(direction.Previous()) + Vector3.up * ((int)cell.GridElevations[direction] + (int)cell.GridElevations[direction.Previous2()]) / 2 * GridMetrics.elevationStep;
+            TriangulateRoadSegment(v0, midSolidEdgePrev, v1, vc, midEdgePrev, vd);
+        }
     }
 
     void TriangulateWithRiver(
