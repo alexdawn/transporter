@@ -3,10 +3,10 @@ OTTD clone
 
 features:
 
-elevations
-colored terrain
-rivers
-oceans
-roads
-day/night cycle
+* elevations
+* colored terrain
+* rivers
+* oceans
+* roads
+* day/night cycle
 
