@@ -12,6 +12,7 @@ public class SquareCell : MonoBehaviour {
     float centreElevation = 0;
     GridElevations vertexElevations;
     Color color;
+    int waterLevel=2;
 
     [SerializeField]
     SquareCell[] neighbors;
@@ -22,6 +23,32 @@ public class SquareCell : MonoBehaviour {
     private bool[] hasOutgoingRivers = new bool[8];
     [SerializeField]
     bool[] roads = new bool[8]; // includes diagonals
+
+
+    public int WaterLevel
+    {
+        get
+        {
+            return waterLevel;
+        }
+        set
+        {
+            if (waterLevel == value)
+            {
+                return;
+            }
+            waterLevel = value;
+            Refresh();
+        }
+    }
+
+    public bool IsUnderwater
+    {
+        get
+        {
+            return waterLevel > GetMinElevation();
+        }
+    }
 
 
     public bool HasRoadThroughEdge(GridDirection direction)
@@ -94,6 +121,16 @@ public class SquareCell : MonoBehaviour {
         return result;
     }
 
+    public int GetMaxElevation()
+    {
+        return Mathf.Max(vertexElevations.Y0, vertexElevations.Y1, vertexElevations.Y2, vertexElevations.Y3);
+    }
+
+    public int GetMinElevation()
+    {
+        return Mathf.Min(vertexElevations.Y0, vertexElevations.Y1, vertexElevations.Y2, vertexElevations.Y3);
+    }
+
     public bool HasCliff(GridDirection direction)
     {
         SquareCell neighbor = GetNeighbor(direction);
@@ -115,7 +152,16 @@ public class SquareCell : MonoBehaviour {
         get
         {
             return
-                (centreElevation + GridMetrics.riverSurfaceElevationOffset) * GridMetrics.elevationStep;
+                (centreElevation + GridMetrics.waterElevationOffset) * GridMetrics.elevationStep;
+        }
+    }
+
+    public float WaterSurfaceY
+    {
+        get
+        {
+            return
+                (waterLevel + GridMetrics.waterElevationOffset) * GridMetrics.elevationStep;
         }
     }
 

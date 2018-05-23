@@ -7,6 +7,7 @@ public class SquareGrid : MonoBehaviour
 
     public int chunkCountX = 3, chunkCountZ = 3;
     int cellCountX, cellCountZ;
+    public bool showLabels;
     public SquareCell cellPrefab;
     public SquareGridChunk chunkPrefab;
     public Text cellLabelPrefab;
@@ -83,9 +84,11 @@ public class SquareGrid : MonoBehaviour
         cell.coordinates = GridCoordinates.FromOffsetCoordinates(x, z);
         cell.GridElevations = GridElevations.GetVertexHeights(position);
         cell.Color = gridColors[(int)((cell.CentreElevation / (float)GridElevations.maxHeight) * gridColors.Length)];
-        label.rectTransform.anchoredPosition = new Vector2(x, z);
-        label.text = x.ToString() + ", " + z.ToString();
-
+        if(showLabels)
+        {
+            label.rectTransform.anchoredPosition = new Vector2(x, z);
+            label.text = x.ToString() + ", " + z.ToString();
+        }
         AddCellToChunk(x, z, cell);
     }
 

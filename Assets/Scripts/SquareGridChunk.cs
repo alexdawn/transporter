@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class SquareGridChunk : MonoBehaviour {
     SquareCell[] cells;
 
-    public GridMesh terrain, rivers, roads;
+    public GridMesh terrain, rivers, roads, water;
     Canvas gridCanvas;
 
 
@@ -44,6 +44,7 @@ public class SquareGridChunk : MonoBehaviour {
         terrain.Clear();
         rivers.Clear();
         roads.Clear();
+        water.Clear();
         for (int i = 0; i < cells.Length; i++)
         {
             AddMeshForSquare(cells[i]);
@@ -52,6 +53,7 @@ public class SquareGridChunk : MonoBehaviour {
         terrain.Apply();
         rivers.Apply();
         roads.Apply();
+        water.Apply();
     }
 
     Vector3 GetMidVector(Vector3 v0, Vector3 v1)
@@ -273,7 +275,7 @@ public class SquareGridChunk : MonoBehaviour {
             vs3 += GetDoubleVertexBlendElevation(cell.GridElevations, GridDirection.SE);
         }
 
-        // Work out which diagonal to add
+        // Works out which diagonal to add
         if (cell.GridElevations.Y0 == cell.GridElevations.Y2 || Mathf.Abs(cell.GridElevations.Y0 - cell.GridElevations.Y2) < Mathf.Abs(cell.GridElevations.Y1 - cell.GridElevations.Y3))  // sets direction of the triangle pairs in the quad
         {
             AddHalfCell(cell, GridDirection.NW, centre, vs0, vs1, vs2, vN1, vN2, vW0, vW1, vb1, vb2, vE2);
@@ -308,7 +310,54 @@ public class SquareGridChunk : MonoBehaviour {
             else
             { TriangulateWithRiver(GridDirection.W, cell, centre, vs0, vb0, vb1, vs1, 0.5f); }
         }
+        if(cell.IsUnderwater)
+        {
+            AddWaterForSquare(cell, centre);
+        }
+    }
 
+    void AddWaterForSquare(SquareCell cell, Vector3 centre)
+    {
+        if (cell.IsUnderwater)
+        {
+            centre.y = cell.WaterSurfaceY;
+            Vector3 c0 = centre + GridMetrics.GetSolidEdge(GridDirection.SW);
+            Vector3 c1 = centre + GridMetrics.GetSolidEdge(GridDirection.NW);
+            Vector3 c2 = centre + GridMetrics.GetSolidEdge(GridDirection.NE);
+            Vector3 cs2 = centre + GridMetrics.GetEdge(GridDirection.NE);
+            Vector3 c3 = centre + GridMetrics.GetSolidEdge(GridDirection.SE);
+
+            water.AddQuad(c0, c1, c2, c3);
+            for(GridDirection i=GridDirection.N; (int)i <= 4; i++)
+            {
+                SquareCell neighbor = cell.GetNeighbor(i);
+                if (neighbor == null || !neighbor.IsUnderwater)
+                {
+                    return;
+                }
+
+                if(i==GridDirection.N)
+                {
+                    Vector3 bridge = 2 * GridMetrics.GetBridge(i);
+                    Vector3 e1 = c1 + bridge;
+                    Vector3 e2 = c2 + bridge;
+                    water.AddQuad(c1, e1, e2, c2);
+                }
+                else if(i==GridDirection.NE)
+                {
+                    Vector3 bN = 2 * GridMetrics.GetBridge(GridDirection.N);
+                    Vector3 bE = 2 * GridMetrics.GetBridge(GridDirection.E);
+                    water.AddQuad(c2, c2 + bN, c2 + bN + bE, c2 + bE);
+                }
+                else if(i==GridDirection.E)
+                {
+                    Vector3 bridge = 2 * GridMetrics.GetBridge(i);
+                    Vector3 e2 = c2 + bridge;
+                    Vector3 e3 = c3 + bridge;
+                    water.AddQuad(c2, e2, e3, c3);
+                }
+            }
+        }
     }
 
     void AddHalfCell(SquareCell cell, GridDirection direction, Vector3 centre, Vector3 v0, Vector3 v1, Vector3 v2, Vector3 va, Vector3 vb, Vector3 vc, Vector3 vd, Vector3 vx, Vector3 vy, Vector3 vz)

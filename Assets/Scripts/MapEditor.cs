@@ -9,7 +9,8 @@ public enum EditMode
     color,
     elevation,
     rivers,
-    roads
+    roads,
+    water_level
 }
 
 public class MapEditor : MonoBehaviour {
@@ -129,7 +130,7 @@ public class MapEditor : MonoBehaviour {
 
     void MoveEditorPointer(SquareCell cell, GridDirection vertex)
     {
-        if (activeMode == EditMode.color || activeMode == EditMode.rivers || activeMode == EditMode.roads)
+        if (activeMode == EditMode.color || activeMode == EditMode.rivers || activeMode == EditMode.roads || activeMode == EditMode.water_level)
         {
             pointerLocation = GridCoordinates.ToPosition(cell.coordinates) + Vector3.up * cell.CentreElevation * GridMetrics.elevationStep;
         }
@@ -154,7 +155,7 @@ public class MapEditor : MonoBehaviour {
                     {
                         Gizmos.DrawSphere(offPos, 0.1f);
                     }
-                    if (activeMode == EditMode.color || activeMode == EditMode.rivers || activeMode == EditMode.roads)
+                    if (activeMode == EditMode.color || activeMode == EditMode.rivers || activeMode == EditMode.roads || activeMode == EditMode.water_level)
                     {
                         Gizmos.DrawWireCube(offPos, new Vector3(1, 0, 1));
                     }
@@ -243,6 +244,17 @@ public class MapEditor : MonoBehaviour {
                 {
                     cell.AddRoad(edge);
                 }
+            }
+        }
+        else if(activeMode == EditMode.water_level)
+        {
+            if (Input.GetMouseButton(1))
+            {
+                cell.WaterLevel++;
+            }
+            else
+            {
+                cell.WaterLevel--;
             }
         }
     }
