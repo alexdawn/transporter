@@ -230,15 +230,19 @@ public class MapEditor : MonoBehaviour {
         }
         else if(activeMode == EditMode.roads)
         {
-            GridDirection edge = squareGrid.GetEdge(hitpoint);
-            UnityEngine.Debug.Log("nearest edge" + edge);
-            if (Input.GetMouseButton(1))
+            float fracX = hitpoint.x - Mathf.Floor(hitpoint.x);
+            float fracZ = hitpoint.z - Mathf.Floor(hitpoint.z);
+            if (fracX > 0.25f && fracX < 0.75f || fracZ > 0.25f && fracZ < 0.75f)
             {
-                cell.RemoveRoad(edge);
-            }
-            else
-            {
-                cell.AddRoad(edge);
+                GridDirection edge = squareGrid.GetEdge(hitpoint);
+                if (Input.GetMouseButton(1))
+                {
+                    cell.RemoveRoad(edge);
+                }
+                else
+                {
+                    cell.AddRoad(edge);
+                }
             }
         }
     }

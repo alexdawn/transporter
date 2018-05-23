@@ -54,6 +54,40 @@ public class SquareGridChunk : MonoBehaviour {
         roads.Apply();
     }
 
+    Vector3 GetMidVector(Vector3 v0, Vector3 v1)
+    {
+        return v0 + (v1 - v0) / 2f;
+    }
+
+    void TriangulateRoadCentre(SquareCell cell, Vector3 centre, Vector3 vs0, Vector3 vs1, Vector3 vs2, Vector3 vs3)
+    {
+        roads.AddTriangle(centre, vs0, GetMidVector(vs0, vs1));
+        roads.AddTriangle(centre, GetMidVector(vs0, vs1), vs1);
+        roads.AddTriangle(centre, vs1, GetMidVector(vs1, vs2));
+        roads.AddTriangle(centre, GetMidVector(vs1, vs2), vs2);
+        roads.AddTriangle(centre, vs2, GetMidVector(vs2, vs3));
+        roads.AddTriangle(centre, GetMidVector(vs2, vs3), vs3);
+        roads.AddTriangle(centre, vs3, GetMidVector(vs3, vs0));
+        roads.AddTriangle(centre, GetMidVector(vs3, vs0), vs0);
+
+        // W
+        float midU = cell.HasRoadThroughEdge(GridDirection.W) ? 1f : 0f;
+        roads.AddTriangleUV(new Vector2(1f, 1f), new Vector2(0f, 1f), new Vector2(midU, 1f));
+        roads.AddTriangleUV(new Vector2(1f, 1f), new Vector2(midU, 1f), new Vector2(0f, 1f));
+        // N
+        midU = cell.HasRoadThroughEdge(GridDirection.N) ? 1f : 0f;
+        roads.AddTriangleUV(new Vector2(1f, 1f), new Vector2(0f, 1f), new Vector2(midU, 1f));
+        roads.AddTriangleUV(new Vector2(1f, 1f), new Vector2(midU, 1f), new Vector2(0f, 1f));
+        // E
+        midU = cell.HasRoadThroughEdge(GridDirection.E) ? 1f : 0f;
+        roads.AddTriangleUV(new Vector2(1f, 1f), new Vector2(0f, 1f), new Vector2(midU, 1f));
+        roads.AddTriangleUV(new Vector2(1f, 1f), new Vector2(midU, 1f), new Vector2(0f, 1f));
+        // S
+        midU = cell.HasRoadThroughEdge(GridDirection.S) ? 1f : 0f;
+        roads.AddTriangleUV(new Vector2(1f, 1f), new Vector2(0f, 1f), new Vector2(midU, 1f));
+        roads.AddTriangleUV(new Vector2(1f, 1f), new Vector2(midU, 1f), new Vector2(0f, 1f));
+    }
+
     void TriangulateRoadSegment(
         Vector3 v1, Vector3 v2, Vector3 v3,
         Vector3 v4, Vector3 v5, Vector3 v6
@@ -250,10 +284,10 @@ public class SquareGridChunk : MonoBehaviour {
             AddHalfCell(cell, GridDirection.SW, centre, vs3, vs0, vs1, vW0, vW1, vS3, vS0, vb0, vb1, vN1);
             AddHalfCell(cell, GridDirection.NE, centre, vs1, vs2, vs3, vE2, vE3, vN1, vN2, vb2, vb3, vS3);
         }
-        if (cell.RoadCount > 1)
+        if (cell.HasRoads)
         {
-            roads.AddQuad(vs0, vs1, vs2, vs3);
-            roads.AddQuadUV(1f, 1f, 0f, 1f);
+            Vector3 roadCentre = centre + Vector3.up * cell.CentreElevation * GridMetrics.elevationStep;
+            TriangulateRoadCentre(cell, roadCentre, vs0, vs1, vs2, vs3);
         }
         if (cell.HasRiver)
         {

@@ -9,7 +9,7 @@ public class SquareCell : MonoBehaviour {
     public GridCoordinates coordinates;
     public RectTransform uiRect;
 
-    int centreElevation = 0;
+    float centreElevation = 0;
     GridElevations vertexElevations;
     Color color;
 
@@ -306,7 +306,7 @@ public class SquareCell : MonoBehaviour {
 
     private void UpdateCentreElevation()
     {
-        centreElevation = (vertexElevations.Y0 + vertexElevations.Y1 + vertexElevations.Y2 + vertexElevations.Y3) / 4;
+        centreElevation = (vertexElevations.Y0 + vertexElevations.Y1 + vertexElevations.Y2 + vertexElevations.Y3) / 4f;
         int maxElevation = Mathf.Max(vertexElevations.Y0, vertexElevations.Y1, vertexElevations.Y2, vertexElevations.Y3);
         Vector3 uiPosition = uiRect.localPosition;
         uiPosition.z = -(maxElevation * GridMetrics.elevationStep + 0.001f);
@@ -325,7 +325,7 @@ public class SquareCell : MonoBehaviour {
         Refresh();
     }
 
-    public int CentreElevation
+    public float CentreElevation
     {
         get { return centreElevation; }
     }
