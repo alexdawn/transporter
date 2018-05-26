@@ -324,40 +324,68 @@ public class SquareGridChunk : MonoBehaviour {
             Vector3 c0 = centre + GridMetrics.GetSolidEdge(GridDirection.SW);
             Vector3 c1 = centre + GridMetrics.GetSolidEdge(GridDirection.NW);
             Vector3 c2 = centre + GridMetrics.GetSolidEdge(GridDirection.NE);
-            Vector3 cs2 = centre + GridMetrics.GetEdge(GridDirection.NE);
             Vector3 c3 = centre + GridMetrics.GetSolidEdge(GridDirection.SE);
 
             water.AddQuad(c0, c1, c2, c3);
-            for(GridDirection i=GridDirection.N; (int)i <= 4; i++)
+            for(int x=0; x < 8; x++)
             {
+                GridDirection i = (GridDirection)x;
+                Debug.Log(i);
                 SquareCell neighbor = cell.GetNeighbor(i);
                 if (neighbor == null || !neighbor.IsUnderwater)
                 {
-                    return;
+                    continue;
                 }
 
                 if(i==GridDirection.N)
                 {
-                    Vector3 bridge = 2 * GridMetrics.GetBridge(i);
-                    Vector3 e1 = c1 + bridge;
-                    Vector3 e2 = c2 + bridge;
-                    water.AddQuad(c1, e1, e2, c2);
+                    MakeBridge(water, c1, c2, i);
                 }
                 else if(i==GridDirection.NE)
                 {
-                    Vector3 bN = 2 * GridMetrics.GetBridge(GridDirection.N);
-                    Vector3 bE = 2 * GridMetrics.GetBridge(GridDirection.E);
-                    water.AddQuad(c2, c2 + bN, c2 + bN + bE, c2 + bE);
+                    MakeCornerBridge(water, c2, i);
                 }
                 else if(i==GridDirection.E)
                 {
-                    Vector3 bridge = 2 * GridMetrics.GetBridge(i);
-                    Vector3 e2 = c2 + bridge;
-                    Vector3 e3 = c3 + bridge;
-                    water.AddQuad(c2, e2, e3, c3);
+                    MakeBridge(water, c2, c3, i);
+                }
+                else if (i == GridDirection.SE)
+                {
+                    MakeCornerBridge(water, c3, i);
+                }
+                if (i == GridDirection.S)
+                {
+                    MakeBridge(water, c3, c0, i);
+                }
+                else if (i == GridDirection.SW)
+                {
+                    MakeCornerBridge(water, c0, i);
+                }
+                else if (i == GridDirection.W)
+                {
+                    MakeBridge(water, c0, c1, i);
+                }
+                else if (i == GridDirection.NW)
+                {
+                    MakeCornerBridge(water, c1, i);
                 }
             }
         }
+    }
+
+    void MakeBridge(GridMesh mesh, Vector3 v0, Vector3 v1, GridDirection bridgeDirection)
+    {
+        Vector3 bridge = GridMetrics.GetBridge(bridgeDirection);
+        Vector3 e0 = v0 + bridge;
+        Vector3 e1 = v1 + bridge;
+        mesh.AddQuad(v0, e0, e1, v1);
+    }
+
+    void MakeCornerBridge(GridMesh mesh, Vector3 v0, GridDirection bridgeDirection)
+    {
+        Vector3 b0 = GridMetrics.GetBridge(bridgeDirection.Previous());
+        Vector3 b1 = GridMetrics.GetBridge(bridgeDirection.Next());
+        water.AddQuad(v0, v0 + b0, v0 + b0 + b1, v0 + b1);
     }
 
     void AddHalfCell(SquareCell cell, GridDirection direction, Vector3 centre, Vector3 v0, Vector3 v1, Vector3 v2, Vector3 va, Vector3 vb, Vector3 vc, Vector3 vd, Vector3 vx, Vector3 vy, Vector3 vz)

@@ -142,6 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chunkCountX: 10
   chunkCountZ: 10
+  showLabels: 0
   cellPrefab: {fileID: 114674814309831850, guid: 6eaa513af5abec04ba5a9d57e3cc8e7a,
     type: 2}
   chunkPrefab: {fileID: 114014414051205848, guid: ce28644f870dc644c88729f1f080876a,
@@ -351,7 +352,7 @@ MonoBehaviour:
   - {r: 0.21487667, g: 0.5849056, b: 0.03586687, a: 1}
   - {r: 0.41509432, g: 0, b: 0, a: 1}
   - {r: 0.8666667, g: 0.76862746, b: 0.29411766, a: 1}
-  - {r: 0.944, g: 0.944, b: 0.944, a: 0}
+  - {r: 0.86, g: 0.86, b: 0.86, a: 0}
   squareGrid: {fileID: 3895312}
   pointerSize: 1
 --- !u!1 &34019798

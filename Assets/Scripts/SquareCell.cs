@@ -46,7 +46,7 @@ public class SquareCell : MonoBehaviour {
     {
         get
         {
-            return waterLevel > GetMinElevation();
+            return waterLevel > GetMaxElevation();
         }
     }
 
