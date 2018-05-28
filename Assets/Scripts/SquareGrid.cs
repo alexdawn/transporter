@@ -156,7 +156,6 @@ public class SquareGrid : MonoBehaviour
         position.z -= 0.5f;
         float fracX = position.x - Mathf.Floor(position.x);
         float fracZ = position.z - Mathf.Floor(position.z);
-        Debug.Log(fracX + ", " + fracZ);
         if (fracZ >= 0.5f && Mathf.Abs(fracZ - 0.5f) > Mathf.Abs(fracX - 0.5f))
         {
             return GridDirection.N;
