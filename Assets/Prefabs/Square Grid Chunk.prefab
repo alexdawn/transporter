@@ -81,6 +81,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1826822669541434
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4540523092886950}
+  - component: {fileID: 114546041677092586}
+  m_Layer: 0
+  m_Name: Features
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1980421453130426
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,8 +147,22 @@ Transform:
   - {fileID: 4891154262885424}
   - {fileID: 4560161417041310}
   - {fileID: 4813033751967710}
+  - {fileID: 4540523092886950}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4540523092886950
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1826822669541434}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4203094796693716}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4560161417041310
 Transform:
@@ -369,6 +399,7 @@ MonoBehaviour:
   rivers: {fileID: 114563461759895010}
   roads: {fileID: 114800114109930004}
   water: {fileID: 114149072815604520}
+  features: {fileID: 114546041677092586}
 --- !u!114 &114149072815604520
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -404,6 +435,29 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 100
+--- !u!114 &114546041677092586
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1826822669541434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a62e2b89d1d23f4f8571c33cfefe0bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  featurePrefabs:
+  - features:
+    - {fileID: 400002, guid: 389724ce335395346b0d405c4d4c865a, type: 3}
+    - {fileID: 400002, guid: c826e79fdfae76244b05c2d15975f0b2, type: 3}
+    - {fileID: 400002, guid: 4d5077831deed6f429706077a5d258ec, type: 3}
+    - {fileID: 400002, guid: d60586f44a5bfb748b4578a1cb542d3c, type: 3}
+  - features:
+    - {fileID: 400004, guid: b7505f99cb0235941b2c3db204ca168e, type: 3}
+  - features:
+    - {fileID: 400000, guid: 0dd3b3d8dbf56c947a4623e040f96d1a, type: 3}
+    - {fileID: 400000, guid: 7c39d4ec657f88a43bd39b704536c3f5, type: 3}
+    - {fileID: 400000, guid: 84227d1daf5ef73428c33c92b0bdfbf0, type: 3}
 --- !u!114 &114563461759895010
 MonoBehaviour:
   m_ObjectHideFlags: 1

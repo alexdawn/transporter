@@ -13,6 +13,7 @@ public class SquareCell : MonoBehaviour {
     GridElevations vertexElevations;
     Color color;
     int waterLevel=2;
+    int urbanLevel = 0;
 
     [SerializeField]
     SquareCell[] neighbors;
@@ -24,6 +25,21 @@ public class SquareCell : MonoBehaviour {
     [SerializeField]
     bool[] roads = new bool[8]; // includes diagonals
 
+    public int UrbanLevel
+    {
+        get
+        {
+            return urbanLevel;
+        }
+        set
+        {
+            if (urbanLevel != value)
+            {
+                urbanLevel = value;
+                RefreshSelfOnly();
+            }
+        }
+    }
 
     public int WaterLevel
     {
@@ -117,7 +133,6 @@ public class SquareCell : MonoBehaviour {
         int differencePrev = (int)vertexElevations[direction.Previous()] - (int)vertexElevations[direction.Opposite().Next()];
         int differenceNext = (int)vertexElevations[direction.Next()] - (int)vertexElevations[direction.Opposite().Previous()];
         int result = Mathf.Max(differencePrev, differenceNext);
-        Debug.Log("elevation test" + result);
         return result;
     }
 
@@ -137,12 +152,10 @@ public class SquareCell : MonoBehaviour {
         if (neighbor)
         {
             bool noCliff = (int)vertexElevations[direction.Previous()] == (int)neighbor.vertexElevations[direction.Opposite().Next()] && (int)vertexElevations[direction.Next()] == (int)neighbor.vertexElevations[direction.Opposite().Previous()];
-            Debug.Log("cliff test" + !noCliff);
             return !noCliff;
         }
         else
         {
-            Debug.Log("No neighbor to test for cliff");
             return false;
         }
     }

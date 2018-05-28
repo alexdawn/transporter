@@ -11,6 +11,7 @@ public class SquareGrid : MonoBehaviour
     public SquareCell cellPrefab;
     public SquareGridChunk chunkPrefab;
     public Text cellLabelPrefab;
+    public int seed;
 
     SquareGridChunk[] chunks;
     SquareCell[] cells;
@@ -21,11 +22,17 @@ public class SquareGrid : MonoBehaviour
         gridColors = GameObject.Find("EditorCanvas").GetComponent<MapEditor>().colors;
         cellCountX = chunkCountX * GridMetrics.chunkSizeX;
         cellCountZ = chunkCountZ * GridMetrics.chunkSizeZ;
-        
+        GridMetrics.InitializeHashGrid(seed);
+
         CreateChunks();
         CreateCells();
     }
 
+
+    void OnEnable()
+    {
+        GridMetrics.InitializeHashGrid(seed);
+    }
 
     void CreateChunks()
     {
@@ -83,8 +90,8 @@ public class SquareGrid : MonoBehaviour
         }
         cell.coordinates = GridCoordinates.FromOffsetCoordinates(x, z);
         cell.GridElevations = GridElevations.GetVertexHeights(position);
-        cell.Color = gridColors[(int)((cell.CentreElevation / (float)GridElevations.maxHeight) * gridColors.Length)];
-        if(showLabels)
+        cell.Color = gridColors[0]; //gridColors[(int)((cell.CentreElevation / (float)GridElevations.maxHeight) * gridColors.Length)];
+        if (showLabels)
         {
             label.rectTransform.anchoredPosition = new Vector2(x, z);
             label.text = x.ToString() + ", " + z.ToString();

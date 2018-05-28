@@ -10,7 +10,8 @@ public enum EditMode
     elevation,
     rivers,
     roads,
-    water_level
+    water_level,
+    building
 }
 
 public class MapEditor : MonoBehaviour {
@@ -130,7 +131,8 @@ public class MapEditor : MonoBehaviour {
 
     void MoveEditorPointer(SquareCell cell, GridDirection vertex)
     {
-        if (activeMode == EditMode.color || activeMode == EditMode.rivers || activeMode == EditMode.roads || activeMode == EditMode.water_level)
+        if (activeMode == EditMode.color || activeMode == EditMode.rivers || activeMode == EditMode.roads ||
+            activeMode == EditMode.water_level || activeMode == EditMode.building)
         {
             pointerLocation = GridCoordinates.ToPosition(cell.coordinates) + Vector3.up * cell.CentreElevation * GridMetrics.elevationStep;
         }
@@ -155,7 +157,8 @@ public class MapEditor : MonoBehaviour {
                     {
                         Gizmos.DrawSphere(offPos, 0.1f);
                     }
-                    if (activeMode == EditMode.color || activeMode == EditMode.rivers || activeMode == EditMode.roads || activeMode == EditMode.water_level)
+                    if (activeMode == EditMode.color || activeMode == EditMode.rivers || activeMode == EditMode.roads || 
+                        activeMode == EditMode.water_level || activeMode == EditMode.building)
                     {
                         Gizmos.DrawWireCube(offPos, new Vector3(1, 0, 1));
                     }
@@ -248,13 +251,24 @@ public class MapEditor : MonoBehaviour {
         }
         else if(activeMode == EditMode.water_level)
         {
-            if (Input.GetMouseButton(1))
+            if (Input.GetMouseButton(0) && freshClick)
             {
                 cell.WaterLevel++;
             }
-            else
+            else if (Input.GetMouseButton(1) && freshClick)
             {
                 cell.WaterLevel--;
+            }
+        }
+        else if(activeMode == EditMode.building)
+        {
+            if (Input.GetMouseButton(0) && cell.UrbanLevel < 3 && freshClick)
+            {
+                cell.UrbanLevel++;
+            }
+            if(Input.GetMouseButton(1) && cell.UrbanLevel > 0 && freshClick)
+            {
+                cell.UrbanLevel--;
             }
         }
     }

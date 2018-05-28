@@ -1,19 +1,29 @@
 fileFormatVersion: 2
-guid: 7c39d4ec657f88a43bd39b704536c3f5
+guid: 4d5077831deed6f429706077a5d258ec
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: unnamed
-    2100002: Roof3
-    2100004: Concrete
-    2100006: Roof
-    2100008: Brick
-    2100010: Windows_001
-    2300000: //RootNode
-    3300000: //RootNode
+    100000: Cube
+    100002: //RootNode
+    100004: Plane
+    400000: Cube
+    400002: //RootNode
+    400004: Plane
+    2100000: Concrete
+    2100002: Roof
+    2100004: Brick
+    2100006: Windows_001
+    2100008: Roof3
+    2100010: Door
+    2100012: unnamed
+    2300000: Cube
+    2300002: Plane
+    2300004: //RootNode
+    3300000: Cube
+    3300002: Plane
+    3300004: //RootNode
     4300000: Cube
+    4300002: Plane
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}

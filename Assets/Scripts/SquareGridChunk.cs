@@ -7,6 +7,7 @@ public class SquareGridChunk : MonoBehaviour {
     SquareCell[] cells;
 
     public GridMesh terrain, rivers, roads, water;
+    public GridFeatureManager features;
     Canvas gridCanvas;
 
 
@@ -45,6 +46,7 @@ public class SquareGridChunk : MonoBehaviour {
         rivers.Clear();
         roads.Clear();
         water.Clear();
+        features.Clear();
         for (int i = 0; i < cells.Length; i++)
         {
             AddMeshForSquare(cells[i]);
@@ -54,6 +56,7 @@ public class SquareGridChunk : MonoBehaviour {
         rivers.Apply();
         roads.Apply();
         water.Apply();
+        features.Apply();
     }
 
     Vector3 GetMidVector(Vector3 v0, Vector3 v1)
@@ -196,25 +199,16 @@ public class SquareGridChunk : MonoBehaviour {
             Vector3 n1 = new Vector3(neighbor.coordinates.X, 0, neighbor.coordinates.Z) + GridMetrics.GetEdge(nextN) + Vector3.up * (int)neighbor.GridElevations[nextN] * GridMetrics.elevationStep;
             if (c0 != n0 && c1 != n1)
             {
-                //Debug.Log(string.Format("square"));
-                //Debug.Log(string.Format("{0} {1}", c0, c1));
-                //Debug.Log(string.Format("{0} {1}", n0, n1));
                 terrain.AddQuad(c0, n0, n1, c1);
                 terrain.AddQuadColor(Color.gray);
             }
             else if (c0 != n0)
             {
-                //Debug.Log(string.Format("tri 0"));
-                //Debug.Log(string.Format("{0} {1}", c0, c1));
-                //Debug.Log(string.Format("{0} {1}", n0, n1));
                 terrain.AddTriangle(c1, c0, n0);
                 terrain.AddTriangleColor(Color.gray);
             }
             else if (c1 != n1)
             {
-                //Debug.Log(string.Format("tri 1"));
-                //Debug.Log(string.Format("{0} {1}", c0, c1));
-                //Debug.Log(string.Format("{0} {1}", n0, n1));
                 terrain.AddTriangle(c0, n1, c1);
                 terrain.AddTriangleColor(Color.gray);
             }
@@ -224,6 +218,7 @@ public class SquareGridChunk : MonoBehaviour {
     void AddMeshForSquare(SquareCell cell)
     {
         Vector3 centre = cell.transform.localPosition;
+        Vector3 verticleCentre = centre + Vector3.up * cell.CentreElevation * GridMetrics.elevationStep;
         Vector3 vb0 = centre + GridMetrics.GetEdge(GridDirection.SW);
         Vector3 vb1 = centre + GridMetrics.GetEdge(GridDirection.NW);
         Vector3 vb2 = centre + GridMetrics.GetEdge(GridDirection.NE);
@@ -288,8 +283,7 @@ public class SquareGridChunk : MonoBehaviour {
         }
         if (cell.HasRoads)
         {
-            Vector3 roadCentre = centre + Vector3.up * cell.CentreElevation * GridMetrics.elevationStep;
-            TriangulateRoadCentre(cell, roadCentre, vs0, vs1, vs2, vs3);
+            TriangulateRoadCentre(cell, verticleCentre, vs0, vs1, vs2, vs3);
         }
         if (cell.HasRiver)
         {
@@ -314,6 +308,10 @@ public class SquareGridChunk : MonoBehaviour {
         {
             AddWaterForSquare(cell, centre);
         }
+        if (!cell.IsUnderwater && !cell.HasRoads)
+        {
+            features.AddFeature(cell, verticleCentre);
+        }
     }
 
     void AddWaterForSquare(SquareCell cell, Vector3 centre)
@@ -330,7 +328,6 @@ public class SquareGridChunk : MonoBehaviour {
             for(int x=0; x < 8; x++)
             {
                 GridDirection i = (GridDirection)x;
-                Debug.Log(i);
                 SquareCell neighbor = cell.GetNeighbor(i);
                 if (neighbor == null || !neighbor.IsUnderwater)
                 {
