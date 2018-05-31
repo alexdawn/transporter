@@ -452,12 +452,18 @@ MonoBehaviour:
     - {fileID: 400002, guid: c826e79fdfae76244b05c2d15975f0b2, type: 3}
     - {fileID: 400002, guid: 4d5077831deed6f429706077a5d258ec, type: 3}
     - {fileID: 400002, guid: d60586f44a5bfb748b4578a1cb542d3c, type: 3}
+    - {fileID: 400000, guid: a739d8679255dc544a81e94be497d56c, type: 3}
   - features:
     - {fileID: 400004, guid: b7505f99cb0235941b2c3db204ca168e, type: 3}
+    - {fileID: 400012, guid: 3b00c10a30a25a34ab0d8a03c613bd3f, type: 3}
+    - {fileID: 400004, guid: a429f323ae3c1eb43b7a9026e89b4a52, type: 3}
   - features:
     - {fileID: 400000, guid: 0dd3b3d8dbf56c947a4623e040f96d1a, type: 3}
     - {fileID: 400000, guid: 7c39d4ec657f88a43bd39b704536c3f5, type: 3}
     - {fileID: 400000, guid: 84227d1daf5ef73428c33c92b0bdfbf0, type: 3}
+    - {fileID: 4250159743004172, guid: 1772885228f73f343bc5e027b1ee3c15, type: 2}
+    - {fileID: 400014, guid: ef75558d0d4a37f48b096dba76cac8ae, type: 3}
+    - {fileID: 400038, guid: c81ab57a689a88b43912a9345820912d, type: 3}
 --- !u!114 &114563461759895010
 MonoBehaviour:
   m_ObjectHideFlags: 1

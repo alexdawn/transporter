@@ -4,13 +4,19 @@ ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Cube_001
+    100004: Empty
     400000: //RootNode
+    400002: Cube_001
+    400004: Empty
     2100000: Roof_001
     2100002: YellowWall
     2100004: Brick
     2100006: Windows_001
     2300000: //RootNode
+    2300002: Cube_001
     3300000: //RootNode
+    3300002: Cube_001
     4300000: Cube_001
     7400000: Default Take
     9500000: //RootNode

@@ -6,9 +6,11 @@ ModelImporter:
     100000: Cube_003
     100002: Plane
     100004: //RootNode
+    100006: Empty
     400000: Cube_003
     400002: Plane
     400004: //RootNode
+    400006: Empty
     2100000: unnamed
     2100002: Brick
     2100004: Windows_001

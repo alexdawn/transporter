@@ -26,7 +26,7 @@ public class GridFeatureManager : MonoBehaviour {
         int randomFeature = (int)Mathf.Floor(featurePrefabs[cell.UrbanLevel - 1].Length * hash.a);
         Transform instance = Instantiate(featurePrefabs[cell.UrbanLevel-1][randomFeature]);
         instance.localPosition = position;
-        instance.localRotation = Quaternion.Euler(-90, 90 * Mathf.Round(hash.b * 4), 0);
+        instance.localRotation = instance.localRotation * Quaternion.Euler(0, 90 * Mathf.Round(hash.b * 4), 0);
         instance.SetParent(container, false);
     }
 }

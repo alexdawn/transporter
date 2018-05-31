@@ -4,7 +4,11 @@ ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Cube
+    100004: Empty
     400000: //RootNode
+    400002: Cube
+    400004: Empty
     2100000: Material
     2100002: Windows_001
     2100004: Roof
@@ -12,7 +16,9 @@ ModelImporter:
     2100008: Roof2
     2100010: Concrete
     2300000: //RootNode
+    2300002: Cube
     3300000: //RootNode
+    3300002: Cube
     4300000: Cube
     7400000: Default Take
     9500000: //RootNode

@@ -6,23 +6,36 @@ ModelImporter:
     100000: Cube
     100002: //RootNode
     100004: Plane
+    100006: Empty
+    100008: BoundaryWall
+    100010: House
     400000: Cube
     400002: //RootNode
     400004: Plane
+    400006: Empty
+    400008: BoundaryWall
+    400010: House
     2100000: Brick
     2100002: YellowWall
     2100004: Roof3
     2100006: Windows_001
     2100008: Door
     2100010: unnamed
+    2100012: Brick_001
     2300000: Cube
     2300002: Plane
     2300004: //RootNode
+    2300006: BoundaryWall
+    2300008: House
     3300000: Cube
     3300002: Plane
     3300004: //RootNode
+    3300006: BoundaryWall
+    3300008: House
     4300000: Cube
     4300002: Plane
+    4300004: BoundaryWall
+    4300006: House
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
