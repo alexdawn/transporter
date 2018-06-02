@@ -2929,7 +2929,7 @@ MonoBehaviour:
   stickMinZoom: -25
   stickMaxZoom: -4.5
   swivelMinZoom: 90
-  swivelMaxZoom: 45
+  swivelMaxZoom: 10
   rotationSpeed: 180
   grid: {fileID: 3895312}
 --- !u!1 &1080095776
