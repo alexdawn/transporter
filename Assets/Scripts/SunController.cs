@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SunController : MonoBehaviour {
+    public float seconds_per_day_night_cycle;
     private Transform tranform;
     private Light light;
     private Vector3 deltaAngles;
@@ -16,7 +17,7 @@ public class SunController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        deltaAngles.x = ((360f / (60f)) * Time.deltaTime) % 360f;
+        deltaAngles.x = ((360f / (seconds_per_day_night_cycle)) * Time.deltaTime) % 360f;
         tranform.Rotate(deltaAngles);
         if(tranform.eulerAngles.x > 180f || tranform.eulerAngles.x < 0f)
         {

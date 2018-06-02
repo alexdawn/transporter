@@ -1,39 +1,37 @@
 fileFormatVersion: 2
-guid: c54d01655b29b974798035263a1dd3a9
+guid: de8d9aa4d445c7d439a6feba82a58abc
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Church
-    100004: Cube
-    100006: Lift
-    100008: Office
-    400000: //RootNode
-    400002: Church
-    400004: Cube
-    400006: Lift
-    400008: Office
-    2100000: unnamed
-    2100002: Concrete_001
-    2100004: Roof_003
-    2100006: Windows_000
-    2100008: Brick_001
-    2100010: Door2_001
-    2100012: Metal
-    2300000: //RootNode
-    2300002: Church
-    2300004: Cube
-    2300006: Lift
-    2300008: Office
-    3300000: //RootNode
-    3300002: Church
-    3300004: Cube
-    3300006: Lift
-    3300008: Office
-    4300000: Cube
-    4300002: Church
-    4300004: Lift
-    4300006: Office
+    100000: Empty
+    100002: //RootNode
+    100004: pylon
+    100006: pylon_001
+    100008: tower
+    100010: Wire
+    400000: Empty
+    400002: //RootNode
+    400004: pylon
+    400006: pylon_001
+    400008: tower
+    400010: Wire
+    2100000: Metal
+    2100002: Yellow
+    2100004: Concrete
+    2100006: Windows_001
+    2100008: Roof
+    2300000: pylon
+    2300002: pylon_001
+    2300004: tower
+    2300006: Wire
+    3300000: pylon
+    3300002: pylon_001
+    3300004: tower
+    3300006: Wire
+    4300000: Wire
+    4300002: pylon_001
+    4300004: pylon
+    4300006: tower
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
@@ -63,39 +61,11 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations:
-    - serializedVersion: 16
-      name: Default Take
-      takeName: Default Take
-      firstFrame: 0
-      lastFrame: 1199
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+    clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.4
+    globalScale: 0.5
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
