@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class SquareGridChunk : MonoBehaviour {
     SquareCell[] cells;
+    List<SquareCell> refreshList;
+    bool flagChunkRefresh = true;
 
     public GridMesh terrain, rivers, roads, water;
     public GridFeatureManager features;
@@ -15,6 +17,7 @@ public class SquareGridChunk : MonoBehaviour {
     {
         gridCanvas = GetComponentInChildren<Canvas>();
         cells = new SquareCell[GridMetrics.chunkSizeX * GridMetrics.chunkSizeZ];
+        refreshList = new List<SquareCell>();
     }
 
 
@@ -28,13 +31,29 @@ public class SquareGridChunk : MonoBehaviour {
 
     public void Refresh()
     {
+        flagChunkRefresh = true;
+        enabled = true;
+    }
+
+    // doesnt currently work due to the way triangulate clears all
+    public void RefreshSingle(SquareCell cell)
+    {
+        refreshList.Add(cell);
         enabled = true;
     }
 
 
     private void LateUpdate()
     {
-        Triangulate(cells);
+        if (flagChunkRefresh)
+        {
+            Triangulate(cells);
+            flagChunkRefresh = false;
+        }
+        else
+        {
+            Triangulate(refreshList.ToArray());
+        }
         enabled = false;
     }
 
@@ -483,6 +502,11 @@ public class SquareGridChunk : MonoBehaviour {
             { TriangulateRiverQuad(v3, v0, v1, v2, cell.RiverSurfaceY, neighbor.RiverSurfaceY, 0.8f, reversed); }
     }
 
+    Color GetColor(SquareCell neighbour, SquareCell self)
+    {
+        return neighbour.BlendEdge && self.BlendEdge ? neighbour.Color : self.Color;
+    }
+
     void AddColors(SquareCell cell, GridDirection direction)
     {
         SquareCell prevNeighbor = cell.GetNeighbor(direction.Previous()) ?? cell;
@@ -491,11 +515,11 @@ public class SquareGridChunk : MonoBehaviour {
         SquareCell next2Neighbor = cell.GetNeighbor(direction.Next2()) ?? cell;
         SquareCell next3Neighbor = cell.GetNeighbor(direction.Next3()) ?? cell;
 
-        Color previousMix = (prevNeighbor.Color + cell.Color) / 2f;
-        Color neighborMix = (neighbor.Color + cell.Color + prevNeighbor.Color + nextNeighbor.Color) / 4f;
-        Color nextMix = (nextNeighbor.Color + cell.Color) / 2f;
-        Color nextNeighborMix = (nextNeighbor.Color + cell.Color + next2Neighbor.Color + next3Neighbor.Color) / 4f;
-        Color next2Mix = (next3Neighbor.Color + cell.Color) / 2f;
+        Color previousMix = (GetColor(prevNeighbor, cell) + cell.Color) / 2f;
+        Color neighborMix = (GetColor(neighbor, cell) + cell.Color + GetColor(prevNeighbor, cell) + GetColor(nextNeighbor, cell)) / 4f;
+        Color nextMix = (GetColor(nextNeighbor, cell) + cell.Color) / 2f;
+        Color nextNeighborMix = (GetColor(nextNeighbor, cell) + cell.Color + GetColor(next2Neighbor, cell) + GetColor(next3Neighbor, cell)) / 4f;
+        Color next2Mix = (GetColor(next3Neighbor, cell) + cell.Color) / 2f;
         if (cell.HasRiver)
         {
             if (cell.HasRiverThroughEdge(direction.Previous()))

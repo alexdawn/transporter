@@ -91,6 +91,8 @@ public class SquareGrid : MonoBehaviour
         cell.coordinates = GridCoordinates.FromOffsetCoordinates(x, z);
         cell.GridElevations = GridElevations.GetVertexHeights(position);
         cell.Color = gridColors[0]; //gridColors[(int)((cell.CentreElevation / (float)GridElevations.maxHeight) * gridColors.Length)];
+        cell.BlendEdge = true;
+        cell.PlantLevel = UnityEngine.Random.Range(0, 10) - 4;
         if (showLabels)
         {
             label.rectTransform.anchoredPosition = new Vector2(x, z);

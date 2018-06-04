@@ -1,79 +1,21 @@
 fileFormatVersion: 2
-guid: 07706eb8254420f478752d2ba34f2f54
+guid: 2f1946804f504864792ac5592ef19c8d
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Chimmey
-    100004: CoolingTower
-    100006: Empty
-    100008: TurbineRoom
-    100010: CoolingTower_001
-    100012: CoolingTower_002
-    100014: GeneratorBuilding
-    100016: GeneratorBuilding_001
-    100018: Pylon
-    100020: TransformerYard1
-    100022: TransformerYard2
-    100024: TransformerYard2_001
-    400000: //RootNode
-    400002: Chimmey
-    400004: CoolingTower
-    400006: Empty
-    400008: TurbineRoom
-    400010: CoolingTower_001
-    400012: CoolingTower_002
-    400014: GeneratorBuilding
-    400016: GeneratorBuilding_001
-    400018: Pylon
-    400020: TransformerYard1
-    400022: TransformerYard2
-    400024: TransformerYard2_001
-    2100000: Concrete2
-    2100002: Concrete
-    2100004: hole_001
-    2100006: Roof_001
-    2100008: Metal_001
-    2100010: Windows_002
-    2100012: Material_002
-    2100014: Metal_002
-    2100016: Material_003
-    2300000: Chimmey
-    2300002: CoolingTower
-    2300004: TurbineRoom
-    2300006: CoolingTower_001
-    2300008: CoolingTower_002
-    2300010: GeneratorBuilding
-    2300012: GeneratorBuilding_001
-    2300014: Pylon
-    2300016: TransformerYard1
-    2300018: TransformerYard2
-    2300020: TransformerYard2_001
-    3300000: Chimmey
-    3300002: CoolingTower
-    3300004: TurbineRoom
-    3300006: CoolingTower_001
-    3300008: CoolingTower_002
-    3300010: GeneratorBuilding
-    3300012: GeneratorBuilding_001
-    3300014: Pylon
-    3300016: TransformerYard1
-    3300018: TransformerYard2
-    3300020: TransformerYard2_001
-    4300000: Chimmey
-    4300002: TurbineRoom
-    4300004: CoolingTower
-    4300006: Pylon
-    4300008: TransformerYard2_001
-    4300010: GeneratorBuilding_001
-    4300012: CoolingTower_002
-    4300014: CoolingTower_001
-    4300016: TransformerYard2
-    4300018: TransformerYard1
-    4300020: GeneratorBuilding
+    100000: Cube
+    100002: Empty
+    100004: //RootNode
+    400000: Cube
+    400002: Empty
+    400004: //RootNode
+    2100000: TreeLeaves
+    2100002: TreeBark
+    2300000: Cube
+    3300000: Cube
+    4300000: Cube
     7400000: Default Take
     9500000: //RootNode
-    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -105,7 +47,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.5
     meshCompression: 0
     addColliders: 0
     importVisibility: 1

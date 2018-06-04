@@ -12,8 +12,11 @@ public class SquareCell : MonoBehaviour {
     float centreElevation = 0;
     GridElevations vertexElevations;
     Color color;
+    bool blendEdge;
     int waterLevel=2;
     int urbanLevel = 0;
+    int plantLevel = 0;
+    int farmLevel = 0;
 
     [SerializeField]
     SquareCell[] neighbors;
@@ -35,8 +38,40 @@ public class SquareCell : MonoBehaviour {
         {
             if (urbanLevel != value)
             {
-                urbanLevel = value;
-                RefreshSelfOnly();
+                urbanLevel = Mathf.Clamp(value, 0, 3);
+                Refresh();
+            }
+        }
+    }
+
+    public int FarmLevel
+    {
+        get
+        {
+            return farmLevel;
+        }
+        set
+        {
+            if (farmLevel != value)
+            {
+                farmLevel = Mathf.Clamp(value, 0, 1);
+                Refresh();
+            }
+        }
+    }
+
+    public int PlantLevel
+    {
+        get
+        {
+            return plantLevel;
+        }
+        set
+        {
+            if (plantLevel != value)
+            {
+                plantLevel = Mathf.Clamp(value, 0, 6);
+                Refresh();
             }
         }
     }
@@ -125,7 +160,7 @@ public class SquareCell : MonoBehaviour {
     void SetRoad(int direction, bool state)
     {
         roads[direction] = state;
-        RefreshSelfOnly();
+        RefreshChunkOnly();
     }
 
     public int GetElevationDifference(GridDirection direction)
@@ -257,13 +292,13 @@ public class SquareCell : MonoBehaviour {
         }
         GridDirection[] neighbors = OutgoingRivers;
         for (int i = 0; i < hasOutgoingRivers.Length; i++) { hasOutgoingRivers[i] = false; }
-        RefreshSelfOnly();
+        RefreshChunkOnly();
 
         foreach (GridDirection direction in neighbors)
         {
             SquareCell neighbor = GetNeighbor(direction);
             hasIncomingRivers[(int)direction.Opposite()] = false;
-            neighbor.RefreshSelfOnly();
+            neighbor.RefreshChunkOnly();
         }
     }
 
@@ -274,10 +309,10 @@ public class SquareCell : MonoBehaviour {
             return;
         }
         hasOutgoingRivers[(int)direction] = false;
-        RefreshSelfOnly();
+        RefreshChunkOnly();
         SquareCell neighbor = GetNeighbor(direction);
         hasIncomingRivers[(int)direction.Opposite()] = false;
-        neighbor.RefreshSelfOnly();
+        neighbor.RefreshChunkOnly();
     }
 
     public void RemoveIncomingRivers()
@@ -288,13 +323,13 @@ public class SquareCell : MonoBehaviour {
         }
         GridDirection[] neighbors = IncomingRivers;
         for (int i = 0; i < hasIncomingRivers.Length; i++) { hasIncomingRivers[i] = false; }
-        RefreshSelfOnly();
+        RefreshChunkOnly();
 
         foreach (GridDirection direction in neighbors)
         {
             SquareCell neighbor = GetNeighbor(direction);
             hasOutgoingRivers[(int)direction.Opposite()] = false;
-            neighbor.RefreshSelfOnly();
+            neighbor.RefreshChunkOnly();
         }
     }
 
@@ -305,10 +340,10 @@ public class SquareCell : MonoBehaviour {
             return;
         }
         hasIncomingRivers[(int)direction] = false;
-        RefreshSelfOnly();
+        RefreshChunkOnly();
         SquareCell neighbor = GetNeighbor(direction);
         hasOutgoingRivers[(int)direction.Opposite()] = false;
-        neighbor.RefreshSelfOnly();
+        neighbor.RefreshChunkOnly();
     }
 
     public void RemoveRivers()
@@ -336,11 +371,11 @@ public class SquareCell : MonoBehaviour {
             RemoveIncomingRiver(direction);
         }
         hasOutgoingRivers[(int)direction] = true;
-        RefreshSelfOnly();
+        RefreshChunkOnly();
 
         neighbor.RemoveOutgoingRiver(direction.Opposite());
         neighbor.hasIncomingRivers[(int)direction.Opposite()] = true;
-        neighbor.RefreshSelfOnly();
+        neighbor.RefreshChunkOnly();
     }
 
 
@@ -432,6 +467,20 @@ public class SquareCell : MonoBehaviour {
         }
     }
 
+    public bool BlendEdge
+    {
+        get { return blendEdge; }
+        set
+        {
+            if (blendEdge == value)
+            {
+                return;
+            }
+            blendEdge = value;
+            Refresh();
+        }
+    }
+
 
     public SquareCell GetNeighbor(GridDirection direction)
     {
@@ -462,8 +511,13 @@ public class SquareCell : MonoBehaviour {
         }
     }
 
-    void RefreshSelfOnly()
+    void RefreshChunkOnly()
     {
         parentChunk.Refresh();
+    }
+
+    void RefreshSelfOnly()
+    {
+        parentChunk.RefreshSingle(this);
     }
 }

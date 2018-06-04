@@ -11,13 +11,19 @@ public enum EditMode
     rivers,
     roads,
     water_level,
-    building
+    building,
+    trees,
+    rocks,
+    mast,
+    lighthouse
 }
 
 public class MapEditor : MonoBehaviour {
     public Color[] colors;
+    public bool[] blends;
     public SquareGrid squareGrid;
     private Color activeColor;
+    private bool activeBlend;
     private EditMode activeMode;
     private bool allowCliffs = false;
     private Vector3 pointerLocation;
@@ -110,6 +116,7 @@ public class MapEditor : MonoBehaviour {
     public void SelectColor (int index)
     {
         activeColor = colors[index];
+        activeBlend = blends[index];
     }
 
 
@@ -132,7 +139,7 @@ public class MapEditor : MonoBehaviour {
     void MoveEditorPointer(SquareCell cell, GridDirection vertex)
     {
         if (activeMode == EditMode.color || activeMode == EditMode.rivers || activeMode == EditMode.roads ||
-            activeMode == EditMode.water_level || activeMode == EditMode.building)
+            activeMode == EditMode.water_level || activeMode == EditMode.building || activeMode == EditMode.trees)
         {
             pointerLocation = GridCoordinates.ToPosition(cell.coordinates) + Vector3.up * cell.CentreElevation * GridMetrics.elevationStep;
         }
@@ -142,7 +149,7 @@ public class MapEditor : MonoBehaviour {
         }
     }
 
-
+    // Need to change gizmo to something which renders in build
     private void OnDrawGizmos()
     {
         if(pointerLocation != null)
@@ -158,7 +165,7 @@ public class MapEditor : MonoBehaviour {
                         Gizmos.DrawSphere(offPos, 0.1f);
                     }
                     if (activeMode == EditMode.color || activeMode == EditMode.rivers || activeMode == EditMode.roads || 
-                        activeMode == EditMode.water_level || activeMode == EditMode.building)
+                        activeMode == EditMode.water_level || activeMode == EditMode.building || activeMode == EditMode.trees)
                     {
                         Gizmos.DrawWireCube(offPos, new Vector3(1, 0, 1));
                     }
@@ -188,6 +195,7 @@ public class MapEditor : MonoBehaviour {
         if(activeMode == EditMode.color)
         {
             cell.Color = activeColor;
+            cell.BlendEdge = activeBlend;
         }
         else if(activeMode == EditMode.elevation)
         {
@@ -262,13 +270,24 @@ public class MapEditor : MonoBehaviour {
         }
         else if(activeMode == EditMode.building)
         {
-            if (Input.GetMouseButton(0) && cell.UrbanLevel < 3 && freshClick)
+            if (Input.GetMouseButton(0) && freshClick)
             {
                 cell.UrbanLevel++;
             }
-            if(Input.GetMouseButton(1) && cell.UrbanLevel > 0 && freshClick)
+            if(Input.GetMouseButton(1) && freshClick)
             {
                 cell.UrbanLevel--;
+            }
+        }
+        else if(activeMode == EditMode.trees)
+        {
+            if (Input.GetMouseButton(0) && freshClick)
+            {
+                cell.PlantLevel++;
+            }
+            if (Input.GetMouseButton(1) && freshClick)
+            {
+                cell.PlantLevel--;
             }
         }
     }
