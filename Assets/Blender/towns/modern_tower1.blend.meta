@@ -1,0 +1,194 @@
+fileFormatVersion: 2
+guid: c81ab57a689a88b43912a9345820912d
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: boxroom
+    100002: boxroom_001
+    100004: boxroom_002
+    100006: boxroom_003
+    100008: boxroom_004
+    100010: boxroom_005
+    100012: boxroom_006
+    100014: boxroom_007
+    100016: boxroom_008
+    100018: boxroom_009
+    100020: boxroom_010
+    100022: boxroom_011
+    100024: boxroom_012
+    100026: boxroom_013
+    100028: boxroom_014
+    100030: boxroom_015
+    100032: boxroom_016
+    100034: Cube_001
+    100036: Empty
+    100038: //RootNode
+    100040: tower
+    400000: boxroom
+    400002: boxroom_001
+    400004: boxroom_002
+    400006: boxroom_003
+    400008: boxroom_004
+    400010: boxroom_005
+    400012: boxroom_006
+    400014: boxroom_007
+    400016: boxroom_008
+    400018: boxroom_009
+    400020: boxroom_010
+    400022: boxroom_011
+    400024: boxroom_012
+    400026: boxroom_013
+    400028: boxroom_014
+    400030: boxroom_015
+    400032: boxroom_016
+    400034: Cube_001
+    400036: Empty
+    400038: //RootNode
+    400040: tower
+    2100000: active_material_index
+    2100002: Material_001
+    2100004: White
+    2100006: Brick_001
+    2100008: Roof_001
+    2100010: Door
+    2100012: Windows_001
+    2300000: boxroom
+    2300002: boxroom_001
+    2300004: boxroom_002
+    2300006: boxroom_003
+    2300008: boxroom_004
+    2300010: boxroom_005
+    2300012: boxroom_006
+    2300014: boxroom_007
+    2300016: boxroom_008
+    2300018: boxroom_009
+    2300020: boxroom_010
+    2300022: boxroom_011
+    2300024: boxroom_012
+    2300026: boxroom_013
+    2300028: boxroom_014
+    2300030: boxroom_015
+    2300032: boxroom_016
+    2300034: Cube_001
+    2300036: tower
+    3300000: boxroom
+    3300002: boxroom_001
+    3300004: boxroom_002
+    3300006: boxroom_003
+    3300008: boxroom_004
+    3300010: boxroom_005
+    3300012: boxroom_006
+    3300014: boxroom_007
+    3300016: boxroom_008
+    3300018: boxroom_009
+    3300020: boxroom_010
+    3300022: boxroom_011
+    3300024: boxroom_012
+    3300026: boxroom_013
+    3300028: boxroom_014
+    3300030: boxroom_015
+    3300032: boxroom_016
+    3300034: Cube_001
+    3300036: tower
+    4300000: boxroom_016
+    4300002: boxroom_015
+    4300004: boxroom_014
+    4300006: boxroom_013
+    4300008: boxroom_012
+    4300010: boxroom_011
+    4300012: boxroom_010
+    4300014: boxroom_009
+    4300016: boxroom_008
+    4300018: boxroom_007
+    4300020: boxroom_006
+    4300022: boxroom_005
+    4300024: boxroom_004
+    4300026: boxroom_003
+    4300028: boxroom_002
+    4300030: boxroom_001
+    4300032: boxroom
+    4300034: tower
+    4300036: Cube_001
+    7400000: Default Take
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.5
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

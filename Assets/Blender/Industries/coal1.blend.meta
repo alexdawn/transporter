@@ -17,6 +17,10 @@ ModelImporter:
     100022: motor_001
     100024: RaisedBuilding_001
     100026: wheels_001
+    100028: CoalPile
+    100030: CoalPile_001
+    100032: CoalPile_002
+    100034: CoalPileWide
     400000: //RootNode
     400002: Cube
     400004: Empty
@@ -31,6 +35,10 @@ ModelImporter:
     400022: motor_001
     400024: RaisedBuilding_001
     400026: wheels_001
+    400028: CoalPile
+    400030: CoalPile_001
+    400032: CoalPile_002
+    400034: CoalPileWide
     2100000: Brick
     2100002: Roof
     2100004: Windows_001
@@ -55,6 +63,10 @@ ModelImporter:
     2300018: motor_001
     2300020: RaisedBuilding_001
     2300022: wheels_001
+    2300024: CoalPile
+    2300026: CoalPile_001
+    2300028: CoalPile_002
+    2300030: CoalPileWide
     3300000: Cube
     3300002: cable
     3300004: lift
@@ -67,6 +79,10 @@ ModelImporter:
     3300018: motor_001
     3300020: RaisedBuilding_001
     3300022: wheels_001
+    3300024: CoalPile
+    3300026: CoalPile_001
+    3300028: CoalPile_002
+    3300030: CoalPileWide
     4300000: Cube
     4300002: RaisedBuilding
     4300004: cable
@@ -79,6 +95,10 @@ ModelImporter:
     4300018: wheels_001
     4300020: motor_001
     4300022: cable_001
+    4300024: CoalPileWide
+    4300026: CoalPile_002
+    4300028: CoalPile_001
+    4300030: CoalPile
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
@@ -112,7 +132,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.5
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
