@@ -472,6 +472,13 @@ MonoBehaviour:
     - {fileID: 400004, guid: b1b08a0b66114b2408350ded7ad43ecd, type: 3}
     - {fileID: 400004, guid: 8e771864d80e8b04c9b5e336d102602b, type: 3}
     - {fileID: 400002, guid: de8d9aa4d445c7d439a6feba82a58abc, type: 3}
+  farmPrefabs: []
+  treePrefabs:
+  - features:
+    - {fileID: 400000, guid: c70c7bf696ab14042ad913b35ba99357, type: 3}
+    - {fileID: 400004, guid: 2f1946804f504864792ac5592ef19c8d, type: 3}
+    - {fileID: 400004, guid: 21e274577511baf498980501081e1d20, type: 3}
+    - {fileID: 400004, guid: 2664de090076fe44b91524e6d73e02fa, type: 3}
 --- !u!114 &114563461759895010
 MonoBehaviour:
   m_ObjectHideFlags: 1
