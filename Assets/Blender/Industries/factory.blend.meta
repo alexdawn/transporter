@@ -6,13 +6,24 @@ ModelImporter:
     100000: Empty
     100002: //RootNode
     100004: factorybuilding1
+    100006: factorybuilding2
+    100008: smokestacks
     400000: Empty
     400002: //RootNode
     400004: factorybuilding1
+    400006: factorybuilding2
+    400008: smokestacks
     2100000: Material
+    2100002: unnamed
     2300000: factorybuilding1
+    2300002: factorybuilding2
+    2300004: smokestacks
     3300000: factorybuilding1
+    3300002: factorybuilding2
+    3300004: smokestacks
     4300000: factorybuilding1
+    4300002: factorybuilding2
+    4300004: smokestacks
     7400000: Default Take
     9500000: //RootNode
     2186277476908879412: ImportLogs
