@@ -197,9 +197,17 @@ public class SquareGridChunk : MonoBehaviour {
 
     void AddCliffEdges(SquareCell cell)
     {
-        // only need to add on north and east sides to prevent dupes
         AddCliffEdge(cell, GridDirection.N);
         AddCliffEdge(cell, GridDirection.E);
+        AddCliffEdge(cell, GridDirection.S);
+        AddCliffEdge(cell, GridDirection.W);
+    }
+
+    Vector2 CrossingPoint(float a, float b, float c, float d)
+    {
+        // where a and b are gradients and c and d are intercepts
+        //returns coordinate of where lines intersect
+        return new Vector2((d - c) / (a - b), a * ((d - c) / (a - b)) + c);
     }
 
 
@@ -218,18 +226,34 @@ public class SquareGridChunk : MonoBehaviour {
             Vector3 n1 = new Vector3(neighbor.coordinates.X, 0, neighbor.coordinates.Z) + GridMetrics.GetEdge(nextN) + Vector3.up * (int)neighbor.GridElevations[nextN] * GridMetrics.elevationStep;
             if (c0 != n0 && c1 != n1)
             {
-                terrain.AddQuad(c0, n0, n1, c1);
-                terrain.AddQuadColor(Color.gray);
+                if (c0.y > n0.y && n1.y > c1.y) // if edges cross heights along edge X
+                {
+                    Vector2 cross = CrossingPoint(c1.y - c0.y, n1.y - n0.y, c0.y, n0.y);
+                    Debug.Log(cross);
+                    Vector3 worldCross = new Vector3(cell.coordinates.X, 0, cell.coordinates.Z)
+                        + GridMetrics.GetEdge(direction.Previous()) 
+                        + (cross.x * 2 * GridMetrics.GetEdge(direction.Next2())) 
+                        + new Vector3(0, cross.y, 0);
+                    terrain.AddTriangle(worldCross, c0, n0);
+                    terrain.AddTriangleColor(Color.cyan);
+                    terrain.AddTriangle(worldCross, n1, c1);
+                    terrain.AddTriangleColor(Color.green);
+                }
+                else if (c0.y > n0.y && c1.y > n1.y) // if one edge is always above the other
+                {
+                    terrain.AddQuad(c0, n0, n1, c1);
+                    terrain.AddQuadColor(Color.yellow);
+                }
             }
-            else if (c0 != n0)
+            else if (c0.y > n0.y)
             {
-                terrain.AddTriangle(c1, c0, n0);
-                terrain.AddTriangleColor(Color.gray);
+                terrain.AddTriangle(c0, n0, c1);
+                terrain.AddTriangleColor(Color.yellow);
             }
-            else if (c1 != n1)
+            else if (c1.y > n1.y)
             {
                 terrain.AddTriangle(c0, n1, c1);
-                terrain.AddTriangleColor(Color.gray);
+                terrain.AddTriangleColor(Color.yellow);
             }
         }
     }

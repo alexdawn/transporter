@@ -9,27 +9,49 @@ ModelImporter:
     100006: //RootNode
     100008: Inflow
     100010: Plane
+    100012: fountainbase
+    100014: fountainwater
+    100016: outflowPlane
+    100018: Domain_Cube_001
     400000: Circle
     400002: Domain
     400004: Empty
     400006: //RootNode
     400008: Inflow
     400010: Plane
+    400012: fountainbase
+    400014: fountainwater
+    400016: outflowPlane
+    400018: Domain_Cube_001
     2100000: unnamed
     2100002: YellowWall
     2100004: Water
+    2100006: Water_001
+    2100008: invisible
     2300000: Circle
     2300002: Domain
     2300004: Inflow
     2300006: Plane
+    2300008: fountainbase
+    2300010: fountainwater
+    2300012: outflowPlane
+    2300014: Domain_Cube_001
     3300000: Circle
     3300002: Domain
     3300004: Inflow
     3300006: Plane
+    3300008: fountainbase
+    3300010: fountainwater
+    3300012: outflowPlane
+    3300014: Domain_Cube_001
     4300000: Plane
     4300002: Inflow
     4300004: Circle
     4300006: Domain
+    4300008: fountainwater
+    4300010: outflowPlane
+    4300012: fountainbase
+    4300014: Domain_Cube_001
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
@@ -63,7 +85,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.5
     meshCompression: 0
     addColliders: 0
     importVisibility: 1

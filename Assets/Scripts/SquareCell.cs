@@ -39,7 +39,14 @@ public class SquareCell : MonoBehaviour {
         {
             if (scenaryObject != value)
             {
+                if (value != 1)
+                {
+                    Flatten();
+                }
                 scenaryObject = Mathf.Clamp(value, 0, 3);
+                plantLevel = 0;
+                urbanLevel = 0;
+                farmLevel = 0;
                 Refresh();
             }
         }
@@ -55,7 +62,11 @@ public class SquareCell : MonoBehaviour {
         {
             if (urbanLevel != value)
             {
+                Flatten();
                 urbanLevel = Mathf.Clamp(value, 0, 3);
+                plantLevel = 0;
+                scenaryObject = 0;
+                farmLevel = 0;
                 Refresh();
             }
         }
@@ -72,6 +83,8 @@ public class SquareCell : MonoBehaviour {
             if (farmLevel != value)
             {
                 farmLevel = Mathf.Clamp(value, 0, 1);
+                plantLevel = 0;
+                urbanLevel = 0;
                 Refresh();
             }
         }
@@ -88,6 +101,9 @@ public class SquareCell : MonoBehaviour {
             if (plantLevel != value)
             {
                 plantLevel = Mathf.Clamp(value, 0, 6);
+                urbanLevel = 0;
+                farmLevel = 0;
+                scenaryObject = 0;
                 Refresh();
             }
         }
@@ -178,6 +194,18 @@ public class SquareCell : MonoBehaviour {
     {
         roads[direction] = state;
         RefreshChunkOnly();
+    }
+
+    public void Flatten()
+    {
+        if (GetMaxElevation() != GetMinElevation())
+        {
+            vertexElevations.Y0 = GetMaxElevation();
+            vertexElevations.Y1 = GetMaxElevation();
+            vertexElevations.Y2 = GetMaxElevation();
+            vertexElevations.Y3 = GetMaxElevation();
+            UpdateCentreElevation();
+        }
     }
 
     public int GetElevationDifference(GridDirection direction)
