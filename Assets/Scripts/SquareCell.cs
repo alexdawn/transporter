@@ -13,10 +13,11 @@ public class SquareCell : MonoBehaviour {
     GridElevations vertexElevations;
     Color color;
     bool blendEdge;
-    int waterLevel=2;
+    int waterLevel = 2;
     int urbanLevel = 0;
     int plantLevel = 0;
     int farmLevel = 0;
+    int scenaryObject = 0;
 
     [SerializeField]
     SquareCell[] neighbors;
@@ -27,6 +28,22 @@ public class SquareCell : MonoBehaviour {
     private bool[] hasOutgoingRivers = new bool[8];
     [SerializeField]
     bool[] roads = new bool[8]; // includes diagonals
+
+    public int ScenaryObject
+    {
+        get 
+        {
+            return scenaryObject;
+        }
+        set
+        {
+            if (scenaryObject != value)
+            {
+                scenaryObject = Mathf.Clamp(value, 0, 3);
+                Refresh();
+            }
+        }
+    }
 
     public int UrbanLevel
     {
