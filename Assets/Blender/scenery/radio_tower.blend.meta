@@ -1,20 +1,44 @@
 fileFormatVersion: 2
-guid: 4de4162224ab0014abad4c2b24f6ce8e
+guid: 14100935c0a82c140b0a44f835865920
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Empty
-    100002: Grid
-    100004: //RootNode
-    400000: Empty
-    400002: Grid
-    400004: //RootNode
-    2100000: Material_001
-    2300000: Grid
-    3300000: Grid
-    4300000: Grid
+    100000: Cube
+    100002: Dish
+    100004: Dish_001
+    100006: //RootNode
+    100008: Tower
+    100010: Tower_001
+    400000: Cube
+    400002: Dish
+    400004: Dish_001
+    400006: //RootNode
+    400008: Tower
+    400010: Tower_001
+    2100000: Light
+    2100002: Material_004
+    2100004: Material_001
+    2100006: Material_003
+    2100008: Material_002
+    2100010: Material
+    2300000: Cube
+    2300002: Dish
+    2300004: Dish_001
+    2300006: Tower
+    2300008: Tower_001
+    3300000: Cube
+    3300002: Dish
+    3300004: Dish_001
+    3300006: Tower
+    3300008: Tower_001
+    4300000: Cube
+    4300002: Dish_001
+    4300004: Tower_001
+    4300006: Dish
+    4300008: Tower
     7400000: Default Take
     9500000: //RootNode
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1

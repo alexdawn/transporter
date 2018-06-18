@@ -1,18 +1,25 @@
 fileFormatVersion: 2
-guid: 4de4162224ab0014abad4c2b24f6ce8e
+guid: 7e2acd39780b7864a8d073992e77f0e4
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Empty
-    100002: Grid
-    100004: //RootNode
-    400000: Empty
-    400002: Grid
-    400004: //RootNode
-    2100000: Material_001
-    2300000: Grid
-    3300000: Grid
-    4300000: Grid
+    100000: house
+    100002: //RootNode
+    100004: tower
+    400000: house
+    400002: //RootNode
+    400004: tower
+    2100000: white
+    2100002: window
+    2100004: roof
+    2100006: grey
+    2100008: door
+    2300000: house
+    2300002: tower
+    3300000: house
+    3300002: tower
+    4300000: tower
+    4300002: house
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}

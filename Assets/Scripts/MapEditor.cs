@@ -18,7 +18,8 @@ public enum EditMode
     lighthouse
 }
 
-public class MapEditor : MonoBehaviour {
+public class MapEditor : MonoBehaviour
+{
     public Color[] colors;
     public bool[] blends;
     public SquareGrid squareGrid;
@@ -113,7 +114,7 @@ public class MapEditor : MonoBehaviour {
         }
     }
 
-    public void SelectColor (int index)
+    public void SelectColor(int index)
     {
         activeColor = colors[index];
         activeBlend = blends[index];
@@ -139,7 +140,8 @@ public class MapEditor : MonoBehaviour {
     void MoveEditorPointer(SquareCell cell, GridDirection vertex)
     {
         if (activeMode == EditMode.color || activeMode == EditMode.rivers || activeMode == EditMode.roads ||
-            activeMode == EditMode.water_level || activeMode == EditMode.building || activeMode == EditMode.trees)
+            activeMode == EditMode.water_level || activeMode == EditMode.building || activeMode == EditMode.trees ||
+            activeMode == EditMode.rocks || activeMode == EditMode.mast || activeMode == EditMode.lighthouse)
         {
             pointerLocation = GridCoordinates.ToPosition(cell.coordinates) + Vector3.up * cell.CentreElevation * GridMetrics.elevationStep;
         }
@@ -152,7 +154,7 @@ public class MapEditor : MonoBehaviour {
     // Need to change gizmo to something which renders in build
     private void OnDrawGizmos()
     {
-        if(pointerLocation != null)
+        if (pointerLocation != null)
         {
             Gizmos.color = Color.white;
             for (int x = 0; x < pointerSize; x++)
@@ -164,8 +166,9 @@ public class MapEditor : MonoBehaviour {
                     {
                         Gizmos.DrawSphere(offPos, 0.1f);
                     }
-                    if (activeMode == EditMode.color || activeMode == EditMode.rivers || activeMode == EditMode.roads || 
-                        activeMode == EditMode.water_level || activeMode == EditMode.building || activeMode == EditMode.trees)
+                    if (activeMode == EditMode.color || activeMode == EditMode.rivers || activeMode == EditMode.roads ||
+                        activeMode == EditMode.water_level || activeMode == EditMode.building || activeMode == EditMode.trees ||
+                        activeMode == EditMode.rocks || activeMode == EditMode.mast || activeMode == EditMode.lighthouse)
                     {
                         Gizmos.DrawWireCube(offPos, new Vector3(1, 0, 1));
                     }
@@ -178,9 +181,9 @@ public class MapEditor : MonoBehaviour {
 
     void EditCells(SquareCell cell, Vector3 hitpoint)
     {
-        for(int x=0; x < pointerSize; x++)
+        for (int x = 0; x < pointerSize; x++)
         {
-            for(int z=0; z<pointerSize; z++)
+            for (int z = 0; z < pointerSize; z++)
             {
                 Vector3 offPos = new Vector3(cell.coordinates.X + x, 0, cell.coordinates.Z + z);
                 SquareCell offCell = squareGrid.GetCell(offPos);
@@ -192,22 +195,22 @@ public class MapEditor : MonoBehaviour {
 
     void EditCell(SquareCell cell, Vector3 hitpoint)
     {
-        if(activeMode == EditMode.color)
+        if (activeMode == EditMode.color)
         {
             cell.Color = activeColor;
             cell.BlendEdge = activeBlend;
         }
-        else if(activeMode == EditMode.elevation)
+        else if (activeMode == EditMode.elevation)
         {
             GridDirection vertex = squareGrid.GetVertex(hitpoint);
-            if (Input.GetMouseButton(0) && (stopWatch.ElapsedMilliseconds > 500f || freshClick)) 
+            if (Input.GetMouseButton(0) && (stopWatch.ElapsedMilliseconds > 500f || freshClick))
             {
                 cell.ChangeVertexElevation(vertex, 1);
-                if(!allowCliffs)
+                if (!allowCliffs)
                 {
-                    if(cell.GetNeighbor(vertex)) cell.GetNeighbor(vertex).ChangeVertexElevation(vertex.Opposite(), 1);
-                    if(cell.GetNeighbor(vertex.Next())) cell.GetNeighbor(vertex.Next()).ChangeVertexElevation(vertex.Previous2(), 1);
-                    if(cell.GetNeighbor(vertex.Previous())) cell.GetNeighbor(vertex.Previous()).ChangeVertexElevation(vertex.Next2(), 1);
+                    if (cell.GetNeighbor(vertex)) cell.GetNeighbor(vertex).ChangeVertexElevation(vertex.Opposite(), 1);
+                    if (cell.GetNeighbor(vertex.Next())) cell.GetNeighbor(vertex.Next()).ChangeVertexElevation(vertex.Previous2(), 1);
+                    if (cell.GetNeighbor(vertex.Previous())) cell.GetNeighbor(vertex.Previous()).ChangeVertexElevation(vertex.Next2(), 1);
                 }
                 stopWatch.Reset();
                 stopWatch.Start();
@@ -219,19 +222,19 @@ public class MapEditor : MonoBehaviour {
                 {
                     if (cell.GetNeighbor(vertex)) cell.GetNeighbor(vertex).ChangeVertexElevation(vertex.Opposite(), -1);
                     if (cell.GetNeighbor(vertex.Next())) cell.GetNeighbor(vertex.Next()).ChangeVertexElevation(vertex.Previous2(), -1);
-                    if (cell.GetNeighbor(vertex.Previous())) cell.GetNeighbor(vertex.Previous()).ChangeVertexElevation(vertex.Next2(),-1);
+                    if (cell.GetNeighbor(vertex.Previous())) cell.GetNeighbor(vertex.Previous()).ChangeVertexElevation(vertex.Next2(), -1);
                 }
                 stopWatch.Reset();
                 stopWatch.Start();
             }
         }
-        else if(activeMode == EditMode.rivers)
+        else if (activeMode == EditMode.rivers)
         {
-            if(Input.GetMouseButton(1))
+            if (Input.GetMouseButton(1))
             {
                 cell.RemoveRivers();
             }
-            else if(isDrag)
+            else if (isDrag)
             {
                 SquareCell otherCell = cell.GetNeighbor(dragDirection.Opposite()); // work with brushes
                 if (otherCell)
@@ -240,7 +243,7 @@ public class MapEditor : MonoBehaviour {
                 }
             }
         }
-        else if(activeMode == EditMode.roads)
+        else if (activeMode == EditMode.roads)
         {
             float fracX = hitpoint.x - Mathf.Floor(hitpoint.x);
             float fracZ = hitpoint.z - Mathf.Floor(hitpoint.z);
@@ -257,7 +260,7 @@ public class MapEditor : MonoBehaviour {
                 }
             }
         }
-        else if(activeMode == EditMode.water_level)
+        else if (activeMode == EditMode.water_level)
         {
             if (Input.GetMouseButton(0) && freshClick)
             {
@@ -268,18 +271,18 @@ public class MapEditor : MonoBehaviour {
                 cell.WaterLevel--;
             }
         }
-        else if(activeMode == EditMode.building)
+        else if (activeMode == EditMode.building)
         {
             if (Input.GetMouseButton(0) && freshClick)
             {
                 cell.UrbanLevel++;
             }
-            if(Input.GetMouseButton(1) && freshClick)
+            if (Input.GetMouseButton(1) && freshClick)
             {
                 cell.UrbanLevel--;
             }
         }
-        else if(activeMode == EditMode.trees)
+        else if (activeMode == EditMode.trees)
         {
             if (Input.GetMouseButton(0) && freshClick)
             {
@@ -288,6 +291,39 @@ public class MapEditor : MonoBehaviour {
             if (Input.GetMouseButton(1) && freshClick)
             {
                 cell.PlantLevel--;
+            }
+        }
+        else if (activeMode == EditMode.rocks)
+        {
+            if (Input.GetMouseButton(0) && freshClick)
+            {
+                cell.ScenaryObject = 1;
+            }
+            if (Input.GetMouseButton(1) && freshClick)
+            {
+                cell.ScenaryObject = 0;
+            }
+        }
+        else if (activeMode == EditMode.mast)
+        {
+            if (Input.GetMouseButton(0) && freshClick)
+            {
+                cell.ScenaryObject = 2;
+            }
+            if (Input.GetMouseButton(1) && freshClick)
+            {
+                cell.ScenaryObject = 0;
+            }
+        }
+        else if (activeMode == EditMode.lighthouse)
+        {
+            if (Input.GetMouseButton(0) && freshClick)
+            {
+                cell.ScenaryObject = 3;
+            }
+            if (Input.GetMouseButton(1) && freshClick)
+            {
+                cell.ScenaryObject = 0;
             }
         }
     }

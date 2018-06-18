@@ -1,7 +1,7 @@
 # transporter
 OTTD clone
 
-![Screenshot](https://github.com/alexdawn/transporter/blob/master/screenshot2.PNG)
+![Screenshot](https://github.com/alexdawn/transporter/blob/master/screenshots/moreScenary.PNG)
 
 features:
 

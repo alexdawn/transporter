@@ -479,6 +479,11 @@ MonoBehaviour:
     - {fileID: 400004, guid: 2f1946804f504864792ac5592ef19c8d, type: 3}
     - {fileID: 400004, guid: 21e274577511baf498980501081e1d20, type: 3}
     - {fileID: 400004, guid: 2664de090076fe44b91524e6d73e02fa, type: 3}
+  scenaryPrefabs:
+  - features:
+    - {fileID: 400004, guid: 4de4162224ab0014abad4c2b24f6ce8e, type: 3}
+    - {fileID: 400006, guid: 14100935c0a82c140b0a44f835865920, type: 3}
+    - {fileID: 400002, guid: 7e2acd39780b7864a8d073992e77f0e4, type: 3}
 --- !u!114 &114563461759895010
 MonoBehaviour:
   m_ObjectHideFlags: 1
