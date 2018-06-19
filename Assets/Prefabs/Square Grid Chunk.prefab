@@ -485,6 +485,14 @@ MonoBehaviour:
     - {fileID: 400004, guid: 4de4162224ab0014abad4c2b24f6ce8e, type: 3}
     - {fileID: 400006, guid: 14100935c0a82c140b0a44f835865920, type: 3}
     - {fileID: 400002, guid: 7e2acd39780b7864a8d073992e77f0e4, type: 3}
+  industryPrefabs:
+  - features:
+    - {fileID: 400000, guid: 065f36575f9223a4ab4af090c32a2732, type: 3}
+    - {fileID: 400000, guid: 07706eb8254420f478752d2ba34f2f54, type: 3}
+    - {fileID: 400042, guid: 1bc2b613a72aeda429ebb3002581446b, type: 3}
+    - {fileID: 400004, guid: 350ea78ab2727424ba8b3a7fa163d6cd, type: 3}
+    - {fileID: 400092, guid: 076e3ad22fedfe140bc587c7684eb193, type: 3}
+    - {fileID: 400002, guid: 1e3dcbd2a616b764fb5ab26f65b2ae20, type: 3}
 --- !u!114 &114563461759895010
 MonoBehaviour:
   m_ObjectHideFlags: 1

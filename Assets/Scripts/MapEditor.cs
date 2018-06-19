@@ -15,7 +15,18 @@ public enum EditMode
     trees,
     rocks,
     mast,
-    lighthouse
+    lighthouse,
+    industry
+}
+
+public enum Industry
+{
+    CoalMine,
+    PowerStation,
+    Forest,
+    Sawmill,
+    OilRefinery,
+    Factory
 }
 
 public class MapEditor : MonoBehaviour
@@ -26,6 +37,7 @@ public class MapEditor : MonoBehaviour
     private Color activeColor;
     private bool activeBlend;
     private EditMode activeMode;
+    private Industry activeIndustry=0;
     private bool allowCliffs = false;
     private Vector3 pointerLocation;
     public int pointerSize = 1;
@@ -126,6 +138,11 @@ public class MapEditor : MonoBehaviour
         activeMode = (EditMode)mode;
     }
 
+    public void SetIndustry(int mode)
+    {
+        activeIndustry = (Industry)mode;
+    }
+
 
     public void ToggleCliffs()
     {
@@ -141,7 +158,7 @@ public class MapEditor : MonoBehaviour
     {
         if (activeMode == EditMode.color || activeMode == EditMode.rivers || activeMode == EditMode.roads ||
             activeMode == EditMode.water_level || activeMode == EditMode.building || activeMode == EditMode.trees ||
-            activeMode == EditMode.rocks || activeMode == EditMode.mast || activeMode == EditMode.lighthouse)
+            activeMode == EditMode.rocks || activeMode == EditMode.mast || activeMode == EditMode.lighthouse || activeMode == EditMode.industry)
         {
             pointerLocation = GridCoordinates.ToPosition(cell.coordinates) + Vector3.up * cell.CentreElevation * GridMetrics.elevationStep;
         }
@@ -168,7 +185,7 @@ public class MapEditor : MonoBehaviour
                     }
                     if (activeMode == EditMode.color || activeMode == EditMode.rivers || activeMode == EditMode.roads ||
                         activeMode == EditMode.water_level || activeMode == EditMode.building || activeMode == EditMode.trees ||
-                        activeMode == EditMode.rocks || activeMode == EditMode.mast || activeMode == EditMode.lighthouse)
+                        activeMode == EditMode.rocks || activeMode == EditMode.mast || activeMode == EditMode.lighthouse || activeMode == EditMode.industry)
                     {
                         Gizmos.DrawWireCube(offPos, new Vector3(1, 0, 1));
                     }
@@ -324,6 +341,17 @@ public class MapEditor : MonoBehaviour
             if (Input.GetMouseButton(1) && freshClick)
             {
                 cell.ScenaryObject = 0;
+            }
+        }
+        else if (activeMode == EditMode.industry)
+        {
+            if (Input.GetMouseButton(0) && freshClick)
+            {
+                cell.Industry = (int)activeIndustry+1;
+            }
+            if (Input.GetMouseButton(1) && freshClick)
+            {
+                cell.Industry = 0;
             }
         }
     }

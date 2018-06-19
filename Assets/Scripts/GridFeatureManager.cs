@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GridFeatureManager : MonoBehaviour {
-    public FeatureList[] featurePrefabs, farmPrefabs, treePrefabs, scenaryPrefabs;
+    public FeatureList[] featurePrefabs, farmPrefabs, treePrefabs, scenaryPrefabs, industryPrefabs;
     Transform container;
 
     public void Clear() {
@@ -25,6 +25,13 @@ public class GridFeatureManager : MonoBehaviour {
             Transform instance = Instantiate(featurePrefabs[cell.UrbanLevel - 1][randomFeature]);
             instance.localPosition = position;
             instance.localRotation = instance.localRotation * Quaternion.Euler(0, 90 * Mathf.Round(hash.b * 4), 0);
+            instance.SetParent(container, false);
+        }
+        else if (cell.Industry != 0)
+        {
+            Transform instance = Instantiate(industryPrefabs[0][cell.Industry -1]);
+            instance.localPosition = position;
+            //instance.localRotation = instance.localRotation * Quaternion.Euler(0, 90 * Mathf.Round(hash.b * 4), 0);
             instance.SetParent(container, false);
         }
         else if (cell.FarmLevel != 0)

@@ -18,6 +18,7 @@ public class SquareCell : MonoBehaviour {
     int plantLevel = 0;
     int farmLevel = 0;
     int scenaryObject = 0;
+    int industry = 0;
 
     [SerializeField]
     SquareCell[] neighbors;
@@ -28,6 +29,23 @@ public class SquareCell : MonoBehaviour {
     private bool[] hasOutgoingRivers = new bool[8];
     [SerializeField]
     bool[] roads = new bool[8]; // includes diagonals
+
+    public int Industry
+    {
+        get
+        {
+            return industry;
+        }
+        set
+        {
+            industry = value;
+            plantLevel = 0;
+            urbanLevel = 0;
+            farmLevel = 0;
+            scenaryObject = 0;
+            Refresh();
+        }
+    }
 
     public int ScenaryObject
     {

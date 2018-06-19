@@ -1,72 +1,25 @@
 fileFormatVersion: 2
-guid: 1e3dcbd2a616b764fb5ab26f65b2ae20
+guid: 02cbad1b1bfb4aa4189ac518363bbbfa
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Empty
-    100002: //RootNode
-    100004: factorybuilding1
-    100006: factorybuilding2
-    100008: smokestacks
-    100010: Cube
-    100012: Cube_001
-    100014: Cube_002
-    100016: Drum
-    100018: Drum_001
-    100020: Drum_002
-    100022: Drum_003
-    400000: Empty
-    400002: //RootNode
-    400004: factorybuilding1
-    400006: factorybuilding2
-    400008: smokestacks
-    400010: Cube
-    400012: Cube_001
-    400014: Cube_002
-    400016: Drum
-    400018: Drum_001
-    400020: Drum_002
-    400022: Drum_003
-    2100000: Material
-    2100002: unnamed
-    2100004: steel
-    2100006: Roof
-    2100008: Brick
-    2100010: Windows_001
-    2100012: Concrete
-    2300000: factorybuilding1
-    2300002: factorybuilding2
-    2300004: smokestacks
-    2300006: Cube
-    2300008: Cube_001
-    2300010: Cube_002
-    2300012: Drum
-    2300014: Drum_001
-    2300016: Drum_002
-    2300018: Drum_003
-    3300000: factorybuilding1
-    3300002: factorybuilding2
-    3300004: smokestacks
-    3300006: Cube
-    3300008: Cube_001
-    3300010: Cube_002
-    3300012: Drum
-    3300014: Drum_001
-    3300016: Drum_002
-    3300018: Drum_003
-    4300000: factorybuilding1
-    4300002: factorybuilding2
-    4300004: smokestacks
-    4300006: Cube_002
-    4300008: Cube_001
-    4300010: Cube
-    4300012: Drum_003
-    4300014: Drum_002
-    4300016: Drum_001
-    4300018: Drum
+    100000: Building1
+    100002: Empty
+    100004: Furnace
+    100006: //RootNode
+    400000: Building1
+    400002: Empty
+    400004: Furnace
+    400006: //RootNode
+    2100000: unnamed
+    2300000: Building1
+    2300002: Furnace
+    3300000: Building1
+    3300002: Furnace
+    4300000: Furnace
+    4300002: Building1
     7400000: Default Take
     9500000: //RootNode
-    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -98,7 +51,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.5
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
