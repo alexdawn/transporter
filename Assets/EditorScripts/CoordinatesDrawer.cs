@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿#if (UNITY_EDITOR) 
+
+using UnityEngine;
 using UnityEditor;
 
 [CustomPropertyDrawer(typeof(GridCoordinates))]
@@ -15,3 +17,5 @@ public class CoordinatesDrawer : PropertyDrawer
         GUI.Label(position, coordinates.ToString());
     }
 }
+
+#endif

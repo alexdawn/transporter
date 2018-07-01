@@ -264,7 +264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chunkCountX: 2
   chunkCountZ: 2
-  showLabels: 1
+  showLabels: 0
   cellPrefab: {fileID: 114674814309831850, guid: 6eaa513af5abec04ba5a9d57e3cc8e7a,
     type: 2}
   chunkPrefab: {fileID: 114014414051205848, guid: ce28644f870dc644c88729f1f080876a,
