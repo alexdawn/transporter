@@ -6,7 +6,7 @@ public struct GridMetrics
     public const float elevationStep = 2f / 9f;
     public const float gridSize = 1f;
     public const float halfSize = gridSize / 2;
-    public const int chunkSizeX = 5, chunkSizeZ = 5;
+    public const int chunkSizeX = 16, chunkSizeZ = 16;
     public const float solidFactor = 0.8f;
     public const float blendFactor = 1f - solidFactor;
     public const float streamBedElevationOffset = -1f;

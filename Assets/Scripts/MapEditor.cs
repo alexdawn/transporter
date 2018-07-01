@@ -16,7 +16,8 @@ public enum EditMode
     rocks,
     mast,
     lighthouse,
-    industry
+    industry,
+    town
 }
 
 public enum Industry
@@ -26,7 +27,11 @@ public enum Industry
     Forest,
     Sawmill,
     OilRefinery,
-    Factory
+    Factory,
+    IronMine,
+    OilWell,
+    Farm,
+    Bank
 }
 
 public class MapEditor : MonoBehaviour
@@ -34,6 +39,7 @@ public class MapEditor : MonoBehaviour
     public Color[] colors;
     public bool[] blends;
     public SquareGrid squareGrid;
+    public GameObject townPrefab;
     private Color activeColor;
     private bool activeBlend;
     private EditMode activeMode;
@@ -158,7 +164,7 @@ public class MapEditor : MonoBehaviour
     {
         if (activeMode == EditMode.color || activeMode == EditMode.rivers || activeMode == EditMode.roads ||
             activeMode == EditMode.water_level || activeMode == EditMode.building || activeMode == EditMode.trees ||
-            activeMode == EditMode.rocks || activeMode == EditMode.mast || activeMode == EditMode.lighthouse || activeMode == EditMode.industry)
+            activeMode == EditMode.rocks || activeMode == EditMode.mast || activeMode == EditMode.lighthouse || activeMode == EditMode.industry || activeMode == EditMode. town)
         {
             pointerLocation = GridCoordinates.ToPosition(cell.coordinates) + Vector3.up * cell.CentreElevation * GridMetrics.elevationStep;
         }
@@ -185,7 +191,7 @@ public class MapEditor : MonoBehaviour
                     }
                     if (activeMode == EditMode.color || activeMode == EditMode.rivers || activeMode == EditMode.roads ||
                         activeMode == EditMode.water_level || activeMode == EditMode.building || activeMode == EditMode.trees ||
-                        activeMode == EditMode.rocks || activeMode == EditMode.mast || activeMode == EditMode.lighthouse || activeMode == EditMode.industry)
+                        activeMode == EditMode.rocks || activeMode == EditMode.mast || activeMode == EditMode.lighthouse || activeMode == EditMode.industry || activeMode == EditMode.town)
                     {
                         Gizmos.DrawWireCube(offPos, new Vector3(1, 0, 1));
                     }
@@ -352,6 +358,17 @@ public class MapEditor : MonoBehaviour
             if (Input.GetMouseButton(1) && freshClick)
             {
                 cell.Industry = 0;
+            }
+        }
+        else if (activeMode == EditMode.town)
+        {
+            if (cell.Town == null)
+            {
+                GameObject town = Instantiate(townPrefab);
+                TownManager manager = town.GetComponent<TownManager>();
+                town.transform.position = GridCoordinates.ToPosition(cell.coordinates) + new Vector3(0, cell.CentreElevation * GridMetrics.elevationStep, 0);
+                manager.Init(cell);
+                cell.Town = manager;
             }
         }
     }

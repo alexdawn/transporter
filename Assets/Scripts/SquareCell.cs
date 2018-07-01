@@ -8,6 +8,7 @@ public class SquareCell : MonoBehaviour {
     public SquareGridChunk parentChunk;
     public GridCoordinates coordinates;
     public RectTransform uiRect;
+    public TownManager Town;
 
     float centreElevation = 0;
     GridElevations vertexElevations;
