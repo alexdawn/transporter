@@ -488,7 +488,7 @@ MonoBehaviour:
   industryPrefabs:
   - features:
     - {fileID: 400000, guid: 065f36575f9223a4ab4af090c32a2732, type: 3}
-    - {fileID: 400000, guid: 07706eb8254420f478752d2ba34f2f54, type: 3}
+    - {fileID: 4529969458395618, guid: daf97e49ea6c2bf40a6b3b19042ecffe, type: 2}
     - {fileID: 400042, guid: 1bc2b613a72aeda429ebb3002581446b, type: 3}
     - {fileID: 400004, guid: 350ea78ab2727424ba8b3a7fa163d6cd, type: 3}
     - {fileID: 400092, guid: 076e3ad22fedfe140bc587c7684eb193, type: 3}
