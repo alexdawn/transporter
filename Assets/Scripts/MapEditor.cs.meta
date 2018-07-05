@@ -3,7 +3,11 @@ guid: a2884b6fc8beee749b0cbb19c52d9f2a
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - squareGrid: {instanceID: 0}
+  - townPrefab: {instanceID: 0}
+  - tileSelectPrefab: {instanceID: 0}
+  - edgeSelectPrefab: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -40,6 +41,8 @@ public class MapEditor : MonoBehaviour
     public bool[] blends;
     public SquareGrid squareGrid;
     public GameObject townPrefab;
+    public Transform tileSelectPrefab, edgeSelectPrefab;
+    private Transform[] highlight;
     private Color activeColor;
     private bool activeBlend;
     private EditMode activeMode;
@@ -50,6 +53,7 @@ public class MapEditor : MonoBehaviour
     bool isDrag, freshClick = false;
     GridDirection dragDirection;
     SquareCell currentCell, previousCell;
+    GridDirection vertexDirection;
     Stopwatch stopWatch = new Stopwatch();
 
     void Awake()
@@ -78,6 +82,7 @@ public class MapEditor : MonoBehaviour
             freshClick = false;
         }
         HandleMousePosition();
+        Draw();
     }
 
 
@@ -128,7 +133,8 @@ public class MapEditor : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(inputRay, out hit))
         {
-            MoveEditorPointer(squareGrid.GetCell(hit.point), squareGrid.GetVertex(hit.point));
+            vertexDirection = squareGrid.GetVertex(hit.point);
+            MoveEditorPointer(squareGrid.GetCell(hit.point), vertexDirection);
         }
     }
 
@@ -174,26 +180,40 @@ public class MapEditor : MonoBehaviour
         }
     }
 
-    // Need to change gizmo to something which renders in build
-    private void OnDrawGizmos()
+    private void Draw()
     {
         if (pointerLocation != null)
         {
-            Gizmos.color = Color.white;
+            Array.Resize(ref highlight, (int)Mathf.Pow(pointerSize, 2));
             for (int x = 0; x < pointerSize; x++)
             {
                 for (int z = 0; z < pointerSize; z++)
                 {
+                    int index = z + x * pointerSize;
                     Vector3 offPos = pointerLocation + new Vector3(x, 0, z);
                     if (activeMode == EditMode.elevation)
-                    {
-                        Gizmos.DrawSphere(offPos, 0.1f);
+                    {   
+                        if (highlight[index])
+                        {
+                            Destroy(highlight[index].gameObject);
+                        }
+                        highlight[index] = Instantiate(edgeSelectPrefab);
+                        float yOffset = squareGrid.GetCellOffset(pointerLocation, x, z).GetMaxElevation() * GridMetrics.elevationStep;
+                        offPos.y = yOffset;
+                        highlight[index].localPosition = offPos;
                     }
                     if (activeMode == EditMode.color || activeMode == EditMode.rivers || activeMode == EditMode.roads ||
                         activeMode == EditMode.water_level || activeMode == EditMode.building || activeMode == EditMode.trees ||
                         activeMode == EditMode.rocks || activeMode == EditMode.mast || activeMode == EditMode.lighthouse || activeMode == EditMode.industry || activeMode == EditMode.town)
                     {
-                        Gizmos.DrawWireCube(offPos, new Vector3(1, 0, 1));
+                        if (highlight[index])
+                        {
+                            Destroy(highlight[index].gameObject);
+                        }
+                        highlight[index] = Instantiate(tileSelectPrefab);
+                        float yOffset = (float)squareGrid.GetCellOffset(pointerLocation, x, z).GetVertexElevations[vertexDirection] * GridMetrics.elevationStep;
+                        offPos.y = yOffset;
+                        highlight[index].localPosition = offPos;
                     }
                 }
             }

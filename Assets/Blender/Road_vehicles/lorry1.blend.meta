@@ -13,6 +13,19 @@ ModelImporter:
     100014: Cube_007
     100016: Cube_008
     100018: //RootNode
+    100020: Cube_009
+    100022: Cube_010
+    100024: Cube_011
+    100026: Cube_012
+    100028: Cube_013
+    100030: Cube_014
+    100032: Cylinder_000
+    100034: Cylinder_044
+    100036: Cylinder_045
+    100038: Cylinder_054
+    100040: Cylinder_055
+    100042: Cylinder_058
+    100044: Drum
     400000: Cube_000
     400002: Cube_001
     400004: Cube_002
@@ -23,12 +36,30 @@ ModelImporter:
     400014: Cube_007
     400016: Cube_008
     400018: //RootNode
+    400020: Cube_009
+    400022: Cube_010
+    400024: Cube_011
+    400026: Cube_012
+    400028: Cube_013
+    400030: Cube_014
+    400032: Cylinder_000
+    400034: Cylinder_044
+    400036: Cylinder_045
+    400038: Cylinder_054
+    400040: Cylinder_055
+    400042: Cylinder_058
+    400044: Drum
     2100000: Metal
     2100002: Rubber
     2100004: Material
     2100006: Window
     2100008: Roof
     2100010: Wood
+    2100012: Material_002
+    2100014: Coal_002
+    2100016: Wood_001
+    2100018: Material_001
+    2100020: steel
     2300000: Cube_000
     2300002: Cube_001
     2300004: Cube_002
@@ -38,6 +69,19 @@ ModelImporter:
     2300012: Cube_006
     2300014: Cube_007
     2300016: Cube_008
+    2300018: Cube_009
+    2300020: Cube_010
+    2300022: Cube_011
+    2300024: Cube_012
+    2300026: Cube_013
+    2300028: Cube_014
+    2300030: Cylinder_000
+    2300032: Cylinder_044
+    2300034: Cylinder_045
+    2300036: Cylinder_054
+    2300038: Cylinder_055
+    2300040: Cylinder_058
+    2300042: Drum
     3300000: Cube_000
     3300002: Cube_001
     3300004: Cube_002
@@ -47,6 +91,19 @@ ModelImporter:
     3300012: Cube_006
     3300014: Cube_007
     3300016: Cube_008
+    3300018: Cube_009
+    3300020: Cube_010
+    3300022: Cube_011
+    3300024: Cube_012
+    3300026: Cube_013
+    3300028: Cube_014
+    3300030: Cylinder_000
+    3300032: Cylinder_044
+    3300034: Cylinder_045
+    3300036: Cylinder_054
+    3300038: Cylinder_055
+    3300040: Cylinder_058
+    3300042: Drum
     4300000: Cube_008
     4300002: Cube_005
     4300004: Cube_004
@@ -56,6 +113,19 @@ ModelImporter:
     4300012: Cube_000
     4300014: Cube_003
     4300016: Cube_002
+    4300018: Cube_014
+    4300020: Cube_013
+    4300022: Cube_009
+    4300024: Cube_012
+    4300026: Cube_011
+    4300028: Cube_010
+    4300030: Cylinder_000
+    4300032: Cylinder_044
+    4300034: Cylinder_045
+    4300036: Cylinder_054
+    4300038: Cylinder_055
+    4300040: Cylinder_058
+    4300042: Drum
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}

@@ -122,6 +122,14 @@ public class SquareGrid : MonoBehaviour
         return cells[index];
     }
 
+    public SquareCell GetCellOffset(Vector3 position, int x, int z)
+    {
+        position = transform.InverseTransformPoint(position);
+        GridCoordinates coordinates = GridCoordinates.FromPosition(position);
+        int index = coordinates.X + x + (coordinates.Z + z) * cellCountX;
+        return cells[index];
+    }
+
 
     public GridDirection GetVertex(Vector3 position)
     {

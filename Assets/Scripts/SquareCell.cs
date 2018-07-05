@@ -245,6 +245,13 @@ public class SquareCell : MonoBehaviour {
         return Mathf.Min(vertexElevations.Y0, vertexElevations.Y1, vertexElevations.Y2, vertexElevations.Y3);
     }
 
+    public GridElevations GetVertexElevations
+    {
+        get{
+            return vertexElevations;
+        }
+    }
+
     public bool HasCliff(GridDirection direction)
     {
         SquareCell neighbor = GetNeighbor(direction);
