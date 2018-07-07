@@ -16,7 +16,7 @@ public class GUI_DragPanel : MonoBehaviour, IPointerDownHandler, IDragHandler
         if (canvas != null)
         {
             canvasRectTransform = canvas.transform as RectTransform;
-            panelRectTransform = this.gameObject.transform as RectTransform;
+            panelRectTransform = transform.parent as RectTransform;
         }
     }
 
