@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667546, g: 0.48427135, b: 0.5645225, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -482,13 +482,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2884b6fc8beee749b0cbb19c52d9f2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colors:
-  - {r: 0.18823531, g: 0.34901962, b: 0.07058824, a: 1}
-  - {r: 0.26666668, g: 0.1254902, b: 0.039215688, a: 1}
-  - {r: 0.67058825, g: 0.5019608, b: 0.20000002, a: 1}
-  - {r: 0.75294125, g: 0.8117648, b: 0.8588236, a: 1}
-  - {r: 0.37254903, g: 0.37254903, b: 0.37254903, a: 1}
-  blends: 0101010100
+  materials:
+  - tileTypeName: Grass
+    color: {r: 0.1542472, g: 0.286, b: 0.0578427, a: 0}
+    blendEdge: 1
+    decays: 0
+    lifetime: 0
+  - tileTypeName: Mud
+    color: {r: 0.26666668, g: 0.1254902, b: 0.039215688, a: 0}
+    blendEdge: 1
+    decays: 0
+    lifetime: 15000
+  - tileTypeName: Sand
+    color: {r: 0.67058825, g: 0.5019608, b: 0.2, a: 0}
+    blendEdge: 1
+    decays: 0
+    lifetime: 0
+  - tileTypeName: Ice
+    color: {r: 0.7529412, g: 0.8117647, b: 0.85882354, a: 0}
+    blendEdge: 1
+    decays: 0
+    lifetime: 0
+  - tileTypeName: Concrete
+    color: {r: 0.37254903, g: 0.37254903, b: 0.37254903, a: 0}
+    blendEdge: 0
+    decays: 0
+    lifetime: 0
   squareGrid: {fileID: 3895312}
   townPrefab: {fileID: 1034421900409962, guid: f64530a050c4f2149b7b1f980c484b66, type: 2}
   tileSelectPrefab: {fileID: 4466827519363042, guid: 8b92b66582e815b409da5049de062deb,
@@ -1449,7 +1468,7 @@ GameObject:
   - component: {fileID: 164516079}
   - component: {fileID: 164516080}
   m_Layer: 5
-  m_Name: Toggle Brown
+  m_Name: Toggle Mud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1518,7 +1537,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 10150428}
-        m_MethodName: SelectColor
+        m_MethodName: SelectMaterial
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1708,13 +1727,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 170076733}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &170076736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2201,7 +2220,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2734,6 +2753,34 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 434650732}
+--- !u!1 &439378594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 439378595}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &439378595
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 439378594}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -22.655666, y: -20.271538, z: -41.860123}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &447544453
 GameObject:
   m_ObjectHideFlags: 0
@@ -5364,7 +5411,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5480,7 +5527,7 @@ GameObject:
   - component: {fileID: 907788601}
   - component: {fileID: 907788602}
   m_Layer: 5
-  m_Name: Toggle Yellow
+  m_Name: Toggle Sand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5549,7 +5596,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 10150428}
-        m_MethodName: SelectColor
+        m_MethodName: SelectMaterial
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5721,7 +5768,7 @@ GameObject:
   - component: {fileID: 929718065}
   - component: {fileID: 929718066}
   m_Layer: 5
-  m_Name: Toggle Grey
+  m_Name: Toggle Concrete
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5790,7 +5837,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 10150428}
-        m_MethodName: SelectColor
+        m_MethodName: SelectMaterial
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5955,7 +6002,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &986159583
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6451,7 +6498,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1032867668}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 12.770476, y: 0, z: 10.857428}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1740812248}
@@ -8018,7 +8065,7 @@ GameObject:
   - component: {fileID: 1244655386}
   - component: {fileID: 1244655387}
   m_Layer: 5
-  m_Name: Toggle White
+  m_Name: Toggle Snow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8087,7 +8134,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 10150428}
-        m_MethodName: SelectColor
+        m_MethodName: SelectMaterial
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9732,7 +9779,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1488264309}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -45}
+  m_LocalPosition: {x: 0, y: 0, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 282840814}
@@ -12588,7 +12635,7 @@ GameObject:
   - component: {fileID: 2102579832}
   - component: {fileID: 2102579833}
   m_Layer: 5
-  m_Name: Toggle Green
+  m_Name: Toggle Grass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12657,7 +12704,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 10150428}
-        m_MethodName: SelectColor
+        m_MethodName: SelectMaterial
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

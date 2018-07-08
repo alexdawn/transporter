@@ -37,14 +37,12 @@ public enum Industry
 
 public class MapEditor : MonoBehaviour
 {
-    public Color[] colors;
-    public bool[] blends;
+    public GroundMaterial[] materials;
     public SquareGrid squareGrid;
     public GameObject townPrefab;
     public Transform tileSelectPrefab, edgeSelectPrefab;
     private Transform[] highlight;
-    private Color activeColor;
-    private bool activeBlend;
+    private GroundMaterial activeTileMaterial;
     private EditMode activeMode;
     private Industry activeIndustry=0;
     private bool allowCliffs = false;
@@ -58,7 +56,7 @@ public class MapEditor : MonoBehaviour
 
     void Awake()
     {
-        SelectColor(0);
+        SelectMaterial(0);
         stopWatch.Start();
     }
 
@@ -138,10 +136,9 @@ public class MapEditor : MonoBehaviour
         }
     }
 
-    public void SelectColor(int index)
+    public void SelectMaterial(int index)
     {
-        activeColor = colors[index];
-        activeBlend = blends[index];
+        activeTileMaterial = materials[index];
     }
 
 
@@ -240,8 +237,7 @@ public class MapEditor : MonoBehaviour
     {
         if (activeMode == EditMode.color)
         {
-            cell.Color = activeColor;
-            cell.BlendEdge = activeBlend;
+            cell.Tile = activeTileMaterial;
         }
         else if (activeMode == EditMode.elevation)
         {

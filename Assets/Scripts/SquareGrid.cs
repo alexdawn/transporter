@@ -5,7 +5,7 @@ using System;
 public class SquareGrid : MonoBehaviour
 {
 
-    public int chunkCountX = 3, chunkCountZ = 3;
+    public int chunkCountX, chunkCountZ;
     int cellCountX, cellCountZ;
     public bool showLabels;
     public SquareCell cellPrefab;
@@ -15,11 +15,11 @@ public class SquareGrid : MonoBehaviour
 
     SquareGridChunk[] chunks;
     SquareCell[] cells;
-    Color[] gridColors;
+    GroundMaterial[] gridMaterials;
 
     private void Awake()
     {
-        gridColors = GameObject.Find("EditorCanvas").GetComponent<MapEditor>().colors;
+        gridMaterials = GameObject.Find("EditorCanvas").GetComponent<MapEditor>().materials;
         cellCountX = chunkCountX * GridMetrics.chunkSizeX;
         cellCountZ = chunkCountZ * GridMetrics.chunkSizeZ;
         GridMetrics.InitializeHashGrid(seed);
@@ -90,9 +90,12 @@ public class SquareGrid : MonoBehaviour
         }
         cell.coordinates = GridCoordinates.FromOffsetCoordinates(x, z);
         cell.GridElevations = GridElevations.GetVertexHeights(position);
-        cell.Color = gridColors[0]; //gridColors[(int)((cell.CentreElevation / (float)GridElevations.maxHeight) * gridColors.Length)];
-        cell.BlendEdge = true;
-        cell.PlantLevel = UnityEngine.Random.Range(0, 10) - 4;
+        // start off with grass everywhere
+        cell.Tile = gridMaterials[0]; //gridColors[(int)((cell.CentreElevation / (float)GridElevations.maxHeight) * gridColors.Length)];
+        if(cell.CentreElevation < 7) // basic treeline cut-off
+        {
+            cell.PlantLevel = UnityEngine.Random.Range(0, 10) - 4;
+        }
         if (showLabels)
         {
             label.rectTransform.anchoredPosition = new Vector2(x, z);
@@ -116,6 +119,7 @@ public class SquareGrid : MonoBehaviour
 
     public SquareCell GetCell(Vector3 position)
     {
+        // get the cell at position
         position = transform.InverseTransformPoint(position);
         GridCoordinates coordinates = GridCoordinates.FromPosition(position);
         int index = coordinates.X + coordinates.Z * cellCountX;
@@ -123,6 +127,7 @@ public class SquareGrid : MonoBehaviour
     }
 
     public SquareCell GetCellOffset(Vector3 position, int x, int z)
+        // returns a cell instance with a set offset from position
     {
         position = transform.InverseTransformPoint(position);
         GridCoordinates coordinates = GridCoordinates.FromPosition(position);

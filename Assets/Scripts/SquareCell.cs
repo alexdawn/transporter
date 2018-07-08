@@ -12,6 +12,7 @@ public class SquareCell : MonoBehaviour {
 
     float centreElevation = 0;
     GridElevations vertexElevations;
+    GroundMaterial tile;
     Color color;
     bool blendEdge;
     int waterLevel = 2;
@@ -31,6 +32,15 @@ public class SquareCell : MonoBehaviour {
     [SerializeField]
     bool[] roads = new bool[8]; // includes diagonals
 
+    private void Update()
+    {
+        bool hasTileChanged = tile.CountDown();
+        if (hasTileChanged)
+        {
+            Refresh();
+        }
+    }
+
     public int Industry
     {
         get
@@ -44,6 +54,7 @@ public class SquareCell : MonoBehaviour {
             urbanLevel = 0;
             farmLevel = 0;
             scenaryObject = 0;
+            //tile.SetToMud();
             Refresh();
         }
     }
@@ -66,6 +77,7 @@ public class SquareCell : MonoBehaviour {
                 plantLevel = 0;
                 urbanLevel = 0;
                 farmLevel = 0;
+                //tile.SetToMud();
                 Refresh();
             }
         }
@@ -86,6 +98,7 @@ public class SquareCell : MonoBehaviour {
                 plantLevel = 0;
                 scenaryObject = 0;
                 farmLevel = 0;
+                //tile.SetToMud();
                 Refresh();
             }
         }
@@ -196,6 +209,7 @@ public class SquareCell : MonoBehaviour {
         if (!roads[(int)direction] && !HasRiver && !HasCliff(direction) && GetElevationDifference(direction) <= 3)
         {
             SetRoad((int)direction, true);
+            //tile.SetToMud();
         }
         else
         {
@@ -206,12 +220,16 @@ public class SquareCell : MonoBehaviour {
     public void RemoveRoad(GridDirection direction)
     {
         if (roads[(int)direction] == true)
-        { SetRoad((int)direction, false); }
+        {
+            SetRoad((int)direction, false);
+            //tile.SetToMud();
+        }
     }
 
     void SetRoad(int direction, bool state)
     {
         roads[direction] = state;
+        //tile.SetToMud();
         RefreshChunkOnly();
     }
 
@@ -223,6 +241,7 @@ public class SquareCell : MonoBehaviour {
             vertexElevations.Y1 = GetMaxElevation();
             vertexElevations.Y2 = GetMaxElevation();
             vertexElevations.Y3 = GetMaxElevation();
+            //tile.SetToMud();
             UpdateCentreElevation();
         }
     }
@@ -498,21 +517,21 @@ public class SquareCell : MonoBehaviour {
 
     public void ChangeVertexElevation(GridDirection vertex, int value)
     {
-        vertexElevations[vertex] += value;
-        if ((HasRoadThroughEdge(vertex.Next()) && (GetElevationDifference(vertex.Next()) > 3 || HasCliff(vertex.Next()))) ||
+        if (value == 0 && ((HasRoadThroughEdge(vertex.Next()) && (GetElevationDifference(vertex.Next()) > 3 || HasCliff(vertex.Next()))) ||
             (HasRoadThroughEdge(vertex.Previous()) && (GetElevationDifference(vertex.Previous()) > 3 || HasCliff(vertex.Previous())))
-            )
+            ))
         {
             Debug.Log("Could not change elevation");
-            vertexElevations[vertex] -= value; // revert change
         }
         else
         {
+            vertexElevations[vertex] += value;
+            tile.SetToMud();
             UpdateCentreElevation();
         }
     }
 
-
+    // shouldn't be public in addition to above?
     public GridElevations GridElevations
     {
         get { return vertexElevations; }
@@ -523,33 +542,24 @@ public class SquareCell : MonoBehaviour {
         }
     }
 
-
-    public Color Color
+    public GroundMaterial Tile
     {
-        get { return color; }
-        set
-        {
-            if (color == value)
-            {
-                return;
-            }
-            color = value;
+        get { return tile; }
+        set {
+            tile = value;
             Refresh();
         }
     }
 
+
+    public Color Color
+    {
+        get { return tile.color; }
+    }
+
     public bool BlendEdge
     {
-        get { return blendEdge; }
-        set
-        {
-            if (blendEdge == value)
-            {
-                return;
-            }
-            blendEdge = value;
-            Refresh();
-        }
+        get { return tile.blendEdge; }
     }
 
 

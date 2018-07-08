@@ -10,7 +10,7 @@ public class MapCamera : MonoBehaviour {
     public SquareGrid grid;
 
     Transform swivel, stick;
-    float zoom = 1f;
+    float zoom = 0.5f;
     float rotationAngle;
 
 
@@ -18,7 +18,7 @@ public class MapCamera : MonoBehaviour {
     {
         swivel = transform.GetChild(0);
         stick = swivel.GetChild(0);
-        AdjustZoom(0);
+        AdjustZoom(0); // prevent jerky camera on startup
     }
 
 
