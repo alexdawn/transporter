@@ -466,7 +466,7 @@ MonoBehaviour:
     - {fileID: 400000, guid: 7c39d4ec657f88a43bd39b704536c3f5, type: 3}
     - {fileID: 400000, guid: 84227d1daf5ef73428c33c92b0bdfbf0, type: 3}
     - {fileID: 4250159743004172, guid: 1772885228f73f343bc5e027b1ee3c15, type: 2}
-    - {fileID: 400014, guid: ef75558d0d4a37f48b096dba76cac8ae, type: 3}
+    - {fileID: 4871323297303074, guid: c01a12c4994521b4fac294d946742886, type: 2}
     - {fileID: 400038, guid: c81ab57a689a88b43912a9345820912d, type: 3}
     - {fileID: 4273695503364512, guid: 7a2f56544301ae541a08ea1fada2a09c, type: 2}
     - {fileID: 400006, guid: e68fb9a46fe1b7b4b859889d2948a0ba, type: 3}
@@ -487,14 +487,14 @@ MonoBehaviour:
     - {fileID: 400002, guid: 7e2acd39780b7864a8d073992e77f0e4, type: 3}
   industryPrefabs:
   - features:
-    - {fileID: 400000, guid: 065f36575f9223a4ab4af090c32a2732, type: 3}
+    - {fileID: 4179576964487806, guid: b4018395b7d7f354d9dcfc5e2f1a819d, type: 2}
     - {fileID: 4529969458395618, guid: daf97e49ea6c2bf40a6b3b19042ecffe, type: 2}
     - {fileID: 400042, guid: 1bc2b613a72aeda429ebb3002581446b, type: 3}
     - {fileID: 400004, guid: 350ea78ab2727424ba8b3a7fa163d6cd, type: 3}
     - {fileID: 4492649407706274, guid: aa8346c13df413d43b80d90ba7a0665d, type: 2}
     - {fileID: 4861793170262202, guid: daca219678127bc43b7031f082107b6e, type: 2}
     - {fileID: 400006, guid: f3a9836869517c4479207f8a95be99d9, type: 3}
-    - {fileID: 400010, guid: 8e6b295e4a0404049b2b89ff389afbf4, type: 3}
+    - {fileID: 4781835602930630, guid: f142a6d689932a24c9552631473d2c0d, type: 2}
     - {fileID: 400034, guid: 0bd76a00beace3643b46aeac5f028bbc, type: 3}
     - {fileID: 400000, guid: 89dc499b111950948ad58cb8c547d369, type: 3}
 --- !u!114 &114563461759895010
