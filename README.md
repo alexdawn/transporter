@@ -10,5 +10,7 @@ features:
 * rivers
 * oceans
 * roads
+* towns
+* industry
 * day/night cycle
 
