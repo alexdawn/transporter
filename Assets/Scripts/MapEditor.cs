@@ -329,7 +329,7 @@ public class MapEditor : MonoBehaviour
             }
             if (Input.GetMouseButton(1) && freshClick)
             {
-                cell.PlantLevel--;
+                cell.PlantLevel = 0;
             }
         }
         else if (activeMode == EditMode.rocks)

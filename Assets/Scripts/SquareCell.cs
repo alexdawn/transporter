@@ -54,7 +54,7 @@ public class SquareCell : MonoBehaviour {
             urbanLevel = 0;
             farmLevel = 0;
             scenaryObject = 0;
-            //tile.SetToMud();
+            tile.SetToMud();
             Refresh();
         }
     }
@@ -77,7 +77,11 @@ public class SquareCell : MonoBehaviour {
                 plantLevel = 0;
                 urbanLevel = 0;
                 farmLevel = 0;
-                //tile.SetToMud();
+                if (scenaryObject!=0) //not rocks
+                {
+                    tile.SetToMud();
+                }
+
                 Refresh();
             }
         }
@@ -98,7 +102,7 @@ public class SquareCell : MonoBehaviour {
                 plantLevel = 0;
                 scenaryObject = 0;
                 farmLevel = 0;
-                //tile.SetToMud();
+                tile.SetToMud();
                 Refresh();
             }
         }
@@ -131,7 +135,11 @@ public class SquareCell : MonoBehaviour {
         set
         {
             if (plantLevel != value)
-            {
+            {   
+                if (value == 0)
+                {
+                    tile.SetToMud();
+                }
                 plantLevel = Mathf.Clamp(value, 0, 6);
                 urbanLevel = 0;
                 farmLevel = 0;
@@ -229,7 +237,6 @@ public class SquareCell : MonoBehaviour {
         if (!roads[(int)direction] && !HasRiver && !HasCliff(direction) && GetElevationDifference(direction) <= 3)
         {
             SetRoad((int)direction, true);
-            //tile.SetToMud();
         }
         else
         {
@@ -242,15 +249,14 @@ public class SquareCell : MonoBehaviour {
         if (roads[(int)direction] == true)
         {
             SetRoad((int)direction, false);
-            //tile.SetToMud();
         }
     }
 
     void SetRoad(int direction, bool state)
     {
         roads[direction] = state;
-        //tile.SetToMud();
-        RefreshChunkOnly();
+        tile.SetToMud();
+        Refresh();
     }
 
     public void Flatten()
@@ -261,7 +267,6 @@ public class SquareCell : MonoBehaviour {
             vertexElevations.Y1 = GetMaxElevation();
             vertexElevations.Y2 = GetMaxElevation();
             vertexElevations.Y3 = GetMaxElevation();
-            //tile.SetToMud();
             UpdateCentreElevation();
         }
     }
@@ -402,6 +407,7 @@ public class SquareCell : MonoBehaviour {
         }
         GridDirection[] neighbors = OutgoingRivers;
         for (int i = 0; i < hasOutgoingRivers.Length; i++) { hasOutgoingRivers[i] = false; }
+        tile.SetToMud();
         RefreshChunkOnly();
 
         foreach (GridDirection direction in neighbors)
@@ -433,6 +439,7 @@ public class SquareCell : MonoBehaviour {
         }
         GridDirection[] neighbors = IncomingRivers;
         for (int i = 0; i < hasIncomingRivers.Length; i++) { hasIncomingRivers[i] = false; }
+        tile.SetToMud();
         RefreshChunkOnly();
 
         foreach (GridDirection direction in neighbors)
@@ -526,6 +533,7 @@ public class SquareCell : MonoBehaviour {
                 RemoveIncomingRiver(i);
             }
         }
+        //tile.SetToMud();
         Refresh();
     }
 
@@ -546,7 +554,6 @@ public class SquareCell : MonoBehaviour {
         else
         {
             vertexElevations[vertex] += value;
-            tile.SetToMud();
             UpdateCentreElevation();
         }
     }
