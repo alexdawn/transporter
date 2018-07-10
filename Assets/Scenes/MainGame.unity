@@ -491,8 +491,8 @@ MonoBehaviour:
   - tileTypeName: Mud
     color: {r: 0.26666668, g: 0.1254902, b: 0.039215688, a: 0}
     blendEdge: 1
-    decays: 0
-    lifetime: 15000
+    decays: 1
+    lifetime: 5
   - tileTypeName: Sand
     color: {r: 0.67058825, g: 0.5019608, b: 0.2, a: 0}
     blendEdge: 1
@@ -1746,6 +1746,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seconds_per_day_night_cycle: 600
+  angle: 0
+  time: 0
 --- !u!1 &256307407
 GameObject:
   m_ObjectHideFlags: 0

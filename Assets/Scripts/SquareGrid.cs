@@ -91,7 +91,7 @@ public class SquareGrid : MonoBehaviour
         cell.coordinates = GridCoordinates.FromOffsetCoordinates(x, z);
         cell.GridElevations = GridElevations.GetVertexHeights(position);
         // start off with grass everywhere
-        cell.Tile = gridMaterials[0]; //gridColors[(int)((cell.CentreElevation / (float)GridElevations.maxHeight) * gridColors.Length)];
+        cell.Tile = gridMaterials[0].GetClone; //gridColors[(int)((cell.CentreElevation / (float)GridElevations.maxHeight) * gridColors.Length)];
         if(cell.CentreElevation < 7) // basic treeline cut-off
         {
             cell.PlantLevel = UnityEngine.Random.Range(0, 10) - 4;

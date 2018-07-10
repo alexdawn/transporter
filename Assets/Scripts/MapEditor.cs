@@ -237,7 +237,7 @@ public class MapEditor : MonoBehaviour
     {
         if (activeMode == EditMode.color)
         {
-            cell.Tile = activeTileMaterial;
+            cell.Tile = activeTileMaterial.GetClone;
         }
         else if (activeMode == EditMode.elevation)
         {

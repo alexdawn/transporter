@@ -8,7 +8,7 @@ public class SquareGridChunk : MonoBehaviour {
     List<SquareCell> refreshList;
     bool flagChunkRefresh = true;
 
-    public GridMesh terrain, rivers, roads, water;
+    public GridMesh terrain, rivers, roads, water, waterShore;
     public GridFeatureManager features;
     Canvas gridCanvas;
 
@@ -65,6 +65,7 @@ public class SquareGridChunk : MonoBehaviour {
         rivers.Clear();
         roads.Clear();
         water.Clear();
+        //waterShore.Clear();
         features.Clear();
         for (int i = 0; i < cells.Length; i++)
         {
@@ -75,6 +76,7 @@ public class SquareGridChunk : MonoBehaviour {
         rivers.Apply();
         roads.Apply();
         water.Apply();
+        //waterShore.Apply();
         features.Apply();
     }
 
@@ -359,14 +361,13 @@ public class SquareGridChunk : MonoBehaviour {
 
     void AddWaterForSquare(SquareCell cell, Vector3 centre)
     {
-        if (cell.IsUnderwater)
+        centre.y = cell.WaterSurfaceY;
+        Vector3 c0 = centre + GridMetrics.GetSolidEdge(GridDirection.SW);
+        Vector3 c1 = centre + GridMetrics.GetSolidEdge(GridDirection.NW);
+        Vector3 c2 = centre + GridMetrics.GetSolidEdge(GridDirection.NE);
+        Vector3 c3 = centre + GridMetrics.GetSolidEdge(GridDirection.SE);
+        if (cell.IsFullyUnderwater)
         {
-            centre.y = cell.WaterSurfaceY;
-            Vector3 c0 = centre + GridMetrics.GetSolidEdge(GridDirection.SW);
-            Vector3 c1 = centre + GridMetrics.GetSolidEdge(GridDirection.NW);
-            Vector3 c2 = centre + GridMetrics.GetSolidEdge(GridDirection.NE);
-            Vector3 c3 = centre + GridMetrics.GetSolidEdge(GridDirection.SE);
-
             water.AddQuad(c0, c1, c2, c3);
             for(int x=0; x < 8; x++)
             {
@@ -411,6 +412,52 @@ public class SquareGridChunk : MonoBehaviour {
                 }
             }
         }
+        //else if (cell.IsPartUnderwater)
+        //{
+        //    waterShore.AddQuad(c0, c1, c2, c3);
+        //    for (int x = 0; x < 8; x++)
+        //    {
+        //        GridDirection i = (GridDirection)x;
+        //        SquareCell neighbor = cell.GetNeighbor(i);
+        //        if (neighbor == null || !neighbor.IsUnderwater)
+        //        {
+        //            continue;
+        //        }
+
+        //        if (i == GridDirection.N)
+        //        {
+        //            MakeBridge(waterShore, c1, c2, i);
+        //        }
+        //        else if (i == GridDirection.NE)
+        //        {
+        //            MakeCornerBridge(waterShore, c2, i);
+        //        }
+        //        else if (i == GridDirection.E)
+        //        {
+        //            MakeBridge(waterShore, c2, c3, i);
+        //        }
+        //        else if (i == GridDirection.SE)
+        //        {
+        //            MakeCornerBridge(waterShore, c3, i);
+        //        }
+        //        if (i == GridDirection.S)
+        //        {
+        //            MakeBridge(waterShore, c3, c0, i);
+        //        }
+        //        else if (i == GridDirection.SW)
+        //        {
+        //            MakeCornerBridge(waterShore, c0, i);
+        //        }
+        //        else if (i == GridDirection.W)
+        //        {
+        //            MakeBridge(waterShore, c0, c1, i);
+        //        }
+        //        else if (i == GridDirection.NW)
+        //        {
+        //            MakeCornerBridge(waterShore, c1, i);
+        //        }
+        //    }
+        //}
     }
 
     void MakeBridge(GridMesh mesh, Vector3 v0, Vector3 v1, GridDirection bridgeDirection)

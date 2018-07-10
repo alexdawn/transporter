@@ -158,11 +158,31 @@ public class SquareCell : MonoBehaviour {
         }
     }
 
-    public bool IsUnderwater
+    public bool IsFullyUnderwater
     {
         get
         {
             return waterLevel > GetMaxElevation();
+        }
+    }
+
+    public bool IsPartUnderwater
+    {
+        get
+        {
+            if (!IsFullyUnderwater)
+            {
+                return IsUnderwater;
+            }
+            return false;
+        }
+    }
+
+    public bool IsUnderwater
+    {
+        get
+        {
+            return waterLevel > GetMinElevation();
         }
     }
 
