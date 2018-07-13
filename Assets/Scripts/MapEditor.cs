@@ -179,7 +179,7 @@ public class MapEditor : MonoBehaviour
 
     private void Draw()
     {
-        if (pointerLocation != null)
+        if (pointerLocation != null && squareGrid != null)
         {
             Array.Resize(ref highlight, (int)Mathf.Pow(pointerSize, 2));
             for (int x = 0; x < pointerSize; x++)

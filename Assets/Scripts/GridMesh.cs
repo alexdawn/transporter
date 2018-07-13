@@ -142,6 +142,14 @@ public class GridMesh : MonoBehaviour
         uvs.Add(new Vector2(uMin, vMax));
     }
 
+    public void AddQuadV(float v0, float v1, float v2, float v3)
+    {
+        uvs.Add(new Vector2(0f, v0));
+        uvs.Add(new Vector2(0f, v1));
+        uvs.Add(new Vector2(0f, v2));
+        uvs.Add(new Vector2(0f, v3));
+    }
+
     public void AddQuadColor(Color c1, Color c2, Color c3, Color c4)
     {
         colors.Add(c1);

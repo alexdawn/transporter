@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 23379575664790204}
   - component: {fileID: 102125829742852416}
   m_Layer: 0
-  m_Name: New Text
+  m_Name: TownLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
