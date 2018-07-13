@@ -15,6 +15,7 @@
 
 		// Use shader model 3.0 target, to get nicer looking lighting
 		#pragma target 3.0
+		#include "Water.cginc"
 
 		sampler2D _MainTex;
 
@@ -35,21 +36,7 @@
 		UNITY_INSTANCING_BUFFER_END(Props)
 
 		void surf (Input IN, inout SurfaceOutputStandard o) {
-			float2 uv1 = IN.worldPos.xz;
-			uv1.y += _Time.y * 0.0625;
-			float4 noise1 = tex2D(_MainTex, uv1 * 0.25);
-
-			float2 uv2 = IN.worldPos.xz;
-			uv2.x += _Time.y * 0.0625;
-			float4 noise2 = tex2D(_MainTex, uv2 * 0.25);
-
-			float blendWave =
-				sin((IN.worldPos.x + IN.worldPos.z) + (noise1.y + noise2.z) + _Time.y * 0.1);
-			blendWave *= blendWave;
-
-			float waves = lerp(noise1.z, noise1.w, blendWave) +
-						  lerp(noise2.x, noise2.y, blendWave);
-			waves = smoothstep(0.75, 2, waves);
+			float waves = Waves(IN.worldPos.xz, _MainTex);
 
 			fixed4 c = saturate(_Color + waves);
 			o.Albedo = c.rgb;
