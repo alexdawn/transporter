@@ -1,4 +1,7 @@
-﻿float Foam(float shore, float2 worldXZ, sampler2D noiseTex) {
+﻿#if !defined(MY_WATER_INCLUDED)
+#define MY_WATER_INCLUDED
+
+float Foam(float shore, float2 worldXZ, sampler2D noiseTex) {
 	shore = sqrt(shore);
 
 	float2 noiseUV = worldXZ + _Time.y * 0.025;
@@ -25,10 +28,12 @@ float Waves(float2 worldXZ, sampler2D noiseTex) {
 
 	float blendWave = sin(
 		(worldXZ.x + worldXZ.y) +
-		(noiseTex.y + noiseTex.y) + _Time.y * 0.1);
+		(noise1.y + noise2.z) + _Time.y * 0.1);
 	blendWave *= blendWave;
 
 	float waves = lerp(noise1.z, noise1.w, blendWave) +
 		lerp(noise2.x, noise2.y, blendWave);
 	return smoothstep(0.75, 2, waves);
 }
+
+#endif
