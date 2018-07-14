@@ -33,18 +33,24 @@ public class SunController : MonoBehaviour {
         clockDisplay.text = time;
         if (angle > 180.5f || angle < -0.5f)
         {
+            RenderSettings.ambientIntensity = 0f;
             light.intensity = 0f;
         }
         else if(angle > 179.5f) // blend light intensity at sunset
         {
-            light.intensity = 1f - (angle - 179.5f);
+            float light_strength = 1f - (angle - 179.5f);
+            RenderSettings.ambientIntensity = light_strength;
+            light.intensity = light_strength;
         }
         else if(angle < 0.5f) // blend light intensity at dawn
         {
-            light.intensity = 1f + (angle - 0.5f);
+            float light_strength = 1f + (angle - 0.5f);
+            RenderSettings.ambientIntensity = light_strength;
+            light.intensity = light_strength;
         }
         else
         {
+            RenderSettings.ambientIntensity = 1f;
             light.intensity = 1f;
         }
     }
