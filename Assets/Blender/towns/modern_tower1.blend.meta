@@ -52,6 +52,7 @@ ModelImporter:
     2100008: Roof_001
     2100010: Door
     2100012: Windows_001
+    2100014: Window
     2300000: boxroom
     2300002: boxroom_001
     2300004: boxroom_002
@@ -111,7 +112,12 @@ ModelImporter:
     4300036: Cube_001
     7400000: Default Take
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Window
+    second: {fileID: 2100000, guid: f104a1d1cd8a582448f1e88fc0cb8f9a, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

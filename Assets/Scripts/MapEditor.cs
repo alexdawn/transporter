@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public enum EditMode
@@ -47,6 +48,7 @@ public class MapEditor : MonoBehaviour
     private Industry activeIndustry=0;
     private bool allowCliffs = false;
     private Vector3 pointerLocation;
+    private Dropdown dropMenu;
     public int pointerSize = 1;
     bool isDrag, freshClick = false;
     GridDirection dragDirection;
@@ -58,6 +60,15 @@ public class MapEditor : MonoBehaviour
     {
         SelectMaterial(0);
         stopWatch.Start();
+        dropMenu = GetComponentInChildren<Dropdown>();
+        dropMenu.ClearOptions();
+        List<GroundMaterial> materialsList = new List<GroundMaterial>(materials);
+        List<string> namesList = new List<string>();
+        foreach (GroundMaterial mat in materialsList)
+        {
+            namesList.Add(mat.tileTypeName);
+        }
+        dropMenu.AddOptions(namesList);
     }
 
 
@@ -134,6 +145,12 @@ public class MapEditor : MonoBehaviour
             vertexDirection = squareGrid.GetVertex(hit.point);
             MoveEditorPointer(squareGrid.GetCell(hit.point), vertexDirection);
         }
+    }
+
+    public void UpdateMaterial()
+    {
+        SetMode((int)EditMode.color);
+        SelectMaterial(dropMenu.value);
     }
 
     public void SelectMaterial(int index)

@@ -32,6 +32,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Light
     second: {fileID: 2100000, guid: d34c1e62c904e5643ae84bbf51655362, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Windows_001
+    second: {fileID: 2100000, guid: f104a1d1cd8a582448f1e88fc0cb8f9a, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
