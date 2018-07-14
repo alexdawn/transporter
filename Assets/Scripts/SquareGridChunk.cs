@@ -372,24 +372,15 @@ public class SquareGridChunk : MonoBehaviour {
         }
         else if (cell.IsPartUnderwater)
         {
-            Vector3 avgDirection = new Vector3(0, 0, 0);
-            for(int x=0;x<8;x++)
-            {
-                if(!cell.GetNeighbor((GridDirection)x).IsUnderwater)
-                {
-                    avgDirection += GridMetrics.GetEdge((GridDirection)x);
-                }
-            }
-            avgDirection.Normalize();
-            float v0=0, v1=0, v2=0, v3=0;
-            if (avgDirection == GridMetrics.GetEdge(GridDirection.N).normalized) { v1 = 1f; v2 = 1f; }
-            if (avgDirection == GridMetrics.GetEdge(GridDirection.NE).normalized) { v2 = 1f; }
-            if (avgDirection == GridMetrics.GetEdge(GridDirection.E).normalized) { v2 = 1f; v3 = 1f; }
-            if (avgDirection == GridMetrics.GetEdge(GridDirection.SE).normalized) { v3 = 1f; }
-            if (avgDirection == GridMetrics.GetEdge(GridDirection.S).normalized) { v3 = 1f; v0 = 1f; }
-            if (avgDirection == GridMetrics.GetEdge(GridDirection.SW).normalized) { v0 = 1f; }
-            if (avgDirection == GridMetrics.GetEdge(GridDirection.W).normalized) { v0 = 1f; v1 = 1f; }
-            if (avgDirection == GridMetrics.GetEdge(GridDirection.NW).normalized) { v1 = 1f; }
+            float v0=0f, v1=0f, v2=0f, v3=0f;
+            if (cell.GetNeighbor(GridDirection.N) && !cell.GetNeighbor(GridDirection.N).IsUnderwater) { v1 = 1f; v2 = 1f; }
+            if (cell.GetNeighbor(GridDirection.NE) && !cell.GetNeighbor(GridDirection.NE).IsUnderwater) { v2 = 1f; }
+            if (cell.GetNeighbor(GridDirection.E) && !cell.GetNeighbor(GridDirection.E).IsUnderwater) { v2 = 1f; v3 = 1f; }
+            if (cell.GetNeighbor(GridDirection.SE) && !cell.GetNeighbor(GridDirection.SE).IsUnderwater) { v3 = 1f; }
+            if (cell.GetNeighbor(GridDirection.S) && !cell.GetNeighbor(GridDirection.S).IsUnderwater) { v3 = 1f; v0 = 1f; }
+            if (cell.GetNeighbor(GridDirection.SW) && !cell.GetNeighbor(GridDirection.SW).IsUnderwater) { v0 = 1f; }
+            if (cell.GetNeighbor(GridDirection.W) && !cell.GetNeighbor(GridDirection.W).IsUnderwater) { v0 = 1f; v1 = 1f; }
+            if (cell.GetNeighbor(GridDirection.NW) && !cell.GetNeighbor(GridDirection.NW).IsUnderwater) { v1 = 1f; }
             waterShore.AddQuad(c0, c1, c2, c3);
             waterShore.AddQuadV(v0, v1, v2, v3);
         }

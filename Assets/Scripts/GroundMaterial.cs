@@ -10,23 +10,26 @@ public class GroundMaterial
     public bool blendEdge;
     public bool decays;
     public float lifetime;
+    public GroundMaterial previousMaterial;
 
     public GroundMaterial GetClone {
         get { return (GroundMaterial)this.MemberwiseClone(); }
     }
 
 
-    public void SetToGrass()
+    public void SetToPrevious()
     {
-        tileTypeName = "Grass";
-        color = new Color32(0x30, 0x59, 0x12, 0xFF);
-        blendEdge = true;
-        decays = false;
-        lifetime = 0;
+        tileTypeName = previousMaterial.tileTypeName;
+        color = previousMaterial.color;
+        blendEdge = previousMaterial.blendEdge;
+        decays = previousMaterial.decays;
+        lifetime = previousMaterial.lifetime;
+        previousMaterial = previousMaterial.previousMaterial;
     }
 
     public void SetToMud() //temporary mud for construction/destruction
     {
+        previousMaterial = GetClone;
         tileTypeName = "Mud";
         color = new Color32(0x44, 0x20, 0x0A, 0xFF);
         blendEdge = true;
@@ -34,14 +37,14 @@ public class GroundMaterial
         lifetime = 5f + Random.Range(1f, 5f);
     }
 
-    public bool CountDown()
+    public bool CountDown(float timer)
     {
         if (decays)
         {
-            lifetime -= Time.deltaTime;
+            lifetime -= timer;
             if (lifetime < 0)
             {
-                SetToGrass();
+                SetToPrevious();
                 return true;
             }
         }

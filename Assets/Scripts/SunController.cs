@@ -1,44 +1,47 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SunController : MonoBehaviour {
     public float seconds_per_day_night_cycle;
     private Transform tranform;
     private Light light;
-    private Vector3 deltaAngles;
     public float angle;
-    public float time;
-	// Use this for initialization
-	void Start () {
+    public string time;
+    public Text clockDisplay;
+    // Use this for initialization
+    void Start () {
         tranform = gameObject.GetComponent<Transform>();
         light = gameObject.GetComponent<Light>();
-        deltaAngles = new Vector3(0f, 0f, 0f);
-
     }
 
-    float AngleToTime(float angle)
+    string AngleToTime(float angle)
     {
-        return (angle * 24f / 360f + 6f) % 24f;
+        float decimalTime = (angle * 24f / 360f + 6f) % 24f;
+        float hours = Mathf.Floor(decimalTime);
+        float minutes = Mathf.Floor((decimalTime % 1) * 60);
+        return hours.ToString("00") + ":" + minutes.ToString("00");
     }
 	
 	// Update is called once per frame
 	void Update () {
-        deltaAngles.x = ((360f / (seconds_per_day_night_cycle)) * Time.deltaTime) % 360f;
-        tranform.Rotate(deltaAngles);
-        angle = Quaternion.Angle(transform.rotation, Quaternion.identity); // gets angle from rotation (0,0,0)
+        angle += ((360f / (seconds_per_day_night_cycle)) * Time.deltaTime);
+        angle = angle % 360f;
+        transform.eulerAngles = new Vector3(angle, -90f, 0);
         time = AngleToTime(angle);
-        if (tranform.eulerAngles.x > 180.5f || tranform.eulerAngles.x < -0.5f)
+        clockDisplay.text = time;
+        if (angle > 180.5f || angle < -0.5f)
         {
             light.intensity = 0f;
         }
-        else if(tranform.eulerAngles.x > 179.5f) // blend light intensity at sunset
+        else if(angle > 179.5f) // blend light intensity at sunset
         {
-            light.intensity = 1f - (tranform.eulerAngles.x - 179.5f);
+            light.intensity = 1f - (angle - 179.5f);
         }
-        else if(tranform.eulerAngles.x < 0.5f) // blend light intensity at dawn
+        else if(angle < 0.5f) // blend light intensity at dawn
         {
-            light.intensity = 1f + (tranform.eulerAngles.x - 0.5f);
+            light.intensity = 1f + (angle - 0.5f);
         }
         else
         {

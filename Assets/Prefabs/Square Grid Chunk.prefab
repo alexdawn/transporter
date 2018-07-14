@@ -549,7 +549,7 @@ MonoBehaviour:
     - {fileID: 400006, guid: 095b2110d4eed14428397e2fbdff10fa, type: 3}
     - {fileID: 400006, guid: 6d17e46e73d988b4faf6421a3dc16bbd, type: 3}
     - {fileID: 400004, guid: dc370288c46cd8c49982b965a31b6df3, type: 3}
-    - {fileID: 400008, guid: f812fb94e89057a4fa186ffce76f5037, type: 3}
+    - {fileID: 4204548588309220, guid: f57eaed967e5e1344941bb99c1a116f5, type: 2}
   - features:
     - {fileID: 400000, guid: 0dd3b3d8dbf56c947a4623e040f96d1a, type: 3}
     - {fileID: 400000, guid: 7c39d4ec657f88a43bd39b704536c3f5, type: 3}

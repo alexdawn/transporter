@@ -21,6 +21,7 @@ public class SquareCell : MonoBehaviour {
     int farmLevel = 0;
     int scenaryObject = 0;
     int industry = 0;
+    float timer = 0;
 
     [SerializeField]
     SquareCell[] neighbors;
@@ -34,11 +35,17 @@ public class SquareCell : MonoBehaviour {
 
     private void Update()
     {
-        bool hasTileChanged = tile.CountDown();
-        if (hasTileChanged)
+        timer += Time.deltaTime;
+        if(timer > 1f)
         {
-            Refresh();
+            bool hasTileChanged = tile.CountDown(timer);
+            if (hasTileChanged)
+            {
+                Refresh();
+            }
+            timer = 0f;
         }
+
     }
 
     public int Industry
@@ -554,6 +561,7 @@ public class SquareCell : MonoBehaviour {
         else
         {
             vertexElevations[vertex] += value;
+            tile.SetToMud();
             UpdateCentreElevation();
         }
     }
