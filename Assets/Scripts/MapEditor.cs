@@ -198,7 +198,18 @@ public class MapEditor : MonoBehaviour
     {
         if (squareGrid != null)
         {
-            Array.Resize(ref highlight, (int)Mathf.Pow(pointerSize, 2));
+            int numberHightlights = (int)Mathf.Pow(pointerSize, 2);
+            if (highlight == null || numberHightlights != highlight.Length)
+            {
+                if (highlight != null)
+                {
+                    foreach (Transform h in highlight)
+                    {
+                        Destroy(h.gameObject);
+                    }
+                }
+                highlight = new Transform[numberHightlights];
+            }
             for (int x = 0; x < pointerSize; x++)
             {
                 for (int z = 0; z < pointerSize; z++)

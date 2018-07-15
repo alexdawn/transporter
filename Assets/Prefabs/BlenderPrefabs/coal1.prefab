@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 4780556046699080}
   - component: {fileID: 33245949481898816}
   - component: {fileID: 23796650793490232}
+  - component: {fileID: 95373175368684448}
   m_Layer: 0
   m_Name: wheels_001
   m_TagString: Untagged
@@ -1114,6 +1115,24 @@ Animator:
   m_GameObject: {fileID: 1592545168827044}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 065f36575f9223a4ab4af090c32a2732, type: 3}
+  m_Controller: {fileID: 9100000, guid: 941680490a5ebca4badd5532ae26b2af, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!95 &95373175368684448
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1685902276508794}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 941680490a5ebca4badd5532ae26b2af, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0

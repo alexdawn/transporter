@@ -22,8 +22,20 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NoiseTex:
+        m_Texture: {fileID: 2800000, guid: f334b96a659f13144a9b8b9cdef2c5a7, type: 3}
+        m_Scale: {x: 2, y: 2}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Glossiness: 0.167
     - _Metallic: 0
+    - _NoiseCut: 0.386
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color1: {r: 1, g: 1, b: 1, a: 1}
+    - _Color2: {r: 1, g: 0.17894734, b: 0, a: 1}
+    - _Color3: {r: 1, g: 1, b: 1, a: 1}
+    - _NoiseChannel: {r: 1, g: 0.055296138, b: 0, a: 1}
+    - _Target1: {r: 1, g: 1, b: 1, a: 1}
+    - _Target2: {r: 0.26415092, g: 0.03613386, b: 0.03613386, a: 1}
+    - _Target3: {r: 0, g: 0, b: 1, a: 1}

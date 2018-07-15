@@ -15,6 +15,7 @@ public class Building: ScriptableObject
     public Color color;
     public Transform prefabBuilding;
     public GroundMaterial groundMaterial;
+    public bool flatFoundations;
     public TownManager owner;
     private SquareCell[] foundations;
     private int height; // height of the origin cell
@@ -25,7 +26,7 @@ public class Building: ScriptableObject
         height = origin.GetMaxElevation();
         owner = origin.Town;
         SquareCell tempCellx = origin;
-        SquareCell tempCelly;
+        SquareCell tempCelly = origin;
         for (int x=0;x<width;x++)
         {
             tempCelly = tempCellx;
@@ -49,12 +50,23 @@ public class Building: ScriptableObject
         get { return foundations; }
         set {
             foundations = value;
+            Building build = Instantiate(this);
             foreach (SquareCell foundation in foundations)
             {
-                foundation.BuildingOnSquare = this;
-                foundation.FlattenTo(height);
-                foundation.Tile = groundMaterial;
-                foundation.Tile.SetToMud();
+                if (foundation.BuildingOnSquare)
+                {
+                    Destroy(foundation.BuildingOnSquare);
+                }
+                foundation.BuildingOnSquare = build;
+                if (flatFoundations)
+                {
+                    foundation.FlattenTo(height);
+                }
+                if (groundMaterial != null)
+                {
+                    foundation.Tile = groundMaterial;
+                }
+                //GroundMaterial.SetToMud(ref foundation.Tile);
             }
         }
     }

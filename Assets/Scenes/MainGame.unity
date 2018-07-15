@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.3007464, g: 0.2867628, b: 0.23531768, a: 1}
+  m_IndirectSpecularColor: {r: 0.44422364, g: 0.4936667, b: 0.5730539, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -410,51 +410,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   materials:
-  - tileTypeName: Grass
-    color: {r: 0.23934245, g: 0.44799998, b: 0.092054784, a: 0}
-    blendEdge: 1
-    decays: 0
-    lifetime: 0
-  - tileTypeName: Grass_Tropical
-    color: {r: 0.1542472, g: 0.286, b: 0.0578427, a: 0}
-    blendEdge: 1
-    decays: 0
-    lifetime: 0
-  - tileTypeName: Grass_Tundra
-    color: {r: 0.22633213, g: 0.28627452, b: 0.05882353, a: 0}
-    blendEdge: 1
-    decays: 0
-    lifetime: 0
-  - tileTypeName: Mud
-    color: {r: 0.26666668, g: 0.1254902, b: 0.039215688, a: 0}
-    blendEdge: 1
-    decays: 0
-    lifetime: 5
-  - tileTypeName: Sand
-    color: {r: 0.67058825, g: 0.5019608, b: 0.2, a: 0}
-    blendEdge: 1
-    decays: 0
-    lifetime: 0
-  - tileTypeName: Desert
-    color: {r: 0.67058825, g: 0.3861917, b: 0.2, a: 0}
-    blendEdge: 1
-    decays: 0
-    lifetime: 0
-  - tileTypeName: Snow
-    color: {r: 0.7529412, g: 0.8117647, b: 0.85882354, a: 0}
-    blendEdge: 1
-    decays: 0
-    lifetime: 0
-  - tileTypeName: Concrete
-    color: {r: 0.37254903, g: 0.37254903, b: 0.37254903, a: 0}
-    blendEdge: 0
-    decays: 0
-    lifetime: 0
-  - tileTypeName: Rock
-    color: {r: 0.26415092, g: 0.21804911, b: 0.21804911, a: 0}
-    blendEdge: 0
-    decays: 0
-    lifetime: 0
+  - {fileID: 11400000, guid: b41a93001fce71f4298912e0a06e6f8c, type: 2}
+  - {fileID: 11400000, guid: 273971d71e5202747b84b6d29373c982, type: 2}
+  - {fileID: 11400000, guid: 92796e6f6e408aa429f2a65390887c6b, type: 2}
+  - {fileID: 11400000, guid: a03faed3f0803244e90c5252ed55dd8d, type: 2}
+  - {fileID: 11400000, guid: 7770eb893f54b8c4683464924045e49e, type: 2}
+  - {fileID: 11400000, guid: 378bca1e882c6d749b06efb35b1ce2d8, type: 2}
+  - {fileID: 11400000, guid: 78b437f5fc4b99d4d9fe9879f57f55b6, type: 2}
+  - {fileID: 11400000, guid: c5bb33b5037ae0b4dbecf5c2621aced0, type: 2}
+  - {fileID: 11400000, guid: 9974e630ab4eed24e9e21103e45e516f, type: 2}
   squareGrid: {fileID: 3895312}
   townPrefab: {fileID: 1034421900409962, guid: f64530a050c4f2149b7b1f980c484b66, type: 2}
   tileSelectPrefab: {fileID: 4466827519363042, guid: 8b92b66582e815b409da5049de062deb,
@@ -1296,13 +1260,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 170076733}
-  m_LocalRotation: {x: -0.023351155, y: -0.61596787, z: -0.028374316, w: 0.7869138}
+  m_LocalRotation: {x: 0.4739181, y: -0, z: -0, w: 0.880569}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -4.112, y: -76.07201, z: -0.91300005}
+  m_LocalEulerAnglesHint: {x: 56.578003, y: 0, z: 0}
 --- !u!114 &170076736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1316,7 +1280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seconds_per_day_night_cycle: 600
   seconds_per_day: 10
-  angle: 0
+  angle: 45
   time: 
   date: 0
   clockDisplay: {fileID: 792338662}

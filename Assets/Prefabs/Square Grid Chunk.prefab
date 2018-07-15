@@ -586,6 +586,14 @@ MonoBehaviour:
     - {fileID: 4781835602930630, guid: f142a6d689932a24c9552631473d2c0d, type: 2}
     - {fileID: 400034, guid: 0bd76a00beace3643b46aeac5f028bbc, type: 3}
     - {fileID: 400000, guid: 89dc499b111950948ad58cb8c547d369, type: 3}
+  featureBuildings: []
+  farmBuildings: []
+  scenaryBuildings:
+  - features:
+    - {fileID: 11400000, guid: 1431aa00438a807489f3e4e0608ad007, type: 2}
+    - {fileID: 11400000, guid: edd9f7b9f274f2a40b1e75d9d0ee92a3, type: 2}
+    - {fileID: 11400000, guid: cbff000c451471140aade7b866b3d9d8, type: 2}
+  industryBuildings: []
 --- !u!114 &114563461759895010
 MonoBehaviour:
   m_ObjectHideFlags: 1
