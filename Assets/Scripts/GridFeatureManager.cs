@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GridFeatureManager : MonoBehaviour {
     public FeatureList[] featurePrefabs, farmPrefabs, treePrefabs, scenaryPrefabs, industryPrefabs;
+    public BuildingList[] featureBuildings, farmBuildings, scenaryBuildings, industryBuildings;
     Transform container;
 
     public void Clear() {
@@ -53,7 +54,9 @@ public class GridFeatureManager : MonoBehaviour {
         }
         else if (cell.ScenaryObject != 0)  // not random like other objects
         {
-            Transform instance = Instantiate(scenaryPrefabs[0][cell.ScenaryObject - 1]);
+            cell.BuildingOnSquare = scenaryBuildings[0][cell.ScenaryObject - 1].GetClone;
+            cell.BuildingOnSquare.SetupFoundations(cell);
+            Transform instance = Instantiate(cell.BuildingOnSquare.prefabBuilding);
             instance.localPosition = position;
             instance.localRotation = instance.localRotation * Quaternion.Euler(0, 90 * Mathf.Round(hash.b * 4), 0);
             instance.SetParent(container, false);
@@ -87,6 +90,22 @@ public class FeatureList
         }
 
     public Transform this[int param]
+    {
+        get { return features[param]; }
+    }
+}
+
+[System.Serializable]
+public class BuildingList
+{
+    public Building[] features;
+
+    public int Length
+    {
+        get { return features.Length; }
+    }
+
+    public Building this[int param]
     {
         get { return features[param]; }
     }

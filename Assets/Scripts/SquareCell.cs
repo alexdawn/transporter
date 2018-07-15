@@ -13,8 +13,7 @@ public class SquareCell : MonoBehaviour {
     float centreElevation = 0;
     GridElevations vertexElevations;
     GroundMaterial tile;
-    Color color;
-    bool blendEdge;
+    Building buildingOnSquare;
     int waterLevel = 2;
     int urbanLevel = 0;
     int plantLevel = 0;
@@ -48,6 +47,18 @@ public class SquareCell : MonoBehaviour {
 
     }
 
+    public Building BuildingOnSquare
+    {
+        set
+        {
+            buildingOnSquare = value;
+        }
+        get
+        {
+            return buildingOnSquare;
+        }
+    }
+
     public int Industry
     {
         get
@@ -76,7 +87,7 @@ public class SquareCell : MonoBehaviour {
         {
             if (scenaryObject != value)
             {
-                if (value != 1)
+                if (value != 1) //not rocks
                 {
                     Flatten();
                 }
@@ -84,7 +95,7 @@ public class SquareCell : MonoBehaviour {
                 plantLevel = 0;
                 urbanLevel = 0;
                 farmLevel = 0;
-                if (scenaryObject!=0) //not rocks
+                if (value != 1) //not rocks
                 {
                     tile.SetToMud();
                 }
@@ -270,12 +281,17 @@ public class SquareCell : MonoBehaviour {
     {
         if (GetMaxElevation() != GetMinElevation())
         {
-            vertexElevations.Y0 = GetMaxElevation();
-            vertexElevations.Y1 = GetMaxElevation();
-            vertexElevations.Y2 = GetMaxElevation();
-            vertexElevations.Y3 = GetMaxElevation();
-            UpdateCentreElevation();
+            FlattenTo(GetMaxElevation());
         }
+    }
+
+    public void FlattenTo(int height)
+    {
+        vertexElevations.Y0 = height;
+        vertexElevations.Y1 = height;
+        vertexElevations.Y2 = height;
+        vertexElevations.Y3 = height;
+        UpdateCentreElevation();
     }
 
     public int GetElevationDifference(GridDirection direction)

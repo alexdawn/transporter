@@ -15,7 +15,7 @@ public class TownManager : MonoBehaviour {
         townName = randomNamesPrefix[Random.Range(0, randomNamesPrefix.Length)] + randomNames[Random.Range(0, randomNames.Length)];
         TextMesh label = this.gameObject.GetComponentInChildren<TextMesh>();
         label.text = townName;
-        townRoads.Add(start);
+        townRoads.Add(townCentre);
         for(int i=0; i<10;i++)
         {
             AddRoad();

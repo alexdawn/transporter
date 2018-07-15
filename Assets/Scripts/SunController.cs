@@ -16,6 +16,7 @@ public class SunController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         tranform = gameObject.GetComponent<Transform>();
+        transform.eulerAngles = new Vector3(angle, -90f, 0);
         light = gameObject.GetComponent<Light>();
     }
 
