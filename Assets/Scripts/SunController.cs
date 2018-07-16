@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class SunController : MonoBehaviour {
     public float seconds_per_day_night_cycle;
     public float seconds_per_day;
-    private Transform tranform;
-    private Light light;
+    private new Transform transform;
+    private new Light light;
     public float angle;
     public string time;
     public float date = 0;
@@ -15,7 +15,7 @@ public class SunController : MonoBehaviour {
     public Material windows;
     // Use this for initialization
     void Start () {
-        tranform = gameObject.GetComponent<Transform>();
+        transform = gameObject.GetComponent<Transform>();
         transform.eulerAngles = new Vector3(angle, -90f, 0);
         light = gameObject.GetComponent<Light>();
     }
