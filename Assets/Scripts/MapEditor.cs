@@ -42,6 +42,7 @@ public class MapEditor : MonoBehaviour
     public SquareGrid squareGrid;
     public GameObject townPrefab;
     public Transform tileSelectPrefab, edgeSelectPrefab;
+    public Transform ExplosionPrefab;
     private Transform[] highlight;
     private GroundMaterial activeTileMaterial;
     private EditMode activeMode;
@@ -300,6 +301,7 @@ public class MapEditor : MonoBehaviour
             if (Input.GetMouseButton(1))
             {
                 cell.RemoveRivers();
+                Explosion(cell);
             }
             else if (isDrag)
             {
@@ -320,6 +322,7 @@ public class MapEditor : MonoBehaviour
                 if (Input.GetMouseButton(1))
                 {
                     cell.RemoveRoad(edge);
+                    Explosion(cell);
                 }
                 else
                 {
@@ -346,7 +349,8 @@ public class MapEditor : MonoBehaviour
             }
             if (Input.GetMouseButton(1) && freshClick)
             {
-                cell.UrbanLevel--;
+                cell.UrbanLevel = 0;
+                Explosion(cell);
             }
         }
         else if (activeMode == EditMode.trees)
@@ -358,6 +362,7 @@ public class MapEditor : MonoBehaviour
             if (Input.GetMouseButton(1) && freshClick)
             {
                 cell.PlantLevel = 0;
+                Explosion(cell);
             }
         }
         else if (activeMode == EditMode.rocks)
@@ -369,6 +374,7 @@ public class MapEditor : MonoBehaviour
             if (Input.GetMouseButton(1) && freshClick)
             {
                 cell.ScenaryObject = 0;
+                Explosion(cell);
             }
         }
         else if (activeMode == EditMode.mast)
@@ -380,6 +386,7 @@ public class MapEditor : MonoBehaviour
             if (Input.GetMouseButton(1) && freshClick)
             {
                 cell.ScenaryObject = 0;
+                Explosion(cell);
             }
         }
         else if (activeMode == EditMode.lighthouse)
@@ -391,6 +398,7 @@ public class MapEditor : MonoBehaviour
             if (Input.GetMouseButton(1) && freshClick)
             {
                 cell.ScenaryObject = 0;
+                Explosion(cell);
             }
         }
         else if (activeMode == EditMode.industry)
@@ -402,6 +410,7 @@ public class MapEditor : MonoBehaviour
             if (Input.GetMouseButton(1) && freshClick)
             {
                 cell.Industry = 0;
+                Explosion(cell);
             }
         }
         else if (activeMode == EditMode.town)
@@ -415,5 +424,12 @@ public class MapEditor : MonoBehaviour
                 cell.Town = manager;
             }
         }
+    }
+
+    public void Explosion(SquareCell cell)
+    {
+        Transform explosion = Instantiate(ExplosionPrefab);
+        explosion.position = GridCoordinates.ToPosition(cell.coordinates) + new Vector3(0, cell.CentreElevation * GridMetrics.elevationStep, 0);
+        Destroy(explosion.gameObject, 10);
     }
 }

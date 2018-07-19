@@ -10,6 +10,7 @@ public class SquareGridChunk : MonoBehaviour {
 
     public GridMesh terrain, rivers, roads, water, waterShore;
     public GridFeatureManager features;
+    public Color retainingWallColor;
     Canvas gridCanvas;
 
 
@@ -244,18 +245,18 @@ public class SquareGridChunk : MonoBehaviour {
                 else if (c0.y > n0.y && c1.y > n1.y) // if one edge is always above the other
                 {
                     terrain.AddQuad(c0, n0, n1, c1);
-                    terrain.AddQuadColor(Color.yellow);
+                    terrain.AddQuadColor(retainingWallColor);
                 }
             }
             else if (c0.y > n0.y)
             {
                 terrain.AddTriangle(c0, n0, c1);
-                terrain.AddTriangleColor(Color.yellow);
+                terrain.AddTriangleColor(retainingWallColor);
             }
             else if (c1.y > n1.y)
             {
                 terrain.AddTriangle(c0, n1, c1);
-                terrain.AddTriangleColor(Color.yellow);
+                terrain.AddTriangleColor(retainingWallColor);
             }
         }
     }

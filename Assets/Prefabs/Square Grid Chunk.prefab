@@ -475,6 +475,7 @@ MonoBehaviour:
   water: {fileID: 114149072815604520}
   waterShore: {fileID: 114518384088653616}
   features: {fileID: 114546041677092586}
+  retainingWallColor: {r: 0.5372549, g: 0.5372549, b: 0.35686275, a: 0}
 --- !u!114 &114149072815604520
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -586,6 +587,7 @@ MonoBehaviour:
     - {fileID: 4781835602930630, guid: f142a6d689932a24c9552631473d2c0d, type: 2}
     - {fileID: 400034, guid: 0bd76a00beace3643b46aeac5f028bbc, type: 3}
     - {fileID: 400000, guid: 89dc499b111950948ad58cb8c547d369, type: 3}
+    - {fileID: 4670531142928614, guid: cba202dd83c122c4d9e5599f7108c64f, type: 2}
   featureBuildings: []
   farmBuildings: []
   scenaryBuildings:

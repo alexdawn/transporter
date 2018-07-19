@@ -304,7 +304,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100002, guid: ef75558d0d4a37f48b096dba76cac8ae, type: 3}
-  - {fileID: 2100004, guid: ef75558d0d4a37f48b096dba76cac8ae, type: 3}
+  - {fileID: 2100000, guid: f104a1d1cd8a582448f1e88fc0cb8f9a, type: 2}
   - {fileID: 2100006, guid: ef75558d0d4a37f48b096dba76cac8ae, type: 3}
   - {fileID: 2100000, guid: ef75558d0d4a37f48b096dba76cac8ae, type: 3}
   - {fileID: 2100008, guid: ef75558d0d4a37f48b096dba76cac8ae, type: 3}
