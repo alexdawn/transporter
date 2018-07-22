@@ -29,7 +29,7 @@ Material:
     m_Floats:
     - _Glossiness: 0.167
     - _Metallic: 0
-    - _NoiseCut: 0.386
+    - _NoiseCut: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color1: {r: 1, g: 1, b: 1, a: 1}

@@ -66,20 +66,20 @@ public struct GridElevations
     }
 
 
-    public static int GetTerrainHeight(Vector3 position)
+    public static int GetTerrainHeight(Vector3 position, int seed)
     {
         float x = position.x;
         float z = position.z;
-        return (int)(maxHeight * Mathf.PerlinNoise((x / (float)chunkSize) * perlinScale, (z / (float)chunkSize) * perlinScale));
+        return (int)(maxHeight * Mathf.PerlinNoise((x / (float)chunkSize) * perlinScale + seed, (z / (float)chunkSize) * perlinScale + seed));
     }
 
 
-    public static GridElevations GetVertexHeights(Vector3 position)
+    public static GridElevations GetVertexHeights(Vector3 position, int seed)
     {
-        int v0 = GetTerrainHeight(position + GridMetrics.GetEdge(GridDirection.SW));
-        int v1 = GetTerrainHeight(position + GridMetrics.GetEdge(GridDirection.NW));
-        int v2 = GetTerrainHeight(position + GridMetrics.GetEdge(GridDirection.NE));
-        int v3 = GetTerrainHeight(position + GridMetrics.GetEdge(GridDirection.SE));
+        int v0 = GetTerrainHeight(position + GridMetrics.GetEdge(GridDirection.SW), seed);
+        int v1 = GetTerrainHeight(position + GridMetrics.GetEdge(GridDirection.NW), seed);
+        int v2 = GetTerrainHeight(position + GridMetrics.GetEdge(GridDirection.NE), seed);
+        int v3 = GetTerrainHeight(position + GridMetrics.GetEdge(GridDirection.SE), seed);
         return new GridElevations(v0, v1, v2, v3);
     }
 

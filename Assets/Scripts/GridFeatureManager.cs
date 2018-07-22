@@ -44,7 +44,7 @@ public class GridFeatureManager : MonoBehaviour {
             for (int i = 0; i < cell.PlantLevel; i++)
             {
                 float selectFeature = Mathf.Clamp(Mathf.PerlinNoise((position.x + i / 6f) * 100, (position.z + i / 6f) * 100), 0f ,1f);
-                int randomFeature = (int)Mathf.Floor(treePrefabs[0].Length * selectFeature);
+                int randomFeature = (int)Mathf.Floor((treePrefabs[0].Length - 1) * selectFeature);
                 Transform instance = Instantiate(treePrefabs[0][randomFeature]);
                 instance.localPosition = position + (Quaternion.Euler(0, i / (float)cell.PlantLevel * 360f, 0) * new Vector3(hash.a * 0.3f + 0.2f, 0, 0));
                 instance.localRotation = Quaternion.Euler(0f, 360f * hash.a, 0f);

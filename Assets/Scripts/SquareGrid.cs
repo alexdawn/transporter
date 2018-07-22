@@ -12,10 +12,48 @@ public class SquareGrid : MonoBehaviour
     public SquareGridChunk chunkPrefab;
     public Text cellLabelPrefab;
     public int seed;
+    CullingGroup chunkCuller;
+    BoundingSphere[] spheres;
 
     SquareGridChunk[] chunks;
     SquareCell[] cells;
     GroundMaterial[] gridMaterials;
+
+    private void StateChangedMethod(CullingGroupEvent evt)
+    {
+        if (evt.hasBecomeVisible)
+        {
+            //Debug.Log("Sphere " + evt.index + " has become visible!");
+            chunks[evt.index].gameObject.SetActive(true);
+        }
+        else if (evt.hasBecomeInvisible)
+        {
+            //Debug.Log("Sphere " + evt.index + " has become invisible!");
+            chunks[evt.index].gameObject.SetActive(false);
+        }
+
+        //if(evt.currentDistance != evt.previousDistance)
+        //{
+            if(evt.currentDistance < 1)
+            {
+                //Debug.Log("Sphere " + evt.index + " has moved to band 0!");
+                //chunks[evt.index].gameObject.GetComponentInChildren<GridFeatureManager>().gameObject.SetActive(true);
+            }
+            else if (evt.currentDistance >= 1)
+            {
+                //Debug.Log("Sphere " + evt.index + " has moved out of band 0!");
+                //chunks[evt.index].gameObject.GetComponentInChildren<GridFeatureManager>().gameObject.SetActive(false);
+            }
+        //}
+    }
+
+    private void OnDrawGizmos()
+    {
+        for(int i=0; i< chunkCountX * chunkCountZ; i++)
+        {
+                Gizmos.DrawWireSphere(spheres[i].position, spheres[i].radius);
+        }
+    }
 
     private void Awake()
     {
@@ -23,9 +61,19 @@ public class SquareGrid : MonoBehaviour
         cellCountX = chunkCountX * GridMetrics.chunkSizeX;
         cellCountZ = chunkCountZ * GridMetrics.chunkSizeZ;
         GridMetrics.InitializeHashGrid(seed);
+        chunkCuller = new CullingGroup();
+        chunkCuller.SetBoundingDistances(new float[] { 30f, 60f, 90f});
+        chunkCuller.targetCamera = Camera.main;
+        chunkCuller.onStateChanged = StateChangedMethod;
 
         CreateChunks();
         CreateCells();
+    }
+
+    void OnDestroy()
+    {
+        chunkCuller.Dispose();
+        chunkCuller = null;
     }
 
 
@@ -37,15 +85,20 @@ public class SquareGrid : MonoBehaviour
     void CreateChunks()
     {
         chunks = new SquareGridChunk[chunkCountX * chunkCountZ];
+        spheres = new BoundingSphere[chunkCountX * chunkCountZ];
 
         for (int z=0, i=0; z< chunkCountZ; z++)
         {
             for(int x=0; x<chunkCountX; x++)
             {
-                SquareGridChunk chunk = chunks[i++] = Instantiate(chunkPrefab);
+                SquareGridChunk chunk = chunks[i] = Instantiate(chunkPrefab);
+                spheres[i] = new BoundingSphere(new Vector3((x + 0.5f) * GridMetrics.chunkSizeX, 0, (z + 0.5f) * GridMetrics.chunkSizeZ), Mathf.Max(GridMetrics.chunkSizeX, GridMetrics.chunkSizeZ));
+                i++;
                 chunk.transform.SetParent(transform);
             }
         }
+        chunkCuller.SetBoundingSpheres(spheres);
+        chunkCuller.SetBoundingSphereCount(chunkCountX * chunkCountZ);
     }
 
     void CreateCells()
@@ -89,7 +142,7 @@ public class SquareGrid : MonoBehaviour
             cell.SetNeighbor(GridDirection.SE, cells[i - cellCountX + 1]);
         }
         cell.coordinates = GridCoordinates.FromOffsetCoordinates(x, z);
-        cell.GridElevations = GridElevations.GetVertexHeights(position);
+        cell.GridElevations = GridElevations.GetVertexHeights(position, seed);
         // start off with grass everywhere
         cell.Tile = gridMaterials[0].GetClone; //gridColors[(int)((cell.CentreElevation / (float)GridElevations.maxHeight) * gridColors.Length)];
         if(cell.CentreElevation < 7) // basic treeline cut-off

@@ -32,20 +32,20 @@ public class SquareCell : MonoBehaviour {
     [SerializeField]
     bool[] roads = new bool[8]; // includes diagonals
 
-    private void Update()
-    {
-        timer += Time.deltaTime;
-        if(timer > 1f)
-        {
-            bool hasTileChanged = tile.CountDown(timer);
-            if (hasTileChanged)
-            {
-                Refresh();
-            }
-            timer = 0f;
-        }
+    //private void Update()
+    //{
+    //    timer += Time.deltaTime;
+    //    if(timer > 1f)
+    //    {
+    //        bool hasTileChanged = tile.CountDown(timer);
+    //        if (hasTileChanged)
+    //        {
+    //            Refresh();
+    //        }
+    //        timer = 0f;
+    //    }
 
-    }
+    //}
 
     public Building BuildingOnSquare
     {

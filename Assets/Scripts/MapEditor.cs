@@ -95,6 +95,22 @@ public class MapEditor : MonoBehaviour
         Draw();
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void TogglePause()
+    {
+        if (Time.timeScale!=0)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+    }
 
     void HandleInput()
     {
@@ -237,6 +253,10 @@ public class MapEditor : MonoBehaviour
                             Destroy(highlight[index].gameObject);
                         }
                         highlight[index] = Instantiate(tileSelectPrefab);
+                        if(pointerLocation == null || squareGrid.GetCellOffset(pointerLocation, x, z) == null)
+                        {
+                            UnityEngine.Debug.Log("something is null " + pointerLocation + ":" + squareGrid.GetCellOffset(pointerLocation, x, z));
+                        }
                         float yOffset = (float)squareGrid.GetCellOffset(pointerLocation, x, z).GetVertexElevations[vertexDirection] * GridMetrics.elevationStep;
                         offPos.y = yOffset;
                         highlight[index].localPosition = offPos;
