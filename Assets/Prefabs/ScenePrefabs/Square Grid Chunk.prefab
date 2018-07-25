@@ -575,26 +575,10 @@ MonoBehaviour:
     - {fileID: 400004, guid: 04cd093236ee8be438da17301fe2d9bd, type: 3}
     - {fileID: 400004, guid: edf51448998929e40a21ce80ebccacdf, type: 3}
     - {fileID: 400000, guid: 8dc6a8650f5eac64da4124fccc615549, type: 3}
-  scenaryPrefabs:
-  - features:
-    - {fileID: 400004, guid: 4de4162224ab0014abad4c2b24f6ce8e, type: 3}
-    - {fileID: 400006, guid: 14100935c0a82c140b0a44f835865920, type: 3}
-    - {fileID: 400002, guid: 7e2acd39780b7864a8d073992e77f0e4, type: 3}
-  industryPrefabs:
-  - features:
-    - {fileID: 4179576964487806, guid: b4018395b7d7f354d9dcfc5e2f1a819d, type: 2}
-    - {fileID: 4529969458395618, guid: daf97e49ea6c2bf40a6b3b19042ecffe, type: 2}
-    - {fileID: 400042, guid: 1bc2b613a72aeda429ebb3002581446b, type: 3}
-    - {fileID: 400004, guid: 350ea78ab2727424ba8b3a7fa163d6cd, type: 3}
-    - {fileID: 4492649407706274, guid: aa8346c13df413d43b80d90ba7a0665d, type: 2}
-    - {fileID: 4861793170262202, guid: daca219678127bc43b7031f082107b6e, type: 2}
-    - {fileID: 400006, guid: f3a9836869517c4479207f8a95be99d9, type: 3}
-    - {fileID: 4781835602930630, guid: f142a6d689932a24c9552631473d2c0d, type: 2}
-    - {fileID: 400034, guid: 0bd76a00beace3643b46aeac5f028bbc, type: 3}
-    - {fileID: 400000, guid: 89dc499b111950948ad58cb8c547d369, type: 3}
-    - {fileID: 4670531142928614, guid: cba202dd83c122c4d9e5599f7108c64f, type: 2}
   scenaryBuildings:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 1431aa00438a807489f3e4e0608ad007, type: 2}
+  - {fileID: 11400000, guid: edd9f7b9f274f2a40b1e75d9d0ee92a3, type: 2}
+  - {fileID: 11400000, guid: 5c507dcd4dbf6fe49bf770766dd9534e, type: 2}
   industryBuildings:
   - {fileID: 11400000, guid: e8eb4a4b3f6285a48859bf6f725a8615, type: 2}
   - {fileID: 11400000, guid: 898881236ecde8b45aad3d8af1dd472e, type: 2}

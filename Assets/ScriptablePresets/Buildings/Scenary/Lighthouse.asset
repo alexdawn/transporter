@@ -12,12 +12,22 @@ MonoBehaviour:
   m_Name: Lighthouse
   m_EditorClassIdentifier: 
   buildingName: Lighthouse
-  width: 2
-  depth: 2
+  description: Building for guiding ships at sea
+  width: 1
+  depth: 1
   frontageDirection: 0
   startYear: 1800
   endYear: 2050
-  color: {r: 0, g: 0, b: 0, a: 0}
+  randomRotation: 1
+  uniqueInTown: 0
   prefabBuilding: {fileID: 400002, guid: 7e2acd39780b7864a8d073992e77f0e4, type: 3}
-  groundMaterial: {fileID: 11400000, guid: c5bb33b5037ae0b4dbecf5c2621aced0, type: 2}
+  groundMaterial: {fileID: 0}
+  buildingType: 0
+  passengerCreation: 1
+  population: 1
+  jobs: 0
+  mailCreation: 0
+  acceptsPassengers: 0
+  acceptsMail: 0
+  acceptsGoods: 0
   flatFoundations: 1

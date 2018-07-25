@@ -12,12 +12,22 @@ MonoBehaviour:
   m_Name: Rock
   m_EditorClassIdentifier: 
   buildingName: Rocks
+  description: 
   width: 1
   depth: 1
   frontageDirection: 0
   startYear: 0
   endYear: 0
-  color: {r: 0, g: 0, b: 0, a: 0}
+  randomRotation: 1
+  uniqueInTown: 0
   prefabBuilding: {fileID: 400004, guid: 4de4162224ab0014abad4c2b24f6ce8e, type: 3}
   groundMaterial: {fileID: 0}
+  buildingType: 0
+  passengerCreation: 0
+  population: 0
+  jobs: 0
+  mailCreation: 0
+  acceptsPassengers: 0
+  acceptsMail: 0
+  acceptsGoods: 0
   flatFoundations: 0

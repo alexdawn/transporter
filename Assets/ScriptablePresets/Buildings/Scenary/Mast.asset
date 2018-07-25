@@ -12,12 +12,22 @@ MonoBehaviour:
   m_Name: Mast
   m_EditorClassIdentifier: 
   buildingName: Radio Mast
+  description: 
   width: 1
   depth: 1
   frontageDirection: 0
   startYear: 1920
   endYear: 2000
-  color: {r: 0, g: 0, b: 0, a: 0}
+  randomRotation: 1
+  uniqueInTown: 0
   prefabBuilding: {fileID: 400006, guid: 14100935c0a82c140b0a44f835865920, type: 3}
-  groundMaterial: {fileID: 11400000, guid: c5bb33b5037ae0b4dbecf5c2621aced0, type: 2}
+  groundMaterial: {fileID: 0}
+  buildingType: 0
+  passengerCreation: 0
+  population: 0
+  jobs: 0
+  mailCreation: 0
+  acceptsPassengers: 0
+  acceptsMail: 0
+  acceptsGoods: 0
   flatFoundations: 1
