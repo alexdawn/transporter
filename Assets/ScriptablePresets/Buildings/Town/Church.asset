@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 015605c332ace1847a85be2f6cbb1907, type: 3}
+  m_Name: Church
+  m_EditorClassIdentifier: 
+  buildingName: Church
+  description: While its congregation has shrunk this building still attracts a number
+    of visitors
+  width: 2
+  depth: 2
+  frontageDirection: 0
+  startYear: 1200
+  endYear: 1900
+  randomRotation: 0
+  uniqueInTown: 1
+  prefabBuilding: {fileID: 400000, guid: a739d8679255dc544a81e94be497d56c, type: 3}
+  groundMaterial: {fileID: 0}
+  buildingType: 4
+  passengerCreation: 200
+  population: 0
+  jobs: 2
+  mailCreation: 0
+  acceptsPassengers: 1
+  acceptsMail: 0
+  acceptsGoods: 0
+  flatFoundations: 1

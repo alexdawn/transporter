@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17e3ba9a4fa5c254b865a38332eb3f16, type: 3}
+  m_Name: SawMill
+  m_EditorClassIdentifier: 
+  buildingName: Sawmill
+  width: 3
+  depth: 3
+  frontageDirection: 0
+  startYear: 1700
+  endYear: 3000
+  prefabBuilding: {fileID: 400004, guid: 350ea78ab2727424ba8b3a7fa163d6cd, type: 3}
+  groundMaterial: {fileID: 11400000, guid: a03faed3f0803244e90c5252ed55dd8d, type: 2}
+  flatFoundations: 1
+  cargoProduced:
+  - {fileID: 11400000, guid: 0215fd67b8ad5ee4c92c2f70fdeb2976, type: 2}
+  cargoCosumed:
+  - {fileID: 11400000, guid: f26789d8538861b409b70d0f63b024d7, type: 2}
+  industryType: 1

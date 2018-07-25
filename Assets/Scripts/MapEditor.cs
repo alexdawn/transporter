@@ -22,7 +22,7 @@ public enum EditMode
     town
 }
 
-public enum Industry
+public enum IndustryIndex
 {
     CoalMine,
     PowerStation,
@@ -42,11 +42,10 @@ public class MapEditor : MonoBehaviour
     public SquareGrid squareGrid;
     public GameObject townPrefab;
     public Transform tileSelectPrefab, edgeSelectPrefab;
-    public Transform ExplosionPrefab;
     private Transform[] highlight;
     private GroundMaterial activeTileMaterial;
     private EditMode activeMode;
-    private Industry activeIndustry=0;
+    private IndustryIndex activeIndustry =0;
     private bool allowCliffs = false;
     private Vector3 pointerLocation;
     private Dropdown dropMenu;
@@ -183,7 +182,7 @@ public class MapEditor : MonoBehaviour
 
     public void SetIndustry(int mode)
     {
-        activeIndustry = (Industry)mode;
+        activeIndustry = (IndustryIndex)mode;
     }
 
 
@@ -253,7 +252,7 @@ public class MapEditor : MonoBehaviour
                             Destroy(highlight[index].gameObject);
                         }
                         highlight[index] = Instantiate(tileSelectPrefab);
-                        if(pointerLocation == null || squareGrid.GetCellOffset(pointerLocation, x, z) == null)
+                        if(squareGrid.GetCellOffset(pointerLocation, x, z) == null)
                         {
                             UnityEngine.Debug.Log("something is null " + pointerLocation + ":" + squareGrid.GetCellOffset(pointerLocation, x, z));
                         }
@@ -448,8 +447,6 @@ public class MapEditor : MonoBehaviour
 
     public void Explosion(SquareCell cell)
     {
-        Transform explosion = Instantiate(ExplosionPrefab);
-        explosion.position = GridCoordinates.ToPosition(cell.coordinates) + new Vector3(0, cell.CentreElevation * GridMetrics.elevationStep, 0);
-        Destroy(explosion.gameObject, 10);
+        cell.Demolish();
     }
 }

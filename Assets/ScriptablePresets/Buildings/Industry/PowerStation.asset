@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17e3ba9a4fa5c254b865a38332eb3f16, type: 3}
+  m_Name: PowerStation
+  m_EditorClassIdentifier: 
+  buildingName: Power Station
+  width: 4
+  depth: 2
+  frontageDirection: 0
+  startYear: 1900
+  endYear: 2020
+  prefabBuilding: {fileID: 4529969458395618, guid: daf97e49ea6c2bf40a6b3b19042ecffe,
+    type: 2}
+  groundMaterial: {fileID: 11400000, guid: a03faed3f0803244e90c5252ed55dd8d, type: 2}
+  flatFoundations: 1
+  cargoProduced: []
+  cargoCosumed: []
+  industryType: 2

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17e3ba9a4fa5c254b865a38332eb3f16, type: 3}
+  m_Name: CoalMine
+  m_EditorClassIdentifier: 
+  buildingName: Coal Mine
+  width: 3
+  depth: 4
+  frontageDirection: 0
+  startYear: 1800
+  endYear: 1980
+  prefabBuilding: {fileID: 4179576964487806, guid: b4018395b7d7f354d9dcfc5e2f1a819d,
+    type: 2}
+  groundMaterial: {fileID: 11400000, guid: a03faed3f0803244e90c5252ed55dd8d, type: 2}
+  flatFoundations: 1
+  cargo_produced:
+  - {fileID: 11400000, guid: 426a7f3b604888946930924ae623ca9e, type: 2}
+  cargo_cosumed: []

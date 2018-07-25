@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 015605c332ace1847a85be2f6cbb1907, type: 3}
+  m_Name: TownFlats1
+  m_EditorClassIdentifier: 
+  buildingName: Town Flats
+  description: 
+  width: 1
+  depth: 1
+  frontageDirection: 0
+  startYear: 1950
+  endYear: 1980
+  randomRotation: 1
+  uniqueInTown: 0
+  prefabBuilding: {fileID: 400006, guid: 095b2110d4eed14428397e2fbdff10fa, type: 3}
+  groundMaterial: {fileID: 0}
+  buildingType: 1
+  passengerCreation: 30
+  population: 30
+  jobs: 0
+  mailCreation: 16
+  acceptsPassengers: 1
+  acceptsMail: 1
+  acceptsGoods: 0
+  flatFoundations: 1

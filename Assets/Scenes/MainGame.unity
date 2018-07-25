@@ -425,8 +425,6 @@ MonoBehaviour:
     type: 2}
   edgeSelectPrefab: {fileID: 4768038891761100, guid: 9011ae066e882b543ace9b1b19b431a4,
     type: 2}
-  ExplosionPrefab: {fileID: 4000011428506136, guid: ecdd96beb7f93494880c052dfccf9dc1,
-    type: 2}
   pointerSize: 1
 --- !u!1 &17079656
 GameObject:

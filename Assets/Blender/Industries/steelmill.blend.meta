@@ -32,6 +32,10 @@ ModelImporter:
     100052: LargeShelter_001
     100054: SmallShed
     100056: SmallShed_001
+    100058: Drum
+    100060: Drum_001
+    100062: Circle
+    100064: Circle_001
     400000: Building1
     400002: Empty
     400004: Furnace
@@ -61,6 +65,10 @@ ModelImporter:
     400052: LargeShelter_001
     400054: SmallShed
     400056: SmallShed_001
+    400058: Drum
+    400060: Drum_001
+    400062: Circle
+    400064: Circle_001
     2100000: unnamed
     2100002: concrete
     2100004: Metal
@@ -69,6 +77,7 @@ ModelImporter:
     2100010: Company
     2100012: Roof_002
     2100014: ChimmeyHole
+    2100016: steel
     2300000: Building1
     2300002: Furnace
     2300004: Cube
@@ -96,6 +105,10 @@ ModelImporter:
     2300048: LargeShelter_001
     2300050: SmallShed
     2300052: SmallShed_001
+    2300054: Drum
+    2300056: Drum_001
+    2300058: Circle
+    2300060: Circle_001
     3300000: Building1
     3300002: Furnace
     3300004: Cube
@@ -123,6 +136,10 @@ ModelImporter:
     3300048: LargeShelter_001
     3300050: SmallShed
     3300052: SmallShed_001
+    3300054: Drum
+    3300056: Drum_001
+    3300058: Circle
+    3300060: Circle_001
     4300000: Furnace
     4300002: Building1
     4300004: Cube_001
@@ -150,6 +167,10 @@ ModelImporter:
     4300048: ChimneySet
     4300050: BigChimmey
     4300052: FurnacePipes
+    4300054: Drum_001
+    4300056: Drum
+    4300058: Circle_001
+    4300060: Circle
     7400000: Default Take
     9500000: //RootNode
   externalObjects:

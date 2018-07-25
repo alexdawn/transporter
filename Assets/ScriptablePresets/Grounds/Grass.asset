@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Grass
   m_EditorClassIdentifier: 
   tileTypeName: Grass
-  color: {r: 0.20975435, g: 0.39200002, b: 0.07908773, a: 0}
+  color: {r: 0.043921564, g: 0.28, b: 0.04117646, a: 1}
   blendEdge: 1
   decays: 0
   lifetime: 0

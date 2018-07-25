@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 015605c332ace1847a85be2f6cbb1907, type: 3}
+  m_Name: House3
+  m_EditorClassIdentifier: 
+  buildingName: House
+  description: 
+  width: 1
+  depth: 1
+  frontageDirection: 0
+  startYear: 1900
+  endYear: 2050
+  randomRotation: 1
+  prefabBuilding: {fileID: 400002, guid: 4d5077831deed6f429706077a5d258ec, type: 3}
+  groundMaterial: {fileID: 0}
+  passengerCreation: 0
+  population: 2
+  jobs: 0
+  mailCreation: 2
+  acceptsPassengers: 1
+  acceptsMail: 1
+  acceptsGoods: 0
+  flatFoundations: 1

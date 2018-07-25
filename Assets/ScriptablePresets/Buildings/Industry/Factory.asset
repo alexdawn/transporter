@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17e3ba9a4fa5c254b865a38332eb3f16, type: 3}
+  m_Name: Factory
+  m_EditorClassIdentifier: 
+  buildingName: Factory
+  width: 2
+  depth: 2
+  frontageDirection: 0
+  startYear: 1800
+  endYear: 2050
+  prefabBuilding: {fileID: 4861793170262202, guid: daca219678127bc43b7031f082107b6e,
+    type: 2}
+  groundMaterial: {fileID: 11400000, guid: c5bb33b5037ae0b4dbecf5c2621aced0, type: 2}
+  flatFoundations: 1
+  cargoProduced: []
+  cargoCosumed: []
+  industryType: 1

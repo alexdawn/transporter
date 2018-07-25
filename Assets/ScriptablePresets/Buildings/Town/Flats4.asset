@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 015605c332ace1847a85be2f6cbb1907, type: 3}
+  m_Name: Flats4
+  m_EditorClassIdentifier: 
+  buildingName: Flats and Offices
+  description: 
+  width: 1
+  depth: 1
+  frontageDirection: 0
+  startYear: 1900
+  endYear: 2050
+  randomRotation: 1
+  uniqueInTown: 0
+  prefabBuilding: {fileID: 400012, guid: 3b00c10a30a25a34ab0d8a03c613bd3f, type: 3}
+  groundMaterial: {fileID: 11400000, guid: c5bb33b5037ae0b4dbecf5c2621aced0, type: 2}
+  buildingType: 1
+  passengerCreation: 50
+  population: 16
+  jobs: 4
+  mailCreation: 8
+  acceptsPassengers: 1
+  acceptsMail: 1
+  acceptsGoods: 1
+  flatFoundations: 1

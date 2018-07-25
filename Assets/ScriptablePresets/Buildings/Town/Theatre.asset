@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 015605c332ace1847a85be2f6cbb1907, type: 3}
+  m_Name: Theatre
+  m_EditorClassIdentifier: 
+  buildingName: Theatre
+  description: Catz seems to come back every year
+  width: 1
+  depth: 1
+  frontageDirection: 0
+  startYear: 1900
+  endYear: 2000
+  randomRotation: 1
+  uniqueInTown: 0
+  prefabBuilding: {fileID: 400004, guid: dc370288c46cd8c49982b965a31b6df3, type: 3}
+  groundMaterial: {fileID: 11400000, guid: c5bb33b5037ae0b4dbecf5c2621aced0, type: 2}
+  buildingType: 3
+  passengerCreation: 200
+  population: 0
+  jobs: 5
+  mailCreation: 20
+  acceptsPassengers: 1
+  acceptsMail: 1
+  acceptsGoods: 1
+  flatFoundations: 1

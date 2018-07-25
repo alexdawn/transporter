@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: GrassTropical
   m_EditorClassIdentifier: 
   tileTypeName: Tropical Grass
-  color: {r: 0.15294118, g: 0.28627452, b: 0.05882353, a: 0}
+  color: {r: 0.04407843, g: 0.28100002, b: 0.04132352, a: 0}
   blendEdge: 1
   decays: 0
   lifetime: 0
