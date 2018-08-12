@@ -1,0 +1,236 @@
+fileFormatVersion: 2
+guid: 97c7846dd087f814e8a1b2ad2a4f3e6e
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Circle
+    100002: Cube_001
+    100004: ModernSignal2Aspect
+    100006: ModernSignal2Aspect_001
+    100008: ModernSignal2Aspect_002
+    100010: ModernSignal2Aspect_003
+    100012: ModernSignal3Aspect
+    100014: ModernSignal4Aspect
+    100016: ModernSignal_003
+    100018: ModernSignalCage
+    100020: ModernSignalCage_001
+    100022: ModernSignalCage_002
+    100024: ModernSignalCage_003
+    100026: ModernSignalCage_004
+    100028: ModernSignalCage_005
+    100030: ModernSignalCage_006
+    100032: ModernSignalFeather
+    100034: ModernSignalFeatherLights
+    100036: //RootNode
+    100038: Plane
+    100040: Plane_001
+    100042: Plane_002
+    100044: Plane_003
+    100046: Plane_004
+    100048: Plane_005
+    100050: Plane_006
+    100052: Plane_007
+    400000: Circle
+    400002: Cube_001
+    400004: ModernSignal2Aspect
+    400006: ModernSignal2Aspect_001
+    400008: ModernSignal2Aspect_002
+    400010: ModernSignal2Aspect_003
+    400012: ModernSignal3Aspect
+    400014: ModernSignal4Aspect
+    400016: ModernSignal_003
+    400018: ModernSignalCage
+    400020: ModernSignalCage_001
+    400022: ModernSignalCage_002
+    400024: ModernSignalCage_003
+    400026: ModernSignalCage_004
+    400028: ModernSignalCage_005
+    400030: ModernSignalCage_006
+    400032: ModernSignalFeather
+    400034: ModernSignalFeatherLights
+    400036: //RootNode
+    400038: Plane
+    400040: Plane_001
+    400042: Plane_002
+    400044: Plane_003
+    400046: Plane_004
+    400048: Plane_005
+    400050: Plane_006
+    400052: Plane_007
+    2100000: SignFace
+    2100002: WhiteLight
+    2100004: Pole
+    2100006: Material_002
+    2100008: RedGlass
+    2100010: Material_001
+    2100012: Red
+    2100014: Gravel
+    2100016: Sleepers
+    2100018: RustyRail
+    2100020: SmoothRail
+    2100022: YellowLight_001
+    2100024: RedLight_001
+    2100026: GreenLight
+    2100028: WhiteLight_001
+    2300000: Circle
+    2300002: Cube_001
+    2300004: ModernSignal2Aspect
+    2300006: ModernSignal2Aspect_001
+    2300008: ModernSignal2Aspect_002
+    2300010: ModernSignal2Aspect_003
+    2300012: ModernSignal3Aspect
+    2300014: ModernSignal4Aspect
+    2300016: ModernSignal_003
+    2300018: ModernSignalCage
+    2300020: ModernSignalCage_001
+    2300022: ModernSignalCage_002
+    2300024: ModernSignalCage_003
+    2300026: ModernSignalCage_004
+    2300028: ModernSignalCage_005
+    2300030: ModernSignalCage_006
+    2300032: ModernSignalFeather
+    2300034: ModernSignalFeatherLights
+    2300036: Plane
+    2300038: Plane_001
+    2300040: Plane_002
+    2300042: Plane_003
+    2300044: Plane_004
+    2300046: Plane_005
+    2300048: Plane_006
+    2300050: Plane_007
+    3300000: Circle
+    3300002: Cube_001
+    3300004: ModernSignal2Aspect
+    3300006: ModernSignal2Aspect_001
+    3300008: ModernSignal2Aspect_002
+    3300010: ModernSignal2Aspect_003
+    3300012: ModernSignal3Aspect
+    3300014: ModernSignal4Aspect
+    3300016: ModernSignal_003
+    3300018: ModernSignalCage
+    3300020: ModernSignalCage_001
+    3300022: ModernSignalCage_002
+    3300024: ModernSignalCage_003
+    3300026: ModernSignalCage_004
+    3300028: ModernSignalCage_005
+    3300030: ModernSignalCage_006
+    3300032: ModernSignalFeather
+    3300034: ModernSignalFeatherLights
+    3300036: Plane
+    3300038: Plane_001
+    3300040: Plane_002
+    3300042: Plane_003
+    3300044: Plane_004
+    3300046: Plane_005
+    3300048: Plane_006
+    3300050: Plane_007
+    4300000: Plane_007
+    4300002: Plane_006
+    4300004: ModernSignalCage_006
+    4300006: Plane_005
+    4300008: Plane_004
+    4300010: ModernSignal2Aspect_003
+    4300012: ModernSignal2Aspect_002
+    4300014: Plane_003
+    4300016: Plane_002
+    4300018: ModernSignalCage_005
+    4300020: Circle
+    4300022: ModernSignalCage_004
+    4300024: Plane_001
+    4300026: Plane
+    4300028: ModernSignal2Aspect_001
+    4300030: Cube_001
+    4300032: ModernSignal_003
+    4300034: ModernSignal2Aspect
+    4300036: ModernSignal3Aspect
+    4300038: ModernSignal4Aspect
+    4300040: ModernSignalCage
+    4300042: ModernSignalCage_001
+    4300044: ModernSignalCage_002
+    4300046: ModernSignalCage_003
+    4300048: ModernSignalFeather
+    4300050: ModernSignalFeatherLights
+    7400000: Default Take
+    9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

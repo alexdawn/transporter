@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -12,13 +12,25 @@ MonoBehaviour:
   m_Name: Farm
   m_EditorClassIdentifier: 
   buildingName: Farm
+  description: 
   width: 4
   depth: 3
   frontageDirection: 0
   startYear: 1800
   endYear: 3000
-  prefabBuilding: {fileID: 400034, guid: 0bd76a00beace3643b46aeac5f028bbc, type: 3}
+  randomRotation: 0
+  uniqueInTown: 0
+  prefabBuilding: {fileID: 4645394200994770, guid: 77ae3c0d2115fa748a2bbddef404d75c,
+    type: 2}
   groundMaterial: {fileID: 11400000, guid: a03faed3f0803244e90c5252ed55dd8d, type: 2}
+  buildingType: 0
+  passengerCreation: 0
+  population: 0
+  jobs: 0
+  mailCreation: 0
+  acceptsPassengers: 0
+  acceptsMail: 0
+  acceptsGoods: 0
   flatFoundations: 1
   cargoProduced:
   - {fileID: 11400000, guid: c6d5a04b07da7e347a1fe1b750f99932, type: 2}

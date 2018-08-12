@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -12,13 +12,25 @@ MonoBehaviour:
   m_Name: Forest
   m_EditorClassIdentifier: 
   buildingName: Forest
+  description: 
   width: 3
   depth: 3
   frontageDirection: 0
   startYear: 1800
   endYear: 3000
-  prefabBuilding: {fileID: 400042, guid: 1bc2b613a72aeda429ebb3002581446b, type: 3}
+  randomRotation: 0
+  uniqueInTown: 0
+  prefabBuilding: {fileID: 4602460696756020, guid: a59972ab6df103b43920c1005288cf0a,
+    type: 2}
   groundMaterial: {fileID: 0}
+  buildingType: 0
+  passengerCreation: 0
+  population: 0
+  jobs: 0
+  mailCreation: 0
+  acceptsPassengers: 0
+  acceptsMail: 0
+  acceptsGoods: 0
   flatFoundations: 0
   cargoProduced: []
   cargoCosumed: []

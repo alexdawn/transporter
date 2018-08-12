@@ -74,6 +74,16 @@ ModelImporter:
     100136: SlopedPlatform_003
     100138: TerminusPlatform_002
     100140: TerminusPlatform_003
+    100142: ArchedPlatform_008
+    100144: Cube_004
+    100146: Cube_005
+    100148: Cube_006
+    100150: Cube_007
+    100152: Cube_008
+    100154: Cube_009
+    100156: Cube_010
+    100158: Cube_011
+    100160: Cube_012
     400000: BezierCurve
     400002: BezierCurve_001
     400004: BezierCurve_002
@@ -145,6 +155,16 @@ ModelImporter:
     400136: SlopedPlatform_003
     400138: TerminusPlatform_002
     400140: TerminusPlatform_003
+    400142: ArchedPlatform_008
+    400144: Cube_004
+    400146: Cube_005
+    400148: Cube_006
+    400150: Cube_007
+    400152: Cube_008
+    400154: Cube_009
+    400156: Cube_010
+    400158: Cube_011
+    400160: Cube_012
     2100000: RustyRail
     2100002: SmoothRail
     2100004: Sleepers
@@ -163,6 +183,9 @@ ModelImporter:
     2100030: CanopyWindow
     2100032: Steel
     2100034: Roof3
+    2100036: CompanyColor
+    2100038: Sign
+    2100040: Wood
     2300000: BezierCurve
     2300002: BezierCurve_001
     2300004: BezierCurve_002
@@ -233,6 +256,16 @@ ModelImporter:
     2300134: SlopedPlatform_003
     2300136: TerminusPlatform_002
     2300138: TerminusPlatform_003
+    2300140: ArchedPlatform_008
+    2300142: Cube_004
+    2300144: Cube_005
+    2300146: Cube_006
+    2300148: Cube_007
+    2300150: Cube_008
+    2300152: Cube_009
+    2300154: Cube_010
+    2300156: Cube_011
+    2300158: Cube_012
     3300000: BezierCurve
     3300002: BezierCurve_001
     3300004: BezierCurve_002
@@ -303,6 +336,16 @@ ModelImporter:
     3300134: SlopedPlatform_003
     3300136: TerminusPlatform_002
     3300138: TerminusPlatform_003
+    3300140: ArchedPlatform_008
+    3300142: Cube_004
+    3300144: Cube_005
+    3300146: Cube_006
+    3300148: Cube_007
+    3300150: Cube_008
+    3300152: Cube_009
+    3300154: Cube_010
+    3300156: Cube_011
+    3300158: Cube_012
     4300000: Rails_016
     4300002: Rails_015
     4300004: Rails_014
@@ -373,6 +416,16 @@ ModelImporter:
     4300134: TerminusPlatform_002
     4300136: ArchedPlatform_004
     4300138: SlopedPlatform_002
+    4300140: ArchedPlatform_008
+    4300142: Cube_012
+    4300144: Cube_011
+    4300146: Cube_010
+    4300148: Cube_009
+    4300150: Cube_008
+    4300152: Cube_007
+    4300154: Cube_006
+    4300156: Cube_005
+    4300158: Cube_004
     7400000: Default Take
     9500000: //RootNode
     2186277476908879412: ImportLogs

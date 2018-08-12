@@ -1,14 +1,24 @@
 fileFormatVersion: 2
 guid: 0dd3b3d8dbf56c947a4623e040f96d1a
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     100002: Cube
     100004: Empty
+    100006: FlatBuilding
+    100008: FlatBuildingFloors
+    100010: FlatBuildingInteriorWalls_001
+    100012: FlatBuildingWindows
+    100014: Hipped
     400000: //RootNode
     400002: Cube
     400004: Empty
+    400006: FlatBuilding
+    400008: FlatBuildingFloors
+    400010: FlatBuildingInteriorWalls_001
+    400012: FlatBuildingWindows
+    400014: Hipped
     2100000: Material
     2100002: Windows_001
     2100004: Roof
@@ -17,9 +27,24 @@ ModelImporter:
     2100010: Concrete
     2300000: //RootNode
     2300002: Cube
+    2300004: FlatBuilding
+    2300006: FlatBuildingFloors
+    2300008: FlatBuildingInteriorWalls_001
+    2300010: FlatBuildingWindows
+    2300012: Hipped
     3300000: //RootNode
     3300002: Cube
+    3300004: FlatBuilding
+    3300006: FlatBuildingFloors
+    3300008: FlatBuildingInteriorWalls_001
+    3300010: FlatBuildingWindows
+    3300012: Hipped
     4300000: Cube
+    4300002: FlatBuildingInteriorWalls_001
+    4300004: FlatBuildingWindows
+    4300006: FlatBuildingFloors
+    4300008: Hipped
+    4300010: FlatBuilding
     7400000: Default Take
     9500000: //RootNode
     2186277476908879412: ImportLogs
@@ -79,6 +104,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 0.5
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

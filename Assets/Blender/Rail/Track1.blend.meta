@@ -45,6 +45,45 @@ ModelImporter:
     100078: Cylinder_004
     100080: Cylinder_005
     100082: LevelCrossing
+    100084: Barrier
+    100086: Barrier2
+    100088: CatenaryPost
+    100090: CatenaryPost_001
+    100092: CatenaryWire
+    100094: CatenaryWire_001
+    100096: Cube_000
+    100098: Cube_006
+    100100: Cube_008
+    100102: Engine
+    100104: Grid
+    100106: Grid_001
+    100108: LevelCrossing_001
+    100110: ModernSignal2Aspect
+    100112: ModernSignal3Aspect
+    100114: ModernSignal4Aspect
+    100116: ModernSignal_003
+    100118: ModernSignalCage
+    100120: ModernSignalCage_001
+    100122: ModernSignalCage_002
+    100124: ModernSignalCage_003
+    100126: ModernSignalFeather
+    100128: ModernSignalFeatherLights
+    100130: OldLevelCrossingGate
+    100132: OldLevelCrossingGate_001
+    100134: OldLevelCrossingGateCircle_000
+    100136: OldLevelCrossingGateCircle_001
+    100138: Plane
+    100140: Rails_017
+    100142: Rails_018
+    100144: TelegraphPole
+    100146: TelegraphPole_001
+    100148: TelegraphWire_002
+    100150: TurnTable
+    100152: TurnTable_001
+    100154: WigWag2
+    100156: WigWag2_001
+    100158: WigWag3
+    100160: WigWag3_001
     400000: BezierCurve
     400002: BezierCurve_001
     400004: BezierCurve_002
@@ -87,6 +126,45 @@ ModelImporter:
     400078: Cylinder_004
     400080: Cylinder_005
     400082: LevelCrossing
+    400084: Barrier
+    400086: Barrier2
+    400088: CatenaryPost
+    400090: CatenaryPost_001
+    400092: CatenaryWire
+    400094: CatenaryWire_001
+    400096: Cube_000
+    400098: Cube_006
+    400100: Cube_008
+    400102: Engine
+    400104: Grid
+    400106: Grid_001
+    400108: LevelCrossing_001
+    400110: ModernSignal2Aspect
+    400112: ModernSignal3Aspect
+    400114: ModernSignal4Aspect
+    400116: ModernSignal_003
+    400118: ModernSignalCage
+    400120: ModernSignalCage_001
+    400122: ModernSignalCage_002
+    400124: ModernSignalCage_003
+    400126: ModernSignalFeather
+    400128: ModernSignalFeatherLights
+    400130: OldLevelCrossingGate
+    400132: OldLevelCrossingGate_001
+    400134: OldLevelCrossingGateCircle_000
+    400136: OldLevelCrossingGateCircle_001
+    400138: Plane
+    400140: Rails_017
+    400142: Rails_018
+    400144: TelegraphPole
+    400146: TelegraphPole_001
+    400148: TelegraphWire_002
+    400150: TurnTable
+    400152: TurnTable_001
+    400154: WigWag2
+    400156: WigWag2_001
+    400158: WigWag3
+    400160: WigWag3_001
     2100000: RustyRail
     2100002: SmoothRail
     2100004: Sleepers
@@ -98,6 +176,27 @@ ModelImporter:
     2100016: YellowLight
     2100018: RedLight
     2100020: Tarmac
+    2100022: Concrete
+    2100024: CompanyColor
+    2100026: Grass
+    2100028: Stone
+    2100030: Red_001
+    2100032: Pole_001
+    2100034: Wood
+    2100036: Pins
+    2100038: Wire
+    2100040: Metal
+    2100042: Wire_001
+    2100044: Metal_001
+    2100046: Metal_002
+    2100048: WhiteLight
+    2100050: YellowLight_001
+    2100052: RedLight_001
+    2100054: GreenLight
+    2100056: RedLight2
+    2100058: BumperRed
+    2100060: Paint1
+    2100062: BlackMetal
     2300000: BezierCurve
     2300002: BezierCurve_001
     2300004: BezierCurve_002
@@ -139,6 +238,45 @@ ModelImporter:
     2300076: Cylinder_004
     2300078: Cylinder_005
     2300080: LevelCrossing
+    2300082: Barrier
+    2300084: Barrier2
+    2300086: CatenaryPost
+    2300088: CatenaryPost_001
+    2300090: CatenaryWire
+    2300092: CatenaryWire_001
+    2300094: Cube_000
+    2300096: Cube_006
+    2300098: Cube_008
+    2300100: Engine
+    2300102: Grid
+    2300104: Grid_001
+    2300106: LevelCrossing_001
+    2300108: ModernSignal2Aspect
+    2300110: ModernSignal3Aspect
+    2300112: ModernSignal4Aspect
+    2300114: ModernSignal_003
+    2300116: ModernSignalCage
+    2300118: ModernSignalCage_001
+    2300120: ModernSignalCage_002
+    2300122: ModernSignalCage_003
+    2300124: ModernSignalFeather
+    2300126: ModernSignalFeatherLights
+    2300128: OldLevelCrossingGate
+    2300130: OldLevelCrossingGate_001
+    2300132: OldLevelCrossingGateCircle_000
+    2300134: OldLevelCrossingGateCircle_001
+    2300136: Plane
+    2300138: Rails_017
+    2300140: Rails_018
+    2300142: TelegraphPole
+    2300144: TelegraphPole_001
+    2300146: TelegraphWire_002
+    2300148: TurnTable
+    2300150: TurnTable_001
+    2300152: WigWag2
+    2300154: WigWag2_001
+    2300156: WigWag3
+    2300158: WigWag3_001
     3300000: BezierCurve
     3300002: BezierCurve_001
     3300004: BezierCurve_002
@@ -180,6 +318,45 @@ ModelImporter:
     3300076: Cylinder_004
     3300078: Cylinder_005
     3300080: LevelCrossing
+    3300082: Barrier
+    3300084: Barrier2
+    3300086: CatenaryPost
+    3300088: CatenaryPost_001
+    3300090: CatenaryWire
+    3300092: CatenaryWire_001
+    3300094: Cube_000
+    3300096: Cube_006
+    3300098: Cube_008
+    3300100: Engine
+    3300102: Grid
+    3300104: Grid_001
+    3300106: LevelCrossing_001
+    3300108: ModernSignal2Aspect
+    3300110: ModernSignal3Aspect
+    3300112: ModernSignal4Aspect
+    3300114: ModernSignal_003
+    3300116: ModernSignalCage
+    3300118: ModernSignalCage_001
+    3300120: ModernSignalCage_002
+    3300122: ModernSignalCage_003
+    3300124: ModernSignalFeather
+    3300126: ModernSignalFeatherLights
+    3300128: OldLevelCrossingGate
+    3300130: OldLevelCrossingGate_001
+    3300132: OldLevelCrossingGateCircle_000
+    3300134: OldLevelCrossingGateCircle_001
+    3300136: Plane
+    3300138: Rails_017
+    3300140: Rails_018
+    3300142: TelegraphPole
+    3300144: TelegraphPole_001
+    3300146: TelegraphWire_002
+    3300148: TurnTable
+    3300150: TurnTable_001
+    3300152: WigWag2
+    3300154: WigWag2_001
+    3300156: WigWag3
+    3300158: WigWag3_001
     4300000: Rails_016
     4300002: Rails_015
     4300004: Rails_014
@@ -221,6 +398,45 @@ ModelImporter:
     4300076: Cylinder_001
     4300078: Cylinder
     4300080: LevelCrossing
+    4300082: TurnTable
+    4300084: TurnTable_001
+    4300086: Plane
+    4300088: Grid_001
+    4300090: Grid
+    4300092: OldLevelCrossingGateCircle_000
+    4300094: OldLevelCrossingGate_001
+    4300096: OldLevelCrossingGateCircle_001
+    4300098: Cube_008
+    4300100: Cube_006
+    4300102: Rails_018
+    4300104: Cube_000
+    4300106: Rails_017
+    4300108: LevelCrossing_001
+    4300110: TelegraphPole_001
+    4300112: TelegraphWire_002
+    4300114: TelegraphPole
+    4300116: CatenaryWire
+    4300118: CatenaryPost
+    4300120: ModernSignalFeatherLights
+    4300122: ModernSignalFeather
+    4300124: ModernSignal_003
+    4300126: ModernSignalCage_003
+    4300128: ModernSignalCage_002
+    4300130: ModernSignal2Aspect
+    4300132: ModernSignal3Aspect
+    4300134: ModernSignalCage_001
+    4300136: ModernSignalCage
+    4300138: ModernSignal4Aspect
+    4300140: WigWag2_001
+    4300142: WigWag3_001
+    4300144: Barrier
+    4300146: Barrier2
+    4300148: WigWag3
+    4300150: WigWag2
+    4300152: OldLevelCrossingGate
+    4300154: CatenaryPost_001
+    4300156: CatenaryWire_001
+    4300158: Engine
     7400000: Default Take
     9500000: //RootNode
     2186277476908879412: ImportLogs

@@ -1,0 +1,232 @@
+fileFormatVersion: 2
+guid: 14296c4a4437851489528e27b8d036bd
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Armature_001
+    100002: Bone
+    100004: Bone_002
+    100006: Bone_003
+    100008: Bone_004
+    100010: Bone_005
+    100012: Bone_006
+    100014: Circle
+    100016: Circle_001
+    100018: Circle_002
+    100020: Circle_003
+    100022: Cylinder_002
+    100024: Cylinder_003
+    100026: Cylinder_005
+    100028: Cylinder_006
+    100030: Cylinder_007
+    100032: Cylinder_009
+    100034: DriveWheel
+    100036: Engine
+    100038: Engine_0
+    100040: Engine_001
+    100042: //RootNode
+    100044: Rod
+    100046: Rod_001
+    100048: Rod_002
+    100050: Rod_003
+    100052: Rod_004
+    100054: Rod_005
+    100056: Root
+    100058: Tender
+    100060: Tender_0
+    100062: TenderWheels
+    100064: TenderWheels_001
+    100066: TenderWheels_002
+    100068: TenderWheels_003
+    100070: TenderWheels_004
+    100072: TenderWheels_005
+    100074: Wheel2
+    100076: Wheel3
+    100078: Wheel4
+    100080: Wheel5
+    100082: WheelRot1
+    100084: WheelRot2
+    100086: WheelRot3
+    400000: Armature_001
+    400002: Bone
+    400004: Bone_002
+    400006: Bone_003
+    400008: Bone_004
+    400010: Bone_005
+    400012: Bone_006
+    400014: Circle
+    400016: Circle_001
+    400018: Circle_002
+    400020: Circle_003
+    400022: Cylinder_002
+    400024: Cylinder_003
+    400026: Cylinder_005
+    400028: Cylinder_006
+    400030: Cylinder_007
+    400032: Cylinder_009
+    400034: DriveWheel
+    400036: Engine
+    400038: Engine_0
+    400040: Engine_001
+    400042: //RootNode
+    400044: Rod
+    400046: Rod_001
+    400048: Rod_002
+    400050: Rod_003
+    400052: Rod_004
+    400054: Rod_005
+    400056: Root
+    400058: Tender
+    400060: Tender_0
+    400062: TenderWheels
+    400064: TenderWheels_001
+    400066: TenderWheels_002
+    400068: TenderWheels_003
+    400070: TenderWheels_004
+    400072: TenderWheels_005
+    400074: Wheel2
+    400076: Wheel3
+    400078: Wheel4
+    400080: Wheel5
+    400082: WheelRot1
+    400084: WheelRot2
+    400086: WheelRot3
+    2100000: BlackMetal
+    2100002: Brass
+    2100004: Paint1
+    2100006: BumperRed
+    4300000: TenderWheels_005
+    4300002: TenderWheels_004
+    4300004: TenderWheels_003
+    4300006: TenderWheels_002
+    4300008: TenderWheels_001
+    4300010: Rod_004
+    4300012: Rod_003
+    4300014: Engine_001
+    4300016: Rod_002
+    4300018: Rod_001
+    4300020: Circle_002
+    4300022: Circle_001
+    4300024: Tender
+    4300026: TenderWheels
+    4300028: Engine
+    4300030: Cylinder_009
+    4300032: Cylinder_007
+    4300034: Cylinder_003
+    4300036: Cylinder_002
+    4300038: Cylinder_006
+    4300040: Cylinder_005
+    4300042: Circle_003
+    4300044: Circle
+    4300046: Rod
+    4300048: Rod_005
+    7400000: Default Take
+    7400002: Armature_001Action_001
+    9500000: //RootNode
+    13700000: Circle
+    13700002: Circle_001
+    13700004: Circle_002
+    13700006: Circle_003
+    13700008: Cylinder_002
+    13700010: Cylinder_003
+    13700012: Cylinder_005
+    13700014: Cylinder_006
+    13700016: Cylinder_007
+    13700018: Cylinder_009
+    13700020: Engine
+    13700022: Engine_001
+    13700024: Rod
+    13700026: Rod_001
+    13700028: Rod_002
+    13700030: Rod_003
+    13700032: Rod_004
+    13700034: Rod_005
+    13700036: Tender
+    13700038: TenderWheels
+    13700040: TenderWheels_001
+    13700042: TenderWheels_002
+    13700044: TenderWheels_003
+    13700046: TenderWheels_004
+    13700048: TenderWheels_005
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
