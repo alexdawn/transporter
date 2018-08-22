@@ -20,6 +20,9 @@ MonoBehaviour:
   endYear: 3000
   randomRotation: 0
   uniqueInTown: 0
+  hasColorVariants: 0
+  variantMaterialId: 0
+  pallet: {fileID: 0}
   prefabBuilding: {fileID: 4645394200994770, guid: 77ae3c0d2115fa748a2bbddef404d75c,
     type: 2}
   groundMaterial: {fileID: 11400000, guid: a03faed3f0803244e90c5252ed55dd8d, type: 2}

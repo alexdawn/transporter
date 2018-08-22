@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: c81ab57a689a88b43912a9345820912d
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: boxroom
     100002: boxroom_001
@@ -53,6 +53,7 @@ ModelImporter:
     2100010: Door
     2100012: Windows_001
     2100014: Window
+    2100016: Company
     2300000: boxroom
     2300002: boxroom_001
     2300004: boxroom_002
@@ -168,6 +169,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 0.5
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

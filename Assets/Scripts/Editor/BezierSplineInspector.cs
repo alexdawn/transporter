@@ -2,6 +2,7 @@
 using UnityEngine;
 
 [CustomEditor(typeof(BezierSpline))]
+[CanEditMultipleObjects]
 public class BezierSplineInspector : Editor
 {
 
@@ -10,14 +11,20 @@ public class BezierSplineInspector : Editor
     private Quaternion handleRotation;
 
     private const int stepsPerCurve = 10;
-    private const float directionScale = 0.5f;
+    private const float directionScale = 0.1f;
 
     private void OnSceneGUI()
     {
+
         spline = target as BezierSpline;
+        DrawLines(spline);
+    }
+
+    public void DrawLines(BezierSpline spline)
+    {
         handleTransform = spline.transform;
         handleRotation = Tools.pivotRotation == PivotRotation.Local ?
-            handleTransform.rotation : Quaternion.identity;
+        handleTransform.rotation : Quaternion.identity;
 
         Vector3 p0 = ShowPoint(0);
         for (int i = 1; i < spline.ControlPointCount; i += 3)
@@ -46,6 +53,14 @@ public class BezierSplineInspector : Editor
             Undo.RecordObject(spline, "Toggle Loop");
             EditorUtility.SetDirty(spline);
             spline.Loop = loop;
+        }
+        EditorGUI.BeginChangeCheck();
+        int resolution = EditorGUILayout.IntField("Resolution", spline.LookupResolution);
+        if (EditorGUI.EndChangeCheck())
+        {
+            Undo.RecordObject(spline, "Set Resolution");
+            EditorUtility.SetDirty(spline);
+            spline.LookupResolution = resolution;
         }
         if (selectedIndex >= 0 && selectedIndex < spline.ControlPointCount)
         {
@@ -130,6 +145,7 @@ public class BezierSplineInspector : Editor
                 spline.SetControlPoint(index, handleTransform.InverseTransformPoint(point));
             }
         }
+        Handles.Label(point, point.ToString() + "\nPoint: " + index);
         return point;
     }
 }

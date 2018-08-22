@@ -1,0 +1,198 @@
+fileFormatVersion: 2
+guid: f3f95f9943dce3c42a33b2f89f9cb2bd
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Circle
+    100002: Circle_001
+    100004: Fence_000
+    100006: Fence_001
+    100008: Fence_002
+    100010: Fence_003
+    100012: Fence_004
+    100014: Fence_005
+    100016: Fence_006
+    100018: Fence_007
+    100020: Fence_008
+    100022: //RootNode
+    100024: Plane_004
+    100026: Plane_008
+    100028: Plane_009
+    100030: Plane_010
+    100032: Plane_011
+    100034: Plane_012
+    100036: Plane_013
+    100038: Plane_014
+    400000: Circle
+    400002: Circle_001
+    400004: Fence_000
+    400006: Fence_001
+    400008: Fence_002
+    400010: Fence_003
+    400012: Fence_004
+    400014: Fence_005
+    400016: Fence_006
+    400018: Fence_007
+    400020: Fence_008
+    400022: //RootNode
+    400024: Plane_004
+    400026: Plane_008
+    400028: Plane_009
+    400030: Plane_010
+    400032: Plane_011
+    400034: Plane_012
+    400036: Plane_013
+    400038: Plane_014
+    2100000: CompanyColor
+    2100002: Concrete
+    2100004: Wood
+    2100006: Roof
+    2100008: Glass
+    2100010: White
+    2100012: Door
+    2100014: Grass
+    2100016: Material_001
+    2100018: Mud
+    2300000: Circle
+    2300002: Circle_001
+    2300004: Fence_000
+    2300006: Fence_001
+    2300008: Fence_002
+    2300010: Fence_003
+    2300012: Fence_004
+    2300014: Fence_005
+    2300016: Fence_006
+    2300018: Fence_007
+    2300020: Fence_008
+    2300022: Plane_004
+    2300024: Plane_008
+    2300026: Plane_009
+    2300028: Plane_010
+    2300030: Plane_011
+    2300032: Plane_012
+    2300034: Plane_013
+    2300036: Plane_014
+    3300000: Circle
+    3300002: Circle_001
+    3300004: Fence_000
+    3300006: Fence_001
+    3300008: Fence_002
+    3300010: Fence_003
+    3300012: Fence_004
+    3300014: Fence_005
+    3300016: Fence_006
+    3300018: Fence_007
+    3300020: Fence_008
+    3300022: Plane_004
+    3300024: Plane_008
+    3300026: Plane_009
+    3300028: Plane_010
+    3300030: Plane_011
+    3300032: Plane_012
+    3300034: Plane_013
+    3300036: Plane_014
+    4300000: Fence_003
+    4300002: Fence_000
+    4300004: Fence_008
+    4300006: Fence_007
+    4300008: Fence_006
+    4300010: Fence_005
+    4300012: Fence_004
+    4300014: Fence_002
+    4300016: Fence_001
+    4300018: Plane_014
+    4300020: Circle_001
+    4300022: Circle
+    4300024: Plane_013
+    4300026: Plane_012
+    4300028: Plane_011
+    4300030: Plane_010
+    4300032: Plane_009
+    4300034: Plane_008
+    4300036: Plane_004
+    7400000: Default Take
+    9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

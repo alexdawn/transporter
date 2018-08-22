@@ -1,22 +1,227 @@
 fileFormatVersion: 2
 guid: d85fcaf84ccc6e44a839df2583952e75
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: Bridge
     100002: //RootNode
     100004: Pillars
+    100006: Bridge_001
+    100008: Bridge_002
+    100010: Bridge_003
+    100012: Bridge_004
+    100014: Bridge_005
+    100016: Bridge_006
+    100018: Bridge_007
+    100020: Bridge_008
+    100022: Bridge_009
+    100024: Bridge_010
+    100026: Bridge_011
+    100028: Bridge_012
+    100030: Bridge_013
+    100032: Bridge_014
+    100034: Pillars_001
+    100036: Pillars_002
+    100038: Pillars_003
+    100040: Pillars_004
+    100042: Pillars_005
+    100044: Rails_000
+    100046: Rails_001
+    100048: Rails_002
+    100050: Rails_003
+    100052: Rails_004
+    100054: Rails_005
+    100056: Rails_006
+    100058: Rails_007
+    100060: Bridge_015
+    100062: Bridge_016
+    100064: Bridge_017
+    100066: Bridge_018
+    100068: Bridge_019
+    100070: Bridge_020
+    100072: Bridge_021
+    100074: Bridge_022
+    100076: Bridge_023
+    100078: Bridge_024
+    100080: Bridge_025
+    100082: Bridge_026
     400000: Bridge
     400002: //RootNode
     400004: Pillars
+    400006: Bridge_001
+    400008: Bridge_002
+    400010: Bridge_003
+    400012: Bridge_004
+    400014: Bridge_005
+    400016: Bridge_006
+    400018: Bridge_007
+    400020: Bridge_008
+    400022: Bridge_009
+    400024: Bridge_010
+    400026: Bridge_011
+    400028: Bridge_012
+    400030: Bridge_013
+    400032: Bridge_014
+    400034: Pillars_001
+    400036: Pillars_002
+    400038: Pillars_003
+    400040: Pillars_004
+    400042: Pillars_005
+    400044: Rails_000
+    400046: Rails_001
+    400048: Rails_002
+    400050: Rails_003
+    400052: Rails_004
+    400054: Rails_005
+    400056: Rails_006
+    400058: Rails_007
+    400060: Bridge_015
+    400062: Bridge_016
+    400064: Bridge_017
+    400066: Bridge_018
+    400068: Bridge_019
+    400070: Bridge_020
+    400072: Bridge_021
+    400074: Bridge_022
+    400076: Bridge_023
+    400078: Bridge_024
+    400080: Bridge_025
+    400082: Bridge_026
     2100000: Material_001
     2100002: Material_002
+    2100004: RustyRail
+    2100006: SmoothRail
+    2100008: Sleepers
+    2100010: Gravel
+    2100012: Brick
+    2100014: Glass
+    2100016: Material_006
+    2100018: Steel
+    2100020: Material_003
+    2100022: Material
     2300000: Bridge
     2300002: Pillars
+    2300004: Bridge_001
+    2300006: Bridge_002
+    2300008: Bridge_003
+    2300010: Bridge_004
+    2300012: Bridge_005
+    2300014: Bridge_006
+    2300016: Bridge_007
+    2300018: Bridge_008
+    2300020: Bridge_009
+    2300022: Bridge_010
+    2300024: Bridge_011
+    2300026: Bridge_012
+    2300028: Bridge_013
+    2300030: Bridge_014
+    2300032: Pillars_001
+    2300034: Pillars_002
+    2300036: Pillars_003
+    2300038: Pillars_004
+    2300040: Pillars_005
+    2300042: Rails_000
+    2300044: Rails_001
+    2300046: Rails_002
+    2300048: Rails_003
+    2300050: Rails_004
+    2300052: Rails_005
+    2300054: Rails_006
+    2300056: Rails_007
+    2300058: Bridge_015
+    2300060: Bridge_016
+    2300062: Bridge_017
+    2300064: Bridge_018
+    2300066: Bridge_019
+    2300068: Bridge_020
+    2300070: Bridge_021
+    2300072: Bridge_022
+    2300074: Bridge_023
+    2300076: Bridge_024
+    2300078: Bridge_025
+    2300080: Bridge_026
     3300000: Bridge
     3300002: Pillars
+    3300004: Bridge_001
+    3300006: Bridge_002
+    3300008: Bridge_003
+    3300010: Bridge_004
+    3300012: Bridge_005
+    3300014: Bridge_006
+    3300016: Bridge_007
+    3300018: Bridge_008
+    3300020: Bridge_009
+    3300022: Bridge_010
+    3300024: Bridge_011
+    3300026: Bridge_012
+    3300028: Bridge_013
+    3300030: Bridge_014
+    3300032: Pillars_001
+    3300034: Pillars_002
+    3300036: Pillars_003
+    3300038: Pillars_004
+    3300040: Pillars_005
+    3300042: Rails_000
+    3300044: Rails_001
+    3300046: Rails_002
+    3300048: Rails_003
+    3300050: Rails_004
+    3300052: Rails_005
+    3300054: Rails_006
+    3300056: Rails_007
+    3300058: Bridge_015
+    3300060: Bridge_016
+    3300062: Bridge_017
+    3300064: Bridge_018
+    3300066: Bridge_019
+    3300068: Bridge_020
+    3300070: Bridge_021
+    3300072: Bridge_022
+    3300074: Bridge_023
+    3300076: Bridge_024
+    3300078: Bridge_025
+    3300080: Bridge_026
     4300000: Pillars
     4300002: Bridge
+    4300004: Rails_006
+    4300006: Bridge_014
+    4300008: Rails_005
+    4300010: Bridge_013
+    4300012: Bridge_012
+    4300014: Rails_004
+    4300016: Bridge_011
+    4300018: Bridge_010
+    4300020: Pillars_005
+    4300022: Bridge_009
+    4300024: Pillars_004
+    4300026: Bridge_008
+    4300028: Bridge_007
+    4300030: Rails_003
+    4300032: Rails_002
+    4300034: Bridge_006
+    4300036: Bridge_005
+    4300038: Pillars_003
+    4300040: Rails_001
+    4300042: Pillars_002
+    4300044: Bridge_004
+    4300046: Bridge_003
+    4300048: Bridge_002
+    4300050: Rails_000
+    4300052: Bridge_001
+    4300054: Pillars_001
+    4300056: Rails_007
+    4300058: Bridge_016
+    4300060: Bridge_015
+    4300062: Bridge_026
+    4300064: Bridge_025
+    4300066: Bridge_024
+    4300068: Bridge_023
+    4300070: Bridge_022
+    4300072: Bridge_021
+    4300074: Bridge_020
+    4300076: Bridge_019
+    4300078: Bridge_018
+    4300080: Bridge_017
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
@@ -70,6 +275,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

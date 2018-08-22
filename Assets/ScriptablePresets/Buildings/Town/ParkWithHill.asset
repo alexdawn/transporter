@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 015605c332ace1847a85be2f6cbb1907, type: 3}
+  m_Name: ParkWithHill
+  m_EditorClassIdentifier: 
+  buildingName: Park With Hill
+  description: A tricky climb but the views are worth it
+  width: 1
+  depth: 1
+  frontageDirection: 0
+  startYear: 1800
+  endYear: 2050
+  randomRotation: 1
+  uniqueInTown: 0
+  hasColorVariants: 0
+  prefabBuilding: {fileID: 400004, guid: a304941f5b53353449b761d74229a9bb, type: 3}
+  groundMaterial: {fileID: 11400000, guid: b41a93001fce71f4298912e0a06e6f8c, type: 2}
+  buildingType: 4
+  passengerCreation: 25
+  population: 0
+  jobs: 0
+  mailCreation: 0
+  acceptsPassengers: 1
+  acceptsMail: 0
+  acceptsGoods: 0
+  flatFoundations: 1

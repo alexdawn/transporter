@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -12,14 +12,28 @@ MonoBehaviour:
   m_Name: Factory
   m_EditorClassIdentifier: 
   buildingName: Factory
+  description: 
   width: 2
   depth: 2
   frontageDirection: 0
   startYear: 1800
   endYear: 2050
+  randomRotation: 0
+  uniqueInTown: 0
+  hasColorVariants: 1
+  variantMaterialId: 2
+  pallet: {fileID: 11400000, guid: 7e64665d7650f5b428ed854de57e3864, type: 2}
   prefabBuilding: {fileID: 4861793170262202, guid: daca219678127bc43b7031f082107b6e,
     type: 2}
   groundMaterial: {fileID: 11400000, guid: c5bb33b5037ae0b4dbecf5c2621aced0, type: 2}
+  buildingType: 0
+  passengerCreation: 0
+  population: 0
+  jobs: 0
+  mailCreation: 0
+  acceptsPassengers: 0
+  acceptsMail: 0
+  acceptsGoods: 0
   flatFoundations: 1
   cargoProduced: []
   cargoCosumed: []

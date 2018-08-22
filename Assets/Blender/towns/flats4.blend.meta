@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 3b00c10a30a25a34ab0d8a03c613bd3f
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: Empty
     100002: Field
@@ -28,6 +28,7 @@ ModelImporter:
     2100008: Water
     2100010: Cloth
     2100012: unnamed
+    2100014: Company
     2300000: Flag
     2300002: Flag_001
     2300004: Flapole
@@ -105,6 +106,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 0.5
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

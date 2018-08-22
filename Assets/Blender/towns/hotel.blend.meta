@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: ef75558d0d4a37f48b096dba76cac8ae
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: Empty
     100002: Field
@@ -11,6 +11,17 @@ ModelImporter:
     100010: Flapole_001
     100012: Hotel
     100014: //RootNode
+    100016: Circle
+    100018: Circle_001
+    100020: Circle_002
+    100022: Circle_003
+    100024: Hotel_001
+    100026: Plane
+    100028: Plane_001
+    100030: Plane_002
+    100032: Plane_003
+    100034: Plane_004
+    100036: Railings
     400000: Empty
     400002: Field
     400004: Flag
@@ -19,27 +30,73 @@ ModelImporter:
     400010: Flapole_001
     400012: Hotel
     400014: //RootNode
+    400016: Circle
+    400018: Circle_001
+    400020: Circle_002
+    400022: Circle_003
+    400024: Hotel_001
+    400026: Plane
+    400028: Plane_001
+    400030: Plane_002
+    400032: Plane_003
+    400034: Plane_004
+    400036: Railings
     2100000: Concrete
     2100002: Brick
     2100004: Windows_001
     2100006: Roof_001
     2100008: Water
     2100010: Cloth
+    2100012: Yellow
+    2100014: Door
     2300000: Flag
     2300002: Flag_001
     2300004: Flapole
     2300006: Flapole_001
     2300008: Hotel
+    2300010: Circle
+    2300012: Circle_001
+    2300014: Circle_002
+    2300016: Circle_003
+    2300018: Hotel_001
+    2300020: Plane
+    2300022: Plane_001
+    2300024: Plane_002
+    2300026: Plane_003
+    2300028: Plane_004
+    2300030: Railings
     3300000: Flag
     3300002: Flag_001
     3300004: Flapole
     3300006: Flapole_001
     3300008: Hotel
+    3300010: Circle
+    3300012: Circle_001
+    3300014: Circle_002
+    3300016: Circle_003
+    3300018: Hotel_001
+    3300020: Plane
+    3300022: Plane_001
+    3300024: Plane_002
+    3300026: Plane_003
+    3300028: Plane_004
+    3300030: Railings
     4300000: Flapole_001
     4300002: Flapole
     4300004: Hotel
     4300006: Flag_001
     4300008: Flag
+    4300010: Hotel_001
+    4300012: Plane_004
+    4300014: Plane_003
+    4300016: Plane_002
+    4300018: Plane_001
+    4300020: Plane
+    4300022: Circle_003
+    4300024: Circle_002
+    4300026: Circle_001
+    4300028: Circle
+    4300030: Railings
     7400000: Default Take
     9500000: //RootNode
     2186277476908879412: ImportLogs
@@ -94,6 +151,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 0.5
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

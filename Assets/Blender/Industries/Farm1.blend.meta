@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 0bd76a00beace3643b46aeac5f028bbc
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: Cube
     100002: Cube_001
@@ -31,6 +31,10 @@ ModelImporter:
     100050: Tractor_002
     100052: Tractor_003
     100054: Tractor_004
+    100056: Pig
+    100058: Pig_001
+    100060: PigHut
+    100062: PigSpawn
     400000: Cube
     400002: Cube_001
     400004: Cube_002
@@ -59,6 +63,10 @@ ModelImporter:
     400050: Tractor_002
     400052: Tractor_003
     400054: Tractor_004
+    400056: Pig
+    400058: Pig_001
+    400060: PigHut
+    400062: PigSpawn
     2100000: Material_007
     2100002: Material_001
     2100004: Wheel
@@ -104,6 +112,10 @@ ModelImporter:
     2300048: Tractor_002
     2300050: Tractor_003
     2300052: Tractor_004
+    2300054: Pig
+    2300056: Pig_001
+    2300058: PigHut
+    2300060: PigSpawn
     3300000: Cube
     3300002: Cube_001
     3300004: Cube_002
@@ -131,6 +143,10 @@ ModelImporter:
     3300048: Tractor_002
     3300050: Tractor_003
     3300052: Tractor_004
+    3300054: Pig
+    3300056: Pig_001
+    3300058: PigHut
+    3300060: PigSpawn
     4300000: Cube_012
     4300002: Cube_007
     4300004: Cube_019
@@ -158,6 +174,10 @@ ModelImporter:
     4300048: Cube
     4300050: storagetower_001
     4300052: Cube_009
+    4300054: PigSpawn
+    4300056: Pig_001
+    4300058: Pig
+    4300060: PigHut
     7400000: Default Take
     9500000: //RootNode
     2186277476908879412: ImportLogs
@@ -217,6 +237,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 0.5
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

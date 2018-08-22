@@ -28,7 +28,9 @@ public class Building: ScriptableObject
     public int endYear;
     public bool randomRotation;
     public bool uniqueInTown;
-    private Color color;
+    public bool hasColorVariants;
+    public int variantMaterialId;
+    public BuildingColorPallet pallet;
     public Transform prefabBuilding;
     public GroundMaterial groundMaterial;
     public BuildingType buildingType;
@@ -84,7 +86,7 @@ public class Building: ScriptableObject
             Building build = this;
             for(int i=0;i<foundations.Length;i++)
             {
-                Debug.Log("run " + i);
+                //Debug.Log("run " + i);
                 if (foundations[i].BuildingOnSquare != build && foundations[i].BuildingOnSquare != null)
                 {
                     foundations[i].BuildingOnSquare.Demolish();
@@ -135,6 +137,22 @@ public class Building: ScriptableObject
         if (randomRotation)
         {
             buildingModel.localRotation = buildingModel.localRotation * Quaternion.Euler(0, 90 * Mathf.Round(hash.b * 4), 0);
+        }
+        if (hasColorVariants)
+        {
+            // set material to a random variant color
+            Renderer[] renderers = buildingModel.GetComponentsInChildren<Renderer>();
+            Color randomColor = pallet.colorPallet[UnityEngine.Random.Range(0, pallet.colorPallet.Length)];
+            foreach (Renderer r in renderers)
+            {
+                foreach(Material m in r.materials)
+                {
+                    if(m.name == "Company (Instance)")
+                    {
+                        m.color = randomColor;
+                    }
+                }
+            }
         }
     }
 }

@@ -19,6 +19,25 @@ public class BezierSpline : MonoBehaviour
     private BezierControlPointMode[] modes;
     [SerializeField]
     private bool loop;
+    [SerializeField]
+    private int lookupResolution;
+    private Vector3[] pointsLookup;
+    private float[] distanceLookup;
+
+    public int LookupResolution
+    {
+        get { return lookupResolution * (points.Length / 3); }
+        set
+        {
+            lookupResolution = value;
+            CalculateLookups();
+        }
+    }
+
+    public void Start()
+    {
+        CalculateLookups();
+    }
 
     public bool Loop
     {
@@ -89,6 +108,7 @@ public class BezierSpline : MonoBehaviour
         }
         points[index] = point;
         EnforceMode(index);
+        CalculateLookups();
     }
 
     public int CurveCount
@@ -179,6 +199,7 @@ public class BezierSpline : MonoBehaviour
             BezierControlPointMode.Free,
             BezierControlPointMode.Free
         };
+        CalculateLookups();
     }
 
     public Vector3 GetPoint(float t)
@@ -196,8 +217,30 @@ public class BezierSpline : MonoBehaviour
             t -= i;
             i *= 3;
         }
+        if(i+3 >= points.Length || i < 0)
+        {
+            Debug.Log("Index is out of bounds " + i + " " + t);
+        }
         return transform.TransformPoint(Bezier.GetPoint(
             points[i], points[i + 1], points[i + 2], points[i + 3], t));
+    }
+
+    public Vector3 GetLinearPoint(float x)
+    {
+        float dist = x * distanceLookup[distanceLookup.Length-1];
+        int i = 0;
+        while (distanceLookup[i] < dist)
+        {
+            i++;
+        }
+        //Debug.Log("distance found" + i + " " + distanceLookup[i] + " " + dist);
+        if (i == 0)
+        {
+            return pointsLookup[0];
+        }
+        float interpolationFrac = (distanceLookup[i] - dist) / (distanceLookup[i] - distanceLookup[i - 1]);
+        //Debug.Log(x + " " + i + " " + interpolationFrac);
+        return Vector3.Lerp(pointsLookup[i], pointsLookup[i-1], interpolationFrac);
     }
 
     public Vector3 GetVelocity(float t)
@@ -244,6 +287,31 @@ public class BezierSpline : MonoBehaviour
             points[points.Length - 1] = points[0];
             modes[modes.Length - 1] = modes[0];
             EnforceMode(0);
+        }
+        CalculateLookups();
+    }
+
+    public void CalculateLookups()
+    {
+        Array.Resize(ref pointsLookup, LookupResolution + 1);
+        Array.Resize(ref distanceLookup, LookupResolution + 1);
+        for (int i=0; i <= LookupResolution; i++)
+        {
+            //Debug.Log(i + " " + LookupResolution);
+            pointsLookup[i] = GetPoint(i / (float)LookupResolution);
+            CalculateLinearDistance(i);
+        }
+    }
+
+    public void CalculateLinearDistance(int i)
+    {
+        if(i==0)
+        {
+            distanceLookup[i] = 0;
+        }
+        else
+        {
+            distanceLookup[i] = distanceLookup[i-1] + Vector3.Magnitude(pointsLookup[i] - pointsLookup[i - 1]);
         }
     }
 }

@@ -59,10 +59,10 @@ public class GroundMaterial: ScriptableObject
 
     IEnumerator CallCountDown(SquareCell caller)
     {
-        Debug.Log("callCountDown Called");
+        //Debug.Log("callCountDown Called");
         yield return new WaitForSeconds(lifetime);
         SetToPrevious(caller);
         caller.Refresh();
-        Debug.Log("mud revereted to previous");
+        //Debug.Log("mud revereted to previous");
     }
 }

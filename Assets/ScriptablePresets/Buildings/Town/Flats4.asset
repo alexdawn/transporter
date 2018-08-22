@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -20,6 +20,9 @@ MonoBehaviour:
   endYear: 2050
   randomRotation: 1
   uniqueInTown: 0
+  hasColorVariants: 1
+  variantMaterialId: 0
+  pallet: {fileID: 11400000, guid: 7e64665d7650f5b428ed854de57e3864, type: 2}
   prefabBuilding: {fileID: 400012, guid: 3b00c10a30a25a34ab0d8a03c613bd3f, type: 3}
   groundMaterial: {fileID: 11400000, guid: c5bb33b5037ae0b4dbecf5c2621aced0, type: 2}
   buildingType: 1

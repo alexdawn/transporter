@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 1e3dcbd2a616b764fb5ab26f65b2ae20
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: Empty
     100002: //RootNode
@@ -34,6 +34,7 @@ ModelImporter:
     2100008: Brick
     2100010: Windows_001
     2100012: Concrete
+    2100014: Company
     2300000: factorybuilding1
     2300002: factorybuilding2
     2300004: smokestacks
@@ -118,6 +119,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 0.5
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

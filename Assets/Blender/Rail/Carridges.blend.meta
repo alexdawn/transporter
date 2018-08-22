@@ -1,0 +1,190 @@
+fileFormatVersion: 2
+guid: 452c36e2edd58f9439b67dd90607c079
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Boogie
+    100002: Boogie_001
+    100004: Boogie_002
+    100006: Boogie_003
+    100008: Boogie_004
+    100010: Boogie_005
+    100012: Boogie_006
+    100014: Boogie_007
+    100016: Carridge
+    100018: Carridge_001
+    100020: Carridge_002
+    100022: Carridge_003
+    100024: Carridge_004
+    100026: Carridge_005
+    100028: Carridge_006
+    100030: Carridge_007
+    100032: Carridge_008
+    100034: //RootNode
+    100036: Cube
+    400000: Boogie
+    400002: Boogie_001
+    400004: Boogie_002
+    400006: Boogie_003
+    400008: Boogie_004
+    400010: Boogie_005
+    400012: Boogie_006
+    400014: Boogie_007
+    400016: Carridge
+    400018: Carridge_001
+    400020: Carridge_002
+    400022: Carridge_003
+    400024: Carridge_004
+    400026: Carridge_005
+    400028: Carridge_006
+    400030: Carridge_007
+    400032: Carridge_008
+    400034: //RootNode
+    400036: Cube
+    2100000: Material
+    2100002: BlackMetal_001
+    2100004: RoofMetal_001
+    2100006: Color_001
+    2100008: Material_000
+    2100010: Glass_001
+    2100012: WhitePaint
+    2300000: Boogie
+    2300002: Boogie_001
+    2300004: Boogie_002
+    2300006: Boogie_003
+    2300008: Boogie_004
+    2300010: Boogie_005
+    2300012: Boogie_006
+    2300014: Boogie_007
+    2300016: Carridge
+    2300018: Carridge_001
+    2300020: Carridge_002
+    2300022: Carridge_003
+    2300024: Carridge_004
+    2300026: Carridge_005
+    2300028: Carridge_006
+    2300030: Carridge_007
+    2300032: Carridge_008
+    2300034: Cube
+    3300000: Boogie
+    3300002: Boogie_001
+    3300004: Boogie_002
+    3300006: Boogie_003
+    3300008: Boogie_004
+    3300010: Boogie_005
+    3300012: Boogie_006
+    3300014: Boogie_007
+    3300016: Carridge
+    3300018: Carridge_001
+    3300020: Carridge_002
+    3300022: Carridge_003
+    3300024: Carridge_004
+    3300026: Carridge_005
+    3300028: Carridge_006
+    3300030: Carridge_007
+    3300032: Carridge_008
+    3300034: Cube
+    4300000: Cube
+    4300002: Boogie_007
+    4300004: Carridge_008
+    4300006: Carridge_007
+    4300008: Carridge_006
+    4300010: Boogie_006
+    4300012: Boogie_005
+    4300014: Carridge_005
+    4300016: Carridge_004
+    4300018: Boogie_004
+    4300020: Boogie_003
+    4300022: Carridge_003
+    4300024: Boogie_002
+    4300026: Carridge_002
+    4300028: Carridge_001
+    4300030: Boogie_001
+    4300032: Boogie
+    4300034: Carridge
+    7400000: Default Take
+    9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 076e3ad22fedfe140bc587c7684eb193
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: bigframe
     100002: Circle
@@ -148,6 +148,7 @@ ModelImporter:
     2100016: Material_001
     2100018: windows
     2100020: unnamed
+    2100022: Company
     2300000: bigframe
     2300002: Circle
     2300004: Circle_001
@@ -214,6 +215,7 @@ ModelImporter:
     2300126: Circle_026
     2300128: Circle_028
     2300130: ladder_004
+    2300132: //RootNode
     3300000: bigframe
     3300002: Circle
     3300004: Circle_001
@@ -280,6 +282,7 @@ ModelImporter:
     3300126: Circle_026
     3300128: Circle_028
     3300130: ladder_004
+    3300132: //RootNode
     4300000: stand_001
     4300002: Cylinder_008
     4300004: Cylinder_002
@@ -356,7 +359,7 @@ ModelImporter:
     second: {fileID: 2100000, guid: f104a1d1cd8a582448f1e88fc0cb8f9a, type: 2}
   materials:
     importMaterials: 1
-    materialName: 0
+    materialName: 1
     materialSearch: 1
     materialLocation: 1
   animations:
@@ -404,6 +407,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 0.5
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

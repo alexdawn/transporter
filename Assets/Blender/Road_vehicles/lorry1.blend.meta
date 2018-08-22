@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 80e1a1e5fb02beb4abd6da71f2292aea
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: Cube_000
     100002: Cube_001
@@ -26,6 +26,13 @@ ModelImporter:
     100040: Cylinder_055
     100042: Cylinder_058
     100044: Drum
+    100046: Cylinder_001
+    100048: Cylinder_002
+    100050: Cylinder_003
+    100052: Cylinder_004
+    100054: Drum_001
+    100056: CoalPile
+    100058: OrePile
     400000: Cube_000
     400002: Cube_001
     400004: Cube_002
@@ -49,6 +56,13 @@ ModelImporter:
     400040: Cylinder_055
     400042: Cylinder_058
     400044: Drum
+    400046: Cylinder_001
+    400048: Cylinder_002
+    400050: Cylinder_003
+    400052: Cylinder_004
+    400054: Drum_001
+    400056: CoalPile
+    400058: OrePile
     2100000: Metal
     2100002: Rubber
     2100004: Material
@@ -60,6 +74,7 @@ ModelImporter:
     2100016: Wood_001
     2100018: Material_001
     2100020: steel
+    2100022: CompanyColor
     2300000: Cube_000
     2300002: Cube_001
     2300004: Cube_002
@@ -82,6 +97,13 @@ ModelImporter:
     2300038: Cylinder_055
     2300040: Cylinder_058
     2300042: Drum
+    2300044: Cylinder_001
+    2300046: Cylinder_002
+    2300048: Cylinder_003
+    2300050: Cylinder_004
+    2300052: Drum_001
+    2300054: CoalPile
+    2300056: OrePile
     3300000: Cube_000
     3300002: Cube_001
     3300004: Cube_002
@@ -104,6 +126,13 @@ ModelImporter:
     3300038: Cylinder_055
     3300040: Cylinder_058
     3300042: Drum
+    3300044: Cylinder_001
+    3300046: Cylinder_002
+    3300048: Cylinder_003
+    3300050: Cylinder_004
+    3300052: Drum_001
+    3300054: CoalPile
+    3300056: OrePile
     4300000: Cube_008
     4300002: Cube_005
     4300004: Cube_004
@@ -126,6 +155,13 @@ ModelImporter:
     4300038: Cylinder_055
     4300040: Cylinder_058
     4300042: Drum
+    4300044: Cylinder_004
+    4300046: Cylinder_003
+    4300048: Cylinder_002
+    4300050: Cylinder_001
+    4300052: Drum_001
+    4300054: OrePile
+    4300056: CoalPile
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
@@ -179,6 +215,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
