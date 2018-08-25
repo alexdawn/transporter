@@ -3,11 +3,145 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Network : MonoBehaviour {
+[System.Serializable]
+public class Network : MonoBehaviour, ISerializationCallbackReceiver {
 
     public List<Spline> splines;
     public List<Node> nodes;
+    [SerializeField]
     private int nodeCounter;
+    // This is the field we give Unity to serialize.
+    public List<SerializableNode> serializedNodes;
+    public List<SerializableSpline> serializedSplines;
+
+    // Node class that we will use for serialization.
+    [Serializable]
+    public struct SerializableNode
+    {
+        public int id;
+        public NodeType type;
+        public BezierControlPointMode ControlMode;
+        public Vector3 location;
+        public Vector3 inControl;
+        public Vector3 outControl;
+        public List<int> inLinkANode;
+        public List<int> inLinkBNode;
+        public List<int> outLinkANode;
+        public List<int> outLinkBNode;
+    }
+    [Serializable]
+    public struct SerializableSpline
+    {
+        public bool isBezier;
+        public int inNodeId;
+        public int outNodeId;
+        public BezierSp curve;
+    }
+    public void OnBeforeSerialize()
+    {
+        if (serializedNodes == null) serializedNodes = new List<SerializableNode>();
+        serializedNodes.Clear();
+        foreach(Node n in nodes)
+        {
+            AddNodeToSerializedNodes(n);
+        }
+        serializedSplines.Clear();
+        foreach(Spline s in splines)
+        {
+            AddSplineToSerializedSpline(s);
+        }
+    }
+    void AddNodeToSerializedNodes(Node n)
+    {
+        SerializableNode serializedNode = new SerializableNode()
+        {
+            id = n.id,
+            type = n.type,
+            ControlMode = n.ControlMode,
+            location = n.Location,
+            inControl = n.InControl,
+            outControl = n.OutControl,
+            inLinkANode = new List<int>(),
+            inLinkBNode = new List<int>(),
+            outLinkANode = new List<int>(),
+            outLinkBNode = new List<int>()
+        }
+        ;
+        foreach (Spline spline in n.inLinks)
+        {
+            serializedNode.inLinkANode.Add(spline.inNode.id);
+            serializedNode.inLinkBNode.Add(spline.outNode.id);
+        }
+        foreach (Spline spline in n.outLinks)
+        {
+            serializedNode.outLinkANode.Add(spline.inNode.id);
+            serializedNode.outLinkBNode.Add(spline.outNode.id);
+        }
+        serializedNodes.Add(serializedNode);
+    }
+    public void AddSplineToSerializedSpline(Spline s)
+    {
+        SerializableSpline serializedSpline = new SerializableSpline()
+        {
+            isBezier = s.isBezier,
+            inNodeId = s.inNode.id,
+            outNodeId = s.outNode.id,
+            curve = s.curve
+        }
+        ;
+        serializedSplines.Add(serializedSpline);
+    }
+    public void OnAfterDeserialize()
+    {
+        //Unity has just written new data into the serializedNodes field.
+        //let's populate our actual runtime data with those new values.
+        Reset();
+        foreach (SerializableNode n in serializedNodes)
+        {
+            ReadNodesFromSerializedNodes(n);
+        }
+        foreach (SerializableSpline s in serializedSplines)
+        {
+            ReadSplinesFromSerializedSplines(s);
+        }
+        //Now populate the object references for the nodes:
+        foreach (Node n in nodes)
+        {
+            AppendSplinesToNodes(n);
+        }
+    }
+
+    public void ReadNodesFromSerializedNodes(SerializableNode node)
+    {
+        Node newNode = new Node(node.id, node.location)
+        {
+            type = node.type,
+            ControlMode = node.ControlMode,
+            InControl = node.inControl,
+            OutControl = node.outControl,
+            inLinks = new List<Spline>(),
+            outLinks = new List<Spline>(),
+        }
+        ;
+        nodes.Add(newNode);
+    }
+    void ReadSplinesFromSerializedSplines(SerializableSpline spline)
+    {
+        Spline newSpline = new Spline()
+        {
+            isBezier = spline.isBezier,
+            curve = spline.curve
+        };
+        newSpline.inNode = nodes.Find(n => n.id == spline.inNodeId);
+        newSpline.outNode = nodes.Find(n => n.id == spline.outNodeId);
+        splines.Add(newSpline);
+    }
+
+    void AppendSplinesToNodes(Node node)
+    {
+        node.inLinks = splines.FindAll(s => s.outNode.id == node.id);
+        node.outLinks = splines.FindAll(s => s.inNode.id == node.id);
+    }
 
     public void Reset()
     {
@@ -31,8 +165,8 @@ public class Network : MonoBehaviour {
     public Spline MakeLink()
     {
         Spline link = new Spline();
-        Node anode = MakeNode(GetId(), transform.position);
-        Node bnode = MakeNode(GetId(), transform.position + Vector3.forward);
+        Node anode = MakeNode(GetId(), transform.position + Vector3.forward);
+        Node bnode = MakeNode(GetId(), transform.position + 2 * Vector3.forward);
         link.inNode = anode;
         link.outNode = bnode;
         anode.outLinks.Add(link);
@@ -65,8 +199,19 @@ public class Network : MonoBehaviour {
             return MakeLink(anode, connectingNode);
         }
     }
+
+    public Vector3 GetWorldPoint(Spline spline, float t)
+    {
+        return transform.TransformPoint(spline.curve.GetPoint(t));
+    }
+
+    public Vector3 GetWorldVelocity(Spline spline, float t)
+    {
+        return transform.TransformPoint(spline.curve.GetVelocity(t)) - transform.position;
+    }
 }
 
+[System.Serializable]
 public class BezierSp
 {
 
@@ -390,12 +535,12 @@ public class Spline
     public void UpdateStartPoints()
     {
         curve.SetControlPoint(0, inNode.Location);
-        curve.SetControlPoint(1, inNode.InControl);
+        curve.SetControlPoint(1, inNode.OutControl);
     }
     public void UpdateEndPoints()
     {
         curve.SetControlPoint(curve.ControlPointCount - 1, outNode.Location);
-        curve.SetControlPoint(curve.ControlPointCount - 2, outNode.OutControl);
+        curve.SetControlPoint(curve.ControlPointCount - 2, outNode.InControl);
     }
 }
 
@@ -413,11 +558,8 @@ public class Node
     public BezierControlPointMode ControlMode;
     public List<Spline> inLinks;
     public List<Spline> outLinks;
-    [SerializeField]
     private Vector3 location;
-    [SerializeField]
     private Vector3 inControl;
-    [SerializeField]
     private Vector3 outControl;
 
     public Node(int Id, Vector3 Position)
@@ -435,7 +577,10 @@ public class Node
         get { return location; }
         set
         {
+            Vector3 delta = value - location;
             location = value;
+            inControl += delta;
+            outControl += delta;
             UpdateIn();
             UpdateOut();
         }
@@ -443,7 +588,7 @@ public class Node
 
     public Vector3 InControl
     {
-        get { return location; }
+        get { return inControl; }
         set
         {
             inControl = value;
@@ -453,7 +598,7 @@ public class Node
 
     public Vector3 OutControl
     {
-        get { return location; }
+        get { return outControl; }
         set
         {
             outControl = value;
@@ -473,7 +618,7 @@ public class Node
     {
         foreach (Spline link in outLinks)
         {
-            link.UpdateEndPoints();
+            link.UpdateStartPoints();
         }
     }
 }

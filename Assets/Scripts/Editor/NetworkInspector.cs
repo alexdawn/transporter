@@ -12,11 +12,22 @@ public class NetworkInspector : Editor {
     private Quaternion handleRotation;
 
     private const int stepsPerCurve = 10;
-    private const float directionScale = 0.1f;
+    private const float directionScale = 0.02f;
+    private const float handleSize = 0.04f;
+    private const float pickSize = 0.06f;
+    private bool showLabels;
+
+    private int selectedIndex = -1;
+    private int selectedIndex2 = -1;
+
+    private static Color[] modeColors = {
+        Color.white,
+        Color.yellow,
+        Color.cyan
+    };
 
     private void OnSceneGUI()
     {
-
         network = target as Network;
         handleTransform = network.transform;
         handleRotation = Tools.pivotRotation == PivotRotation.Local ?
@@ -24,20 +35,24 @@ public class NetworkInspector : Editor {
 
         DrawNodes(network.nodes);
         DrawLines(network.splines);
+        DrawBetweenSelections();
+    }
+
+    public void DrawBetweenSelections()
+    {
+        Handles.color = Color.red;
+        Handles.DrawLine(network.nodes[selectedIndex].Location, network.nodes[selectedIndex2].Location);
     }
 
     public void DrawNodes(List<Node> nodes)
     {
         foreach(Node n in nodes)
         {
-            Handles.color = Color.red;
-
-            ShowPoint(n, n.InControl);
-            ShowPoint(n, n.Location);
-            ShowPoint(n, n.OutControl);
-
-            Handles.DrawLine(n.Location, n.InControl);
-            Handles.DrawLine(n.Location, n.OutControl);
+            ShowNode(n);
+            Handles.color = Color.grey;
+            // lines from node to control handles
+            Handles.DrawLine(handleTransform.TransformPoint(n.Location), handleTransform.TransformPoint(n.InControl));
+            Handles.DrawLine(handleTransform.TransformPoint(n.Location), handleTransform.TransformPoint(n.OutControl));
         }
     }
 
@@ -45,7 +60,11 @@ public class NetworkInspector : Editor {
     {
         foreach (Spline s in splines)
         {
-            Handles.DrawBezier(s.inNode.Location, s.outNode.Location, s.inNode.OutControl, s.outNode.InControl, Color.white, null, 2f);
+            Handles.DrawBezier(handleTransform.TransformPoint(s.inNode.Location),
+                handleTransform.TransformPoint(s.outNode.Location),
+                handleTransform.TransformPoint(s.inNode.OutControl),
+                handleTransform.TransformPoint(s.outNode.InControl), 
+                Color.white, null, 2f);
             ShowDirections(s);
         }
     }
@@ -53,7 +72,10 @@ public class NetworkInspector : Editor {
     public override void OnInspectorGUI()
     {
         network = target as Network;
-        EditorGUI.BeginChangeCheck();
+        EditorGUILayout.LabelField(string.Format("Nodes: {0}", network.nodes.Count));
+        EditorGUILayout.LabelField(string.Format("Links: {0}", network.splines.Count));
+        showLabels = EditorGUILayout.ToggleLeft("Show Labels", showLabels);
+        selectedIndex = Mathf.Clamp(EditorGUILayout.IntField("Selected Node", selectedIndex), 0, network.nodes.Count - 1);
         if (selectedIndex >= 0 && selectedIndex < network.nodes.Count)
         {
             DrawSelectedPointInspector();
@@ -71,6 +93,14 @@ public class NetworkInspector : Editor {
                 selectedIndex = network.nodes.Count - 1;
                 EditorUtility.SetDirty(network);
             }
+            if(GUILayout.Button("Add Link Between"))
+            {
+                Undo.RecordObject(network, "Add link between");
+                network.MakeLink(network.nodes[selectedIndex], network.nodes[selectedIndex2]);
+                selectedIndex = network.nodes.Count - 1;
+                EditorUtility.SetDirty(network);
+            }
+            selectedIndex2 = Mathf.Clamp(EditorGUILayout.IntField("Second Node", selectedIndex2), 0, network.nodes.Count - 1);
         }
         if (GUILayout.Button("Add Initial Link"))
         {
@@ -82,7 +112,6 @@ public class NetworkInspector : Editor {
 
     private void DrawSelectedPointInspector()
     {
-        GUILayout.Label("Selected Node");
         EditorGUI.BeginChangeCheck();
         Vector3 point = EditorGUILayout.Vector3Field("Location", network.nodes[selectedIndex].Location);
         Vector3 point2 = EditorGUILayout.Vector3Field("ControlIn", network.nodes[selectedIndex].InControl);
@@ -92,6 +121,8 @@ public class NetworkInspector : Editor {
             Undo.RecordObject(network, "Move Node");
             EditorUtility.SetDirty(network);
             network.nodes[selectedIndex].Location = point;
+            network.nodes[selectedIndex].InControl = point2;
+            network.nodes[selectedIndex].OutControl = point3;
         }
         EditorGUI.BeginChangeCheck();
         BezierControlPointMode mode = (BezierControlPointMode)
@@ -107,35 +138,30 @@ public class NetworkInspector : Editor {
     private void ShowDirections(Spline spline)
     {
         Handles.color = Color.green;
-        Vector3 point = spline.curve.GetPoint(0f);
-        Handles.DrawLine(point, point + spline.curve.GetDirection(0f) * directionScale);
+        Vector3 point = network.GetWorldPoint(spline, 0f);
+        Handles.DrawLine(point, point + network.GetWorldVelocity(spline, 0f) * directionScale);
         int steps = stepsPerCurve * spline.curve.CurveCount;
         for (int i = 1; i <= steps; i++)
         {
-            point = spline.curve.GetPoint(i / (float)steps);
-            Handles.DrawLine(point, point + spline.curve.GetDirection(i / (float)steps) * directionScale);
+            point = network.GetWorldPoint(spline, i / (float)steps);
+            //float size = HandleUtility.GetHandleSize(point);
+            //Handles.Button(point, handleRotation, size * handleSize, size * pickSize, Handles.DotHandleCap);
+            Handles.DrawLine(point, point + network.GetWorldVelocity(spline, i / (float)steps) * directionScale);
         }
     }
 
-    private const float handleSize = 0.04f;
-    private const float pickSize = 0.06f;
-
-    private int selectedIndex = -1;
-
-    private static Color[] modeColors = {
-        Color.white,
-        Color.yellow,
-        Color.cyan
-    };
-
-    private Vector3 ShowPoint(Node node, Vector3 location)
+    private void ShowNode(Node node)
     {
-        Vector3 point = handleTransform.TransformPoint(location);
+        ShowPoint(node);
+        ShowInControl(node);
+        ShowOutControl(node);
+    }
+
+    private void ShowPoint(Node node)
+    {
+        Vector3 point = handleTransform.TransformPoint(node.Location);
         float size = HandleUtility.GetHandleSize(point);
-        //if (index == 0)
-        //{
-        //    size *= 2f;
-        //}
+
         Handles.color = modeColors[(int)node.ControlMode];
         if (Handles.Button(point, handleRotation, size * handleSize, size * pickSize, Handles.DotHandleCap))
         {
@@ -153,9 +179,69 @@ public class NetworkInspector : Editor {
                 network.nodes[selectedIndex].Location = handleTransform.InverseTransformPoint(point);
             }
         }
-        Handles.Label(point, point.ToString() + 
+        if (showLabels)
+        {
+            Handles.Label(point, point.ToString() +
             "\nPoint: " + network.nodes.IndexOf(node) +
             "\nMode: " + node.ControlMode);
-        return point;
+        }
+    }
+
+    private void ShowInControl(Node node)
+    {
+        Vector3 point = handleTransform.TransformPoint(node.InControl);
+        float size = HandleUtility.GetHandleSize(point);
+
+        Handles.color = modeColors[(int)node.ControlMode];
+        if (Handles.Button(point, handleRotation, size * handleSize, size * pickSize, Handles.DotHandleCap))
+        {
+            selectedIndex = network.nodes.IndexOf(node);
+            Repaint();
+        }
+        if (selectedIndex == network.nodes.IndexOf(node))
+        {
+            EditorGUI.BeginChangeCheck();
+            point = Handles.DoPositionHandle(point, handleRotation);
+            if (EditorGUI.EndChangeCheck())
+            {
+                Undo.RecordObject(network, "Move in control");
+                EditorUtility.SetDirty(network);
+                network.nodes[selectedIndex].InControl = handleTransform.InverseTransformPoint(point);
+            }
+        }
+        if (showLabels)
+        {
+            Handles.Label(point, point.ToString() +
+            "\nCIn: " + network.nodes.IndexOf(node));
+        }
+    }
+
+    private void ShowOutControl(Node node)
+    {
+        Vector3 point = handleTransform.TransformPoint(node.OutControl);
+        float size = HandleUtility.GetHandleSize(point);
+
+        Handles.color = modeColors[(int)node.ControlMode];
+        if (Handles.Button(point, handleRotation, size * handleSize, size * pickSize, Handles.DotHandleCap))
+        {
+            selectedIndex = network.nodes.IndexOf(node);
+            Repaint();
+        }
+        if (selectedIndex == network.nodes.IndexOf(node))
+        {
+            EditorGUI.BeginChangeCheck();
+            point = Handles.DoPositionHandle(point, handleRotation);
+            if (EditorGUI.EndChangeCheck())
+            {
+                Undo.RecordObject(network, "Move out control");
+                EditorUtility.SetDirty(network);
+                network.nodes[selectedIndex].OutControl = handleTransform.InverseTransformPoint(point);
+            }
+        }
+        if (showLabels)
+        {
+            Handles.Label(point, point.ToString() +
+                "\nCOut: " + network.nodes.IndexOf(node));
+        }
     }
 }

@@ -1,0 +1,1754 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Network
+  m_TargetType:
+    m_NativeTypeID: 114
+    m_ManagedTypePPtr: {fileID: 11500000, guid: a1058dbf0d3b12544ba924b16cc021a4,
+      type: 3}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_Enabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorHideFlags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Name
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorClassIdentifier
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: nodeCounter
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.size
+    value: 8
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[0].id
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[0].type
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[0].ControlMode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[0].location.x
+    value: -1.6079944
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[0].location.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[0].location.z
+    value: 0.049407005
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[0].inControl.x
+    value: -3.0649033
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[0].inControl.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[0].inControl.z
+    value: -4.978371
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[0].outControl.x
+    value: -1.0263199
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[0].outControl.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[0].outControl.z
+    value: 2.2400625
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[0].inLinkANode.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[0].inLinkANode.Array.data[0]
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[0].inLinkBNode.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[0].inLinkBNode.Array.data[0]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[0].outLinkANode.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[0].outLinkANode.Array.data[0]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[0].outLinkANode.Array.data[1]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[0].outLinkBNode.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[0].outLinkBNode.Array.data[0]
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[0].outLinkBNode.Array.data[1]
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[1].id
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[1].type
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[1].ControlMode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[1].location.x
+    value: -4.0317674
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[1].location.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[1].location.z
+    value: 3.165826
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[1].inControl.x
+    value: -4.0317674
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[1].inControl.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[1].inControl.z
+    value: 1.8523238
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[1].outControl.x
+    value: -4.0317674
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[1].outControl.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[1].outControl.z
+    value: 4.1658254
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[1].inLinkANode.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[1].inLinkANode.Array.data[0]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[1].inLinkANode.Array.data[1]
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[1].inLinkBNode.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[1].inLinkBNode.Array.data[0]
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[1].inLinkBNode.Array.data[1]
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[1].outLinkANode.Array.size
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[1].outLinkANode.Array.data[0]
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[1].outLinkANode.Array.data[1]
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[1].outLinkANode.Array.data[2]
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[1].outLinkBNode.Array.size
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[1].outLinkBNode.Array.data[0]
+    value: 6
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[1].outLinkBNode.Array.data[1]
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[1].outLinkBNode.Array.data[2]
+    value: 7
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[2].id
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[2].type
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[2].ControlMode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[2].location.x
+    value: 1.1765614
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[2].location.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[2].location.z
+    value: 3.934685
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[2].inControl.x
+    value: 0.9217806
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[2].inControl.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[2].inControl.z
+    value: 2.4870708
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[2].outControl.x
+    value: 1.3588352
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[2].outControl.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[2].outControl.z
+    value: 5.154856
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[2].inLinkANode.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[2].inLinkANode.Array.data[0]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[2].inLinkBNode.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[2].inLinkBNode.Array.data[0]
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[2].outLinkANode.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[2].outLinkANode.Array.data[0]
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[2].outLinkBNode.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[2].outLinkBNode.Array.data[0]
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[3].id
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[3].type
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[3].ControlMode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[3].location.x
+    value: -1.0404717
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[3].location.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[3].location.z
+    value: 8.313359
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[3].inControl.x
+    value: 0.16729724
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[3].inControl.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[3].inControl.z
+    value: 7.100573
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[3].outControl.x
+    value: -2.5361984
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[3].outControl.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[3].outControl.z
+    value: 9.693066
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[3].inLinkANode.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[3].inLinkANode.Array.data[0]
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[3].inLinkBNode.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[3].inLinkBNode.Array.data[0]
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[3].outLinkANode.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[3].outLinkANode.Array.data[0]
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[3].outLinkBNode.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[3].outLinkBNode.Array.data[0]
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[4].id
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[4].type
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[4].ControlMode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[4].location.x
+    value: -7.831829
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[4].location.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[4].location.z
+    value: 6.373206
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[4].inControl.x
+    value: -7.299102
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[4].inControl.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[4].inControl.z
+    value: 10.7349825
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[4].outControl.x
+    value: -10.109202
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[4].outControl.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[4].outControl.z
+    value: -3.8322363
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[4].inLinkANode.Array.size
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[4].inLinkANode.Array.data[0]
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[4].inLinkANode.Array.data[1]
+    value: 7
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[4].inLinkANode.Array.data[2]
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[4].inLinkBNode.Array.size
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[4].inLinkBNode.Array.data[0]
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[4].inLinkBNode.Array.data[1]
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[4].inLinkBNode.Array.data[2]
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[4].outLinkANode.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[4].outLinkANode.Array.data[0]
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[4].outLinkANode.Array.data[1]
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[4].outLinkBNode.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[4].outLinkBNode.Array.data[0]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[4].outLinkBNode.Array.data[1]
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[5].id
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[5].type
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[5].ControlMode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[5].location.x
+    value: -6.589943
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[5].location.y
+    value: 0.26107216
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[5].location.z
+    value: 0.60545635
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[5].inControl.x
+    value: -8.7085
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[5].inControl.y
+    value: 0.26107216
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[5].inControl.z
+    value: 0.32606173
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[5].outControl.x
+    value: -5.230483
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[5].outControl.y
+    value: 0.26107216
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[5].outControl.z
+    value: 0.9494152
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[5].inLinkANode.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[5].inLinkANode.Array.data[0]
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[5].inLinkBNode.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[5].inLinkBNode.Array.data[0]
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[5].outLinkANode.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[5].outLinkANode.Array.data[0]
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[5].outLinkBNode.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[5].outLinkBNode.Array.data[0]
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[6].id
+    value: 6
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[6].type
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[6].ControlMode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[6].location.x
+    value: -2.128633
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[6].location.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[6].location.z
+    value: 5.6516366
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[6].inControl.x
+    value: -2.5174286
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[6].inControl.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[6].inControl.z
+    value: 4.212108
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[6].outControl.x
+    value: -1.4240303
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[6].outControl.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[6].outControl.z
+    value: 7.171847
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[6].inLinkANode.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[6].inLinkANode.Array.data[0]
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[6].inLinkBNode.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[6].inLinkBNode.Array.data[0]
+    value: 6
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[6].outLinkANode.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[6].outLinkANode.Array.data[0]
+    value: 6
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[6].outLinkBNode.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[6].outLinkBNode.Array.data[0]
+    value: 7
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[7].id
+    value: 7
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[7].type
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[7].ControlMode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[7].location.x
+    value: -4.1967993
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[7].location.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[7].location.z
+    value: 8.181095
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[7].inControl.x
+    value: -2.4318151
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[7].inControl.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[7].inControl.z
+    value: 7.889038
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[7].outControl.x
+    value: -5.715539
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[7].outControl.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[7].outControl.z
+    value: 8.446998
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[7].inLinkANode.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[7].inLinkANode.Array.data[0]
+    value: 6
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[7].inLinkANode.Array.data[1]
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[7].inLinkBNode.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[7].inLinkBNode.Array.data[0]
+    value: 7
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[7].inLinkBNode.Array.data[1]
+    value: 7
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[7].outLinkANode.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[7].outLinkANode.Array.data[0]
+    value: 7
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[7].outLinkBNode.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedNodes.Array.data[7].outLinkBNode.Array.data[0]
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.size
+    value: 12
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[0].isBezier
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[0].inNodeId
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[0].outNodeId
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[0].curve.points.Array.size
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[0].curve.points.Array.data[0].x
+    value: -1.6079944
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[0].curve.points.Array.data[0].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[0].curve.points.Array.data[0].z
+    value: 0.049407005
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[0].curve.points.Array.data[1].x
+    value: -1.0263199
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[0].curve.points.Array.data[1].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[0].curve.points.Array.data[1].z
+    value: 2.2400625
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[0].curve.points.Array.data[2].x
+    value: -4.0317674
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[0].curve.points.Array.data[2].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[0].curve.points.Array.data[2].z
+    value: 1.8523238
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[0].curve.points.Array.data[3].x
+    value: -4.0317674
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[0].curve.points.Array.data[3].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[0].curve.points.Array.data[3].z
+    value: 3.165826
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[0].curve.modes.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[0].curve.modes.Array.data[0]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[0].curve.modes.Array.data[1]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[0].curve.loop
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[0].curve.lookupResolution
+    value: 100
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[1].isBezier
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[1].inNodeId
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[1].outNodeId
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[1].curve.points.Array.size
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[1].curve.points.Array.data[0].x
+    value: -1.6079944
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[1].curve.points.Array.data[0].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[1].curve.points.Array.data[0].z
+    value: 0.049407005
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[1].curve.points.Array.data[1].x
+    value: -1.0263199
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[1].curve.points.Array.data[1].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[1].curve.points.Array.data[1].z
+    value: 2.2400625
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[1].curve.points.Array.data[2].x
+    value: 0.9217806
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[1].curve.points.Array.data[2].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[1].curve.points.Array.data[2].z
+    value: 2.4870708
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[1].curve.points.Array.data[3].x
+    value: 1.1765614
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[1].curve.points.Array.data[3].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[1].curve.points.Array.data[3].z
+    value: 3.934685
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[1].curve.modes.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[1].curve.modes.Array.data[0]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[1].curve.modes.Array.data[1]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[1].curve.loop
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[1].curve.lookupResolution
+    value: 100
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[2].isBezier
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[2].inNodeId
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[2].outNodeId
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[2].curve.points.Array.size
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[2].curve.points.Array.data[0].x
+    value: 1.1765614
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[2].curve.points.Array.data[0].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[2].curve.points.Array.data[0].z
+    value: 3.934685
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[2].curve.points.Array.data[1].x
+    value: 1.3588352
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[2].curve.points.Array.data[1].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[2].curve.points.Array.data[1].z
+    value: 5.154856
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[2].curve.points.Array.data[2].x
+    value: 0.16729724
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[2].curve.points.Array.data[2].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[2].curve.points.Array.data[2].z
+    value: 7.100573
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[2].curve.points.Array.data[3].x
+    value: -1.0404717
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[2].curve.points.Array.data[3].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[2].curve.points.Array.data[3].z
+    value: 8.313359
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[2].curve.modes.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[2].curve.modes.Array.data[0]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[2].curve.modes.Array.data[1]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[2].curve.loop
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[2].curve.lookupResolution
+    value: 100
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[3].isBezier
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[3].inNodeId
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[3].outNodeId
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[3].curve.points.Array.size
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[3].curve.points.Array.data[0].x
+    value: -1.0404717
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[3].curve.points.Array.data[0].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[3].curve.points.Array.data[0].z
+    value: 8.313359
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[3].curve.points.Array.data[1].x
+    value: -2.5361984
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[3].curve.points.Array.data[1].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[3].curve.points.Array.data[1].z
+    value: 9.693066
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[3].curve.points.Array.data[2].x
+    value: -7.299102
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[3].curve.points.Array.data[2].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[3].curve.points.Array.data[2].z
+    value: 10.7349825
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[3].curve.points.Array.data[3].x
+    value: -7.831829
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[3].curve.points.Array.data[3].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[3].curve.points.Array.data[3].z
+    value: 6.373206
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[3].curve.modes.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[3].curve.modes.Array.data[0]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[3].curve.modes.Array.data[1]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[3].curve.loop
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[3].curve.lookupResolution
+    value: 100
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[4].isBezier
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[4].inNodeId
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[4].outNodeId
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[4].curve.points.Array.size
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[4].curve.points.Array.data[0].x
+    value: -7.831829
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[4].curve.points.Array.data[0].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[4].curve.points.Array.data[0].z
+    value: 6.373206
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[4].curve.points.Array.data[1].x
+    value: -10.109202
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[4].curve.points.Array.data[1].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[4].curve.points.Array.data[1].z
+    value: -3.8322363
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[4].curve.points.Array.data[2].x
+    value: -3.0649033
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[4].curve.points.Array.data[2].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[4].curve.points.Array.data[2].z
+    value: -4.978371
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[4].curve.points.Array.data[3].x
+    value: -1.6079944
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[4].curve.points.Array.data[3].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[4].curve.points.Array.data[3].z
+    value: 0.049407005
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[4].curve.modes.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[4].curve.modes.Array.data[0]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[4].curve.modes.Array.data[1]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[4].curve.loop
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[4].curve.lookupResolution
+    value: 100
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[5].isBezier
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[5].inNodeId
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[5].outNodeId
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[5].curve.points.Array.size
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[5].curve.points.Array.data[0].x
+    value: -7.831829
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[5].curve.points.Array.data[0].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[5].curve.points.Array.data[0].z
+    value: 6.373206
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[5].curve.points.Array.data[1].x
+    value: -10.109202
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[5].curve.points.Array.data[1].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[5].curve.points.Array.data[1].z
+    value: -3.8322363
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[5].curve.points.Array.data[2].x
+    value: -8.7085
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[5].curve.points.Array.data[2].y
+    value: 0.26107216
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[5].curve.points.Array.data[2].z
+    value: 0.32606173
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[5].curve.points.Array.data[3].x
+    value: -6.589943
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[5].curve.points.Array.data[3].y
+    value: 0.26107216
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[5].curve.points.Array.data[3].z
+    value: 0.60545635
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[5].curve.modes.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[5].curve.modes.Array.data[0]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[5].curve.modes.Array.data[1]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[5].curve.loop
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[5].curve.lookupResolution
+    value: 100
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[6].isBezier
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[6].inNodeId
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[6].outNodeId
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[6].curve.points.Array.size
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[6].curve.points.Array.data[0].x
+    value: -6.589943
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[6].curve.points.Array.data[0].y
+    value: 0.26107216
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[6].curve.points.Array.data[0].z
+    value: 0.60545635
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[6].curve.points.Array.data[1].x
+    value: -5.230483
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[6].curve.points.Array.data[1].y
+    value: 0.26107216
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[6].curve.points.Array.data[1].z
+    value: 0.9494152
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[6].curve.points.Array.data[2].x
+    value: -4.0317674
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[6].curve.points.Array.data[2].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[6].curve.points.Array.data[2].z
+    value: 1.8523238
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[6].curve.points.Array.data[3].x
+    value: -4.0317674
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[6].curve.points.Array.data[3].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[6].curve.points.Array.data[3].z
+    value: 3.165826
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[6].curve.modes.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[6].curve.modes.Array.data[0]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[6].curve.modes.Array.data[1]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[6].curve.loop
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[6].curve.lookupResolution
+    value: 100
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[7].isBezier
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[7].inNodeId
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[7].outNodeId
+    value: 6
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[7].curve.points.Array.size
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[7].curve.points.Array.data[0].x
+    value: -4.0317674
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[7].curve.points.Array.data[0].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[7].curve.points.Array.data[0].z
+    value: 3.165826
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[7].curve.points.Array.data[1].x
+    value: -4.0317674
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[7].curve.points.Array.data[1].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[7].curve.points.Array.data[1].z
+    value: 4.1658254
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[7].curve.points.Array.data[2].x
+    value: -2.5174286
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[7].curve.points.Array.data[2].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[7].curve.points.Array.data[2].z
+    value: 4.212108
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[7].curve.points.Array.data[3].x
+    value: -2.128633
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[7].curve.points.Array.data[3].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[7].curve.points.Array.data[3].z
+    value: 5.6516366
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[7].curve.modes.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[7].curve.modes.Array.data[0]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[7].curve.modes.Array.data[1]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[7].curve.loop
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[7].curve.lookupResolution
+    value: 100
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[8].isBezier
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[8].inNodeId
+    value: 6
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[8].outNodeId
+    value: 7
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[8].curve.points.Array.size
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[8].curve.points.Array.data[0].x
+    value: -2.128633
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[8].curve.points.Array.data[0].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[8].curve.points.Array.data[0].z
+    value: 5.6516366
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[8].curve.points.Array.data[1].x
+    value: -1.4240303
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[8].curve.points.Array.data[1].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[8].curve.points.Array.data[1].z
+    value: 7.171847
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[8].curve.points.Array.data[2].x
+    value: -2.4318151
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[8].curve.points.Array.data[2].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[8].curve.points.Array.data[2].z
+    value: 7.889038
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[8].curve.points.Array.data[3].x
+    value: -4.1967993
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[8].curve.points.Array.data[3].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[8].curve.points.Array.data[3].z
+    value: 8.181095
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[8].curve.modes.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[8].curve.modes.Array.data[0]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[8].curve.modes.Array.data[1]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[8].curve.loop
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[8].curve.lookupResolution
+    value: 100
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[9].isBezier
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[9].inNodeId
+    value: 7
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[9].outNodeId
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[9].curve.points.Array.size
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[9].curve.points.Array.data[0].x
+    value: -4.1967993
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[9].curve.points.Array.data[0].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[9].curve.points.Array.data[0].z
+    value: 8.181095
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[9].curve.points.Array.data[1].x
+    value: -5.715539
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[9].curve.points.Array.data[1].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[9].curve.points.Array.data[1].z
+    value: 8.446998
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[9].curve.points.Array.data[2].x
+    value: -7.299102
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[9].curve.points.Array.data[2].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[9].curve.points.Array.data[2].z
+    value: 10.7349825
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[9].curve.points.Array.data[3].x
+    value: -7.831829
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[9].curve.points.Array.data[3].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[9].curve.points.Array.data[3].z
+    value: 6.373206
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[9].curve.modes.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[9].curve.modes.Array.data[0]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[9].curve.modes.Array.data[1]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[9].curve.loop
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[9].curve.lookupResolution
+    value: 100
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[10].isBezier
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[10].inNodeId
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[10].outNodeId
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[10].curve.points.Array.size
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[10].curve.points.Array.data[0].x
+    value: -4.0317674
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[10].curve.points.Array.data[0].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[10].curve.points.Array.data[0].z
+    value: 3.165826
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[10].curve.points.Array.data[1].x
+    value: -4.0317674
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[10].curve.points.Array.data[1].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[10].curve.points.Array.data[1].z
+    value: 4.1658254
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[10].curve.points.Array.data[2].x
+    value: -7.299102
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[10].curve.points.Array.data[2].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[10].curve.points.Array.data[2].z
+    value: 10.7349825
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[10].curve.points.Array.data[3].x
+    value: -7.831829
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[10].curve.points.Array.data[3].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[10].curve.points.Array.data[3].z
+    value: 6.373206
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[10].curve.modes.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[10].curve.modes.Array.data[0]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[10].curve.modes.Array.data[1]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[10].curve.loop
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[10].curve.lookupResolution
+    value: 100
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[11].isBezier
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[11].inNodeId
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[11].outNodeId
+    value: 7
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[11].curve.points.Array.size
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[11].curve.points.Array.data[0].x
+    value: -4.0317674
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[11].curve.points.Array.data[0].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[11].curve.points.Array.data[0].z
+    value: 3.165826
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[11].curve.points.Array.data[1].x
+    value: -4.0317674
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[11].curve.points.Array.data[1].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[11].curve.points.Array.data[1].z
+    value: 4.1658254
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[11].curve.points.Array.data[2].x
+    value: -2.4318151
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[11].curve.points.Array.data[2].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[11].curve.points.Array.data[2].z
+    value: 7.889038
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[11].curve.points.Array.data[3].x
+    value: -4.1967993
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[11].curve.points.Array.data[3].y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[11].curve.points.Array.data[3].z
+    value: 8.181095
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[11].curve.modes.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[11].curve.modes.Array.data[0]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[11].curve.modes.Array.data[1]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[11].curve.loop
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: serializedSplines.Array.data[11].curve.lookupResolution
+    value: 100
+    objectReference: {fileID: 0}
