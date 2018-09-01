@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public enum NetworkWalkerMode
 {
@@ -11,7 +14,7 @@ public class NetworkWalker : MonoBehaviour
 {
 
     public Network network;
-    public float duration;
+    public float speed;
     public float offset;
     public bool lookForward;
     public NetworkWalkerMode mode;
@@ -19,6 +22,7 @@ public class NetworkWalker : MonoBehaviour
     private bool goingForward = true;
     private Spline currentSpline;
     private float progress;
+    private bool halted = false;
 
     private void Start()
     {
@@ -26,38 +30,75 @@ public class NetworkWalker : MonoBehaviour
         progress = offset;
     }
 
+    public void JumpToNextLink()
+    {
+        if(currentSpline.outNode.outLinks.Count == 0)
+        {
+            halted = true;
+        }
+        else
+        {
+            progress = 0f;
+            currentSpline = currentSpline.outNode.outLinks[UnityEngine.Random.Range(0, currentSpline.outNode.outLinks.Count)];
+        }
+    }
+
+    public void JumpToPreviousLink()
+    {
+        if (currentSpline.inNode.inLinks.Count == 0)
+        {
+            halted = true;
+        }
+        else
+        {
+            currentSpline = currentSpline.inNode.inLinks[UnityEngine.Random.Range(0, currentSpline.inNode.inLinks.Count)];
+            progress = currentSpline.curve.GetTotalLength();
+        }
+    }
+
+    IEnumerator WaitForTimer(float t)
+    {
+        yield return new WaitForSeconds(t);
+        halted = false;
+    }
+
+    public void CheckForWaiting(Node n)
+    {
+        if(n.type == NodeType.WaitPoint && n.waitTime > 0)
+        {
+            halted = true;
+            StartCoroutine("WaitForTimer", n.waitTime);
+        }
+    }
+
     private void Update()
     {
-        if(goingForward) {
-            progress += Time.deltaTime / duration;
-            if (progress > 1f)
+        if (!halted)
+        {
+            MoveWalker();
+        }
+    }
+
+    public void MoveWalker()
+    {
+        if (goingForward)
+        {
+            progress += Time.deltaTime * speed;
+            if (progress >= currentSpline.curve.GetTotalLength())
             {
-                if (mode == NetworkWalkerMode.Once)
-                {
-                    progress = 0f;
-                    currentSpline = currentSpline.outNode.outLinks[Random.Range(0, currentSpline.outNode.outLinks.Count)];
-                }
-                else if (mode == NetworkWalkerMode.Loop)
-                {
-                    progress = 0f;
-                    currentSpline = currentSpline.outNode.outLinks[Random.Range(0, currentSpline.outNode.outLinks.Count)];
-                }
-                else
-                {
-                    progress = 0f;
-                    currentSpline = currentSpline.outNode.outLinks[Random.Range(0, currentSpline.outNode.outLinks.Count)];
-                }
+                CheckForWaiting(currentSpline.outNode);
+                JumpToNextLink();
             }
         }
-		else {
-            progress -= Time.deltaTime / duration;
+        else
+        {
+            progress -= Time.deltaTime * speed;
             if (progress < 0f)
             {
-                progress = -progress;
-                goingForward = true;
+                JumpToPreviousLink();
             }
         }
-        Vector3 position = currentSpline.curve.GetPoint(progress);
+        Vector3 position = currentSpline.curve.GetLinearPointFromDist(progress);
         transform.localPosition = position;
         if (lookForward)
         {

@@ -6,7 +6,7 @@ public struct GridElevations
     [SerializeField]
     private int y0, y1, y2, y3;
 
-    public const int maxHeight = 10;
+    public const int maxHeight = 50;
     public const int chunkSize = 16;
     public const float perlinScale = 1f;
 
@@ -66,20 +66,34 @@ public struct GridElevations
     }
 
 
-    public static int GetTerrainHeight(Vector3 position, int seed)
+    public static int GetTerrainHeightFromPerlin(Vector3 position, int seed)
     {
         float x = position.x;
         float z = position.z;
         return (int)(maxHeight * Mathf.PerlinNoise((x / (float)chunkSize) * perlinScale + seed, (z / (float)chunkSize) * perlinScale + seed));
     }
 
+    public static int GetTerrainHeightFromMap(Vector3 position, Texture2D heightmap)
+    {
+        return (int)(maxHeight * heightmap.GetPixel((int)(position.x + 0.5f), (int)(position.z + 0.5f)).grayscale);
+    }
+
 
     public static GridElevations GetVertexHeights(Vector3 position, int seed)
     {
-        int v0 = GetTerrainHeight(position + GridMetrics.GetEdge(GridDirection.SW), seed);
-        int v1 = GetTerrainHeight(position + GridMetrics.GetEdge(GridDirection.NW), seed);
-        int v2 = GetTerrainHeight(position + GridMetrics.GetEdge(GridDirection.NE), seed);
-        int v3 = GetTerrainHeight(position + GridMetrics.GetEdge(GridDirection.SE), seed);
+        int v0 = GetTerrainHeightFromPerlin(position + GridMetrics.GetEdge(GridDirection.SW), seed);
+        int v1 = GetTerrainHeightFromPerlin(position + GridMetrics.GetEdge(GridDirection.NW), seed);
+        int v2 = GetTerrainHeightFromPerlin(position + GridMetrics.GetEdge(GridDirection.NE), seed);
+        int v3 = GetTerrainHeightFromPerlin(position + GridMetrics.GetEdge(GridDirection.SE), seed);
+        return new GridElevations(v0, v1, v2, v3);
+    }
+
+    public static GridElevations GetVertexHeightsFromHeightmap(Vector3 position, Texture2D heightmap)
+    {
+        int v0 = GetTerrainHeightFromMap(position + GridMetrics.GetEdge(GridDirection.SW), heightmap);
+        int v1 = GetTerrainHeightFromMap(position + GridMetrics.GetEdge(GridDirection.NW), heightmap);
+        int v2 = GetTerrainHeightFromMap(position + GridMetrics.GetEdge(GridDirection.NE), heightmap);
+        int v3 = GetTerrainHeightFromMap(position + GridMetrics.GetEdge(GridDirection.SE), heightmap);
         return new GridElevations(v0, v1, v2, v3);
     }
 

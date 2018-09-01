@@ -9,62 +9,44 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1723505551303312}
+  m_RootGameObject: {fileID: 1237603916134726}
   m_IsPrefabAsset: 1
---- !u!1 &1723505551303312
+--- !u!1 &1237603916134726
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4514847557411896}
-  - component: {fileID: 114004633364723444}
-  - component: {fileID: 114198963734414648}
+  - component: {fileID: 4531690132375264}
+  - component: {fileID: 114584318041271580}
+  - component: {fileID: 114042172148778728}
   m_Layer: 0
-  m_Name: Bus
+  m_Name: Lorry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4514847557411896
+--- !u!4 &4531690132375264
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1723505551303312}
+  m_GameObject: {fileID: 1237603916134726}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.10007152, z: -0.000000022351742}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114004633364723444
+--- !u!114 &114042172148778728
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1723505551303312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5a7e5a98bf5ba84fb663353548959fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  segments: 1
-  segmentTemplateIndex: 00000000
-  segment_lengths:
-  - 0.2
-  templates:
-  - {fileID: 100000, guid: d08ed845dc7aac04e93093f212507fe3, type: 3}
-  positions: []
---- !u!114 &114198963734414648
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1723505551303312}
+  m_GameObject: {fileID: 1237603916134726}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11a54c1f7e4f71b4e9bfdb966c5b9f74, type: 3}
@@ -72,6 +54,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   network: {fileID: 0}
   speed: 1
-  offset: 0
+  offset: 0.5
   lookForward: 1
   mode: 0
+--- !u!114 &114584318041271580
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1237603916134726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5a7e5a98bf5ba84fb663353548959fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  segments: 2
+  segmentTemplateIndex: 0000000001000000
+  segment_lengths:
+  - 0.2
+  - 0.4
+  templates:
+  - {fileID: 100000, guid: 78672c586b45023478f33839c28a8f36, type: 3}
+  - {fileID: 100000, guid: a38979fcf9ea9144997771374f3c0f70, type: 3}
+  positions: []

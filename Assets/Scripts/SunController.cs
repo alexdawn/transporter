@@ -13,11 +13,13 @@ public class SunController : MonoBehaviour {
     public float date = 0;
     public Text clockDisplay;
     public Material windows;
+    Color fogColor;
     // Use this for initialization
     void Start () {
         transform = gameObject.GetComponent<Transform>();
         transform.eulerAngles = new Vector3(angle, -90f, 0);
         light = gameObject.GetComponent<Light>();
+        fogColor = RenderSettings.fogColor;
     }
 
     string AngleToTime(float angle)
@@ -46,27 +48,31 @@ public class SunController : MonoBehaviour {
         clockDisplay.text = DayToDate(date) + " " + time;
         if (angle > 180.5f || angle < -0.5f)
         {
-            RenderSettings.ambientIntensity = 0.25f;
-            light.intensity = 0f;
+            Lighting(0f);
             windows.EnableKeyword("_EMISSION");
         }
         else if(angle > 179.5f) // blend light intensity at sunset
         {
             float light_strength = 1f - (angle - 179.5f);
-            RenderSettings.ambientIntensity = Mathf.Max(0.25f, light_strength);
-            light.intensity = light_strength;
+            Lighting(light_strength);
         }
         else if(angle < 0.5f) // blend light intensity at dawn
         {
             float light_strength = 1f + (angle - 0.5f);
-            RenderSettings.ambientIntensity = Mathf.Max(0.25f, light_strength);
-            light.intensity = light_strength;
+            Lighting(light_strength);
         }
         else
         {
             RenderSettings.ambientIntensity = 1f;
-            light.intensity = 1f;
+            Lighting(1f);
             windows.DisableKeyword("_EMISSION");
         }
+    }
+
+    void Lighting(float brightness)
+    {
+        light.intensity = brightness;
+        RenderSettings.ambientIntensity = Mathf.Max(0.25f, brightness);
+        RenderSettings.fogColor = Color.Lerp(Color.black, fogColor, brightness);
     }
 }

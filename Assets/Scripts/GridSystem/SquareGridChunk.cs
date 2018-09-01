@@ -10,12 +10,9 @@ public class SquareGridChunk : MonoBehaviour {
     public GridMesh terrain, rivers, roads, water, waterShore;
     public GridFeatureManager features;
     public Color retainingWallColor;
-    Canvas gridCanvas;
-
 
     private void Awake()
     {
-        gridCanvas = GetComponentInChildren<Canvas>();
         cells = new SquareCell[GridMetrics.chunkSizeX * GridMetrics.chunkSizeZ];
     }
 
@@ -25,7 +22,6 @@ public class SquareGridChunk : MonoBehaviour {
         cells[index] = cell;
         cell.parentChunk = this;
         cell.transform.SetParent(transform, false);
-        cell.uiRect.SetParent(gridCanvas.transform, false);
     }
 
     public void Refresh()

@@ -252,13 +252,12 @@ public class MapEditor : MonoBehaviour
                             Destroy(highlight[index].gameObject);
                         }
                         highlight[index] = Instantiate(tileSelectPrefab);
-                        if(squareGrid.GetCellOffset(pointerLocation, x, z) == null)
+                        if(squareGrid.GetCellOffset(pointerLocation, x, z).GetVertexElevations[vertexDirection] != null)
                         {
-                            UnityEngine.Debug.Log("something is null " + pointerLocation + ":" + squareGrid.GetCellOffset(pointerLocation, x, z));
+                            float yOffset = (float)squareGrid.GetCellOffset(pointerLocation, x, z).GetVertexElevations[vertexDirection] * GridMetrics.elevationStep;
+                            offPos.y = yOffset;
+                            highlight[index].localPosition = offPos;
                         }
-                        float yOffset = (float)squareGrid.GetCellOffset(pointerLocation, x, z).GetVertexElevations[vertexDirection] * GridMetrics.elevationStep;
-                        offPos.y = yOffset;
-                        highlight[index].localPosition = offPos;
                     }
                 }
             }

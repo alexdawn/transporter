@@ -19,7 +19,6 @@ public class AudioDelay : MonoBehaviour {
         while (true)
         {
             float time = Random.Range(minTime, maxTime);
-            Debug.Log(time);
             yield return new WaitForSeconds(time);
             if (!player.isPlaying)
             {

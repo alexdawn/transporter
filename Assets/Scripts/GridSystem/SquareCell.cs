@@ -7,7 +7,6 @@ using System.Linq;
 public class SquareCell : MonoBehaviour {
     public SquareGridChunk parentChunk;
     public GridCoordinates coordinates;
-    public RectTransform uiRect;
     public TownManager Town;
     public Transform ExplosionPrefab;
 
@@ -545,9 +544,6 @@ public class SquareCell : MonoBehaviour {
     {
         centreElevation = (vertexElevations.Y0 + vertexElevations.Y1 + vertexElevations.Y2 + vertexElevations.Y3) / 4f;
         int maxElevation = Mathf.Max(vertexElevations.Y0, vertexElevations.Y1, vertexElevations.Y2, vertexElevations.Y3);
-        Vector3 uiPosition = uiRect.localPosition;
-        uiPosition.z = -(maxElevation * GridMetrics.elevationStep + 0.001f);
-        uiRect.localPosition = uiPosition;
         for (GridDirection i = GridDirection.N; i < GridDirection.NW; i++)
         {
             if (hasOutgoingRivers[(int)i] && centreElevation < GetNeighbor(i).centreElevation)

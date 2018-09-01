@@ -37,6 +37,15 @@ public class Network : MonoBehaviour, ISerializationCallbackReceiver {
         public int outNodeId;
         public BezierSp curve;
     }
+
+    public void Start()
+    {
+        foreach(Spline s in splines)
+        {
+            s.curve.CalculateLookups();
+        }
+    }
+
     public void OnBeforeSerialize()
     {
         if (serializedNodes == null) serializedNodes = new List<SerializableNode>();
@@ -127,13 +136,13 @@ public class Network : MonoBehaviour, ISerializationCallbackReceiver {
     }
     void ReadSplinesFromSerializedSplines(SerializableSpline spline)
     {
-        Spline newSpline = new Spline()
+        Node anode = nodes.Find(n => n.id == spline.inNodeId);
+        Node bnode = nodes.Find(n => n.id == spline.outNodeId);
+        Spline newSpline = new Spline(anode, bnode)
         {
             isBezier = spline.isBezier,
             curve = spline.curve
         };
-        newSpline.inNode = nodes.Find(n => n.id == spline.inNodeId);
-        newSpline.outNode = nodes.Find(n => n.id == spline.outNodeId);
         splines.Add(newSpline);
     }
 
@@ -164,11 +173,9 @@ public class Network : MonoBehaviour, ISerializationCallbackReceiver {
 
     public Spline MakeLink()
     {
-        Spline link = new Spline();
         Node anode = MakeNode(GetId(), transform.position + Vector3.forward);
         Node bnode = MakeNode(GetId(), transform.position + 2 * Vector3.forward);
-        link.inNode = anode;
-        link.outNode = bnode;
+        Spline link = new Spline(anode, bnode);
         anode.outLinks.Add(link);
         bnode.inLinks.Add(link);
         splines.Add(link);
@@ -177,9 +184,7 @@ public class Network : MonoBehaviour, ISerializationCallbackReceiver {
 
     public Spline MakeLink(Node anode, Node bnode)
     {
-        Spline link = new Spline();
-        link.inNode = anode;
-        link.outNode = bnode;
+        Spline link = new Spline(anode, bnode);
         anode.outLinks.Add(link);
         bnode.inLinks.Add(link);
         splines.Add(link);
@@ -198,6 +203,32 @@ public class Network : MonoBehaviour, ISerializationCallbackReceiver {
             Node anode = MakeNode(GetId(), newPosition);
             return MakeLink(anode, connectingNode);
         }
+    }
+
+    public void DeleteNode(Node target)
+    {
+        foreach (Spline s in target.inLinks)
+        {
+            DeleteLink(s, true);
+        }
+        foreach (Spline s in target.outLinks)
+        {
+            DeleteLink(s, false);
+        }
+        nodes.Remove(target);
+    }
+
+    public void DeleteLink(Spline target, bool isIn)
+    {
+        if (isIn)
+        {
+            target.inNode.outLinks.Remove(target);
+        }
+        else
+        {
+            target.outNode.inLinks.Remove(target);
+        }
+        splines.Remove(target);
     }
 
     public Vector3 GetWorldPoint(Spline spline, float t)
@@ -429,9 +460,26 @@ public class BezierSp
             points[i], points[i + 1], points[i + 2], points[i + 3], t);
     }
 
-    public Vector3 GetLinearPoint(float x)
+    public float GetTotalLength()
     {
-        float dist = x * distanceLookup[distanceLookup.Length - 1];
+        return distanceLookup[distanceLookup.Length - 1];
+    }
+
+    public Vector3 GetLinearPointFromDist(float d)
+    {
+        d = Mathf.Clamp(d, 0, GetTotalLength());
+        return GetLinearPoint(d);
+    }
+
+    public Vector3 GetLinearPointFromFrac(float f)
+    {
+        f = Mathf.Clamp(f, 0, 1);
+        float dist = f * GetTotalLength();
+        return GetLinearPoint(dist);
+    }
+
+    public Vector3 GetLinearPoint(float dist)
+    {
         int i = 0;
         while (distanceLookup[i] < dist)
         {
@@ -527,9 +575,14 @@ public class Spline
     public Node outNode;
     public BezierSp curve;
 
-    public Spline()
+    public Spline(Node anode, Node bnode)
     {
-        curve = new BezierSp(false); //TODO if in==out then loop is true
+        bool isLoop = anode == bnode;
+        curve = new BezierSp(isLoop);
+        inNode = anode;
+        outNode = bnode;
+        UpdateStartPoints();
+        UpdateEndPoints();
     }
 
     public void UpdateStartPoints()
@@ -555,6 +608,7 @@ public class Node
 {
     public int id;
     public NodeType type;
+    public float waitTime;
     public BezierControlPointMode ControlMode;
     public List<Spline> inLinks;
     public List<Spline> outLinks;

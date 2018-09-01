@@ -7,10 +7,10 @@ public class SquareGrid : MonoBehaviour
 
     public int chunkCountX, chunkCountZ;
     int cellCountX, cellCountZ;
-    public bool showLabels;
     public SquareCell cellPrefab;
     public SquareGridChunk chunkPrefab;
     public Text cellLabelPrefab;
+    public Texture2D heightmap;
     public int seed;
     CullingGroup chunkCuller;
     BoundingSphere[] spheres;
@@ -31,13 +31,40 @@ public class SquareGrid : MonoBehaviour
         }
         if(evt.currentDistance < 1)
         {
-            //Debug.Log("Sphere " + evt.index + " has moved to band 0!");
-            //chunks[evt.index].gameObject.GetComponentInChildren<GridFeatureManager>().gameObject.SetActive(true);
+            //SafeSet(evt.index, true);
         }
         else if (evt.currentDistance >= 1)
         {
-            //Debug.Log("Sphere " + evt.index + " has moved out of band 0!");
-            //chunks[evt.index].gameObject.GetComponentInChildren<GridFeatureManager>().gameObject.SetActive(false);
+            //SafeSet(evt.index, false);
+        }
+    }
+
+   private void SafeSet(int i, bool state)
+    {
+        GameObject chunk = chunks[i].gameObject;
+        GridFeatureManager manager = chunk.GetComponentInChildren<GridFeatureManager>();
+        if (manager != null)
+            manager.gameObject.SetActive(state);
+    }
+
+    // use for setting initial state
+    private void UpdateCullingChunk(int i)
+    {
+        if (chunkCuller.IsVisible(i))
+        {
+            chunks[i].gameObject.SetActive(true);
+        }
+        else
+        {
+            chunks[i].gameObject.SetActive(false);
+        }
+        if (chunkCuller.GetDistance(i) < 1)
+        {
+            //SafeSet(i, true);
+        }
+        else
+        {
+            //SafeSet(i, false);
         }
     }
 
@@ -47,6 +74,18 @@ public class SquareGrid : MonoBehaviour
         {
             for (int i = 0; i < chunkCountX * chunkCountZ; i++)
             {
+                if (chunkCuller.IsVisible(i) == false)
+                    Gizmos.color = Color.grey;
+                else
+                {
+                    switch (chunkCuller.GetDistance(i))
+                    {
+                        case 0: Gizmos.color = Color.red; break;
+                        case 1: Gizmos.color = Color.green; break;
+                        case 2: Gizmos.color = Color.blue; break;
+
+                    }
+                }
                 Gizmos.DrawWireSphere(spheres[i].position, spheres[i].radius);
             }
         }
@@ -60,11 +99,21 @@ public class SquareGrid : MonoBehaviour
         GridMetrics.InitializeHashGrid(seed);
         chunkCuller = new CullingGroup();
         chunkCuller.SetBoundingDistances(new float[] { 30f, 60f, 90f});
-        chunkCuller.targetCamera = Camera.main;
         chunkCuller.onStateChanged = StateChangedMethod;
 
         CreateChunks();
         CreateCells();
+    }
+
+    private void Start()
+    {
+        GameObject cam = GameObject.Find("Main Camera");
+        chunkCuller.targetCamera = cam.GetComponent<Camera>();
+        chunkCuller.SetDistanceReferencePoint(cam.transform);
+        for(int i=0; i< chunks.Length; i++)
+        {
+            UpdateCullingChunk(i);
+        }
     }
 
     void OnDestroy()
@@ -119,8 +168,6 @@ public class SquareGrid : MonoBehaviour
         position.z = z;
 
         SquareCell cell = cells[i] = Instantiate<SquareCell>(cellPrefab);
-        Text label = Instantiate<Text>(cellLabelPrefab);
-        cell.uiRect = label.rectTransform;
         cell.transform.localPosition = position;
         if (x > 0)
         {
@@ -139,17 +186,20 @@ public class SquareGrid : MonoBehaviour
             cell.SetNeighbor(GridDirection.SE, cells[i - cellCountX + 1]);
         }
         cell.coordinates = GridCoordinates.FromOffsetCoordinates(x, z);
-        cell.GridElevations = GridElevations.GetVertexHeights(position, seed);
+        if(heightmap == null)
+        {
+            cell.GridElevations = GridElevations.GetVertexHeights(position, seed);
+        }
+        else
+        {
+            cell.GridElevations = GridElevations.GetVertexHeightsFromHeightmap(position, heightmap);
+        }
+
         // start off with grass everywhere
         cell.Tile = gridMaterials[0].GetClone;
         if(cell.CentreElevation < 7) // basic treeline cut-off
         {
-            cell.PlantLevel = 0; //UnityEngine.Random.Range(0, 10) - 4;
-        }
-        if (showLabels)
-        {
-            label.rectTransform.anchoredPosition = new Vector2(x, z);
-            label.text = x.ToString() + ", " + z.ToString();
+            cell.PlantLevel = UnityEngine.Random.Range(0, 100) - 95;
         }
         AddCellToChunk(x, z, cell);
     }

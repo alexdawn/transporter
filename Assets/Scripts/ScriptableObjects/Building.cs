@@ -73,6 +73,11 @@ public class Building: ScriptableObject
         Foundations = foundationList.ToArray();
     }
 
+    public Transform BuildingModel
+    {
+        get { return buildingModel; }
+    }
+
     public Building GetClone
     {
         get { return (Building)this.MemberwiseClone(); }
@@ -86,7 +91,6 @@ public class Building: ScriptableObject
             Building build = this;
             for(int i=0;i<foundations.Length;i++)
             {
-                //Debug.Log("run " + i);
                 if (foundations[i].BuildingOnSquare != build && foundations[i].BuildingOnSquare != null)
                 {
                     foundations[i].BuildingOnSquare.Demolish();
@@ -140,7 +144,6 @@ public class Building: ScriptableObject
         }
         if (hasColorVariants)
         {
-            // set material to a random variant color
             Renderer[] renderers = buildingModel.GetComponentsInChildren<Renderer>();
             Color randomColor = pallet.colorPallet[UnityEngine.Random.Range(0, pallet.colorPallet.Length)];
             foreach (Renderer r in renderers)

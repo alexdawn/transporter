@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class MapCamera : MonoBehaviour {
     public float moveSpeedMinZoom, moveSpeedMaxZoom;
+    public float orthoMoveSpeedMinZoom, orthoMoveSpeedMaxZoom;
     public float stickMinZoom, stickMaxZoom;
     public float swivelMinZoom, swivelMaxZoom;
+    public float orthoMinSize, orthoMaxSize;
+    public float orthographicAngle;
     public float rotationSpeed;
     public SquareGrid grid;
 
     Transform swivel, stick;
+    Camera mainCamera;
     float zoom = 0.5f;
     float rotationAngle;
 
@@ -18,9 +22,9 @@ public class MapCamera : MonoBehaviour {
     {
         swivel = transform.GetChild(0);
         stick = swivel.GetChild(0);
+        mainCamera = gameObject.GetComponentInChildren<Camera>();
         AdjustZoom(0); // prevent jerky camera on startup
     }
-
 
     private void Update()
     {
@@ -43,6 +47,11 @@ public class MapCamera : MonoBehaviour {
         {
             AdjustPosition(xDelta, zDelta);
         }
+        if (Input.GetKeyDown(KeyCode.Alpha5) || Input.GetKeyDown(KeyCode.Keypad5))
+        {
+            mainCamera.orthographic = !mainCamera.orthographic;
+            AdjustZoom(0);
+        }
     }
 
 
@@ -50,8 +59,15 @@ public class MapCamera : MonoBehaviour {
     {
         Vector3 direction = transform.localRotation * new Vector3(xDelta, 0f, zDelta).normalized;
         float damping = Mathf.Max(Mathf.Abs(xDelta), Mathf.Abs(zDelta));
-        float distance = Mathf.Lerp(moveSpeedMinZoom, moveSpeedMaxZoom, zoom) * damping * Time.deltaTime;
-
+        float distance;
+        if (mainCamera.orthographic)
+        {
+            distance = Mathf.Lerp(orthoMoveSpeedMaxZoom, orthoMoveSpeedMinZoom, zoom) * damping * Time.deltaTime;
+        }
+        else
+        {
+            distance = Mathf.Lerp(moveSpeedMinZoom, moveSpeedMaxZoom, zoom) * damping * Time.deltaTime;
+        }
         Vector3 position = transform.localPosition;
         position += direction * distance;
         transform.localPosition = ClampPosition(position);
@@ -92,10 +108,20 @@ public class MapCamera : MonoBehaviour {
     {
         zoom = Mathf.Clamp01(zoom + delta);
 
-        float distance = Mathf.Lerp(stickMinZoom, stickMaxZoom, zoom);
+        float distance;
+        float angle;
+        if (mainCamera.orthographic)
+        {
+            angle = orthographicAngle;
+            distance = -50;
+            mainCamera.orthographicSize = Mathf.Lerp(orthoMaxSize, orthoMinSize, zoom);
+        }
+        else
+        {
+            distance = Mathf.Lerp(stickMinZoom, stickMaxZoom, zoom);
+            angle = Mathf.Lerp(swivelMinZoom, swivelMaxZoom, zoom);
+        }
         stick.localPosition = new Vector3(0f, 0f, distance);
-
-        float angle = Mathf.Lerp(swivelMinZoom, swivelMaxZoom, zoom);
         swivel.localRotation = Quaternion.Euler(angle, 0f, 0f);
     }
 }

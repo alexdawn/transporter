@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 [CustomEditor(typeof(Network))]
 public class NetworkInspector : Editor {
@@ -17,8 +18,7 @@ public class NetworkInspector : Editor {
     private const float pickSize = 0.06f;
     private bool showLabels;
 
-    private int selectedIndex = -1;
-    private int selectedIndex2 = -1;
+    private List<int> selectedIndices = new List<int>();
 
     private static Color[] modeColors = {
         Color.white,
@@ -35,13 +35,15 @@ public class NetworkInspector : Editor {
 
         DrawNodes(network.nodes);
         DrawLines(network.splines);
-        DrawBetweenSelections();
+        if(selectedIndices.Count==2)
+            DrawBetweenSelections();
     }
 
     public void DrawBetweenSelections()
     {
         Handles.color = Color.red;
-        Handles.DrawLine(network.nodes[selectedIndex].Location, network.nodes[selectedIndex2].Location);
+        Handles.DrawLine(handleTransform.TransformPoint(network.nodes[selectedIndices[0]].Location),
+                         handleTransform.TransformPoint(network.nodes[selectedIndices[1]].Location));
     }
 
     public void DrawNodes(List<Node> nodes)
@@ -69,70 +71,123 @@ public class NetworkInspector : Editor {
         }
     }
 
+    private static GUILayoutOption miniButtonWidth = GUILayout.Width(20f);
+
     public override void OnInspectorGUI()
     {
         network = target as Network;
         EditorGUILayout.LabelField(string.Format("Nodes: {0}", network.nodes.Count));
         EditorGUILayout.LabelField(string.Format("Links: {0}", network.splines.Count));
         showLabels = EditorGUILayout.ToggleLeft("Show Labels", showLabels);
-        selectedIndex = Mathf.Clamp(EditorGUILayout.IntField("Selected Node", selectedIndex), 0, network.nodes.Count - 1);
-        if (selectedIndex >= 0 && selectedIndex < network.nodes.Count)
+        if (selectedIndices.Count == 1)
         {
+            EditorGUILayout.BeginHorizontal();
+            selectedIndices[0] = Mathf.Clamp(EditorGUILayout.IntField("Selected Node", selectedIndices[0]), 0, network.nodes.Count - 1);
+            if (GUILayout.Button("<", miniButtonWidth))
+            {
+                selectedIndices[0] = Mathf.Clamp(--selectedIndices[0], 0, network.nodes.Count - 1);
+            }
+            if (GUILayout.Button(">", miniButtonWidth))
+            {
+                selectedIndices[0] = Mathf.Clamp(++selectedIndices[0], 0, network.nodes.Count - 1);
+            }
+            EditorGUILayout.EndHorizontal();
             DrawSelectedPointInspector();
             if (GUILayout.Button("Add Link From"))
             {
                 Undo.RecordObject(network, "Add link from");
-                network.MakeLink(network.nodes[selectedIndex], true, network.nodes[selectedIndex].Location + Vector3.left);
-                selectedIndex = network.nodes.Count - 1;
-                EditorUtility.SetDirty(network);
+                network.MakeLink(network.nodes[selectedIndices[0]], true, network.nodes[selectedIndices[0]].Location + Vector3.left);
+                selectedIndices[0] = network.nodes.Count - 1;
+                //EditorUtility.SetDirty(network);
             }
             if (GUILayout.Button("Add Link To"))
             {
                 Undo.RecordObject(network, "Add link to");
-                network.MakeLink(network.nodes[selectedIndex], false, network.nodes[selectedIndex].Location + Vector3.right);
-                selectedIndex = network.nodes.Count - 1;
-                EditorUtility.SetDirty(network);
+                network.MakeLink(network.nodes[selectedIndices[0]], false, network.nodes[selectedIndices[0]].Location + Vector3.right);
+                selectedIndices[0] = network.nodes.Count - 1;
+                //EditorUtility.SetDirty(network);
             }
+        }
+        else
+        {
+            EditorGUILayout.LabelField(string.Format("Nodes: {0}", string.Join(";", selectedIndices.Select(x => x.ToString()).ToArray())));
+        }
+        if(GUILayout.Button("Delete Node(s)"))
+        {
+            List<Node> marked = new List<Node>();
+            foreach(int i in selectedIndices)
+            {
+                marked.Add(network.nodes[i]);
+            }
+            foreach(Node n in marked)
+            {
+                network.DeleteNode(n);
+            }
+            selectedIndices.Clear();
+        }
+        if (selectedIndices.Count == 2)
+        {
             if(GUILayout.Button("Add Link Between"))
             {
                 Undo.RecordObject(network, "Add link between");
-                network.MakeLink(network.nodes[selectedIndex], network.nodes[selectedIndex2]);
-                selectedIndex = network.nodes.Count - 1;
-                EditorUtility.SetDirty(network);
+                network.MakeLink(network.nodes[selectedIndices[0]], network.nodes[selectedIndices[1]]);
+                //EditorUtility.SetDirty(network);
             }
-            selectedIndex2 = Mathf.Clamp(EditorGUILayout.IntField("Second Node", selectedIndex2), 0, network.nodes.Count - 1);
         }
-        if (GUILayout.Button("Add Initial Link"))
+        if (GUILayout.Button("Add Disconnected Link"))
         {
             Undo.RecordObject(network, "Add initial link");
             network.MakeLink();
-            EditorUtility.SetDirty(network);
+            selectedIndices[0] = network.nodes.Count - 1;
+            //EditorUtility.SetDirty(network);
         }
     }
 
     private void DrawSelectedPointInspector()
     {
+        int lastPoint = selectedIndices[selectedIndices.Count - 1];
         EditorGUI.BeginChangeCheck();
-        Vector3 point = EditorGUILayout.Vector3Field("Location", network.nodes[selectedIndex].Location);
-        Vector3 point2 = EditorGUILayout.Vector3Field("ControlIn", network.nodes[selectedIndex].InControl);
-        Vector3 point3 = EditorGUILayout.Vector3Field("ControlOut", network.nodes[selectedIndex].OutControl);
+        Vector3 point = EditorGUILayout.Vector3Field("Location", network.nodes[lastPoint].Location);
+        Vector3 point2 = EditorGUILayout.Vector3Field("ControlIn", network.nodes[lastPoint].InControl);
+        Vector3 point3 = EditorGUILayout.Vector3Field("ControlOut", network.nodes[lastPoint].OutControl);
         if (EditorGUI.EndChangeCheck())
         {
             Undo.RecordObject(network, "Move Node");
-            EditorUtility.SetDirty(network);
-            network.nodes[selectedIndex].Location = point;
-            network.nodes[selectedIndex].InControl = point2;
-            network.nodes[selectedIndex].OutControl = point3;
+            //EditorUtility.SetDirty(network);
+            Vector3 delta = point - network.nodes[lastPoint].Location;
+            network.nodes[lastPoint].Location = point;
+            Vector3 delta2 = point2 - network.nodes[lastPoint].InControl;
+            network.nodes[lastPoint].InControl = point2;
+            Vector3 delta3 = point3 - network.nodes[lastPoint].OutControl;
+            network.nodes[lastPoint].OutControl = point3;
+            // offset other selections equally
+            for(int i=0; i < selectedIndices.Count-1; i++)
+            {
+                network.nodes[lastPoint].Location+=delta;
+                network.nodes[lastPoint].InControl+=delta2;
+                network.nodes[lastPoint].OutControl+=delta3;
+            }
         }
         EditorGUI.BeginChangeCheck();
         BezierControlPointMode mode = (BezierControlPointMode)
-        EditorGUILayout.EnumPopup("Mode", network.nodes[selectedIndex].ControlMode);
+        // todo change all selected modes
+        EditorGUILayout.EnumPopup("Mode", network.nodes[lastPoint].ControlMode);
         if (EditorGUI.EndChangeCheck())
         {
             Undo.RecordObject(network, "Change Control Mode");
-            network.nodes[selectedIndex].ControlMode = mode;
+            network.nodes[lastPoint].ControlMode = mode;
             EditorUtility.SetDirty(network);
         }
+        EditorGUI.BeginChangeCheck();
+        NodeType type = (NodeType)
+        EditorGUILayout.EnumPopup("Node Type", network.nodes[lastPoint].type);
+        if (EditorGUI.EndChangeCheck())
+        {
+            Undo.RecordObject(network, "Change Node Type");
+            network.nodes[lastPoint].type = type;
+            EditorUtility.SetDirty(network);
+        }
+        network.nodes[lastPoint].waitTime = EditorGUILayout.FloatField("Wait Time", network.nodes[lastPoint].waitTime);
     }
 
     private void ShowDirections(Spline spline)
@@ -144,8 +199,6 @@ public class NetworkInspector : Editor {
         for (int i = 1; i <= steps; i++)
         {
             point = network.GetWorldPoint(spline, i / (float)steps);
-            //float size = HandleUtility.GetHandleSize(point);
-            //Handles.Button(point, handleRotation, size * handleSize, size * pickSize, Handles.DotHandleCap);
             Handles.DrawLine(point, point + network.GetWorldVelocity(spline, i / (float)steps) * directionScale);
         }
     }
@@ -161,14 +214,25 @@ public class NetworkInspector : Editor {
     {
         Vector3 point = handleTransform.TransformPoint(node.Location);
         float size = HandleUtility.GetHandleSize(point);
-
+        if(selectedIndices.Contains(network.nodes.IndexOf(node))){
+            Handles.color = Color.red;
+            Handles.Button(point, handleRotation, size * handleSize * 2f, size * pickSize * 2f, Handles.DotHandleCap);
+        }
         Handles.color = modeColors[(int)node.ControlMode];
         if (Handles.Button(point, handleRotation, size * handleSize, size * pickSize, Handles.DotHandleCap))
         {
-            selectedIndex = network.nodes.IndexOf(node);
+            if (Event.current.shift && !selectedIndices.Contains(network.nodes.IndexOf(node)))
+            {
+                selectedIndices.Add(network.nodes.IndexOf(node));
+            }
+            else
+            {
+                selectedIndices.Clear();
+                selectedIndices.Add(network.nodes.IndexOf(node));
+            }
             Repaint();
         }
-        if (selectedIndex == network.nodes.IndexOf(node))
+        if (selectedIndices.Count > 0 && selectedIndices[selectedIndices.Count-1] == network.nodes.IndexOf(node))
         {
             EditorGUI.BeginChangeCheck();
             point = Handles.DoPositionHandle(point, handleRotation);
@@ -176,7 +240,11 @@ public class NetworkInspector : Editor {
             {
                 Undo.RecordObject(network, "Move Node");
                 EditorUtility.SetDirty(network);
-                network.nodes[selectedIndex].Location = handleTransform.InverseTransformPoint(point);
+                Vector3 delta = handleTransform.InverseTransformPoint(point) - network.nodes[selectedIndices[selectedIndices.Count - 1]].Location;
+                foreach(int i in selectedIndices)
+                {
+                    network.nodes[i].Location+=delta;
+                }
             }
         }
         if (showLabels)
@@ -195,18 +263,26 @@ public class NetworkInspector : Editor {
         Handles.color = modeColors[(int)node.ControlMode];
         if (Handles.Button(point, handleRotation, size * handleSize, size * pickSize, Handles.DotHandleCap))
         {
-            selectedIndex = network.nodes.IndexOf(node);
+            if (Event.current.shift && !selectedIndices.Contains(network.nodes.IndexOf(node)))
+            {
+                selectedIndices.Add(network.nodes.IndexOf(node));
+            }
+            else
+            {
+                selectedIndices.Clear();
+                selectedIndices.Add(network.nodes.IndexOf(node));
+            }
             Repaint();
         }
-        if (selectedIndex == network.nodes.IndexOf(node))
+        if (selectedIndices.Count > 0 && selectedIndices[selectedIndices.Count - 1] == network.nodes.IndexOf(node))
         {
             EditorGUI.BeginChangeCheck();
             point = Handles.DoPositionHandle(point, handleRotation);
             if (EditorGUI.EndChangeCheck())
             {
                 Undo.RecordObject(network, "Move in control");
-                EditorUtility.SetDirty(network);
-                network.nodes[selectedIndex].InControl = handleTransform.InverseTransformPoint(point);
+                //EditorUtility.SetDirty(network);
+                network.nodes[selectedIndices[selectedIndices.Count - 1]].InControl = handleTransform.InverseTransformPoint(point);
             }
         }
         if (showLabels)
@@ -224,18 +300,26 @@ public class NetworkInspector : Editor {
         Handles.color = modeColors[(int)node.ControlMode];
         if (Handles.Button(point, handleRotation, size * handleSize, size * pickSize, Handles.DotHandleCap))
         {
-            selectedIndex = network.nodes.IndexOf(node);
+            if (Event.current.shift && !selectedIndices.Contains(network.nodes.IndexOf(node)))
+            {
+                selectedIndices.Add(network.nodes.IndexOf(node));
+            }
+            else
+            {
+                selectedIndices.Clear();
+                selectedIndices.Add(network.nodes.IndexOf(node));
+            }
             Repaint();
         }
-        if (selectedIndex == network.nodes.IndexOf(node))
+        if (selectedIndices.Count > 0 && selectedIndices[selectedIndices.Count - 1] == network.nodes.IndexOf(node))
         {
             EditorGUI.BeginChangeCheck();
             point = Handles.DoPositionHandle(point, handleRotation);
             if (EditorGUI.EndChangeCheck())
             {
                 Undo.RecordObject(network, "Move out control");
-                EditorUtility.SetDirty(network);
-                network.nodes[selectedIndex].OutControl = handleTransform.InverseTransformPoint(point);
+                //EditorUtility.SetDirty(network);
+                network.nodes[selectedIndices[selectedIndices.Count - 1]].OutControl = handleTransform.InverseTransformPoint(point);
             }
         }
         if (showLabels)

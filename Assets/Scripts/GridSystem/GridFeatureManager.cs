@@ -9,6 +9,13 @@ public class GridFeatureManager : MonoBehaviour {
     public Building[] townBuildings;
     public Building[] farmBuildings;
     Transform container;
+    Transform containerNoDestroy;
+
+    public void Awake()
+    {
+        containerNoDestroy = new GameObject("Container No Destroy").transform;
+        containerNoDestroy.SetParent(transform, false);
+    }
 
     public void Clear() {
         if (container)
@@ -28,11 +35,13 @@ public class GridFeatureManager : MonoBehaviour {
             int buildingIndex = Random.Range(0, townBuildings.Length);
             cell.BuildingOnSquare = Instantiate(townBuildings[buildingIndex]);
             cell.BuildingOnSquare.Construct(cell, position, hash);
+            cell.BuildingOnSquare.BuildingModel.SetParent(containerNoDestroy, false);
         }
         else if (cell.Industry != 0 && cell.BuildingOnSquare == null)
         {
             cell.BuildingOnSquare = Instantiate(industryBuildings[cell.Industry-1]);
             cell.BuildingOnSquare.Construct(cell, position, hash);
+            cell.BuildingOnSquare.BuildingModel.SetParent(containerNoDestroy, false);
         }
         else if (cell.FarmLevel != 0)
         {
@@ -55,6 +64,7 @@ public class GridFeatureManager : MonoBehaviour {
         {
             cell.BuildingOnSquare = Instantiate(scenaryBuildings[cell.ScenaryObject - 1]);
             cell.BuildingOnSquare.Construct(cell, position, hash);
+            cell.BuildingOnSquare.BuildingModel.SetParent(containerNoDestroy, false);
         }
     }
 
