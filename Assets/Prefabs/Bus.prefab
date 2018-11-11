@@ -73,5 +73,5 @@ MonoBehaviour:
   network: {fileID: 0}
   speed: 1
   offset: 0
-  lookForward: 1
+  lookForward: 0
   mode: 0

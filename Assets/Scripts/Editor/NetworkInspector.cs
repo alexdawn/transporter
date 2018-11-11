@@ -98,14 +98,14 @@ public class NetworkInspector : Editor {
                 Undo.RecordObject(network, "Add link from");
                 network.MakeLink(network.nodes[selectedIndices[0]], true, network.nodes[selectedIndices[0]].Location + Vector3.left);
                 selectedIndices[0] = network.nodes.Count - 1;
-                //EditorUtility.SetDirty(network);
+                EditorUtility.SetDirty(network);
             }
             if (GUILayout.Button("Add Link To"))
             {
                 Undo.RecordObject(network, "Add link to");
                 network.MakeLink(network.nodes[selectedIndices[0]], false, network.nodes[selectedIndices[0]].Location + Vector3.right);
                 selectedIndices[0] = network.nodes.Count - 1;
-                //EditorUtility.SetDirty(network);
+                EditorUtility.SetDirty(network);
             }
         }
         else
@@ -131,7 +131,44 @@ public class NetworkInspector : Editor {
             {
                 Undo.RecordObject(network, "Add link between");
                 network.MakeLink(network.nodes[selectedIndices[0]], network.nodes[selectedIndices[1]]);
-                //EditorUtility.SetDirty(network);
+                EditorUtility.SetDirty(network);
+                selectedIndices.Clear();
+            }
+            if (GUILayout.Button("Remove Link Between"))
+            {
+                Undo.RecordObject(network, "Remove Link Between");
+                network.DeleteLink(network.nodes[selectedIndices[0]], network.nodes[selectedIndices[1]]);
+                EditorUtility.SetDirty(network);
+                selectedIndices.Clear();
+            }
+            if (GUILayout.Button("Flip Link Direction"))
+            {
+                Undo.RecordObject(network, "Flip Link Direction");
+                network.GetLinkFromNodes(network.nodes[selectedIndices[0]], network.nodes[selectedIndices[1]]).FlipDirection();
+                EditorUtility.SetDirty(network);
+                selectedIndices.Clear();
+            }
+            if(GUILayout.Button("Merge Nodes"))
+            {
+                Undo.RecordObject(network, "Merge Nodes");
+                network.MergeNodes(network.nodes[selectedIndices[0]], network.nodes[selectedIndices[1]]);
+                EditorUtility.SetDirty(network);
+                selectedIndices.Clear();
+            }
+        }
+        if(selectedIndices.Count > 1)
+        {
+            if(GUILayout.Button("Duplicate Nodes"))
+            {
+                Undo.RecordObject(network, "Duplicate Nodes");
+                List<Node> selectedNodes = new List<Node>();
+                foreach(int i in selectedIndices)
+                {
+                    selectedNodes.Add(network.nodes[i]);
+                }
+                selectedIndices.Clear();
+                selectedIndices.AddRange(network.Duplicate(selectedNodes));
+                EditorUtility.SetDirty(network);
             }
         }
         if (GUILayout.Button("Add Disconnected Link"))
@@ -139,7 +176,7 @@ public class NetworkInspector : Editor {
             Undo.RecordObject(network, "Add initial link");
             network.MakeLink();
             selectedIndices[0] = network.nodes.Count - 1;
-            //EditorUtility.SetDirty(network);
+            EditorUtility.SetDirty(network);
         }
     }
 
@@ -153,7 +190,7 @@ public class NetworkInspector : Editor {
         if (EditorGUI.EndChangeCheck())
         {
             Undo.RecordObject(network, "Move Node");
-            //EditorUtility.SetDirty(network);
+            EditorUtility.SetDirty(network);
             Vector3 delta = point - network.nodes[lastPoint].Location;
             network.nodes[lastPoint].Location = point;
             Vector3 delta2 = point2 - network.nodes[lastPoint].InControl;
@@ -170,7 +207,7 @@ public class NetworkInspector : Editor {
         }
         EditorGUI.BeginChangeCheck();
         BezierControlPointMode mode = (BezierControlPointMode)
-        // todo change all selected modes
+        // todo change all selected nodes
         EditorGUILayout.EnumPopup("Mode", network.nodes[lastPoint].ControlMode);
         if (EditorGUI.EndChangeCheck())
         {
@@ -185,6 +222,26 @@ public class NetworkInspector : Editor {
         {
             Undo.RecordObject(network, "Change Node Type");
             network.nodes[lastPoint].type = type;
+            EditorUtility.SetDirty(network);
+        }
+        EditorGUI.BeginChangeCheck();
+        NodeDirection direction = (NodeDirection)
+        // todo change all selected nodes
+        EditorGUILayout.EnumPopup("Direction", network.nodes[lastPoint].boundDirect);
+        if (EditorGUI.EndChangeCheck())
+        {
+            Undo.RecordObject(network, "Change Node Direction");
+            network.nodes[lastPoint].boundDirect = direction;
+            EditorUtility.SetDirty(network);
+        }
+        EditorGUI.BeginChangeCheck();
+        GridDirection compass = (GridDirection)
+        // todo change all selected nodes
+        EditorGUILayout.EnumPopup("CompassPoint", network.nodes[lastPoint].compassDirection);
+        if (EditorGUI.EndChangeCheck())
+        {
+            Undo.RecordObject(network, "Change Control Mode");
+            network.nodes[lastPoint].compassDirection = compass;
             EditorUtility.SetDirty(network);
         }
         network.nodes[lastPoint].waitTime = EditorGUILayout.FloatField("Wait Time", network.nodes[lastPoint].waitTime);

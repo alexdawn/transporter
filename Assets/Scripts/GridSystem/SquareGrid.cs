@@ -9,9 +9,11 @@ public class SquareGrid : MonoBehaviour
     int cellCountX, cellCountZ;
     public SquareCell cellPrefab;
     public SquareGridChunk chunkPrefab;
-    public Text cellLabelPrefab;
     public Texture2D heightmap;
     public int seed;
+    public float distanceBand1;
+    public float distanceBand2;
+    public float distanceBand3;
     CullingGroup chunkCuller;
     BoundingSphere[] spheres;
 
@@ -98,7 +100,7 @@ public class SquareGrid : MonoBehaviour
         cellCountZ = chunkCountZ * GridMetrics.chunkSizeZ;
         GridMetrics.InitializeHashGrid(seed);
         chunkCuller = new CullingGroup();
-        chunkCuller.SetBoundingDistances(new float[] { 30f, 60f, 90f});
+        chunkCuller.SetBoundingDistances(new float[] { distanceBand1, distanceBand2, distanceBand3});
         chunkCuller.onStateChanged = StateChangedMethod;
 
         CreateChunks();

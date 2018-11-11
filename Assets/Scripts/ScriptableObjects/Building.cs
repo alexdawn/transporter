@@ -42,6 +42,7 @@ public class Building: ScriptableObject
     public bool acceptsMail;
     public bool acceptsGoods;
     public bool flatFoundations;
+    public int offsetGround;
     private TownManager owner;
     private SquareCell[] foundations;
     private int height; // height of the origin cell
@@ -101,7 +102,7 @@ public class Building: ScriptableObject
                 }
                 if (flatFoundations)
                 {
-                    foundations[i].FlattenTo(height);
+                    foundations[i].FlattenTo(height + offsetGround);
                 }
                 if (groundMaterial != null)
                 {
@@ -118,6 +119,7 @@ public class Building: ScriptableObject
     {
         for(int i=0;i< foundations.Length; i++)
         {
+            foundations[i].FlattenTo(height);
             foundations[i].BuildingOnSquare = null;
             GroundMaterial tempPass = foundations[i].Tile;
             GroundMaterial.SetToMud(foundations[i], ref tempPass);
@@ -135,7 +137,7 @@ public class Building: ScriptableObject
 
     public void CreatePrefab(Vector3 position, GridHash hash)
     {
-        position = GridCoordinates.ToPosition(foundations[0].coordinates) + Vector3.up * foundations[0].CentreElevation * GridMetrics.elevationStep;
+        position = GridCoordinates.ToPosition(foundations[0].coordinates) + Vector3.up * height * GridMetrics.elevationStep;
         buildingModel = Instantiate(prefabBuilding);
         buildingModel.localPosition = position;
         if (randomRotation)

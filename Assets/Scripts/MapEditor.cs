@@ -49,6 +49,7 @@ public class MapEditor : MonoBehaviour
     private bool allowCliffs = false;
     private Vector3 pointerLocation;
     private Dropdown dropMenu;
+    private Vector3 hitPosition;
     public int pointerSize = 1;
     bool isDrag, freshClick = false;
     GridDirection dragDirection;
@@ -158,8 +159,9 @@ public class MapEditor : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(inputRay, out hit))
         {
-            vertexDirection = squareGrid.GetVertex(hit.point);
-            MoveEditorPointer(squareGrid.GetCell(hit.point), vertexDirection);
+            hitPosition = hit.point;
+            vertexDirection = squareGrid.GetVertex(hitPosition);
+            MoveEditorPointer(squareGrid.GetCell(hitPosition), vertexDirection);
         }
     }
 
@@ -239,7 +241,7 @@ public class MapEditor : MonoBehaviour
                             Destroy(highlight[index].gameObject);
                         }
                         highlight[index] = Instantiate(edgeSelectPrefab);
-                        float yOffset = squareGrid.GetCellOffset(pointerLocation, x, z).GetMaxElevation() * GridMetrics.elevationStep;
+                        float yOffset = (float)squareGrid.GetCellOffset(pointerLocation, x, z).GetVertexElevations[vertexDirection] * GridMetrics.elevationStep;
                         offPos.y = yOffset;
                         highlight[index].localPosition = offPos;
                     }
@@ -254,7 +256,7 @@ public class MapEditor : MonoBehaviour
                         highlight[index] = Instantiate(tileSelectPrefab);
                         if(squareGrid.GetCellOffset(pointerLocation, x, z).GetVertexElevations[vertexDirection] != null)
                         {
-                            float yOffset = (float)squareGrid.GetCellOffset(pointerLocation, x, z).GetVertexElevations[vertexDirection] * GridMetrics.elevationStep;
+                            float yOffset = (float)squareGrid.GetCellOffset(pointerLocation, x, z).GetMaxElevation() * GridMetrics.elevationStep;
                             offPos.y = yOffset;
                             highlight[index].localPosition = offPos;
                         }
@@ -447,5 +449,10 @@ public class MapEditor : MonoBehaviour
     public void Explosion(SquareCell cell)
     {
         cell.Demolish();
+    }
+
+    public void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(hitPosition, new Vector3(0.1f, 0.1f, 0.1f));
     }
 }

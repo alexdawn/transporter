@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -12,14 +12,29 @@ MonoBehaviour:
   m_Name: IronMine
   m_EditorClassIdentifier: 
   buildingName: Iron Ore Mine
+  description: 
   width: 4
   depth: 4
   frontageDirection: 0
   startYear: 1800
   endYear: 2050
+  randomRotation: 0
+  uniqueInTown: 0
+  hasColorVariants: 0
+  variantMaterialId: 0
+  pallet: {fileID: 0}
   prefabBuilding: {fileID: 400006, guid: f3a9836869517c4479207f8a95be99d9, type: 3}
   groundMaterial: {fileID: 0}
+  buildingType: 0
+  passengerCreation: 0
+  population: 0
+  jobs: 0
+  mailCreation: 0
+  acceptsPassengers: 0
+  acceptsMail: 0
+  acceptsGoods: 0
   flatFoundations: 1
-  cargo_produced:
-  - {fileID: 11400000, guid: c91d1dce43f74df43a8071707d9239fc, type: 2}
-  cargo_cosumed: []
+  offsetGround: -3
+  cargoProduced: []
+  cargoCosumed: []
+  industryType: 0

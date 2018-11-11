@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public struct GridElevations
+public class GridElevations
 {
     [SerializeField]
     private int y0, y1, y2, y3;
 
-    public const int maxHeight = 50;
+    public const int maxHeight = 5;
     public const int chunkSize = 16;
     public const float perlinScale = 1f;
 
@@ -65,6 +65,44 @@ public struct GridElevations
         this.y3 = y3;
     }
 
+    public void Flatten()
+    {
+        if (GetMaxElevation() != GetMinElevation())
+        {
+            FlattenTo(GetMaxElevation());
+        }
+    }
+
+    public void FlattenTo(int height)
+    {
+        Y0 = height;
+        Y1 = height;
+        Y2 = height;
+        Y3 = height;
+    }
+
+    public float AverageElevation
+    {
+        get { return (Y0 + Y1 + Y2 + Y3) / 4f; }
+    }
+
+    public int GetElevationDifference(GridDirection direction)
+    {
+        int differencePrev = (int)this[direction.Previous()] - (int)this[direction.Opposite().Next()];
+        int differenceNext = (int)this[direction.Next()] - (int)this[direction.Opposite().Previous()];
+        int result = Mathf.Max(differencePrev, differenceNext);
+        return result;
+    }
+
+    public int GetMaxElevation()
+    {
+        return Mathf.Max(Y0, Y1, Y2, Y3);
+    }
+
+    public int GetMinElevation()
+    {
+        return Mathf.Min(Y0, Y1, Y2, Y3);
+    }
 
     public static int GetTerrainHeightFromPerlin(Vector3 position, int seed)
     {

@@ -10,10 +10,12 @@ public class MapCamera : MonoBehaviour {
     public float orthoMinSize, orthoMaxSize;
     public float orthographicAngle;
     public float rotationSpeed;
+    public float smoothTime = 0.3f;
     public SquareGrid grid;
 
     Transform swivel, stick;
     Camera mainCamera;
+    Vector3 velocity;
     float zoom = 0.5f;
     float rotationAngle;
 
@@ -52,6 +54,22 @@ public class MapCamera : MonoBehaviour {
             mainCamera.orthographic = !mainCamera.orthographic;
             AdjustZoom(0);
         }
+        AdjustVerticleHeight();
+    }
+
+    void AdjustVerticleHeight()
+    {
+        if (mainCamera.orthographic)
+        {
+            transform.position = new Vector3 (transform.position.x, 0, transform.position.z);
+        }
+        else
+        {
+            SquareCell cell = grid.GetCell(transform.position);
+            Vector3 target = new Vector3(transform.position.x, 0, transform.position.z) + Vector3.up * cell.GetMaxElevation() * GridMetrics.elevationStep;
+            transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, smoothTime); 
+        }
+
     }
 
 

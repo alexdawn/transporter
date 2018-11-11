@@ -10,10 +10,10 @@ public class SquareCell : MonoBehaviour {
     public TownManager Town;
     public Transform ExplosionPrefab;
 
-    float centreElevation = 0;
     GridElevations vertexElevations;
     GroundMaterial tile;
     Building buildingOnSquare;
+    public NetworkSquare roadNetwork;
     int waterLevel = 2;
     int urbanLevel = 0;
     int plantLevel = 0;
@@ -259,6 +259,7 @@ public class SquareCell : MonoBehaviour {
         if (!roads[(int)direction] && !HasRiver && !HasCliff(direction) && GetElevationDifference(direction) <= 3)
         {
             SetRoad((int)direction, true);
+            roadNetwork.AddCrossRoad();
         }
         else
         {
@@ -283,37 +284,27 @@ public class SquareCell : MonoBehaviour {
 
     public void Flatten()
     {
-        if (GetMaxElevation() != GetMinElevation())
-        {
-            FlattenTo(GetMaxElevation());
-        }
+        vertexElevations.Flatten();
     }
 
     public void FlattenTo(int height)
     {
-        vertexElevations.Y0 = height;
-        vertexElevations.Y1 = height;
-        vertexElevations.Y2 = height;
-        vertexElevations.Y3 = height;
-        UpdateCentreElevation();
+        vertexElevations.FlattenTo(height);
     }
 
     public int GetElevationDifference(GridDirection direction)
     {
-        int differencePrev = (int)vertexElevations[direction.Previous()] - (int)vertexElevations[direction.Opposite().Next()];
-        int differenceNext = (int)vertexElevations[direction.Next()] - (int)vertexElevations[direction.Opposite().Previous()];
-        int result = Mathf.Max(differencePrev, differenceNext);
-        return result;
+        return vertexElevations.GetElevationDifference(direction);
     }
 
     public int GetMaxElevation()
     {
-        return Mathf.Max(vertexElevations.Y0, vertexElevations.Y1, vertexElevations.Y2, vertexElevations.Y3);
+        return vertexElevations.GetMaxElevation();
     }
 
     public int GetMinElevation()
     {
-        return Mathf.Min(vertexElevations.Y0, vertexElevations.Y1, vertexElevations.Y2, vertexElevations.Y3);
+        return vertexElevations.GetMinElevation();
     }
 
     public GridElevations GetVertexElevations
@@ -342,7 +333,7 @@ public class SquareCell : MonoBehaviour {
         get
         {
             return
-                (centreElevation + GridMetrics.waterElevationOffset) * GridMetrics.elevationStep;
+                (CentreElevation + GridMetrics.waterElevationOffset) * GridMetrics.elevationStep;
         }
     }
 
@@ -503,7 +494,7 @@ public class SquareCell : MonoBehaviour {
             return;
         }
         SquareCell neighbor = GetNeighbor(direction);
-        if (!neighbor || centreElevation < neighbor.centreElevation)
+        if (!neighbor || CentreElevation < neighbor.CentreElevation)
         {
             Debug.Log("Could not add river uphill");
             return;
@@ -529,7 +520,7 @@ public class SquareCell : MonoBehaviour {
             return;
         }
         SquareCell neighbor = GetNeighbor(direction);
-        if (!neighbor || centreElevation < neighbor.centreElevation)
+        if (!neighbor || CentreElevation < neighbor.CentreElevation)
         {
             Debug.Log("Could not add river uphill");
             return;
@@ -542,15 +533,15 @@ public class SquareCell : MonoBehaviour {
 
     private void UpdateCentreElevation()
     {
-        centreElevation = (vertexElevations.Y0 + vertexElevations.Y1 + vertexElevations.Y2 + vertexElevations.Y3) / 4f;
-        int maxElevation = Mathf.Max(vertexElevations.Y0, vertexElevations.Y1, vertexElevations.Y2, vertexElevations.Y3);
+        float centreElevation = vertexElevations.AverageElevation;
+        int maxElevation = vertexElevations.GetMaxElevation();
         for (GridDirection i = GridDirection.N; i < GridDirection.NW; i++)
         {
-            if (hasOutgoingRivers[(int)i] && centreElevation < GetNeighbor(i).centreElevation)
+            if (hasOutgoingRivers[(int)i] && centreElevation < GetNeighbor(i).CentreElevation)
             {
                 RemoveOutgoingRiver(i);
             }
-            if (hasIncomingRivers[(int)i] && centreElevation > GetNeighbor(i).centreElevation)
+            if (hasIncomingRivers[(int)i] && centreElevation > GetNeighbor(i).CentreElevation)
             {
                 RemoveIncomingRiver(i);
             }
@@ -560,7 +551,7 @@ public class SquareCell : MonoBehaviour {
 
     public float CentreElevation
     {
-        get { return centreElevation; }
+        get { return vertexElevations.AverageElevation; }
     }
 
 
@@ -576,7 +567,6 @@ public class SquareCell : MonoBehaviour {
         {
             vertexElevations[vertex] += value;
             GroundMaterial.SetToMud(this, ref tile);
-            UpdateCentreElevation();
         }
     }
 
@@ -587,7 +577,6 @@ public class SquareCell : MonoBehaviour {
         set
         {
             vertexElevations = value;
-            UpdateCentreElevation();
         }
     }
 

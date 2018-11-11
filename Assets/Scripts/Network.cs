@@ -10,17 +10,18 @@ public class Network : MonoBehaviour, ISerializationCallbackReceiver {
     public List<Node> nodes;
     [SerializeField]
     private int nodeCounter;
-    // This is the field we give Unity to serialize.
     public List<SerializableNode> serializedNodes;
     public List<SerializableSpline> serializedSplines;
 
-    // Node class that we will use for serialization.
     [Serializable]
     public struct SerializableNode
     {
         public int id;
         public NodeType type;
+        public float waitTime;
         public BezierControlPointMode ControlMode;
+        public NodeDirection boundDirect;
+        public GridDirection compassDirection;
         public Vector3 location;
         public Vector3 inControl;
         public Vector3 outControl;
@@ -46,6 +47,11 @@ public class Network : MonoBehaviour, ISerializationCallbackReceiver {
         }
     }
 
+    public void JoinNetwork(Network network)
+    {
+        Duplicate(network.nodes);
+    }
+
     public void OnBeforeSerialize()
     {
         if (serializedNodes == null) serializedNodes = new List<SerializableNode>();
@@ -66,7 +72,10 @@ public class Network : MonoBehaviour, ISerializationCallbackReceiver {
         {
             id = n.id,
             type = n.type,
+            waitTime = n.waitTime,
             ControlMode = n.ControlMode,
+            boundDirect = n.boundDirect,
+            compassDirection = n.compassDirection,
             location = n.Location,
             inControl = n.InControl,
             outControl = n.OutControl,
@@ -102,9 +111,7 @@ public class Network : MonoBehaviour, ISerializationCallbackReceiver {
     }
     public void OnAfterDeserialize()
     {
-        //Unity has just written new data into the serializedNodes field.
-        //let's populate our actual runtime data with those new values.
-        Reset();
+        SoftReset();
         foreach (SerializableNode n in serializedNodes)
         {
             ReadNodesFromSerializedNodes(n);
@@ -113,7 +120,6 @@ public class Network : MonoBehaviour, ISerializationCallbackReceiver {
         {
             ReadSplinesFromSerializedSplines(s);
         }
-        //Now populate the object references for the nodes:
         foreach (Node n in nodes)
         {
             AppendSplinesToNodes(n);
@@ -125,7 +131,10 @@ public class Network : MonoBehaviour, ISerializationCallbackReceiver {
         Node newNode = new Node(node.id, node.location)
         {
             type = node.type,
+            waitTime = node.waitTime,
             ControlMode = node.ControlMode,
+            boundDirect = node.boundDirect,
+            compassDirection = node.compassDirection,
             InControl = node.inControl,
             OutControl = node.outControl,
             inLinks = new List<Spline>(),
@@ -146,16 +155,74 @@ public class Network : MonoBehaviour, ISerializationCallbackReceiver {
         splines.Add(newSpline);
     }
 
-    void AppendSplinesToNodes(Node node)
+    public List<int> Duplicate(List<Node> dupeNodes)
+    {
+        int startIndex = nodes.Count;
+        Dictionary<int, int> idConversion = new Dictionary<int, int>();
+        List<Node> newNodes = new List<Node>();
+        foreach(Node node in dupeNodes)
+        {
+            Node newNode = MakeNode(GetId(), node.Location);
+            newNode.type = node.type;
+            newNode.waitTime = node.waitTime;
+            newNode.ControlMode = node.ControlMode;
+            newNode.boundDirect = node.boundDirect;
+            newNode.compassDirection = node.compassDirection;
+            newNode.InControl = node.InControl;
+            newNode.OutControl = node.OutControl;
+            newNodes.Add(newNode);
+            idConversion.Add(node.id, newNode.id);
+        }
+        int endIndex = nodes.Count - 1;
+        List<int> newIndexes = new List<int>();
+        for(int i=startIndex; i <= endIndex; i++)
+        {
+            newIndexes.Add(i);
+        }
+
+        foreach(Node node in dupeNodes)
+        {
+            List<Spline> tempList = new List<Spline>();
+            tempList.AddRange(node.inLinks);
+            foreach (Spline spline in tempList)
+            {
+                if(idConversion.ContainsKey(spline.inNode.id))
+                {
+                    Spline newLink = MakeLink(newNodes.Find(n => n.id == idConversion[spline.inNode.id]),
+                                              newNodes.Find(n => n.id == idConversion[node.id]));
+                    newLink.isBezier = spline.isBezier;
+                }
+            }
+            tempList.Clear();
+            tempList.AddRange(node.outLinks);
+            foreach (Spline spline in tempList)
+            {
+                if (idConversion.ContainsKey(spline.outNode.id))
+                {
+                    Spline newLink = MakeLink(newNodes.Find(n => n.id == idConversion[node.id]), 
+                                              newNodes.Find(n => n.id == idConversion[spline.outNode.id]));
+                    newLink.isBezier = spline.isBezier;
+                }
+            }
+        }
+        return newIndexes;
+    }
+
+    public void AppendSplinesToNodes(Node node)
     {
         node.inLinks = splines.FindAll(s => s.outNode.id == node.id);
         node.outLinks = splines.FindAll(s => s.inNode.id == node.id);
     }
 
-    public void Reset()
+    public void SoftReset()
     {
         splines = new List<Spline>();
         nodes = new List<Node>();
+    }
+
+    public void Reset()
+    {
+        SoftReset();
         nodeCounter = 0;
     }
 
@@ -171,6 +238,12 @@ public class Network : MonoBehaviour, ISerializationCallbackReceiver {
         return node;
     }
 
+    public void MergeNodes(Node nodea, Node nodeb)
+    {
+        nodea.MoveLinksFromNode(nodeb);
+        nodes.Remove(nodeb);
+    }
+
     public Spline MakeLink()
     {
         Node anode = MakeNode(GetId(), transform.position + Vector3.forward);
@@ -184,6 +257,12 @@ public class Network : MonoBehaviour, ISerializationCallbackReceiver {
 
     public Spline MakeLink(Node anode, Node bnode)
     {
+        Spline target = splines.Find(s => s.inNode == anode && s.outNode == bnode);
+        if(target!= null)
+        {
+            Debug.LogError("Link already exists between nodes");
+            return target;
+        }
         Spline link = new Spline(anode, bnode);
         anode.outLinks.Add(link);
         bnode.inLinks.Add(link);
@@ -203,6 +282,22 @@ public class Network : MonoBehaviour, ISerializationCallbackReceiver {
             Node anode = MakeNode(GetId(), newPosition);
             return MakeLink(anode, connectingNode);
         }
+    }
+
+    public void DeleteLink(Node anode, Node bnode)
+    {
+        Spline target = splines.Find(s => s.inNode == anode && s.outNode == bnode);
+        if (target != null)
+            DeleteLink(target);
+        else
+            Debug.Log("No Link to Delete");
+    }
+
+    public void DeleteLink(Spline link)
+    {
+        link.inNode.outLinks.Remove(link);
+        link.outNode.inLinks.Remove(link);
+        splines.Remove(link);
     }
 
     public void DeleteNode(Node target)
@@ -229,6 +324,11 @@ public class Network : MonoBehaviour, ISerializationCallbackReceiver {
             target.outNode.inLinks.Remove(target);
         }
         splines.Remove(target);
+    }
+
+    public Spline GetLinkFromNodes(Node anode, Node bnode)
+    {
+        return splines.Find(s => s.inNode == anode && s.outNode == bnode);
     }
 
     public Vector3 GetWorldPoint(Spline spline, float t)
@@ -585,6 +685,31 @@ public class Spline
         UpdateEndPoints();
     }
 
+    public void FlipDirection()
+    {
+        inNode.outLinks.Remove(this);
+        outNode.inLinks.Remove(this);
+        Node temp = outNode;
+        outNode = inNode;
+        inNode = temp;
+        inNode.outLinks.Add(this);
+        outNode.inLinks.Add(this);
+    }
+
+    public void ChangeInNode(Node newNode)
+    {
+        inNode = newNode;
+        newNode.outLinks.Add(this);
+        UpdateStartPoints();
+    }
+
+    public void ChangeOutNode(Node newNode)
+    {
+        outNode = newNode;
+        newNode.inLinks.Add(this);
+        UpdateEndPoints();
+    }
+
     public void UpdateStartPoints()
     {
         curve.SetControlPoint(0, inNode.Location);
@@ -610,6 +735,8 @@ public class Node
     public NodeType type;
     public float waitTime;
     public BezierControlPointMode ControlMode;
+    public NodeDirection boundDirect;
+    public GridDirection compassDirection;
     public List<Spline> inLinks;
     public List<Spline> outLinks;
     private Vector3 location;
@@ -620,10 +747,23 @@ public class Node
     {
         id = Id;
         location = Position;
+        ControlMode = BezierControlPointMode.Aligned;
         inLinks = new List<Spline>();
         outLinks = new List<Spline>();
         inControl = Position + Vector3.back;
         outControl = Position + Vector3.forward;
+    }
+
+    public void MoveLinksFromNode(Node oldNode)
+    {
+        foreach(Spline spline in oldNode.inLinks)
+        {
+            spline.ChangeOutNode(this);
+        }
+        foreach(Spline spline in oldNode.outLinks)
+        {
+            spline.ChangeInNode(this);
+        }
     }
 
     public Vector3 Location
@@ -647,6 +787,7 @@ public class Node
         {
             inControl = value;
             UpdateIn();
+            Enforce(true);
         }
     }
 
@@ -657,7 +798,35 @@ public class Node
         {
             outControl = value;
             UpdateOut();
+            Enforce(false);
         }
+    }
+
+    public void Enforce(bool isIn)
+    {
+        if (ControlMode == BezierControlPointMode.Free)
+        {
+            return;
+        }
+        Vector3 middle = location;
+        Vector3 fixedPoint = isIn ? InControl : OutControl;
+        Vector3 enforcedPoint = isIn ? OutControl : InControl;
+        Vector3 enforcedTangent = middle - fixedPoint;
+        if (ControlMode == BezierControlPointMode.Aligned)
+        {
+            enforcedTangent = enforcedTangent.normalized * Vector3.Distance(middle, enforcedPoint);
+        }
+        if (isIn)
+        {
+            outControl = middle + enforcedTangent;
+            UpdateOut();
+        }
+        else
+        {
+            inControl = middle + enforcedTangent;
+            UpdateIn();
+        }
+
     }
 
     private void UpdateIn()
@@ -674,5 +843,23 @@ public class Node
         {
             link.UpdateStartPoints();
         }
+    }
+}
+
+public enum NodeDirection
+{
+    In,
+    Out,
+    None
+}
+
+public static class NodeDirectionExtensions
+{
+    public static NodeDirection Opposite(this NodeDirection direction)
+    {
+        if (direction == NodeDirection.In || direction == NodeDirection.Out)
+            return direction == NodeDirection.In ? NodeDirection.Out : NodeDirection.In;
+        else
+            return NodeDirection.None;
     }
 }

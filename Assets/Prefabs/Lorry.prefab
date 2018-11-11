@@ -55,7 +55,7 @@ MonoBehaviour:
   network: {fileID: 0}
   speed: 1
   offset: 0.5
-  lookForward: 1
+  lookForward: 0
   mode: 0
 --- !u!114 &114584318041271580
 MonoBehaviour:

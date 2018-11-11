@@ -1,0 +1,352 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1084609558893912}
+  m_IsPrefabAsset: 1
+--- !u!1 &1084609558893912
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4210963486689948}
+  - component: {fileID: 114569563938529966}
+  m_Layer: 0
+  m_Name: CrossRoads
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4210963486689948
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1084609558893912}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114569563938529966
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1084609558893912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1058dbf0d3b12544ba924b16cc021a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeCounter: 8
+  serializedNodes:
+  - id: 0
+    type: 0
+    waitTime: 0
+    ControlMode: 1
+    boundDirect: 0
+    compassDirection: 4
+    location: {x: -0.25, y: 0, z: -0.4}
+    inControl: {x: -0.2507697, y: 0, z: -0.45929617}
+    outControl: {x: -0.2483712, y: 0, z: -0.27452296}
+    inLinkANode: 03000000
+    inLinkBNode: 00000000
+    outLinkANode: 000000000000000000000000
+    outLinkBNode: 010000000500000007000000
+  - id: 1
+    type: 0
+    waitTime: 0
+    ControlMode: 1
+    boundDirect: 1
+    compassDirection: 0
+    location: {x: -0.25, y: 0, z: 0.4}
+    inControl: {x: -0.25020584, y: 0, z: 0.28468418}
+    outControl: {x: -0.24986249, y: 0, z: 0.47703046}
+    inLinkANode: 000000000600000004000000
+    inLinkBNode: 010000000100000001000000
+    outLinkANode: 01000000
+    outLinkBNode: 02000000
+  - id: 2
+    type: 0
+    waitTime: 0
+    ControlMode: 1
+    boundDirect: 0
+    compassDirection: 0
+    location: {x: 0.25, y: 0, z: 0.4}
+    inControl: {x: 0.24643081, y: 0, z: 0.48062325}
+    outControl: {x: 0.25575653, y: 0, z: 0.26996782}
+    inLinkANode: 01000000
+    inLinkBNode: 02000000
+    outLinkANode: 020000000200000002000000
+    outLinkBNode: 030000000700000005000000
+  - id: 3
+    type: 0
+    waitTime: 0
+    ControlMode: 1
+    boundDirect: 1
+    compassDirection: 4
+    location: {x: 0.25, y: 0, z: -0.4}
+    inControl: {x: 0.24371035, y: 0, z: -0.29956594}
+    outControl: {x: 0.25670838, y: 0, z: -0.50712055}
+    inLinkANode: 020000000400000006000000
+    inLinkBNode: 030000000300000003000000
+    outLinkANode: 03000000
+    outLinkBNode: 00000000
+  - id: 4
+    type: 0
+    waitTime: 0
+    ControlMode: 1
+    boundDirect: 0
+    compassDirection: 2
+    location: {x: 0.4, y: 0, z: -0.25}
+    inControl: {x: 0.5218853, y: 0, z: -0.2524273}
+    outControl: {x: 0.30401316, y: 0, z: -0.24808845}
+    inLinkANode: 07000000
+    inLinkBNode: 04000000
+    outLinkANode: 040000000400000004000000
+    outLinkBNode: 050000000300000001000000
+  - id: 5
+    type: 0
+    waitTime: 0
+    ControlMode: 1
+    boundDirect: 1
+    compassDirection: 6
+    location: {x: -0.4, y: 0, z: -0.25}
+    inControl: {x: -0.30978772, y: 0, z: -0.2526246}
+    outControl: {x: -0.49683928, y: 0, z: -0.2471826}
+    inLinkANode: 040000000000000002000000
+    inLinkBNode: 050000000500000005000000
+    outLinkANode: 05000000
+    outLinkBNode: 06000000
+  - id: 6
+    type: 0
+    waitTime: 0
+    ControlMode: 1
+    boundDirect: 0
+    compassDirection: 6
+    location: {x: -0.4, y: 0, z: 0.25}
+    inControl: {x: -0.47597516, y: 0, z: 0.25594297}
+    outControl: {x: -0.27362078, y: 0, z: 0.2401143}
+    inLinkANode: 05000000
+    inLinkBNode: 06000000
+    outLinkANode: 060000000600000006000000
+    outLinkBNode: 070000000100000003000000
+  - id: 7
+    type: 0
+    waitTime: 0
+    ControlMode: 1
+    boundDirect: 1
+    compassDirection: 2
+    location: {x: 0.4, y: 0, z: 0.25}
+    inControl: {x: 0.26716685, y: 0, z: 0.25830308}
+    outControl: {x: 0.51383823, y: 0, z: 0.24288425}
+    inLinkANode: 060000000200000000000000
+    inLinkBNode: 070000000700000007000000
+    outLinkANode: 07000000
+    outLinkBNode: 04000000
+  serializedSplines:
+  - isBezier: 0
+    inNodeId: 0
+    outNodeId: 1
+    curve:
+      points:
+      - {x: -0.25, y: 0, z: -0.4}
+      - {x: -0.2483712, y: 0, z: -0.27452296}
+      - {x: -0.25020584, y: 0, z: 0.28468418}
+      - {x: -0.25, y: 0, z: 0.4}
+      modes: 0000000000000000
+      loop: 0
+      lookupResolution: 100
+  - isBezier: 0
+    inNodeId: 2
+    outNodeId: 3
+    curve:
+      points:
+      - {x: 0.25, y: 0, z: 0.4}
+      - {x: 0.25575653, y: 0, z: 0.26996782}
+      - {x: 0.24371035, y: 0, z: -0.29956594}
+      - {x: 0.25, y: 0, z: -0.4}
+      modes: 0000000000000000
+      loop: 0
+      lookupResolution: 100
+  - isBezier: 0
+    inNodeId: 6
+    outNodeId: 7
+    curve:
+      points:
+      - {x: -0.4, y: 0, z: 0.25}
+      - {x: -0.27362078, y: 0, z: 0.2401143}
+      - {x: 0.26716685, y: 0, z: 0.25830308}
+      - {x: 0.4, y: 0, z: 0.25}
+      modes: 0000000000000000
+      loop: 0
+      lookupResolution: 100
+  - isBezier: 0
+    inNodeId: 4
+    outNodeId: 5
+    curve:
+      points:
+      - {x: 0.4, y: 0, z: -0.25}
+      - {x: 0.30401316, y: 0, z: -0.24808845}
+      - {x: -0.30978772, y: 0, z: -0.2526246}
+      - {x: -0.4, y: 0, z: -0.25}
+      modes: 0000000000000000
+      loop: 0
+      lookupResolution: 100
+  - isBezier: 0
+    inNodeId: 4
+    outNodeId: 3
+    curve:
+      points:
+      - {x: 0.4, y: 0, z: -0.25}
+      - {x: 0.30401316, y: 0, z: -0.24808845}
+      - {x: 0.24371035, y: 0, z: -0.29956594}
+      - {x: 0.25, y: 0, z: -0.4}
+      modes: 0000000000000000
+      loop: 0
+      lookupResolution: 100
+  - isBezier: 0
+    inNodeId: 0
+    outNodeId: 5
+    curve:
+      points:
+      - {x: -0.25, y: 0, z: -0.4}
+      - {x: -0.2483712, y: 0, z: -0.27452296}
+      - {x: -0.30978772, y: 0, z: -0.2526246}
+      - {x: -0.4, y: 0, z: -0.25}
+      modes: 0000000000000000
+      loop: 0
+      lookupResolution: 100
+  - isBezier: 0
+    inNodeId: 6
+    outNodeId: 1
+    curve:
+      points:
+      - {x: -0.4, y: 0, z: 0.25}
+      - {x: -0.27362078, y: 0, z: 0.2401143}
+      - {x: -0.25020584, y: 0, z: 0.28468418}
+      - {x: -0.25, y: 0, z: 0.4}
+      modes: 0000000000000000
+      loop: 0
+      lookupResolution: 100
+  - isBezier: 0
+    inNodeId: 2
+    outNodeId: 7
+    curve:
+      points:
+      - {x: 0.25, y: 0, z: 0.4}
+      - {x: 0.25575653, y: 0, z: 0.26996782}
+      - {x: 0.26716685, y: 0, z: 0.25830308}
+      - {x: 0.4, y: 0, z: 0.25}
+      modes: 0000000000000000
+      loop: 0
+      lookupResolution: 100
+  - isBezier: 0
+    inNodeId: 2
+    outNodeId: 5
+    curve:
+      points:
+      - {x: 0.25, y: 0, z: 0.4}
+      - {x: 0.25575653, y: 0, z: 0.26996782}
+      - {x: -0.30978772, y: 0, z: -0.2526246}
+      - {x: -0.4, y: 0, z: -0.25}
+      modes: 0000000000000000
+      loop: 0
+      lookupResolution: 100
+  - isBezier: 0
+    inNodeId: 4
+    outNodeId: 1
+    curve:
+      points:
+      - {x: 0.4, y: 0, z: -0.25}
+      - {x: 0.30401316, y: 0, z: -0.24808845}
+      - {x: -0.25020584, y: 0, z: 0.28468418}
+      - {x: -0.25, y: 0, z: 0.4}
+      modes: 0000000000000000
+      loop: 0
+      lookupResolution: 100
+  - isBezier: 0
+    inNodeId: 0
+    outNodeId: 7
+    curve:
+      points:
+      - {x: -0.25, y: 0, z: -0.4}
+      - {x: -0.2483712, y: 0, z: -0.27452296}
+      - {x: 0.26716685, y: 0, z: 0.25830308}
+      - {x: 0.4, y: 0, z: 0.25}
+      modes: 0000000000000000
+      loop: 0
+      lookupResolution: 100
+  - isBezier: 0
+    inNodeId: 6
+    outNodeId: 3
+    curve:
+      points:
+      - {x: -0.4, y: 0, z: 0.25}
+      - {x: -0.27362078, y: 0, z: 0.2401143}
+      - {x: 0.24371035, y: 0, z: -0.29956594}
+      - {x: 0.25, y: 0, z: -0.4}
+      modes: 0000000000000000
+      loop: 0
+      lookupResolution: 100
+  - isBezier: 0
+    inNodeId: 1
+    outNodeId: 2
+    curve:
+      points:
+      - {x: -0.25, y: 0, z: 0.4}
+      - {x: -0.24986249, y: 0, z: 0.47703046}
+      - {x: 0.24643081, y: 0, z: 0.48062325}
+      - {x: 0.25, y: 0, z: 0.4}
+      modes: 0000000000000000
+      loop: 0
+      lookupResolution: 100
+  - isBezier: 0
+    inNodeId: 7
+    outNodeId: 4
+    curve:
+      points:
+      - {x: 0.4, y: 0, z: 0.25}
+      - {x: 0.51383823, y: 0, z: 0.24288425}
+      - {x: 0.5218853, y: 0, z: -0.2524273}
+      - {x: 0.4, y: 0, z: -0.25}
+      modes: 0000000000000000
+      loop: 0
+      lookupResolution: 100
+  - isBezier: 0
+    inNodeId: 3
+    outNodeId: 0
+    curve:
+      points:
+      - {x: 0.25, y: 0, z: -0.4}
+      - {x: 0.25670838, y: 0, z: -0.50712055}
+      - {x: -0.2507697, y: 0, z: -0.45929617}
+      - {x: -0.25, y: 0, z: -0.4}
+      modes: 0000000000000000
+      loop: 0
+      lookupResolution: 100
+  - isBezier: 0
+    inNodeId: 5
+    outNodeId: 6
+    curve:
+      points:
+      - {x: -0.4, y: 0, z: -0.25}
+      - {x: -0.49683928, y: 0, z: -0.2471826}
+      - {x: -0.47597516, y: 0, z: 0.25594297}
+      - {x: -0.4, y: 0, z: 0.25}
+      modes: 0000000000000000
+      loop: 0
+      lookupResolution: 100

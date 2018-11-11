@@ -35,6 +35,7 @@ public class NetworkWalker : MonoBehaviour
         if(currentSpline.outNode.outLinks.Count == 0)
         {
             halted = true;
+            Destroy(this.gameObject);
         }
         else
         {
@@ -48,6 +49,8 @@ public class NetworkWalker : MonoBehaviour
         if (currentSpline.inNode.inLinks.Count == 0)
         {
             halted = true;
+            Destroy(this.gameObject);
+
         }
         else
         {
@@ -99,7 +102,7 @@ public class NetworkWalker : MonoBehaviour
             }
         }
         Vector3 position = currentSpline.curve.GetLinearPointFromDist(progress);
-        transform.localPosition = position;
+        transform.position = network.transform.TransformPoint(position);
         if (lookForward)
         {
             transform.LookAt(position + currentSpline.curve.GetDirection(progress));

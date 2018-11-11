@@ -13,6 +13,8 @@ public class SunController : MonoBehaviour {
     public float date = 0;
     public Text clockDisplay;
     public Material windows;
+    public Material[] water;
+    public float minimumAmbientLighting;
     Color fogColor;
     // Use this for initialization
     void Start () {
@@ -72,7 +74,12 @@ public class SunController : MonoBehaviour {
     void Lighting(float brightness)
     {
         light.intensity = brightness;
-        RenderSettings.ambientIntensity = Mathf.Max(0.25f, brightness);
-        RenderSettings.fogColor = Color.Lerp(Color.black, fogColor, brightness);
+        RenderSettings.ambientIntensity = Mathf.Max(minimumAmbientLighting, brightness);
+        Color skyTint = Color.Lerp(Color.black, fogColor, brightness);
+        RenderSettings.fogColor = skyTint;
+        for(int i=0; i < water.Length; i++)
+        {
+            water[i].color = Color.Lerp(Color.black, skyTint, 0.5f);
+        }
     }
 }
